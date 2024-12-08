@@ -1,5 +1,7 @@
 
-# Nessa
+# Nessa  
+[![Project Status](https://img.shields.io/badge/status-active-brightgreen)](#)  
+[![Version](https://img.shields.io/badge/version-1.0.0-blue)](#)  
 
 **Innovative Lighting Solutions for Every Industry**  
 With over 16 years of expertise and a global presence in 20+ countries, Nessa delivers sustainable, high-performance lighting tailored to meet diverse industrial needs.  
@@ -8,9 +10,9 @@ With over 16 years of expertise and a global presence in 20+ countries, Nessa de
 
 ## 🌟 Highlights  
 
-- **Global Expertise:** Trusted by clients in 20+ countries.  
-- **Sustainable Solutions:** Energy-efficient lighting for a brighter future.  
-- **Customizable Products:** Tailored to your industry needs.  
+- **Global Expertise**: Trusted by clients in 20+ countries.  
+- **Sustainable Solutions**: Energy-efficient lighting for a brighter future.  
+- **Customizable Products**: Tailored to your industry needs.  
 
 ---
 
@@ -108,14 +110,6 @@ We welcome contributions to enhance this project! To contribute:
 This project is developed and actively maintained by **Manish Dash Sharma**.  
 
 For inquiries or feedback, feel free to connect with us!  
-
----
-
-## 📜 Project Status  
-
-**Status**: **Active**  
-
-The project is actively under development, with regular updates and new features being added.  
 
 ---
 
