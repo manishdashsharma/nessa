@@ -23,6 +23,9 @@ const config = {
         SECRET: process.env.REFRESH_TOKEN_SECRET,
         EXPIRY: 3600 * 24 * 365
     },
+    CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME,
+    CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY,
+    CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET
 };
 
 console.log(config);

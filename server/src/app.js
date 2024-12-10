@@ -6,6 +6,8 @@ import httpError from './util/httpError.js';
 import helmet from 'helmet';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
+import fs from 'fs';
+import path from 'path';
 
 const app = express();
 

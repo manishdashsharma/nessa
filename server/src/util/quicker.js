@@ -7,6 +7,9 @@ import { v4 } from 'uuid'
 import { randomInt } from 'crypto'
 import jwt from 'jsonwebtoken'
 import dayjs from 'dayjs'
+import axios from 'axios';
+import { ExternalApiUrls, EProductCategories, EACProductSubCategories, ESolarProductSubCategories, EElectronicsProductSubCategories } from '../constant/application.js';
+
 
 export default {
     getSystemHealth: () => {
@@ -85,4 +88,21 @@ export default {
     generateResetPasswordExpiry: (minute) => {
         return dayjs().valueOf() + minute * 60 * 1000
     },
+    getLocationDetails: async() =>{
+        try {
+            const res= await axios.get(ExternalApiUrls.LOCATION_DETAILS)
+            if(res && res.data){
+                return res.data
+            }
+            return null
+        } catch (error) {
+            return null          
+        }
+    },
+    subCategoriesMap : {
+        [EProductCategories.AC_PRODUCT]: Object.values(EACProductSubCategories),
+        [EProductCategories.SOLAR_PRODUCT]: Object.values(ESolarProductSubCategories),
+        [EProductCategories.ELECTRONICS]: Object.values(EElectronicsProductSubCategories),
+    }
+    
 };
