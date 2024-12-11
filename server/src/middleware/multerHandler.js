@@ -3,17 +3,15 @@ import path from "path";
 import { fileURLToPath } from "url";
 import fs from "fs";
 
-// Get the current file path and dirname
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        const tempDir = path.resolve(__dirname, '../../public/temp');  
-        console.log(`Saving file to: ${tempDir}`); 
-        
+        const tempDir = path.resolve(__dirname, '../../public/temp')
+
         if (!fs.existsSync(tempDir)) {
-            fs.mkdirSync(tempDir, { recursive: true }); 
+            fs.mkdirSync(tempDir, { recursive: true });
         }
 
         cb(null, tempDir);
@@ -26,7 +24,7 @@ const storage = multer.diskStorage({
 export const upload = multer({ storage });
 
 export const uploadFiles = upload.fields([
-    { name: 'image', maxCount: 1 }, 
-    { name: 'brochureFile', maxCount: 1 }, 
+    { name: 'image', maxCount: 1 },
+    { name: 'brochureFile', maxCount: 1 },
     { name: 'application', maxCount: 5 }
 ]);

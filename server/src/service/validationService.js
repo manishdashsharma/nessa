@@ -24,7 +24,18 @@ export const ValidateAddProduct = Joi.object({
         })
         .required(),
     specification: Joi.object().required(),
-    feature: Joi.object().required(),
+    feature: Joi.array().items(Joi.string()).required(),
+});
+
+export const ValidateUpdateProduct = Joi.object({
+    name: Joi.string().optional(),
+    description: Joi.string().optional(),
+    categories: Joi.string().optional(),
+    subcategories: Joi.string().optional(),
+    specification: Joi.object().optional(), 
+    feature: Joi.array().items(Joi.string()).optional(), 
+    isActive: Joi.boolean().optional(),
+    isEnquired: Joi.number().integer().optional(),
 });
 
 export const validateJoiSchema = (schema, value) => {
