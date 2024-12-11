@@ -51,7 +51,7 @@ For inquiries or feedback, feel free to connect with us!
 
 ## 🖍️ License  
 
-Nessa is licensed under the **MIT License**.  
+Nessa is licensed under the **[MIT License](https://github.com/manishdashsharma/nessa/blob/main/LICENSE)**.  
 
 ---
 
