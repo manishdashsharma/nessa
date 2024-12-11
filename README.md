@@ -35,8 +35,8 @@ This project is built using state-of-the-art technologies:
 
 Once the setup is complete, you can verify the following services:  
 
-- **Backend Health Check**: [http://localhost:5000/api/v1/health](http://localhost:5000/api/v1/health)  
-- **Frontend Interface**: [http://localhost:5173](http://localhost:5173)  
+- **Backend Health Check**: [Click Here](http://localhost:5000/api/v1/health)  
+- **Frontend Interface**: [Click Here](http://localhost:5173)  
 - **API Documentation**: [View API Documentation](https://documenter.getpostman.com/view/26372308/2sAYBd6nFr)  
 
 ---
