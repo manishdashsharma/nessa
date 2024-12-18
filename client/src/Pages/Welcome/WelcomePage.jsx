@@ -10,11 +10,11 @@ const WelcomePage = () => {
     <motion.div 
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="min-h-screen bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-900 via-slate-900 to-black text-white overflow-hidden"
+      className="min-h-screen bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-900 via-slate-900 to-black text-white overflow-hidden scrollbar-hide"
     >
       <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072')] opacity-10 bg-cover bg-center" />
       
-      <div className="relative">
+      <div className="relative ">
         {/* Navigation */}
         <nav className="container mx-auto px-6 py-6">
           <div className="flex justify-between items-center">

@@ -1,13 +1,18 @@
-import { Route, Routes } from 'react-router-dom';
-import WelcomePage from './Pages/Welcome/WelcomePage';
-
+import { Route, Routes } from 'react-router-dom'
+import { Toaster } from 'react-hot-toast'
+import WelcomePage from './Pages/Welcome/WelcomePage'
+import HomePage from './Pages/Home/HomePage';
 
 const App = () => {
-  return (
-    <Routes>
-      <Route path="/" element={<WelcomePage />} />
-    </Routes>
-  );
-};
+    return (
+        <>
+            <Toaster reverseOrder={false} />
+            <Routes>
+                <Route path="/welcome-page" element={<WelcomePage />} />
+                <Route path='/' element={<HomePage />} /> 
+            </Routes>
+        </>
+    )
+}
 
-export default App;
+export default App
