@@ -1,6 +1,6 @@
 import Joi from 'joi';
 import quicker from '../util/quicker.js';
-import { EProductCategories } from '../constant/application.js';
+import { EBestSuitedFor, EProductCategories } from '../constant/application.js';
 
 export const ValidateAddProduct = Joi.object({
     name: Joi.string().required(),
@@ -12,20 +12,36 @@ export const ValidateAddProduct = Joi.object({
         .custom((value, helpers) => {
             const { categories } = helpers.state.ancestors[0];
             if (!categories) {
-                return helpers.message('`categories` is required before subcategories.');
+                return helpers.message('`categories` is required before `subcategories`.');
             }
 
             const validSubCategories = quicker.subCategoriesMap[categories];
             if (!validSubCategories || !validSubCategories.includes(value)) {
-                return helpers.message(`Invalid subcategory for category: ${categories}`);
+                return helpers.message(`Invalid subcategory '${value}' for category: '${categories}'.`);
             }
 
             return value;
         })
         .required(),
     specification: Joi.object().required(),
-    feature: Joi.array().items(Joi.string()).required(),
+    feature: Joi.object({
+        highlighted: Joi.array().items(Joi.string()).required(),
+        useCases: Joi.array().items(
+            Joi.object({
+                title: Joi.string().required(),
+                description: Joi.string().allow(''),
+                imageUrl: Joi.string().uri().allow('') 
+            })
+        ).required()
+    }).required(),
+    productImageUrl: Joi.string().uri().required(),
+    brochureUrl: Joi.string().uri().required(),
+    applicationImageUrls: Joi.array().items(Joi.string().uri()).required(),
+    bestSuitedFor: Joi.string()
+        .valid(...Object.values(EBestSuitedFor))
+        .required(),
 });
+
 
 export const ValidateUpdateProduct = Joi.object({
     name: Joi.string().optional(),

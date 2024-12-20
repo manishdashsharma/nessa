@@ -1,5 +1,5 @@
-import os from 'os';
-import config from '../config/config.js';
+import os from 'os'
+import config from '../config/config.js'
 import bcrypt from 'bcryptjs'
 import { parsePhoneNumber } from 'libphonenumber-js'
 import { getTimezonesForCountry } from 'countries-and-timezones'
@@ -7,17 +7,25 @@ import { v4 } from 'uuid'
 import { randomInt } from 'crypto'
 import jwt from 'jsonwebtoken'
 import dayjs from 'dayjs'
-import axios from 'axios';
-import { ExternalApiUrls, EProductCategories, EACProductSubCategories, ESolarProductSubCategories, EElectronicsProductSubCategories } from '../constant/application.js';
-
+import axios from 'axios'
+import {
+    ExternalApiUrls,
+    EProductCategories,
+    EACLightingSubCategories,
+    EElectronicsSubCategories,
+    ESolarSubCategories,
+    EHybridLightsSubCategories,
+    EIndoorLightingSubCategories,
+    ESolutionsSubCategories
+} from '../constant/application.js'
 
 export default {
     getSystemHealth: () => {
         return {
             cpuUsage: os.loadavg(),
             totalMemory: `${(os.totalmem() / 1024 / 1024).toFixed(2)} MB`,
-            freeMemory: `${(os.freemem() / 1024 / 1024).toFixed(2)} MB`,
-        };
+            freeMemory: `${(os.freemem() / 1024 / 1024).toFixed(2)} MB`
+        }
     },
     getApplicationHealth: () => {
         return {
@@ -25,9 +33,9 @@ export default {
             uptime: `${process.uptime().toFixed(2)} Seconds`,
             memoryUsage: {
                 heapTotal: `${(process.memoryUsage().heapTotal / 1024 / 1024).toFixed(2)} MB`,
-                heapUsed: `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB`,
-            },
-        };
+                heapUsed: `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB`
+            }
+        }
     },
     parsePhoneNumber: (phoneNumber) => {
         try {
@@ -88,21 +96,24 @@ export default {
     generateResetPasswordExpiry: (minute) => {
         return dayjs().valueOf() + minute * 60 * 1000
     },
-    getLocationDetails: async() =>{
+    getLocationDetails: async () => {
         try {
-            const res= await axios.get(ExternalApiUrls.LOCATION_DETAILS)
-            if(res && res.data){
+            const res = await axios.get(ExternalApiUrls.LOCATION_DETAILS)
+            if (res && res.data) {
                 return res.data
             }
             return null
         } catch (error) {
-            return null          
+            return null
         }
     },
-    subCategoriesMap : {
-        [EProductCategories.AC_PRODUCT]: Object.values(EACProductSubCategories),
-        [EProductCategories.SOLAR_PRODUCT]: Object.values(ESolarProductSubCategories),
-        [EProductCategories.ELECTRONICS]: Object.values(EElectronicsProductSubCategories),
+    subCategoriesMap: {
+        [EProductCategories.AC_LIGHTING]: Object.values(EACLightingSubCategories),
+        [EProductCategories.SOLAR]: Object.values(ESolarSubCategories),
+        [EProductCategories.ELECTRONICS]: Object.values(EElectronicsSubCategories),
+        [EProductCategories.HYBRID_LIGHTS]: Object.values(EHybridLightsSubCategories),
+        [EProductCategories.INDOOR_LIGHTING]: Object.values(EIndoorLightingSubCategories),
+        [EProductCategories.SOLUTIONS]: Object.values(ESolutionsSubCategories)
     }
-    
-};
+}
+

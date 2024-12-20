@@ -8,31 +8,67 @@ export const ExternalApiUrls = Object.freeze({
 });
 
 export const EProductCategories = Object.freeze({
-    AC_PRODUCT: 'AC Product',
-    SOLAR_PRODUCT: 'Solar Product',
-    UVC_PRODUCT: 'UVC Product',
+    AC_LIGHTING: 'AC Lighting',
     ELECTRONICS: 'Electronics',
+    SOLAR: 'Solar',
+    HYBRID_LIGHTS: 'Hybrid Lights',
+    INDOOR_LIGHTING: 'Indoor Lighting',
+    SOLUTIONS: 'Solutions',
 });
 
-export const EACProductSubCategories = Object.freeze({
-    AC_FLOOD_LIGHT: 'AC Flood Light',
-    AC_STREET_LIGHT: 'AC Street Light',
-    AC_HIGH_BAY_LIGHT: 'AC High Bay Light',
+export const EACLightingSubCategories = Object.freeze({
+    STREET_LIGHT: 'Street Light',
+    FLOOD_LIGHT: 'Flood Light',
+    HIGHWAY_LIGHT: 'Highway Light',
     WELL_GLASS_LIGHT: 'Well Glass Light',
-    CANOPY_LIGHT: 'Canopy Light',
+    FISSION_LED_STREET_LIGHT: 'Fission LED Street Light',
+    FISSION_FLOOD_LIGHT: 'Fission Flood Light',
+    AC_HIGH_MAST: 'AC High Mast',
 });
 
-export const ESolarProductSubCategories = Object.freeze({
-    SOLAR_STREET_LIGHT: 'Solar Street Light',
-    SOLAR_FLOOD_LIGHT: 'Solar Flood Light',
-    ALL_IN_ONE_SOLAR_LIGHT: 'All-in-One Solar Light',
-    SEMI_INTEGRATED_SOLAR_STREET_LIGHT: 'Semi-Integrated Solar Street Light',
+export const EElectronicsSubCategories = Object.freeze({
+    DRIVERS: 'Drivers',
+    SOLAR_CHARGE_CONTROLLERS: 'Solar Charge Controllers',
 });
 
-export const EElectronicsProductSubCategories = Object.freeze({
-    AC_DRIVER: 'AC Driver',
-    DC_DRIVER: 'DC Driver',
-    CHARGE_CONTROLLER: 'Charge Controller',
-    DUSK_TO_DAWN_CONTROLLER: 'Dusk to Dawn Controller',
-    SURGE_PROTECTION_DEVICE: 'Surge Protection Device',
+export const ESolarSubCategories = Object.freeze({
+    SEMI_INTEGRATED_SOLAR: 'Semi Integrated Solar',
+    LED_STREET_LIGHT_TWO_IN_ONE: 'LED Street Light (Two in One)',
+    INTEGRATED_SOLAR: 'Integrated Solar',
+    LED_STREET_LIGHT_ALL_IN_ONE: 'LED Street Light (All in One)',
+    SOLAR_LED_STREET_LIGHT: 'Solar LED Street Light',
+    SOLAR_PUMPS: 'Solar Pumps',
+    SOLAR_ROOF_TOP: 'Solar Roof Top',
 });
+
+export const EHybridLightsSubCategories = Object.freeze({
+    HYBRID_SOLAR_STREET_LIGHT: 'Hybrid Solar Street Light',
+});
+
+export const EIndoorLightingSubCategories = Object.freeze({
+    SURFACE: 'Surface',
+    PANEL: 'Panel',
+    DOWNLIGHT: 'Downlight',
+    TUBE_LIGHT: 'Tube Light',
+});
+
+export const ESolutionsSubCategories = Object.freeze({
+    AIRPORTS: 'Airports',
+    MINES: 'Mines',
+    STADIUM: 'Stadium',
+    PETROL_PUMP: 'Petrol Pump',
+    REFINERY: 'Refinery',
+    HIGHWAYS: 'Highways',
+    TUNNELS: 'Tunnels',
+    RURAL_HILLY_FOREST_AREAS: 'Rural, Hilly & Forest Areas',
+    PORTS_LOGISTIC_PARKS: 'Ports & Logistic Parks',
+    HAZARDOUS_AREAS: 'Hazardous Areas',
+    THERMAL_POWER_PLANTS: 'Thermal Power Plants',
+    SOLAR_PARKS: 'Solar Parks',
+});
+
+export const EBestSuitedFor = Object.freeze({
+    OFFICES: 'Offices',
+    BANK: 'Bank',
+    INDUSTRIES: 'Industries',
+})

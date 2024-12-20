@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 
 const productSchema = new mongoose.Schema(
     {
@@ -22,11 +22,35 @@ const productSchema = new mongoose.Schema(
             type: Object,
             required: true
         },
-        feature: { 
-            type: [String], 
-            required: true 
+        feature: {
+            type: {
+                highlighted: { 
+                    type: [String], 
+                    required: true 
+                },
+                useCases: {
+                    type: [
+                        {
+                            title: { 
+                                type: String, 
+                                required: true 
+                            },
+                            description: { 
+                                type: String, 
+                                default: "" 
+                            },
+                            imageUrl: { 
+                                type: String, 
+                                required: true 
+                            },
+                        }
+                    ],
+                    required: true,
+                },
+            },
+            required: true,
         },
-        imageUrl: { 
+        productImageUrl: { 
             type: String, 
             required: true 
         },
@@ -34,23 +58,26 @@ const productSchema = new mongoose.Schema(
             type: String, 
             required: true 
         },
-        applicationUrls: { 
-            type: [String], 
+        applicationImageUrls: { 
+            type: [String],
             required: true 
         },
-        isActive:{
-            type: Boolean,
-            default: true
+        bestSuitedFor: { 
+            type: String, 
+            required: true 
         },
-        isEnquired:{
+        isActive: {
+            type: Boolean,
+            default: true,
+        },
+        isEnquired: {
             type: Number,
-            default: 0
-        }
+            default: 0,
+        },
     },
     {
-        timestamps: true
+        timestamps: true,
     }
-)
+);
 
-
-export default mongoose.model('Product', productSchema)
+export default mongoose.model('Product', productSchema);

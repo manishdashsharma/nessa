@@ -8,7 +8,7 @@ const __dirname = path.dirname(__filename);
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        const tempDir = path.resolve(__dirname, '../../public/temp')
+        const tempDir = path.resolve(__dirname, '../../public/temp');
 
         if (!fs.existsSync(tempDir)) {
             fs.mkdirSync(tempDir, { recursive: true });
@@ -17,14 +17,10 @@ const storage = multer.diskStorage({
         cb(null, tempDir);
     },
     filename: function (req, file, cb) {
-        cb(null, `${Date.now()}-${file.originalname}`); 
+        cb(null, `${Date.now()}-${file.originalname}`);
     }
 });
 
 export const upload = multer({ storage });
 
-export const uploadFiles = upload.fields([
-    { name: 'image', maxCount: 1 },
-    { name: 'brochureFile', maxCount: 1 },
-    { name: 'application', maxCount: 5 }
-]);
+export const uploadFiles = upload.single('file'); 

@@ -5,5 +5,6 @@ export default {
     TOO_MANY_REQUESTS: `Too many requests! Please try again after some time`,
     ALREADY_EXIST: (entity, identifier) => `${entity} already exist with ${identifier}`,
     INVALID_IP: `Invalid IP address`,
-    FAILED_TO_SAVE: `Failed to save the data`
+    FAILED_TO_SAVE: `Failed to save the data`,
+    CUSTOM_MESSAGE: (entity) =>`${entity}`
 }
