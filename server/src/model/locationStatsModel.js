@@ -4,6 +4,7 @@ const locationStatsSchema = new mongoose.Schema({
     ipAddress: {
         type: String,
         required: true,
+        unique: true,
     },
     latitude: {
         type: Number,

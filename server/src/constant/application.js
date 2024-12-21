@@ -72,3 +72,12 @@ export const EBestSuitedFor = Object.freeze({
     BANK: 'Bank',
     INDUSTRIES: 'Industries',
 })
+
+export const ESubject = Object.freeze({
+    GENERAL_INQUIRY: 'General Inquiry',
+    INTERNATION_INQUIRY: 'International Inquiry',
+    DOMESTIC_INQUIRY: 'Domestic Inquiry',
+    SERVICE_INQUIRY: 'Service Inquiry',
+    CSR_INQUIRY: 'CSR Inquiry',
+    CAREER_INQUIRY: 'Career Inquiry'
+})

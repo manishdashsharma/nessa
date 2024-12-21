@@ -2,6 +2,8 @@ import mongoose from 'mongoose'
 import config from '../config/config.js'
 import locationStatsModel from '../model/locationStatsModel.js'
 import productModel from '../model/productModel.js'
+import utilsModel from '../model/utilsModel.js'
+import contactUsModel from '../model/contactUsModel.js'
 
 export default {
     connect: async () => {
@@ -36,6 +38,33 @@ export default {
             { $inc: { isEnquired: 1 } }, 
             { new: true }
         );
+    },
+    saveUtilsData: (payload) =>{
+        return utilsModel.create(payload)
+    },
+    fetchUtilsData: (id) => {
+        return utilsModel.findById(id);
+    },
+    updateUtilsData: (id, data) => {
+        return utilsModel.findByIdAndUpdate(id, data, { new: true });
+    },
+    removeUtilsData: (id) =>{
+        return utilsModel.findByIdAndDelete(id);
+    },
+    saveContactUs: (payload) => {
+        return contactUsModel.create(payload)
+    },
+    queryContactUsData: async (findQuery, limit, offset) => {
+        return contactUsModel.find(findQuery)
+            .skip(offset)
+            .limit(limit);
+
+    },
+    countContactUsDocuments: (findQuery) => {
+        return contactUsModel.countDocuments(findQuery);
+    },
+    updateContactUsById: (id,data) =>{
+        return contactUsModel.findByIdAndUpdate(id, data, { new: true ,runValidators: true});
     }
 }
 

@@ -1,6 +1,6 @@
 import Joi from 'joi';
 import quicker from '../util/quicker.js';
-import { EBestSuitedFor, EProductCategories } from '../constant/application.js';
+import { EBestSuitedFor, EProductCategories, ESubject } from '../constant/application.js';
 
 export const ValidateAddProduct = Joi.object({
     name: Joi.string().required(),
@@ -53,6 +53,35 @@ export const ValidateUpdateProduct = Joi.object({
     isActive: Joi.boolean().optional(),
     isEnquired: Joi.number().integer().optional(),
 });
+
+export const ValidateAddUtilsData = Joi.object({
+    title: Joi.string().required(),
+    utilsData: Joi.object().required(),
+})
+
+export const ValidateUpdateUtilsData = Joi.object({
+    title: Joi.string().optional(), 
+    utilsData: Joi.object().required().messages({
+        'object.base': 'utilsData must be an object.',
+        'any.required': 'utilsData is required.'
+    }) 
+});
+
+export const validateContactUs = Joi.object({
+    name: Joi.string().required(),
+    email: Joi.string().email().required(),
+    phoneNumber: Joi.string().required(),
+    message: Joi.string().required(),
+    subject: Joi.string().valid(...Object.values(ESubject)).required(),
+    fileLink: Joi.string().uri().required(),
+    companyName: Joi.string().required(),
+})
+
+export const ValidateUpdateContactUs = Joi.object({
+    isRead: Joi.boolean().optional(),
+    isSpam: Joi.boolean().optional(),
+    isSolved: Joi.boolean().optional(),
+})
 
 export const validateJoiSchema = (schema, value) => {
     const result = schema.validate(value);

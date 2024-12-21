@@ -4,12 +4,21 @@ import httpError from '../util/httpError.js'
 import quicker from '../util/quicker.js'
 import databaseService from '../service/databaseService.js'
 import { uploadOnCloudinary } from '../service/cloudinaryService.js'
-import { ValidateAddProduct, validateJoiSchema, ValidateUpdateProduct } from '../service/validationService.js'
+import { ValidateAddProduct, ValidateAddUtilsData, validateContactUs, validateJoiSchema, ValidateUpdateContactUs, ValidateUpdateProduct, ValidateUpdateUtilsData } from '../service/validationService.js'
+import contactUsModel from '../model/contactUsModel.js'
 
 export default {
     self: (req, res, next) => {
         try {
             httpResponse(req, res, 200, responseMessage.SUCCESS)
+        } catch (err) {
+            httpError(next, err, req, 500)
+        }
+    },
+    apiDetailsCheck: (req, res, next) => {
+        try {
+            const response = quicker.apiDetailsStatus
+            httpResponse(req, res, 200, responseMessage.SUCCESS,response)
         } catch (err) {
             httpError(next, err, req, 500)
         }
@@ -223,6 +232,182 @@ export default {
         } catch (err) {
             httpError(next, err, req, 500)
         }
-    }
+    },
+    addUtilsData: async (req, res, next) => {
+        try {
+            const { body } = req
+            
+            const { value, error } = validateJoiSchema(ValidateAddUtilsData, body)
+
+            if (error) {
+                return httpError(next, error, req, 422)
+            }
+            
+            const { title, utilsData } = value
+            const newUtilsData = await databaseService.saveUtilsData({
+                title,
+                utilsData
+            })
+            if(!newUtilsData){
+                return httpError(next, new Error(responseMessage.FAILED_TO_SAVE), req, 500)
+            }
+
+            httpResponse(req, res, 201, responseMessage.SUCCESS)
+        } catch (err) {
+            httpError(next, err, req, 500)
+        }
+    },
+    fetchUtilsData: async (req, res, next) => {
+        try {
+            const { id } = req.params;
+            const utilsData = await databaseService.fetchUtilsData(id);
+            
+            if (!utilsData) {
+                return httpError(next, new Error(responseMessage.NOT_FOUND), req, 404);
+            }
+    
+            httpResponse(req, res, 200, responseMessage.SUCCESS,utilsData);
+        } catch (err) {
+            httpError(next, err, req, 500);
+        }
+    },
+    updateUtilsData: async (req, res, next) => {
+        try {
+            const { id } = req.params;
+            const { body } = req;
+            
+            if(!id) {
+                return httpError(next, new Error(responseMessage.CUSTOM_MESSAGE('Document ID is missing')), req, 400);
+            }
+            const { value, error } = validateJoiSchema(ValidateUpdateUtilsData, body);
+            if (error) {
+                return httpError(next, error, req, 422);
+            }
+    
+            const updatedUtilsData = await databaseService.updateUtilsData(id, value);
+    
+            if (!updatedUtilsData) {
+                return httpError(next, new Error(responseMessage.CUSTOM_MESSAGE('Failed to Update the data')), req, 500);
+            }
+    
+            httpResponse(req, res, 200, updatedUtilsData);
+        } catch (err) {
+            httpError(next, err, req, 500);
+        }
+    },
+    removeUtilsData: async (req, res, next) => {
+        try {
+            const { id } = req.params;
+            
+            if (!id) {
+                return httpError(next, new Error(responseMessage.CUSTOM_MESSAGE('Please provide an ID')), req, 400);
+            }
+    
+            const deletedUtilsData = await databaseService.removeUtilsData(id);
+    
+            if (!deletedUtilsData) {
+                return httpError(next, new Error(responseMessage.CUSTOM_MESSAGE('Failed to delete the data')), req, 500);
+            }
+    
+            httpResponse(req, res, 200, responseMessage.SUCCESS);
+        } catch (err) {
+            httpError(next, err, req, 500);
+        }
+    },
+    saveContactUs: async (req, res, next) => {
+        try {
+            const { body } = req
+
+            const { value, error } = validateJoiSchema(validateContactUs, body)
+            if (error) {
+                return httpError(next, error, req, 422)
+            }
+
+            const { name, email, phoneNumber, subject, message, fileLink, companyName } = value
+
+            const newContactUs = await databaseService.saveContactUs({
+                name,
+                email,
+                phoneNumber,
+                subject,
+                message,
+                fileLink,
+                companyName
+            })
+
+            if(!newContactUs){
+                return httpError(next, new Error(responseMessage.FAILED_TO_SAVE), req, 500)
+            }
+
+            httpResponse(req, res, 200, responseMessage.SUCCESS)
+        } catch (err) {
+            httpError(next, err, req, 500)
+        }
+    },
+    queryContactUsData: async (req, res, next) => {
+        try {
+            const { limit = 10, offset = 0, subject, isRead, isSpam, isSolved } = req.query;
+    
+            const query = {};
+            
+            if (subject) {
+                query.subject = subject;
+            }
+            if (isRead !== undefined) {
+                query.isRead = isRead === 'true';
+            }
+            if (isSpam !== undefined) {
+                query.isSpam = isSpam === 'true';
+            }
+            if (isSolved !== undefined) {
+                query.isSolved = isSolved === 'true';
+            }
+            
+            
+            const contactUsList = await databaseService.queryContactUsData(query, limit, offset);
+                 
+            const total = await databaseService.countContactUsDocuments(query);
+    
+            const response = {
+                total,
+                limit: Number(limit),
+                offset: Number(offset),
+                contactUsList
+            }
+    
+            httpResponse(req, res, 200, responseMessage.SUCCESS, response)
+        } catch (err) {
+            console.error('Error:', err);
+            httpError(next, err, req, 500);
+        }
+    },
+    updateContactUsData: async (req, res, next) => {
+        try {
+            const { id } = req.params;
+            const { body } = req;
+    
+            if(!id) {
+                return httpError(next, new Error(responseMessage.CUSTOM_MESSAGE('Document ID is missing')), req, 400);
+            }
+
+            const { value, error } = validateJoiSchema(ValidateUpdateContactUs, body)
+
+            if (error) {
+                return httpError(next, error, req, 422);
+            }
+    
+            const updatedContactUs = await databaseService.updateContactUsById(id,value)
+    
+            if (!updatedContactUs) {
+                return httpError(next, new Error(responseMessage.NOT_FOUND), req, 404);
+            }
+    
+            httpResponse(req, res, 200, responseMessage.SUCCESS, updatedContactUs)
+        } catch (err) {
+            httpError(next, err, req, 500);
+        }
+    },
+        
+    
 }
 
