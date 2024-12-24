@@ -1,0 +1,75 @@
+version: '3.9'
+
+services:
+  mongo:
+    container_name: mongo_container
+    image: 'mongo:latest'
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - queue-net
+    env_file: 
+      - ./.env.production
+    command: mongod --bind_ip_all --auth
+    restart: unless-stopped
+    # Add security settings for MongoDB
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  client:
+    container_name: client
+    build:
+      context: ./client
+      dockerfile: docker/production/Dockerfile
+    ports:
+      - '5173:5173' 
+    restart: unless-stopped
+    env_file: 
+      - ./.env.production
+    depends_on:
+      - server
+    networks:
+      - queue-net
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  server:
+    container_name: server
+    build:
+      context: ./server
+      dockerfile: docker/production/Dockerfile
+    ports:
+      - '5000:5000'
+    depends_on:
+      - mongo
+    env_file: 
+      - ./.env.production
+    # Remove development volumes in production
+    networks:
+      - queue-net
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  queue-net:
+    driver: bridge
+    # Add network configuration for better isolation
+    internal: false
+    attachable: false
+
+volumes:
+  mongo-data:
+    driver: local

@@ -1,28 +1,29 @@
-import React, { useRef, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css/pagination";
-import styled from "styled-components";
-import { Pagination, Autoplay } from "swiper/modules";
-
-const RecoExSec1Wrapper = styled.div`
-  .swiper {
-    width: 100%;
-    height: 500px;
-      
-  }
-
-  .swiper-slide {
-    text-align: center;
-    font-size: 18px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-`;
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import { Pagination, Autoplay } from 'swiper/modules';
+import news1 from '../../../assets/images/homepageimages/news1.png';
 
 export default function RecoExSec1() {
   return (
-    <RecoExSec1Wrapper>
+    <div className="w-full">
+      {/* Add custom styles for Swiper using Tailwind's style */}
+      <style>
+        {`
+          .swiper {
+            width: 100%;
+            height: 500px;
+          }
+          .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+        `}
+      </style>
+
       <Swiper
         pagination={{
           dynamicBullets: true,
@@ -36,34 +37,30 @@ export default function RecoExSec1() {
         watchSlidesProgress={true}
         observer={true}
         observeParents={true}
-        className="mySwiper "
+        className="mySwiper"
       >
         {[
           {
-            image: "./images/homepageimages/news1.png",
-            heading:
-              "SEWA, bizmen use LEDs to lead veg vendors out of darkness!",
+            image: news1,
+            heading: 'SEWA, bizmen use LEDs to lead veg vendors out of darkness!',
           },
           {
-            image: "./images/homepageimages/news1.png",
-            heading:
-              "SEWA, bizmen use LEDs to lead veg vendors out of darkness!",
+            image: news1,
+            heading: 'SEWA, bizmen use LEDs to lead veg vendors out of darkness!',
           },
           {
-            image: "./images/homepageimages/news1.png",
-            heading:
-              "SEWA, bizmen use LEDs to lead veg vendors out of darkness!",
+            image: news1,
+            heading: 'SEWA, bizmen use LEDs to lead veg vendors out of darkness!',
           },
           {
-            image: "./images/homepageimages/news1.png",
-            heading:
-              "SEWA, bizmen use LEDs to lead veg vendors out of darkness!",
+            image: news1,
+            heading: 'SEWA, bizmen use LEDs to lead veg vendors out of darkness!',
           },
         ].map((slide, index) => (
-          <SwiperSlide key={index} className="  bg-[var(--light-blue)] ">
-            <div className=" flex flex-col items-center justify-center gap-4">
+          <SwiperSlide key={index} className="bg-[var(--light-blue)]">
+            <div className="flex flex-col items-center justify-center gap-4">
               <img
-                className=" w-[80%] object-cover "
+                className="w-[80%] object-cover"
                 src={slide.image}
                 alt=""
               />
@@ -72,6 +69,6 @@ export default function RecoExSec1() {
           </SwiperSlide>
         ))}
       </Swiper>
-    </RecoExSec1Wrapper>
+    </div>
   );
 }

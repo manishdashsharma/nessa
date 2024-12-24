@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { IoChevronDown } from "react-icons/io5";
+
+import { useState } from 'react';
+import { IoChevronDown } from 'react-icons/io5';
 
 const InsightsResources = () => {
   const [expandedSections, setExpandedSections] = useState({
@@ -14,59 +15,59 @@ const InsightsResources = () => {
   const initialPosts = [
     {
       id: 1,
-      title: "Essential UX Design Principles",
-      category: "Analytics",
-      description: "Key strategies for modern interfaces and how to implement them effectively in your next project. Learn about user-centered design approaches.",
-      author: "Sarah Miller",
-      date: "March 15, 2024",
-      image: "/api/placeholder/400/250",
-      readTime: "5 min read",
-      section: "Blogs"
+      title: 'Essential UX Design Principles',
+      category: 'Analytics',
+      description: 'Key strategies for modern interfaces and how to implement them effectively in your next project. Learn about user-centered design approaches.',
+      author: 'Sarah Miller',
+      date: 'March 15, 2024',
+      image: '/api/placeholder/400/250',
+      readTime: '5 min read',
+      section: 'Blogs'
     },
     {
       id: 2,
-      title: "Web Development Trends 2024",
-      category: "Technology",
-      description: "Latest innovations in web development that are shaping the future of online experiences. Discover emerging technologies.",
-      author: "Mike Chen",
-      date: "March 20, 2024",
-      image: "/api/placeholder/400/250",
-      readTime: "4 min read",
-      section: "Blogs"
+      title: 'Web Development Trends 2024',
+      category: 'Technology',
+      description: 'Latest innovations in web development that are shaping the future of online experiences. Discover emerging technologies.',
+      author: 'Mike Chen',
+      date: 'March 20, 2024',
+      image: '/api/placeholder/400/250',
+      readTime: '4 min read',
+      section: 'Blogs'
     },
     {
       id: 3,
-      title: "Mobile-First Design Approach",
-      category: "Business",
-      description: "Strategies for responsive web design that prioritize mobile users while maintaining desktop functionality.",
-      author: "Emma Davis",
-      date: "March 18, 2024",
-      image: "/api/placeholder/400/250",
-      readTime: "6 min read",
-      section: "Blogs"
+      title: 'Mobile-First Design Approach',
+      category: 'Business',
+      description: 'Strategies for responsive web design that prioritize mobile users while maintaining desktop functionality.',
+      author: 'Emma Davis',
+      date: 'March 18, 2024',
+      image: '/api/placeholder/400/250',
+      readTime: '6 min read',
+      section: 'Blogs'
     },
     // Case Studies
     {
       id: 4,
-      title: "E-commerce Platform Redesign",
-      category: "Design",
-      description: "A comprehensive case study of how we improved conversion rates by 150% through UX optimization.",
-      author: "Alex Johnson",
-      date: "March 22, 2024",
-      image: "/api/placeholder/400/250",
-      readTime: "8 min read",
-      section: "Case Studies"
+      title: 'E-commerce Platform Redesign',
+      category: 'Design',
+      description: 'A comprehensive case study of how we improved conversion rates by 150% through UX optimization.',
+      author: 'Alex Johnson',
+      date: 'March 22, 2024',
+      image: '/api/placeholder/400/250',
+      readTime: '8 min read',
+      section: 'Case Studies'
     },
     {
       id: 5,
-      title: "Healthcare App Development",
-      category: "Technology",
-      description: "How we built a HIPAA-compliant healthcare application serving over 100,000 patients.",
-      author: "Lisa Zhang",
-      date: "March 21, 2024",
-      image: "/api/placeholder/400/250",
-      readTime: "7 min read",
-      section: "Case Studies"
+      title: 'Healthcare App Development',
+      category: 'Technology',
+      description: 'How we built a HIPAA-compliant healthcare application serving over 100,000 patients.',
+      author: 'Lisa Zhang',
+      date: 'March 21, 2024',
+      image: '/api/placeholder/400/250',
+      readTime: '7 min read',
+      section: 'Case Studies'
     }
   ];
 

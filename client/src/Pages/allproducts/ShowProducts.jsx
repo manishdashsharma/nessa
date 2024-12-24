@@ -1,36 +1,37 @@
 import { useState } from 'react';
 // import { ChevronDown, ChevronUp } from 'lucide-react';
-import { FaChevronUp } from "react-icons/fa";
-import { FaChevronDown } from "react-icons/fa";
+import { FaChevronUp } from 'react-icons/fa';
+import { FaChevronDown } from 'react-icons/fa';
+import product from '../../assets/images/product.png';
 
 
 // categories structure
 const categories = {
-  "AC Lighting": [
-    "Street Light",
-    "Flood Light", 
-    "Highway Light",
-    "Wall Glass Light",
-    "Fission Led Street Light",
-    "Fission Flood Light",
-    "AC High Mast"
+  'AC Lighting': [
+    'Street Light',
+    'Flood Light', 
+    'Highway Light',
+    'Wall Glass Light',
+    'Fission Led Street Light',
+    'Fission Flood Light',
+    'AC High Mast'
   ],
-  "Solar Lighting": [
-    "Solar Street Light",
-    "Solar Garden Light",
-    "Solar Panel",
-    "Solar Inverter"
+  'Solar Lighting': [
+    'Solar Street Light',
+    'Solar Garden Light',
+    'Solar Panel',
+    'Solar Inverter'
   ],
-  "Electronics": [
-    "LED Driver",
-    "Power Supply",
-    "Controllers"
+  'Electronics': [
+    'LED Driver',
+    'Power Supply',
+    'Controllers'
   ],
-  "Indoor Lights": [
-    "Panel Light",
-    "Down Light",
-    "Spot Light",
-    "Strip Light",
+  'Indoor Lights': [
+    'Panel Light',
+    'Down Light',
+    'Spot Light',
+    'Strip Light',
     
   ]
 };
@@ -45,30 +46,30 @@ const generateFakeProducts = () => {
   
   // Product name patterns for each subcategory
   const productPatterns = {
-    "Street Light": ["30W", "50W", "100W", "150W"],
-    "Flood Light": ["100W", "200W", "300W", "500W"],
-    "Highway Light": ["150W", "250W", "400W"],
-    "Wall Glass Light": ["20W", "40W", "60W"],
-    "Fission Led Street Light": ["80W", "120W", "160W"],
-    "Fission Flood Light": ["150W", "250W", "350W"],
-    "AC High Mast": ["400W", "600W", "800W"],
-    "Solar Street Light": ["40W", "60W", "80W"],
-    "Solar Garden Light": ["10W", "20W", "30W"],
-    "Solar Panel": ["150W", "250W", "350W"],
-    "Solar Inverter": ["1KW", "2KW", "3KW"],
-    "LED Driver": ["30W", "50W", "100W"],
-    "Power Supply": ["100W", "200W", "300W"],
-    "Controllers": ["Smart", "Basic", "Premium"],
-    "Panel Light": ["24W", "36W", "48W"],
-    "Down Light": ["12W", "18W", "24W"],
-    "Spot Light": ["7W", "10W", "15W"],
-    "Strip Light": ["5M", "10M", "15M"]
+    'Street Light': ['30W', '50W', '100W', '150W'],
+    'Flood Light': ['100W', '200W', '300W', '500W'],
+    'Highway Light': ['150W', '250W', '400W'],
+    'Wall Glass Light': ['20W', '40W', '60W'],
+    'Fission Led Street Light': ['80W', '120W', '160W'],
+    'Fission Flood Light': ['150W', '250W', '350W'],
+    'AC High Mast': ['400W', '600W', '800W'],
+    'Solar Street Light': ['40W', '60W', '80W'],
+    'Solar Garden Light': ['10W', '20W', '30W'],
+    'Solar Panel': ['150W', '250W', '350W'],
+    'Solar Inverter': ['1KW', '2KW', '3KW'],
+    'LED Driver': ['30W', '50W', '100W'],
+    'Power Supply': ['100W', '200W', '300W'],
+    'Controllers': ['Smart', 'Basic', 'Premium'],
+    'Panel Light': ['24W', '36W', '48W'],
+    'Down Light': ['12W', '18W', '24W'],
+    'Spot Light': ['7W', '10W', '15W'],
+    'Strip Light': ['5M', '10M', '15M']
   };
 
   // Generate products for each category and subcategory
   Object.entries(categories).forEach(([mainCategory, subcategories]) => {
     subcategories.forEach(subcategory => {
-      const patterns = productPatterns[subcategory] || ["Standard"];
+      const patterns = productPatterns[subcategory] || ['Standard'];
       patterns.forEach(pattern => {
         // Generate 2-3 products for each pattern
         const count = Math.floor(Math.random() * 2) + 2;
@@ -79,7 +80,7 @@ const generateFakeProducts = () => {
             mainCategory,
             subcategory,
             price: randomPrice(),
-            image: "/images/product.png",
+            image: product,
             // description: `High-performance ${subcategory} suitable for professional use`,
             // features: [
             //   "Energy efficient",
@@ -109,7 +110,7 @@ const ITEMS_PER_PAGE = 12;
 export default function ShowProducts() {
   const [currentPage, setCurrentPage] = useState(1);
   const [expandedCategories, setExpandedCategories] = useState({
-    "AC Lighting": true
+    'AC Lighting': true
   });
   const [selectedFilters, setSelectedFilters] = useState([]);
 

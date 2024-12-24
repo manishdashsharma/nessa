@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { termsConfig } from './TermsConfig'
 import Navbar from '../../components/header/Navbar'
 

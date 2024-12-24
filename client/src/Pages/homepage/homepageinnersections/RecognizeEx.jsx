@@ -1,6 +1,6 @@
-import React from "react";
-import RecoExSec1 from "./RecoExSec1";
-import RecoExSec2 from "./RecoExSec2";
+
+import RecoExSec1 from './RecoExSec1';
+import RecoExSec2 from './RecoExSec2';
 
 const RecognizeEx = () => {
   return (

@@ -1,8 +1,9 @@
-import React, { useState } from "react";
-import Navbar from "../../components/header/Navbar";
-import { MdCall, MdEmail } from "react-icons/md";
-import { nessaServices } from "./SupportConfig";
-import styled from "styled-components";
+import  { useState } from 'react';
+import Navbar from '../../components/header/Navbar';
+import { MdCall, MdEmail } from 'react-icons/md';
+import { nessaServices } from './SupportConfig';
+import styled from 'styled-components';
+import toast from 'react-hot-toast';
 
 const StyleWrapper = styled.div`
   input[type="file"]::file-selector-button {
@@ -16,36 +17,36 @@ const StyleWrapper = styled.div`
 
 const Support = () => {
   const [formData, setFormData] = useState({
-    fullName: "",
-    email: "",
-    companyName: "",
-    phone: "",
-    productName: "",
-    productSkuId: "",
+    fullName: '',
+    email: '',
+    companyName: '',
+    phone: '',
+    productName: '',
+    productSkuId: '',
     file: null,
-    message: "",
+    message: '',
   });
 
   const [errors, setErrors] = useState({});
 
   const validateForm = () => {
     const newErrors = {};
-    if (!formData.fullName) newErrors.fullName = "Full Name is required.";
+    if (!formData.fullName) newErrors.fullName = 'Full Name is required.';
     if (!formData.email) {
-      newErrors.email = "Email is required.";
+      newErrors.email = 'Email is required.';
     } else if (
       !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(formData.email)
     ) {
-      newErrors.email = "Invalid email address.";
+      newErrors.email = 'Invalid email address.';
     }
     if (!formData.phone) {
-      newErrors.phone = "Phone Number is required.";
+      newErrors.phone = 'Phone Number is required.';
     } else if (!/^[0-9]+$/.test(formData.phone)) {
-      newErrors.phone = "Invalid phone number.";
+      newErrors.phone = 'Invalid phone number.';
     }
-    if (!formData.message) newErrors.message = "Message is required.";
-    if (!formData.productName) newErrors.productName = "Product Name is required.";
-    if (!formData.productSkuId) newErrors.productSkuId = "Product SKU Id is required.";
+    if (!formData.message) newErrors.message = 'Message is required.';
+    if (!formData.productName) newErrors.productName = 'Product Name is required.';
+    if (!formData.productSkuId) newErrors.productSkuId = 'Product SKU Id is required.';
     return newErrors;
   };
 
@@ -71,17 +72,16 @@ const Support = () => {
       setErrors(newErrors);
     } else {
       setErrors({});
-      alert("Message sent successfully!");
-      console.log(formData);
+      toast.success('Message sent successfully!');
       setFormData({
-        fullName: "",
-        email: "",
-        companyName: "",
-        phone: "",
-        productName: "",
-        productSkuId: "",
+        fullName: '',
+        email: '',
+        companyName: '',
+        phone: '',
+        productName: '',
+        productSkuId: '',
         file: null,
-        message: "",
+        message: '',
       });
     }
   };
@@ -119,7 +119,7 @@ const Support = () => {
                   value={formData.fullName}
                   onChange={handleInputChange}
                   className={`w-full p-2 border-b-2 font-semibold outline-none focus:border-blue-800 ${
-                    errors.fullName ? "border-red-500" : "border-gray-500"
+                    errors.fullName ? 'border-red-500' : 'border-gray-500'
                   } rounded`}
                 />
                 {errors.fullName && (
@@ -133,7 +133,7 @@ const Support = () => {
                   value={formData.email}
                   onChange={handleInputChange}
                   className={`w-full p-2 border-b-2 font-semibold outline-none focus:border-blue-800 ${
-                    errors.email ? "border-red-500" : "border-gray-500"
+                    errors.email ? 'border-red-500' : 'border-gray-500'
                   } rounded`}
                 />
                 {errors.email && (
@@ -156,7 +156,7 @@ const Support = () => {
                   value={formData.phone}
                   onChange={handleInputChange}
                   className={`w-full p-2 border-b-2 font-semibold outline-none focus:border-blue-800 ${
-                    errors.phone ? "border-red-500" : "border-gray-500"
+                    errors.phone ? 'border-red-500' : 'border-gray-500'
                   } rounded`}
                 />
                 {errors.phone && (
@@ -170,7 +170,7 @@ const Support = () => {
                   value={formData.productName}
                   onChange={handleInputChange}
                   className={`w-full p-2 border-b-2 font-semibold outline-none focus:border-blue-800 ${
-                    errors.productName ? "border-red-500" : "border-gray-500"
+                    errors.productName ? 'border-red-500' : 'border-gray-500'
                   } rounded`}
                 />
                 {errors.productName && (
@@ -184,7 +184,7 @@ const Support = () => {
                   value={formData.productSkuId}
                   onChange={handleInputChange}
                   className={`w-full p-2 border-b-2 font-semibold outline-none focus:border-blue-800 ${
-                    errors.productSkuId ? "border-red-500" : "border-gray-500"
+                    errors.productSkuId ? 'border-red-500' : 'border-gray-500'
                   } rounded`}
                 />
                 {errors.productSkuId && (
@@ -200,7 +200,7 @@ const Support = () => {
                 onChange={(e) => {
                   if (e.target.files[0].size > 1000000) {
                     e.target.value = null;
-                    alert("File size exceeds 100KB.");
+                    alert('File size exceeds 100KB.');
                   } else {
                     handleFileChange(e);
                   }
@@ -216,7 +216,7 @@ const Support = () => {
                 value={formData.message}
                 onChange={handleInputChange}
                 className={`w-full p-2 border-b-2 font-semibold outline-none focus:border-blue-800 h-[50px] max-h-[100px] ${
-                  errors.message ? "border-red-500" : "border-gray-500"
+                  errors.message ? 'border-red-500' : 'border-gray-500'
                 } rounded`}
               ></textarea>
               {errors.message && (
@@ -316,7 +316,6 @@ const Support = () => {
             width="100%"
             height="100%"
             allowFullScreen=""
-            loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
           ></iframe>
         </div>

@@ -1,27 +1,29 @@
-import React, { useRef, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css/pagination";
-import styled from "styled-components";
-import { Pagination, Autoplay } from "swiper/modules";
-
-const RecoExSec2Wrapper = styled.div`
-  .swiper {
-    width: 100%;
-    height: 500px;
-  }
-
-  .swiper-slide {
-    text-align: center;
-    font-size: 18px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-`;
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import { Pagination, Autoplay } from 'swiper/modules';
+import award1 from '../../../assets/images/homepageimages/award1.png';
 
 export default function RecoExSec2() {
   return (
-    <RecoExSec2Wrapper>
+    <div className="w-full">
+      {/* Add custom styles for Swiper using Tailwind's style */}
+      <style>
+        {`
+          .swiper {
+            width: 100%;
+            height: 500px;
+          }
+          .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+        `}
+      </style>
+
       <Swiper
         pagination={{
           dynamicBullets: true,
@@ -39,26 +41,26 @@ export default function RecoExSec2() {
       >
         {[
           {
-            image: "./images/homepageimages/award1.png",
-            heading: "Economic Times Young achiever Award 2018 by SIDBI",
+            image: award1,
+            heading: 'Economic Times Young achiever Award 2018 by SIDBI',
           },
           {
-            image: "./images/homepageimages/award1.png",
-            heading: "Economic Times Young achiever Award 2018 by SIDBI",
+            image: award1,
+            heading: 'Economic Times Young achiever Award 2018 by SIDBI',
           },
           {
-            image: "./images/homepageimages/award1.png",
-            heading: "Economic Times Young achiever Award 2018 by SIDBI",
+            image: award1,
+            heading: 'Economic Times Young achiever Award 2018 by SIDBI',
           },
           {
-            image: "./images/homepageimages/award1.png",
-            heading: "Economic Times Young achiever Award 2018 by SIDBI",
+            image: award1,
+            heading: 'Economic Times Young achiever Award 2018 by SIDBI',
           },
         ].map((slide, index) => (
-          <SwiperSlide key={index} className="">
-            <div className=" flex flex-col items-center justify-center gap-4">
+          <SwiperSlide key={index}>
+            <div className="flex flex-col items-center justify-center gap-4">
               <img
-                className=" h-[300px] object-cover"
+                className="h-[300px] object-cover"
                 src={slide.image}
                 alt=""
               />
@@ -67,6 +69,6 @@ export default function RecoExSec2() {
           </SwiperSlide>
         ))}
       </Swiper>
-    </RecoExSec2Wrapper>
+    </div>
   );
 }

@@ -1,22 +1,21 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import TrendingProductsSwipe from "../../../components/trendingProducts/TrendingProductsSwiper";
+import { Link } from 'react-router-dom';
+import TrendingProductsSwipe from '../../../components/trendingProducts/TrendingProductsSwiper';
+import ACLight from '../../../assets/images/productRange/aclight.png';
+import SolarLight from '../../../assets/images/productRange/solarlight.png';
+import Electronics from '../../../assets/images/productRange/electronics.png';
 
 const categories = [
   {
-    name: "AC LIGHTS",
-    image:
-      "/images/productRange/aclight.png",
+    name: 'AC LIGHTS',
+    image: ACLight,
   },
   {
-    name: "SOLAR LIGHTS",
-    image:
-     "/images/productRange/solarlight.png",
+    name: 'SOLAR LIGHTS',
+    image: SolarLight,
   },
   {
-    name: "ELECTRONICS",
-    image:
-     "/images/productRange/electronics.png",
+    name: 'ELECTRONICS',
+    image: Electronics,
   },
 ];
 
@@ -28,7 +27,6 @@ export function ProductRange() {
     >
       <div className="flex items-center relative flex-col grow justify-center px-5 py-10 text-lg font-semibold tracking-wide leading-relaxed text-center text-black min-h-[620px] max-md:px-5 max-md:py-10 max-md:mt-1 max-md:max-w-full">
         <img
-          loading="lazy"
           src={image}
           alt={name}
           className="object-cover absolute inset-0 size-full"
@@ -43,7 +41,7 @@ export function ProductRange() {
   return (
     <div
       className=" relative flex-col items-center  py-14   mt-20 w-full h-fit max-md:mt-10 max-md:max-w-full"
-      style={{ background: "linear-gradient(to bottom, #f7faff, #deeefc)" }}
+      style={{ background: 'linear-gradient(to bottom, #f7faff, #deeefc)' }}
     >
       <div className="relative text-4xl font-semibold leading-snug text-center text-black">
         Our <span className="text-blue-500">Product</span> Range

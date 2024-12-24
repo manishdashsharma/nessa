@@ -1,14 +1,26 @@
-import React from 'react'
+
 import Navbar from '../../components/header/Navbar'
-import { GiElectric } from "react-icons/gi";
 import { countries, lightingSolution } from './homepageConfig';
 import { Link } from 'react-router-dom';
 import { ProductRange } from './homepageinnersections/ProductRange';
-import { RiLightbulbFlashLine } from "react-icons/ri";
+import { RiLightbulbFlashLine } from 'react-icons/ri';
 import RecognizeEx from './homepageinnersections/RecognizeEx';
-import InsitesSwiper from './homepageinnersections/InsitesSwiper';
-import PartnersReviewsSwiper from '../../components/partnerreviews/PartnersReviewsSwiper';
-
+import InsitesSwiper from './homepageinnersections/InsitesSwiper'
+import herobg from '../../assets/images/homepageimages/herobg.png';
+import thunder from '../../assets/images/homepageimages/thunder.svg';
+import image1 from '../../assets/images/homepageimages/image1.png';
+import colorcircle from '../../assets/images/homepageimages/colorcircle.png';
+import lightintensity from '../../assets/images/homepageimages/lightintensity.png';
+import adanilogo from '../../assets/images/homepageimages/adanilogo.png';
+import essarlogo from '../../assets/images/homepageimages/essarlogo.png';
+import ltlogo from '../../assets/images/homepageimages/l&tlogo.png';
+import jindallogo from '../../assets/images/homepageimages/jindallogo.png';
+import torrentlogo from '../../assets/images/homepageimages/torrentlogo.png';
+import nirmalogo from '../../assets/images/homepageimages/nirmalogo.png';
+import lamp from '../../assets/images/homepageimages/lamp.png';
+import indiaMap from '../../assets/images/homepageimages/indiaMap.png';
+import indiaFlag from '../../assets/images/homepageimages/india.png';
+import rectangle69 from '../../assets/images/homepageimages/Rectangle69.png';
 
 
 
@@ -22,7 +34,7 @@ const Homepage = () => {
         <div className="absolute top-0 left-0 w-full h-full">
           <img
             className="w-full h-full object-cover"
-            src="./images/homepageimages/herobg.png"
+            src={herobg}
             alt="hero background"
           />
         </div>
@@ -34,7 +46,7 @@ const Homepage = () => {
               <div className="flex w-fit  px-[30px] max-md:px-[10px] py-[5px] items-center justify-center gap-2  border border-[var(--primary-bg-color)] rounded-full">
                 <img
                   className=""
-                  src="./images/homepageimages/thunder.svg"
+                  src={thunder}
                   alt=""
                 />
                 <span className="text-lg font-medium">
@@ -45,7 +57,7 @@ const Homepage = () => {
 
             {/* Main Heading */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold mb-8 mt-8">
-              Innovative{" "}
+              Innovative{' '}
               <span className="text-blue-500">Lighting Solution</span>
               <br />
               for every Industry
@@ -70,19 +82,19 @@ const Homepage = () => {
       <div className="w-full h-fit px-[5vw]">
         <img
           className="w-full h-full object-cover"
-          src="./images/homepageimages/image1.png"
+          src={image1}
           alt=""
         />
       </div>
       <div className="w-full h-fit translate-y-[-5vw] flex gap-10 justify-center">
         <img
           className="w-fit h-[20vw]  drop-shadow-2xl"
-          src="./images/homepageimages/colorcircle.png"
+          src={colorcircle}
           alt=""
         />
         <img
           className=" h-[20vw]  drop-shadow-2xl"
-          src="./images/homepageimages/lightintensity.png"
+          src={lightintensity}
           alt=""
         />
       </div>
@@ -93,32 +105,32 @@ const Homepage = () => {
         <div className="w-full h-[7vw] py-[0px] flex items-center justify-evenly gap-5 bg-[#005ab322]">
           <img
             className="h-[4vw] "
-            src="./images/homepageimages/adanilogo.png"
+            src={adanilogo}
             alt=""
           />
           <img
             className="h-[4vw] "
-            src="./images/homepageimages/essarlogo.png"
+            src={essarlogo}
             alt=""
           />
           <img
             className="h-[4vw] "
-            src="./images/homepageimages/l&tlogo.png"
+            src={ltlogo}
             alt=""
           />
           <img
             className="h-[4vw] "
-            src="./images/homepageimages/jindallogo.png"
+            src={jindallogo}
             alt=""
           />
           <img
             className="h-[4vw] "
-            src="./images/homepageimages/torrentlogo.png"
+            src={torrentlogo}
             alt=""
           />
           <img
             className="h-[4vw] "
-            src="./images/homepageimages/nirmalogo.png"
+            src={nirmalogo}
             alt=""
           />
         </div>
@@ -127,7 +139,7 @@ const Homepage = () => {
       {/* Lighting Solutions According to Your Needs & Conditions  data is dynamic in homepageConfig.js  */}
       <div className="w-full py-16 max-md:pb-2 px-[5vw] bg-white text-center">
         <h2 className="text-4xl font-semibold ">
-          Lighting <span className="text-blue-500">Solutions</span> According to{" "}
+          Lighting <span className="text-blue-500">Solutions</span> According to{' '}
           <br />
           Your Needs & Conditions
         </h2>
@@ -157,7 +169,7 @@ const Homepage = () => {
             <p className="mb-4">{lightingSolution[0].para}</p>
 
             <Link
-              to={lightingSolution[0].discoverlink || ""}
+              to={lightingSolution[0].discoverlink || ''}
               className="border border-blue-500 text-blue-500 px-6 py-2 rounded-lg hover:bg-blue-500 hover:text-white transition-colors"
             >
               Discover Products
@@ -179,7 +191,7 @@ const Homepage = () => {
             <p className="mb-4 ">{lightingSolution[1].para}</p>
 
             <Link
-              to={lightingSolution[1].discoverlink || ""}
+              to={lightingSolution[1].discoverlink || ''}
               className="border border-blue-500 text-blue-500 px-6 py-2 rounded-lg hover:bg-blue-500 hover:text-white transition-colors"
             >
               Discover Products
@@ -258,7 +270,7 @@ const Homepage = () => {
         <div className=" text-4xl font-semibold leading-snug text-center text-black z-[2] relative">
           Trusted by
           <span className="text-blue-500"> Industries</span> Across <br /> the
-          Globe{" "}
+          Globe{' '}
         </div>
         <div className="flex relative shrink-0 mt-9 h-2.5 bg-[var(--light-blue)] rounded-[50px] w-[51px]" />
         <div className="relative mt-7 text-xl px-[5vw] leading-8 text-center text-zinc-900 max-md:max-w-full">
@@ -270,8 +282,8 @@ const Homepage = () => {
           continents.
         </div>
         <div className="absolute w-[15vw] min-w-[80px] object-cover top-0 right-10 max-sm:right-0">
-          {" "}
-          <img src="./images/homepageimages/lamp.png" alt="" />
+          {' '}
+          <img src={lamp} alt="" />
         </div>
       </div>
       <div className="flex max-md:block px-[5vw] text-lg relative">
@@ -280,18 +292,18 @@ const Homepage = () => {
           <div className="flex max-md:flex-col">
             <img
               className=" h-[350px] w-[60%] max-md:w-full object-contain"
-              src="./images/homepageimages/indiaMap.png"
+              src={indiaMap}
               alt=""
             />
             <div className="w-[40%]  flex  max-md:w-full max-md:mt-10 flex-col items-center justify-center ">
               <img
                 className="w-[80px] h-[80px]"
-                src="./images/homepageimages/india.png"
+                src={indiaFlag}
                 alt=""
               />
               <div className="relative text-lg font-semibold  text-center text-black">
                 Nessa in <br />
-                <span className="text-blue-500"> 29 States</span> of india{" "}
+                <span className="text-blue-500"> 29 States</span> of india{' '}
                 <br />
               </div>
             </div>
@@ -302,7 +314,7 @@ const Homepage = () => {
             className="h-full absolute left-0 w-[2px] max-md:hidden"
             style={{
               background:
-                "linear-gradient(to bottom, transparent, #0074E0, transparent)",
+                'linear-gradient(to bottom, transparent, #0074E0, transparent)',
             }}
           ></div>
 
@@ -325,7 +337,7 @@ const Homepage = () => {
       {/* why choose nessa  */}
       <div
         className="py-[50px] "
-        style={{ background: "linear-gradient(to bottom, #f7faff, #deeefc)" }}
+        style={{ background: 'linear-gradient(to bottom, #f7faff, #deeefc)' }}
       >
         <div className=" text-4xl font-semibold leading-snug text-center text-black z-[2] relative">
           Why Choose
@@ -346,7 +358,7 @@ const Homepage = () => {
               className="w-[22vw] pt-[20px] rounded-2xl shadow-md max-md:w-full"
               style={{
                 background:
-                  "linear-gradient(to right, #841D84, #3DC3BB, #FF8983)",
+                  'linear-gradient(to right, #841D84, #3DC3BB, #FF8983)',
               }}
             >
               <div className="border-2 border-blue-500 bg-white w-full rounded-2xl p-6 shadow-md">
@@ -378,7 +390,7 @@ const Homepage = () => {
               className="w-[22vw] pt-[20px] rounded-2xl shadow-md max-md:w-full"
               style={{
                 background:
-                  "linear-gradient(to right, #841D84, #3DC3BB, #FF8983)",
+                  'linear-gradient(to right, #841D84, #3DC3BB, #FF8983)',
               }}
             >
               <div className="border-2 border-blue-500 bg-white w-full rounded-2xl p-6 shadow-md ">
@@ -413,20 +425,20 @@ const Homepage = () => {
           reliability.
         </div>
         <div className="absolute w-[15vw] min-w-[80px]  object-cover top-0 left-10 max-sm:left-0">
-          {" "}
-          <img src="./images/homepageimages/lamp.png" alt="" />
+          {' '}
+          <img src={lamp} alt="" />
         </div>
       </div>
       <div className="w-full h-fit px-[5vw] pb-[50px]">
         <img
           className="w-full h-fit object-cover"
-          src="./images/homepageimages/Rectangle69.png"
+          src={rectangle69}
           alt=""
         />
       </div>
 
       {/* Partners Reviews Swiper */}
-      <PartnersReviewsSwiper/>
+      {/* <PartnersReviewsSwiper/> */}
 
       {/* recognized excellence */}
       <RecognizeEx />
@@ -434,7 +446,7 @@ const Homepage = () => {
       {/* insights and resources */}
       <div
         className="py-[50px]  mt-[50px]"
-        style={{ background: "linear-gradient(to bottom, #f7faff, #deeefc)" }}
+        style={{ background: 'linear-gradient(to bottom, #f7faff, #deeefc)' }}
       >
         <div className=" text-4xl py-[50px] font-semibold leading-snug text-center text-black z-[2] relative">
         Insights & 

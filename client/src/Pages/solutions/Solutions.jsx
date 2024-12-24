@@ -1,8 +1,10 @@
-import React from "react";
-import Navbar from "../../components/header/Navbar";
-import { solutionsdata } from "./SolutionsConfig";
-import { Link } from "react-router-dom";
-import TrendingProductsSwipe from "../../components/trendingProducts/TrendingProductsSwiper";
+import Navbar from '../../components/header/Navbar';
+import { solutionsdata } from './SolutionsConfig';
+import { Link } from 'react-router-dom';
+import hero from '../../assets/images/solutionsImages/hero.png';
+import experties1 from '../../assets/images/solutionsImages/experties1.png'
+import experties2 from '../../assets/images/solutionsImages/experties2.png'
+import TrendingProductsSwipe from '../../components/trendingProducts/TrendingProductsSwiper';
 
 const Solutions = () => {
    
@@ -13,7 +15,7 @@ const Solutions = () => {
       <div className="w-full h-[300px] max-sm:h-[200px] relative flex items-center  justify-start ">
         <img
           className="w-full h-full object-cover absolute "
-          src="./images/solutionsImages/hero.png"
+          src={hero}
           alt=""
         />
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white ml-[5vw] relative z-[2]">
@@ -55,7 +57,7 @@ const Solutions = () => {
 
         <div className="w-full mt-[100px] flex max-md:flex-col items-center justify-center gap-20 px-[5vw]  ">
             <div className="w-1/2 max-md:w-full h-full">
-             <img className="w-full h-[300px] object-cover" src="./images/solutionsImages/experties1.png" alt="" />
+             <img className="w-full h-[300px] object-cover" src={experties1} alt="" />
             </div>
             <div className="w-1/2 max-md:w-full h-full ">
                 <h1 className="text-2xl font-semibold">Custom Lighting for Harsh Environments</h1>
@@ -76,7 +78,7 @@ const Solutions = () => {
                 <p className="text-xl">With Nessa, you don’t just get products—you get precision-engineered solutions that solve your unique problems.</p>
             </div>
             <div className="w-1/2 max-md:w-full h-full">
-             <img className="w-full h-[300px] object-cover" src="./images/solutionsImages/experties2.png" alt="" />
+             <img className="w-full h-[300px] object-cover" src={experties2} alt="" />
             </div>
         </div>
 
@@ -89,9 +91,9 @@ const Solutions = () => {
           <div className="flex relative shrink-0 mt-9 h-2.5 bg-[#b3d6f6] rounded-[50px] w-[51px]" />
         </div>
         
-        <div  className="py-[20px] my-[20px]" style={{ background: "linear-gradient(to bottom, #f7faff, #deeefc)" }}>
-
-        <TrendingProductsSwipe/>
+        <div  className="py-[20px] my-[20px]" style={{ background: 'linear-gradient(to bottom, #f7faff, #deeefc)' }}>
+        <TrendingProductsSwipe />
+       
         </div>
       
     </div>

@@ -1,13 +1,15 @@
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import Navbar from "../../components/header/Navbar";
-import { FaLocationDot, FaSquareFacebook } from "react-icons/fa6";
-import { MdCall } from "react-icons/md";
-import { MdEmail } from "react-icons/md";
-import { AiFillInstagram } from "react-icons/ai";
-import { FaSquareXTwitter } from "react-icons/fa6";
-import { FaDiscord } from "react-icons/fa";
-import styled from "styled-components";
+import { useState } from 'react';
+import Navbar from '../../components/header/Navbar';
+import { FaLocationDot, FaSquareFacebook } from 'react-icons/fa6';
+import { MdCall } from 'react-icons/md';
+import { MdEmail } from 'react-icons/md';
+import { AiFillInstagram } from 'react-icons/ai';
+import { FaSquareXTwitter } from 'react-icons/fa6';
+import { FaDiscord } from 'react-icons/fa';
+import styled from 'styled-components';
+import airportpageposter from '../../assets/images/solutionsImages/airportpageposter.png'
+import toast from 'react-hot-toast';
+
 
 const StyleWrapper = styled.div`
   input[type="file"]::file-selector-button {
@@ -22,33 +24,33 @@ const StyleWrapper = styled.div`
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
-    fullName: "",
-    email: "",
-    companyName: "",
-    phone: "",
-    subject: "General Inquiry",
+    fullName: '',
+    email: '',
+    companyName: '',
+    phone: '',
+    subject: 'General Inquiry',
     file: null,
-    message: "",
+    message: '',
   });
 
   const [errors, setErrors] = useState({});
 
   const validateForm = () => {
     const newErrors = {};
-    if (!formData.fullName) newErrors.fullName = "Full Name is required.";
+    if (!formData.fullName) newErrors.fullName = 'Full Name is required.';
     if (!formData.email) {
-      newErrors.email = "Email is required.";
+      newErrors.email = 'Email is required.';
     } else if (
       !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(formData.email)
     ) {
-      newErrors.email = "Invalid email address.";
+      newErrors.email = 'Invalid email address.';
     }
     if (!formData.phone) {
-      newErrors.phone = "Phone Number is required.";
+      newErrors.phone = 'Phone Number is required.';
     } else if (!/^[0-9]+$/.test(formData.phone)) {
-      newErrors.phone = "Invalid phone number.";
+      newErrors.phone = 'Invalid phone number.';
     }
-    if (!formData.message) newErrors.message = "Message is required.";
+    if (!formData.message) newErrors.message = 'Message is required.';
     return newErrors;
   };
 
@@ -74,16 +76,15 @@ const ContactUs = () => {
       setErrors(newErrors);
     } else {
       setErrors({});
-      alert("Message sent successfully!");
-      console.log(formData); //  remove latter
+      toast.success('Message sent successfully!');
       setFormData({
-        fullName: "",
-        email: "",
-        companyName: "",
-        phone: "",
-        subject: "General Inquiry",
+        fullName: '',
+        email: '',
+        companyName: '',
+        phone: '',
+        subject: 'General Inquiry',
         file: null,
-        message: "",
+        message: '',
       });
     }
   };
@@ -96,7 +97,7 @@ const ContactUs = () => {
         <div className="w-full h-[300px] max-sm:h-[200px] relative flex items-center  justify-center ">
           <img
             className="w-full h-full object-cover absolute  "
-            src="/images/solutionsImages/airportpageposter.png"
+            src={airportpageposter}
             alt=""
           />
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white  relative z-[2]">
@@ -204,7 +205,7 @@ const ContactUs = () => {
                   value={formData.fullName}
                   onChange={handleInputChange}
                   className={`w-full p-2 border-b-2 font-semibold outline-none focus:border-blue-800  ${
-                    errors.fullName ? "border-red-500" : "border-gray-500"
+                    errors.fullName ? 'border-red-500' : 'border-gray-500'
                   } rounded`}
                 />
                 {errors.fullName && (
@@ -220,7 +221,7 @@ const ContactUs = () => {
                   value={formData.email}
                   onChange={handleInputChange}
                   className={`w-full p-2 border-b-2 font-semibold outline-none focus:border-blue-800   ${
-                    errors.email ? "border-red-500" : "border-gray-500"
+                    errors.email ? 'border-red-500' : 'border-gray-500'
                   } rounded`}
                 />
                 {errors.email && (
@@ -243,7 +244,7 @@ const ContactUs = () => {
                   value={formData.phone}
                   onChange={handleInputChange}
                   className={`w-full p-2 border-b-2 font-semibold outline-none focus:border-blue-800  ${
-                    errors.phone ? "border-red-500" : "border-gray-500"
+                    errors.phone ? 'border-red-500' : 'border-gray-500'
                   } rounded`}
                 />
                 {errors.phone && (
@@ -257,12 +258,12 @@ const ContactUs = () => {
                 Select Subject
               </label>
               {[
-                "General Inquiry",
-                "Domestic Inquiry",
-                "Service Inquiry",
-                "International Inquiry",
-                "CSR Inquiry",
-                "Career Inquiry",
+                'General Inquiry',
+                'Domestic Inquiry',
+                'Service Inquiry',
+                'International Inquiry',
+                'CSR Inquiry',
+                'Career Inquiry',
               ].map((subject, index) => (
                 <label
                   key={index}
@@ -288,7 +289,7 @@ const ContactUs = () => {
                 onChange={(e) => {
                   if (e.target.files[0].size > 1000000) {
                     e.target.value = null;
-                    alert("File size exceeds 100KB.");
+                    alert('File size exceeds 100KB.');
                   } else {
                     handleFileChange(e);
                   }
@@ -304,7 +305,7 @@ const ContactUs = () => {
                 value={formData.message}
                 onChange={handleInputChange}
                 className={`w-full p-2 border-b-2 font-semibold outline-none focus:border-blue-800 h-[50px] max-h-[100px] ${
-                  errors.message ? "border-red-500" : "border-gray-500"
+                  errors.message ? 'border-red-500' : 'border-gray-500'
                 } rounded`}
               ></textarea>
               {errors.message && (
@@ -330,7 +331,7 @@ const ContactUs = () => {
             height="100%"
             allowfullscreen=""
             loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
+            referrerPolicy="no-referrer-when-downgrade"
           ></iframe>
         </div>
       </div>

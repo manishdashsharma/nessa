@@ -1,5 +1,5 @@
-import React from "react";
-import Navbar from "../../components/header/Navbar";
+
+import Navbar from '../../components/header/Navbar';
 import {
   aboutUsPara1,
   aboutUsPara2,
@@ -7,12 +7,14 @@ import {
   nessaEdgeItems,
   team,
   whoWeAre,
-} from "./AboutUsConfig";
-import { RiLightbulbFlashLine } from "react-icons/ri";
-import ProductAndTestingSwiper from "./ProductAndTestingSwiper";
-import CertificatesSwiper from "./CertificatesSwiper";
-import PartnersReviewsSwiper from "../../components/partnerreviews/PartnersReviewsSwiper";
-
+} from './AboutUsConfig';
+import { RiLightbulbFlashLine } from 'react-icons/ri';
+import ProductAndTestingSwiper from './ProductAndTestingSwiper';
+import CertificatesSwiper from './CertificatesSwiper';
+import hero from '../../assets/images/solutionsImages/hero.png';
+import rectangle69 from '../../assets/images/homepageimages/Rectangle69.png';
+import ourVision from '../../assets/images/aboutUs/ourVision.png'
+import ourMission from '../../assets/images/aboutUs/ourVision.png'
 const AboutUs = () => {
   return (
     <div className="w-full overflow-hidden">
@@ -21,7 +23,7 @@ const AboutUs = () => {
       <div className="w-full h-[300px] max-sm:h-[200px] relative flex items-center  justify-start ">
         <img
           className="w-full h-full object-cover absolute "
-          src="./images/solutionsImages/hero.png"
+          src={hero}
           alt=""
         />
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold w-full text-center text-white ml-[5vw] relative z-[2]">
@@ -48,7 +50,7 @@ const AboutUs = () => {
       <div className="w-full h-fit px-[5vw] pb-[50px]">
         <img
           className="w-full h-fit object-cover"
-          src="./images/homepageimages/Rectangle69.png"
+          src={rectangle69}
           alt=""
         />
       </div>
@@ -56,7 +58,7 @@ const AboutUs = () => {
       {/* about us para */}
       <div
         className=" w-full "
-        style={{ background: "linear-gradient(to bottom, #f7faff, #deeefc)" }}
+        style={{ background: 'linear-gradient(to bottom, #f7faff, #deeefc)' }}
       >
         <div className="w-full min-h-[300px] relative py-[50px] px-[5vw]">
           <div className=" text-4xl font-semibold leading-snug text-center text-black z-[2] relative">
@@ -80,7 +82,7 @@ const AboutUs = () => {
         <div className="w-1/2  max-md:w-full max-md:h-fit flex flex-col items-center gap-5 p-[30px] text-center ">
           <img
             className="h-[200px]"
-            src="./images/aboutUs/ourVision.png"
+            src={ourVision}
             alt=""
           />
           <h1 className=" text-4xl font-semibold leading-snug text-center text-black z-[2] relative">
@@ -88,7 +90,7 @@ const AboutUs = () => {
             <span className="text-blue-500"> Vision</span>
           </h1>
           <h1 className="px-[50px]">
-            {" "}
+            {' '}
             To become one of the best and most preferred lighting solution
             providers in domestic as well as international market.
           </h1>
@@ -98,14 +100,14 @@ const AboutUs = () => {
           className="min-h-[100px] w-[2px] max-md:hidden"
           style={{
             background:
-              "linear-gradient(to bottom, transparent, #0074E0, transparent)",
+              'linear-gradient(to bottom, transparent, #0074E0, transparent)',
           }}
         ></div>
 
         <div className="w-1/2  max-md:w-full max-md:h-fit flex flex-col items-center gap-5 p-[30px] text-center ">
           <img
             className="h-[200px]"
-            src="./images/aboutUs/ourMission.png"
+            src={ourMission}
             alt=""
           />
           <h1 className=" text-4xl font-semibold leading-snug text-center text-black z-[2] relative">
@@ -113,7 +115,7 @@ const AboutUs = () => {
             <span className="text-blue-500"> Mission</span>
           </h1>
           <h1 className="px-[50px]">
-            {" "}
+            {' '}
             To work as a team innovatively and dedicatedly to create safe &
             reliable products and services.
           </h1>
@@ -141,25 +143,25 @@ const AboutUs = () => {
               style={{
                 background:
                   index === 1
-                    ? "#0074E0"
-                    : "linear-gradient(to right, #841D84, #3DC3BB, #FF8983)",
+                    ? '#0074E0'
+                    : 'linear-gradient(to right, #841D84, #3DC3BB, #FF8983)',
               }}
             >
               <div
                 className={`border-2  ${
                   index === 1
-                    ? "bg-blue-500 border-white text-white "
-                    : "bg-white border-blue-500 "
+                    ? 'bg-blue-500 border-white text-white '
+                    : 'bg-white border-blue-500 '
                 } w-full h-full rounded-2xl p-6 shadow-md`}
               >
                 <div className="flex items-center mb-4">
                   <RiLightbulbFlashLine
-                    className={`text-4xl ${index !== 1 ? "text-blue-500" : ""}`}
+                    className={`text-4xl ${index !== 1 ? 'text-blue-500' : ''}`}
                   />
                 </div>
                 <h3
                   className={`text-xl font-semibold mb-2 ${
-                    index !== 1 ? "text-blue-500" : ""
+                    index !== 1 ? 'text-blue-500' : ''
                   }`}
                 >
                   {item.tital}
@@ -174,7 +176,7 @@ const AboutUs = () => {
       {/* the nessa edge */}
       <div
         className=" w-full py-[50px] "
-        style={{ background: "linear-gradient(to bottom, #f7faff, #deeefc)" }}
+        style={{ background: 'linear-gradient(to bottom, #f7faff, #deeefc)' }}
       >
         <div className=" text-4xl font-semibold leading-snug text-center text-black z-[2] relative">
           Nessa
@@ -247,7 +249,7 @@ const AboutUs = () => {
 
       <div
         className=" w-full py-[50px] "
-        style={{ background: "linear-gradient(to bottom, #f7faff, #deeefc)" }}
+        style={{ background: 'linear-gradient(to bottom, #f7faff, #deeefc)' }}
       >
         <div className=" text-4xl font-semibold leading-snug text-center text-black z-[2] relative">
           Customer
@@ -303,8 +305,6 @@ const AboutUs = () => {
           
         </div>
       </div>
-
-      <PartnersReviewsSwiper/>
     </div>
   );
 };

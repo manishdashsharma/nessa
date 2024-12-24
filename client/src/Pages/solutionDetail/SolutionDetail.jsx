@@ -1,9 +1,8 @@
-import React from "react";
-import Navbar from "../../components/header/Navbar";
-import PartnersReviewsSwiper from "../../components/partnerreviews/PartnersReviewsSwiper";
-import { Link, useParams } from "react-router-dom";
-import { solutionsdata } from "../solutions/SolutionsConfig";
-import { caseStudiesdata } from "./SolutionDetailConfig";
+
+import Navbar from '../../components/header/Navbar';
+import { Link, useParams } from 'react-router-dom';
+import { solutionsdata } from '../solutions/SolutionsConfig';
+import { caseStudiesdata } from './SolutionDetailConfig';
 
 const SolutionDetail = () => {
   const { type } = useParams(); // Extract 'type' parameter from the URL
@@ -68,10 +67,10 @@ const SolutionDetail = () => {
       <div className="w-full  flex items-center justify-center gap-10 mt-[50px]">
         {/* clients images path  */}
         {[
-          "/images/homepageimages/partner1.png",
-          "/images/homepageimages/partner2.png",
-          "/images/homepageimages/partner3.png",
-          "/images/homepageimages/partner2.png",
+          '/images/homepageimages/partner1.png',
+          '/images/homepageimages/partner2.png',
+          '/images/homepageimages/partner3.png',
+          '/images/homepageimages/partner2.png',
         ].map((image, index) => (
           <img
             key={index}
@@ -150,11 +149,11 @@ const SolutionDetail = () => {
       <div className="w-full  flex items-center justify-center gap-20 mt-[50px]">
         {/* clients images path  */}
         {[
-          "/images/homepageimages/partner1.png",
-          "/images/homepageimages/partner2.png",
-          "/images/homepageimages/partner3.png",
-          "/images/homepageimages/partner2.png",
-          "/images/homepageimages/partner1.png",
+          '/images/homepageimages/partner1.png',
+          '/images/homepageimages/partner2.png',
+          '/images/homepageimages/partner3.png',
+          '/images/homepageimages/partner2.png',
+          '/images/homepageimages/partner1.png',
         ].map((image, index) => (
           <img
             key={index}
@@ -164,9 +163,6 @@ const SolutionDetail = () => {
           />
         ))}
       </div>
-
-      {/* partners revies */}
-      <PartnersReviewsSwiper />
     </div>
   );
 };

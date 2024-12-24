@@ -1,7 +1,8 @@
-import React from "react";
-import Navbar from "../../components/header/Navbar";
-import { nessaCatalogs } from "./ResourcesConfig";
-import InsightsResources from "./Insites";
+
+import Navbar from '../../components/header/Navbar';
+import { nessaCatalogs } from './ResourcesConfig';
+import InsightsResources from './Insites';
+import hero from '../../assets/images/solutionsImages/hero.png'
 
 export const Resources = () => {
   return (
@@ -11,7 +12,7 @@ export const Resources = () => {
       <div className="w-full h-[300px] max-sm:h-[200px] relative flex items-center  justify-start ">
         <img
           className="w-full h-full object-cover absolute "
-          src="./images/solutionsImages/hero.png"
+          src={hero}
           alt=""
         />
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white ml-[5vw] relative z-[2]">
@@ -24,7 +25,7 @@ export const Resources = () => {
         <div className="absolute w-[250px] h-[250px] bg-[var(--light-blue)] opacity-30 left-[-7vw] top-[-3vw]   rounded-full z-[-1]"></div>
 
         <div className=" text-4xl font-semibold leading-snug text-center text-black z-[2] relative">
-          Download 
+          Download
           <span className="text-blue-500"> NESSA CATALOGUE</span>
         </div>
         <div className="w-full flex justify-center">

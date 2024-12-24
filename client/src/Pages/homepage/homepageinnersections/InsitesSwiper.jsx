@@ -1,43 +1,46 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Pagination, Autoplay, Navigation } from 'swiper/modules';
+import solar from '../../../assets/images/homepageimages/solar.png'
+import street from '../../../assets/images/homepageimages/street.png'
+import whitepaper from '../../../assets/images/homepageimages/whitepaper.png'
 
 const slideData = [
   {
-    image: './images/homepageimages/solar.png',
+    image: solar,
     category: 'Blog',
     title: 'Solar Lighting in Streets',
     link: 'Read More',
   },
   {
-    image: './images/homepageimages/street.png',
+    image: street,
     category: 'Case Study',
     title: 'How our Street Light is 20% efficient than others',
     link: 'Read More',
   },
   {
-    image: './images/homepageimages/whitepaper.png',
+    image: whitepaper,
     category: 'White Paper',
     title: 'Explore Nessa Legacy since 16 years',
     link: 'Read More',
   },
   {
-    image: './images/homepageimages/solar.png',
+    image: solar,
     category: 'Blog',
     title: 'Innovative Solar Solutions',
     link: 'Read More',
   },
   {
-    image: './images/homepageimages/street.png',
+    image: street,
     category: 'Case Study',
     title: 'Efficiency in Modern Lighting',
     link: 'Read More',
   },
   {
-    image: './images/homepageimages/whitepaper.png',
+    image: whitepaper,
     category: 'White Paper',
     title: 'Sustainable Energy Practices',
     link: 'Read More',
@@ -53,8 +56,8 @@ export default function InsitesSwiper() {
       setslidepre(window.innerWidth < 600 ? 1 : 3);
     };
 
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   return (
@@ -97,7 +100,7 @@ export default function InsitesSwiper() {
       }}
       modules={[Pagination, Autoplay , Navigation]}
       className="mySwiper "
-      style={{paddingLeft:"50px", paddingRight:"50px"}}
+      style={{paddingLeft:'50px', paddingRight:'50px'}}
     >
       {slideData.map((slide, index) => (
         <SwiperSlide key={index} className='mb-[50px]'>
