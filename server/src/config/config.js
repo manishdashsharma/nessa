@@ -28,6 +28,5 @@ const config = {
     CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET
 };
 
-console.log(config);
 
 export default config;

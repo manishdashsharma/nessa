@@ -3,73 +3,75 @@ version: '3.9'
 services:
   mongo:
     container_name: mongo_container
-    image: 'mongo:latest'
+    image: 'mongo'
     volumes:
       - mongo-data:/data/db
     networks:
       - queue-net
     env_file: 
-      - ./.env.production
-    command: mongod --bind_ip_all --auth
-    restart: unless-stopped
-    # Add security settings for MongoDB
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
-      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "10m"
-        max-file: "3"
+      - ./.env.development
+    command: mongod --bind_ip_all
+    restart: always
 
   client:
     container_name: client
     build:
       context: ./client
-      dockerfile: docker/production/Dockerfile
+      dockerfile: docker/development/Dockerfile
     ports:
-      - '5173:5173' 
-    restart: unless-stopped
+      - '5173:5173'
+    restart: always
     env_file: 
-      - ./.env.production
+      - ./.env.development
+    volumes:
+      - ./client/src:/usr/src/app/src
+      - ./client/package.json:/usr/src/app/package.json
     depends_on:
       - server
     networks:
       - queue-net
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "10m"
-        max-file: "3"
 
   server:
     container_name: server
     build:
       context: ./server
-      dockerfile: docker/production/Dockerfile
+      dockerfile: docker/development/Dockerfile
     ports:
       - '5000:5000'
     depends_on:
       - mongo
     env_file: 
-      - ./.env.production
-    # Remove development volumes in production
+      - ./.env.development
+    volumes:
+      - ./server/src:/usr/src/app/src
+      - ./server/package.json:/usr/src/app/package.json
+      - ./server/nodemon.json:/usr/src/app/nodemon.json
+      - ./server/public:/usr/src/app/public
     networks:
       - queue-net
-    restart: unless-stopped
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "10m"
-        max-file: "3"
 
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    container_name: nginx
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - ./nginx:/usr/src/app
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - /etc/letsencrypt/live/project.manishdashsharma.site/fullchain.pem:/etc/letsencrypt/live/project.manishdashsharma.site/fullchain.pem:ro
+      - /etc/letsencrypt/live/project.manishdashsharma.site/privkey.pem:/etc/letsencrypt/live/project.manishdashsharma.site/privkey.pem:ro
+    restart: always
+    networks:
+      - queue-net
+    depends_on:
+      - server
+      - client
 networks:
   queue-net:
     driver: bridge
-    # Add network configuration for better isolation
-    internal: false
-    attachable: false
 
 volumes:
   mongo-data:
-    driver: local
