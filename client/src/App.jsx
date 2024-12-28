@@ -9,12 +9,15 @@ import SolutionDetail from './pages/solutionDetail/SolutionDetail';
 import Terms from './pages/terms/Terms';
 import ContactUs from './pages/contactUs/ContactUs';
 import EsgPolicy from './pages/esgpolicy/EsgPolicy';
-import AboutUs from './pages/aboutUs/AboutUs';
+// import AboutUs from './pages/aboutUs/AboutUs';
 import PrivacyPolicy from './pages/privacy1/Privacy1';
 import Support from './pages/support/Support';
 import { Resources } from './pages/resources/Resources';
 import AllProducts from './pages/allproducts/Allproducts';
 import Product from './Pages/product/Product';
+import AboutUs from './Pages/aboutUs/AboutUs';
+import { Projects } from './Pages/projects/Projects';
+import { ValueAddedServices } from './Pages/valueAddedServices/ValueAddedServices';
 
 const App = () => {
     
@@ -40,6 +43,9 @@ const App = () => {
                 <Route path="/resources" element={<Resources />} />
                 <Route path="/allproducts" element={<AllProducts />} />
                 <Route path="/product" element={<Product />} />
+                <Route path="/projects" element={<Projects />} />
+                <Route path="/valueAddedServices" element={<ValueAddedServices />} />
+                
             </Routes>
         </>
     );

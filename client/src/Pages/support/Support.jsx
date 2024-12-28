@@ -4,6 +4,9 @@ import { MdCall, MdEmail } from 'react-icons/md';
 import { nessaServices } from './SupportConfig';
 import styled from 'styled-components';
 import toast from 'react-hot-toast';
+import airportpageposter from "../../assets/images/solutionsImages/airportpageposter.png"
+import light from "../../assets/images/supportImages/light.png"
+import manual from "../../assets/images/supportImages/manual.png"
 
 const StyleWrapper = styled.div`
   input[type="file"]::file-selector-button {
@@ -94,7 +97,7 @@ const Support = () => {
         <div className="w-full h-[300px] max-sm:h-[200px] relative flex items-center justify-center">
           <img
             className="w-full h-full object-cover absolute"
-            src="/images/solutionsImages/airportpageposter.png"
+            src={airportpageposter}
             alt=""
           />
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white relative z-[2]">
@@ -262,7 +265,7 @@ const Support = () => {
           <div className="w-full absolute z-[0] left-0 bottom-0 flex items-end justify-end">
             <img
               className="h-[50%] w-[50%]"
-              src="/images/supportImages/light.png"
+              src={light}
               alt=""
             />
           </div>
@@ -286,7 +289,7 @@ const Support = () => {
           <div className="w-[30%] max-md:w-full max-md:mt-[50px] h-[200px] flex items-center justify-center">
             <img
               className="w-full h-full object-contain"
-              src="/images/supportImages/manual.png"
+              src={manual}
               alt=""
             />
           </div>

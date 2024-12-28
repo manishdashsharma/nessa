@@ -3,6 +3,9 @@ import Navbar from '../../components/header/Navbar';
 import { Link, useParams } from 'react-router-dom';
 import { solutionsdata } from '../solutions/SolutionsConfig';
 import { caseStudiesdata } from './SolutionDetailConfig';
+import partner1 from '../../assets/images/homepageimages/partner1.png'
+import partner2 from '../../assets/images/homepageimages/partner2.png'
+import partner3 from '../../assets/images/homepageimages/partner3.png'
 
 const SolutionDetail = () => {
   const { type } = useParams(); // Extract 'type' parameter from the URL
@@ -67,10 +70,11 @@ const SolutionDetail = () => {
       <div className="w-full  flex items-center justify-center gap-10 mt-[50px]">
         {/* clients images path  */}
         {[
-          '/images/homepageimages/partner1.png',
-          '/images/homepageimages/partner2.png',
-          '/images/homepageimages/partner3.png',
-          '/images/homepageimages/partner2.png',
+           partner1,
+           partner2,
+           partner3,
+           partner2
+         
         ].map((image, index) => (
           <img
             key={index}
@@ -149,11 +153,11 @@ const SolutionDetail = () => {
       <div className="w-full  flex items-center justify-center gap-20 mt-[50px]">
         {/* clients images path  */}
         {[
-          '/images/homepageimages/partner1.png',
-          '/images/homepageimages/partner2.png',
-          '/images/homepageimages/partner3.png',
-          '/images/homepageimages/partner2.png',
-          '/images/homepageimages/partner1.png',
+          partner1,
+          partner2,
+          partner3,
+          partner1,
+          partner3
         ].map((image, index) => (
           <img
             key={index}

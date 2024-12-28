@@ -15,6 +15,9 @@ import hero from '../../assets/images/solutionsImages/hero.png';
 import rectangle69 from '../../assets/images/homepageimages/Rectangle69.png';
 import ourVision from '../../assets/images/aboutUs/ourVision.png'
 import ourMission from '../../assets/images/aboutUs/ourVision.png'
+import customersegment from "../../assets/images/aboutUs/customersegment.svg"
+
+
 const AboutUs = () => {
   return (
     <div className="w-full overflow-hidden">
@@ -262,7 +265,7 @@ const AboutUs = () => {
         <div className="px-[5vw] ">
           <img
             className="mt-[50px] "
-            src="/images/aboutUs/customersegment.svg"
+            src={customersegment}
             alt=""
           />
         </div>
