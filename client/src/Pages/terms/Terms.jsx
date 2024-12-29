@@ -1,6 +1,6 @@
 
 import { termsConfig } from './TermsConfig'
-import Navbar from '../../components/header/Navbar'
+import Navbar from '../../components/Header/Navbar'
 
 const Terms = () => {
     

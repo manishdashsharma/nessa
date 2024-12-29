@@ -1,10 +1,10 @@
-import React from "react";
-import Navbar from "../../components/header/Navbar";
-import { nessaCatalogs, nessaManual, productManual } from "./ResourcesConfig";
-import { Link } from "react-router-dom";
-import ResourcesInsites from "./ResourcesInsites";
-import Media from "./Media";
-import hero from "../../assets/images/allProductsimages/hero.png";
+import React from 'react';
+import Navbar from '../../components/Header/Navbar';
+import { nessaCatalogs, nessaManual, productManual } from './ResourcesConfig';
+import { Link } from 'react-router-dom';
+import ResourcesInsites from './ResourcesInsites';
+import Media from './Media';
+import hero from '../../assets/images/allProductsimages/hero.png';
 
 export const Resources = () => {
   return (
@@ -58,7 +58,7 @@ export const Resources = () => {
 
       <div
         style={{
-          background: "linear-gradient(to bottom, #f7faff, #deeefc)",
+          background: 'linear-gradient(to bottom, #f7faff, #deeefc)',
         }}
         className="py-[50px] "
       >

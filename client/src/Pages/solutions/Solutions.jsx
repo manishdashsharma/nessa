@@ -1,4 +1,4 @@
-import Navbar from '../../components/header/Navbar';
+import Navbar from '../../components/Header/Navbar';
 import { solutionsdata } from './SolutionsConfig';
 import { Link } from 'react-router-dom';
 import hero from '../../assets/images/solutionsImages/hero.png';

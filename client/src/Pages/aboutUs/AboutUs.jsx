@@ -1,5 +1,5 @@
 
-import Navbar from '../../components/header/Navbar';
+import Navbar from '../../components/Header/Navbar';
 import {
   aboutUsPara1,
   aboutUsPara2,
@@ -15,7 +15,7 @@ import hero from '../../assets/images/solutionsImages/hero.png';
 import rectangle69 from '../../assets/images/homepageimages/Rectangle69.png';
 import ourVision from '../../assets/images/aboutUs/ourVision.png'
 import ourMission from '../../assets/images/aboutUs/ourVision.png'
-import customersegment from "../../assets/images/aboutUs/customersegment.svg"
+import customersegment from '../../assets/images/aboutUs/customersegment.svg'
 
 
 const AboutUs = () => {

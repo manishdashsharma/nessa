@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Navbar from '../../components/header/Navbar';
+import Navbar from '../../components/Header/Navbar';
 import { FaLocationDot, FaSquareFacebook } from 'react-icons/fa6';
 import { MdCall } from 'react-icons/md';
 import { MdEmail } from 'react-icons/md';

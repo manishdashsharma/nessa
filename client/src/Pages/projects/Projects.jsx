@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
-import { IoChevronDown } from "react-icons/io5";
-import { motion, AnimatePresence } from "framer-motion";
-import Navbar from '../../components/header/Navbar';
+import { IoChevronDown } from 'react-icons/io5';
+import { motion, AnimatePresence } from 'framer-motion';
+import Navbar from '../../components/Header/Navbar';
 import { projects } from './ProjectConfig';
-import hero from "../../assets/images/allProductsimages/hero.png";
+import hero from '../../assets/images/allProductsimages/hero.png';
 
 export const Projects = () => {
 
 
-     const [openSections, setOpenSections] = useState(["Commercial Lighting"]);
+     const [openSections, setOpenSections] = useState(['Commercial Lighting']);
      const toggleSection = (title) => {
        setOpenSections((prev) =>
          prev.includes(title)
@@ -68,7 +68,7 @@ export const Projects = () => {
               <motion.button
                 onClick={() => toggleSection(section.title)}
                 className="w-full  rounded-lg flex justify-between items-center p-4 bg-gray-100 border  border-gray-300 "
-                whileHover={{ backgroundColor: "#D9D9D9" }}
+                whileHover={{ backgroundColor: '#D9D9D9' }}
                 whileTap={{ scale: 0.99 }}
               >
                 <span className="text-xl  font-medium">{section.title}</span>
@@ -76,7 +76,7 @@ export const Projects = () => {
                   animate={{
                     rotate: openSections.includes(section.title) ? 180 : 0,
                   }}
-                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                  transition={{ duration: 0.3, ease: 'easeInOut' }}
                 >
                   <IoChevronDown />
                 </motion.div>
@@ -87,12 +87,12 @@ export const Projects = () => {
                   <motion.div
                     initial={{ height: 0, opacity: 0 }}
                     animate={{
-                      height: "auto",
+                      height: 'auto',
                       opacity: 1,
                       transition: {
                         height: {
                           duration: 0.4,
-                          ease: "easeInOut",
+                          ease: 'easeInOut',
                         },
                         opacity: {
                           duration: 0.3,
@@ -106,7 +106,7 @@ export const Projects = () => {
                       transition: {
                         height: {
                           duration: 0.4,
-                          ease: "easeInOut",
+                          ease: 'easeInOut',
                         },
                         opacity: {
                           duration: 0.3,

@@ -1,5 +1,5 @@
 
-import Navbar from '../../components/header/Navbar';
+import Navbar from '../../components/Header/Navbar';
 import { Link, useParams } from 'react-router-dom';
 import { solutionsdata } from '../solutions/SolutionsConfig';
 import { caseStudiesdata } from './SolutionDetailConfig';

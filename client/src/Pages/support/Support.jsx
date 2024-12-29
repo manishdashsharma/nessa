@@ -1,12 +1,12 @@
 import  { useState } from 'react';
-import Navbar from '../../components/header/Navbar';
+import Navbar from '../../components/Header/Navbar';
 import { MdCall, MdEmail } from 'react-icons/md';
 import { nessaServices } from './SupportConfig';
 import styled from 'styled-components';
 import toast from 'react-hot-toast';
-import airportpageposter from "../../assets/images/solutionsImages/airportpageposter.png"
-import light from "../../assets/images/supportImages/light.png"
-import manual from "../../assets/images/supportImages/manual.png"
+import airportpageposter from '../../assets/images/solutionsImages/airportpageposter.png'
+import light from '../../assets/images/supportImages/light.png'
+import manual from '../../assets/images/supportImages/manual.png'
 
 const StyleWrapper = styled.div`
   input[type="file"]::file-selector-button {

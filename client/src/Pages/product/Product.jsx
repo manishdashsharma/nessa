@@ -1,5 +1,5 @@
 import  { useState } from 'react';
-import Navbar from '../../components/header/Navbar';
+import Navbar from '../../components/Header/Navbar';
 import { MdOutlineBookmarkAdd } from 'react-icons/md';
 import { productConfig, solution } from './ProductConfig';
 import RelatedProductsSwipe from './RelatedProducts';

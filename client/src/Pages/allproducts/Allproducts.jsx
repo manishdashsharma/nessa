@@ -1,5 +1,5 @@
 
-import Navbar from '../../components/header/Navbar'
+import Navbar from '../../components/Header/Navbar'
 import ShowProducts from './ShowProducts'
 import hero from '../../assets/images/allProductsimages/hero.png'
 

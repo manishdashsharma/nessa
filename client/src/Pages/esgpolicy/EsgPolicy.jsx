@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from '../../components/header/Navbar'
+import Navbar from '../../components/Header/Navbar'
 import { EsgPolicyConfig } from './EsgPolicyConfig'
 
 const EsgPolicy = () => {

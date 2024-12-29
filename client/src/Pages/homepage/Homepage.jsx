@@ -1,5 +1,5 @@
 
-import Navbar from '../../components/header/Navbar'
+import Navbar from '../../components/Header/Navbar'
 import { countries, lightingSolution } from './homepageConfig';
 import { Link } from 'react-router-dom';
 import { ProductRange } from './homepageinnersections/ProductRange';
