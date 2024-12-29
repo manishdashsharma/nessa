@@ -1,10 +1,9 @@
-import React from 'react';
-import Navbar from '../../components/Header/Navbar';
 import { nessaCatalogs, nessaManual, productManual } from './ResourcesConfig';
 import { Link } from 'react-router-dom';
 import ResourcesInsites from './ResourcesInsites';
 import Media from './Media';
 import hero from '../../assets/images/allProductsimages/hero.png';
+import Navbar from '../../components/Header/Navbar';
 
 export const Resources = () => {
   return (
@@ -27,7 +26,7 @@ export const Resources = () => {
         <div className="absolute w-[250px] h-[250px] bg-[var(--light-blue)] opacity-30 left-[-7vw] top-[-3vw]   rounded-full z-[-1]"></div>
 
         <div className=" text-4xl font-semibold leading-snug text-center text-black z-[2] relative">
-          Download 
+          Download
           <span className="text-blue-500"> NESSA CATALOGUE</span>
         </div>
         <div className="w-full flex justify-center">

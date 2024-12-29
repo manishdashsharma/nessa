@@ -1,11 +1,10 @@
-
-import Navbar from '../../components/Header/Navbar';
 import { Link, useParams } from 'react-router-dom';
 import { solutionsdata } from '../solutions/SolutionsConfig';
 import { caseStudiesdata } from './SolutionDetailConfig';
 import partner1 from '../../assets/images/homepageimages/partner1.png'
 import partner2 from '../../assets/images/homepageimages/partner2.png'
 import partner3 from '../../assets/images/homepageimages/partner3.png'
+import Navbar from '../../components/Header/Navbar';
 
 const SolutionDetail = () => {
   const { type } = useParams(); // Extract 'type' parameter from the URL

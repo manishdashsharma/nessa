@@ -1,7 +1,7 @@
 
-import Navbar from '../../components/Header/Navbar'
 import ShowProducts from './ShowProducts'
 import hero from '../../assets/images/allProductsimages/hero.png'
+import Navbar from '../../components/Header/Navbar';
 
 const Allproducts = () => {
   return (

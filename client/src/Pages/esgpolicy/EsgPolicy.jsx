@@ -1,4 +1,3 @@
-import React from 'react'
 import Navbar from '../../components/Header/Navbar'
 import { EsgPolicyConfig } from './EsgPolicyConfig'
 
@@ -8,7 +7,7 @@ const EsgPolicy = () => {
   return (
     <div className="min-h-screen bg-white">
     {/* Header */}
-    <Navbar/>
+    <Navbar />
     <div className="bg-blue-200 text-black  py-20"> 
       <h1 className="text-2xl font-semibold text-center">{EsgPolicyConfig.title}</h1>
     </div>

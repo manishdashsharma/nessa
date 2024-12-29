@@ -1,13 +1,13 @@
 
-import { termsConfig } from './TermsConfig'
 import Navbar from '../../components/Header/Navbar'
+import { termsConfig } from './TermsConfig'
 
 const Terms = () => {
     
   return (
     <div className="min-h-screen bg-white">
     {/* Header */}
-    <Navbar/>
+    <Navbar />
     <div className="bg-blue-200 text-black  py-20"> 
       <h1 className="text-2xl font-semibold text-center">{termsConfig.title}</h1>
     </div>

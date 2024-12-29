@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import Navbar from '../../components/Header/Navbar';
 import { FaLocationDot, FaSquareFacebook } from 'react-icons/fa6';
 import { MdCall } from 'react-icons/md';
 import { MdEmail } from 'react-icons/md';
@@ -9,6 +8,7 @@ import { FaDiscord } from 'react-icons/fa';
 import styled from 'styled-components';
 import airportpageposter from '../../assets/images/solutionsImages/airportpageposter.png'
 import toast from 'react-hot-toast';
+import Navbar from '../../components/Header/Navbar';
 
 
 const StyleWrapper = styled.div`

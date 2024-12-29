@@ -1,5 +1,4 @@
 
-import Navbar from '../../components/Header/Navbar';
 import {
   aboutUsPara1,
   aboutUsPara2,
@@ -16,6 +15,7 @@ import rectangle69 from '../../assets/images/homepageimages/Rectangle69.png';
 import ourVision from '../../assets/images/aboutUs/ourVision.png'
 import ourMission from '../../assets/images/aboutUs/ourVision.png'
 import customersegment from '../../assets/images/aboutUs/customersegment.svg'
+import Navbar from '../../components/Header/Navbar';
 
 
 const AboutUs = () => {

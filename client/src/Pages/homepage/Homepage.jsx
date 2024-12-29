@@ -1,5 +1,3 @@
-
-import Navbar from '../../components/Header/Navbar'
 import { countries, lightingSolution } from './homepageConfig';
 import { Link } from 'react-router-dom';
 import { ProductRange } from './homepageinnersections/ProductRange';
@@ -21,6 +19,7 @@ import lamp from '../../assets/images/homepageimages/lamp.png';
 import indiaMap from '../../assets/images/homepageimages/indiaMap.png';
 import indiaFlag from '../../assets/images/homepageimages/india.png';
 import rectangle69 from '../../assets/images/homepageimages/Rectangle69.png';
+import Navbar from '../../components/Header/Navbar';
 
 
 
