@@ -9,7 +9,7 @@ services:
     networks:
       - queue-net
     env_file: 
-      - ./.env.development
+      - ./.env.production
     command: mongod --bind_ip_all
     restart: always
 
@@ -17,12 +17,12 @@ services:
     container_name: client
     build:
       context: ./client
-      dockerfile: docker/development/Dockerfile
+      dockerfile: docker/production/Dockerfile
     ports:
       - '5173:5173'
     restart: always
     env_file: 
-      - ./.env.development
+      - ./.env.production
     volumes:
       - ./client/src:/usr/src/app/src
       - ./client/package.json:/usr/src/app/package.json
@@ -35,13 +35,13 @@ services:
     container_name: server
     build:
       context: ./server
-      dockerfile: docker/development/Dockerfile
+      dockerfile: docker/production/Dockerfile
     ports:
       - '5000:5000'
     depends_on:
       - mongo
     env_file: 
-      - ./.env.development
+      - ./.env.production
     volumes:
       - ./server/src:/usr/src/app/src
       - ./server/package.json:/usr/src/app/package.json
