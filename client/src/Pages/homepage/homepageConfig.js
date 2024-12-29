@@ -21,6 +21,7 @@ import franceFlag from '../../assets/images/homepageimages/france.png';
 import finlandFlag from '../../assets/images/homepageimages/finland.png';
 import americaFlag from '../../assets/images/homepageimages/america.png';
 
+
 // Updated exports
 export const lightingSolution = [
   {
