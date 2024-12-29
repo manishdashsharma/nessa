@@ -12,7 +12,7 @@ check_env_files() {
       echo "Error: docker-compose.dev.yml file not found! Please create this file."
       exit 1
     fi
-  else
+  elif [ "$env" == "production" ]; then
     if [ ! -f .env.production ]; then
       echo "Error: .env.production file not found! Please create this file."
       exit 1
@@ -21,6 +21,9 @@ check_env_files() {
       echo "Error: docker-compose.prod.yml file not found! Please create this file."
       exit 1
     fi
+  else
+    echo "Error: Unknown environment '$env'. Please select 'development' or 'production'."
+    exit 1
   fi
 }
 
@@ -66,7 +69,7 @@ start_services() {
   
   if [ "$env" == "development" ]; then
     docker-compose --env-file .env.development -f docker-compose.dev.yml up $services
-  else
+  elif [ "$env" == "production" ]; then
     docker-compose --env-file .env.production -f docker-compose.prod.yml up -d $services
   fi
 }
