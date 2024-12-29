@@ -1,5 +1,5 @@
 
-import Navbar from '../../components/Header/Navbar'
+import Navbar from '../../Components/Header/Navbar'
 import { termsConfig } from './TermsConfig'
 
 const Terms = () => {

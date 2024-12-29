@@ -8,7 +8,7 @@ import { FaDiscord } from 'react-icons/fa';
 import styled from 'styled-components';
 import airportpageposter from '../../assets/images/solutionsImages/airportpageposter.png'
 import toast from 'react-hot-toast';
-import Navbar from '../../components/Header/Navbar';
+import Navbar from '../../Components/Header/Navbar';
 
 
 const StyleWrapper = styled.div`

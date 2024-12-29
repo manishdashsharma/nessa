@@ -1,4 +1,4 @@
-import Navbar from '../../components/Header/Navbar'
+import Navbar from '../../Components/Header/Navbar'
 import { EsgPolicyConfig } from './EsgPolicyConfig'
 
 const EsgPolicy = () => {

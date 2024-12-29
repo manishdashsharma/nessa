@@ -6,7 +6,7 @@ import toast from 'react-hot-toast';
 import airportpageposter from '../../assets/images/solutionsImages/airportpageposter.png'
 import light from '../../assets/images/supportImages/light.png'
 import manual from '../../assets/images/supportImages/manual.png'
-import Navbar from '../../components/Header/Navbar';
+import Navbar from '../../Components/Header/Navbar';
 
 const StyleWrapper = styled.div`
   input[type="file"]::file-selector-button {

@@ -19,7 +19,7 @@ import lamp from '../../assets/images/homepageimages/lamp.png';
 import indiaMap from '../../assets/images/homepageimages/indiaMap.png';
 import indiaFlag from '../../assets/images/homepageimages/india.png';
 import rectangle69 from '../../assets/images/homepageimages/Rectangle69.png';
-import Navbar from '../../components/Header/Navbar';
+import Navbar from '../../Components/Header/Navbar';
 
 
 

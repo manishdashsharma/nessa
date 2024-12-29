@@ -1,6 +1,6 @@
 
 import { privacyConfig } from './Privacy1Config'
-import Navbar from '../../components/Header/Navbar';
+import Navbar from '../../Components/Header/Navbar';
 
 
 const Privacy1 = () => {

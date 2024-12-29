@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import hero from '../../assets/images/solutionsImages/hero.png';
 import experties1 from '../../assets/images/solutionsImages/experties1.png'
 import experties2 from '../../assets/images/solutionsImages/experties2.png'
-import TrendingProductsSwipe from '../../components/trendingProducts/TrendingProductsSwiper';
-import Navbar from '../../components/Header/Navbar';
+import TrendingProductsSwipe from '../../Components/trendingProducts/TrendingProductsSwiper';
+import Navbar from '../../Components/Header/Navbar';
 
 const Solutions = () => {
    

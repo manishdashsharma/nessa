@@ -4,7 +4,7 @@ import { caseStudiesdata } from './SolutionDetailConfig';
 import partner1 from '../../assets/images/homepageimages/partner1.png'
 import partner2 from '../../assets/images/homepageimages/partner2.png'
 import partner3 from '../../assets/images/homepageimages/partner3.png'
-import Navbar from '../../components/Header/Navbar';
+import Navbar from '../../Components/Header/Navbar';
 
 const SolutionDetail = () => {
   const { type } = useParams(); // Extract 'type' parameter from the URL

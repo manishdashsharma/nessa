@@ -1,6 +1,6 @@
 
 import hero from '../../assets/images/allProductsimages/hero.png';
-import Navbar from '../../components/Header/Navbar';
+import Navbar from '../../Components/Header/Navbar';
 import {
   ourRulerUpliftmentsSolution,
   ourRulerUpliftmentsSolutionRightSection,

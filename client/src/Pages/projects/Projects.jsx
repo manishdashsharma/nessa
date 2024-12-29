@@ -3,7 +3,7 @@ import { IoChevronDown } from 'react-icons/io5';
 import { motion, AnimatePresence } from 'framer-motion';
 import { projects } from './ProjectConfig';
 import hero from '../../assets/images/allProductsimages/hero.png';
-import Navbar from '../../components/Header/Navbar';
+import Navbar from '../../Components/Header/Navbar';
 
 export const Projects = () => {
 

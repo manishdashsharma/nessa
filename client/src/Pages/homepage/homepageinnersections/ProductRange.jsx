@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import TrendingProductsSwipe from '../../../components/trendingProducts/TrendingProductsSwiper';
+import TrendingProductsSwipe from '../../../Components/trendingProducts/TrendingProductsSwiper';
 import ACLight from '../../../assets/images/productRange/aclight.png';
 import SolarLight from '../../../assets/images/productRange/solarlight.png';
 import Electronics from '../../../assets/images/productRange/electronics.png';

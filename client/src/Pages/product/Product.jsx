@@ -4,7 +4,7 @@ import { productConfig, solution } from './ProductConfig';
 import RelatedProductsSwipe from './RelatedProducts';
 import ProductTabs from './Productdetails';
 import { IoMdShare } from 'react-icons/io';
-import Navbar from '../../components/Header/Navbar';
+import Navbar from '../../Components/Header/Navbar';
 
 const Product = () => {
   const [selectedImage, setSelectedImage] = useState(0);

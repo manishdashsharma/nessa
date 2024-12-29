@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import ResourcesInsites from './ResourcesInsites';
 import Media from './Media';
 import hero from '../../assets/images/allProductsimages/hero.png';
-import Navbar from '../../components/Header/Navbar';
+import Navbar from '../../Components/Header/Navbar';
 
 export const Resources = () => {
   return (

@@ -1,5 +1,5 @@
 
-// Import Swiper React components
+// Import Swiper React Components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Import Swiper styles
