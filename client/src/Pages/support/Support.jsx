@@ -7,6 +7,7 @@ import airportpageposter from '../../assets/images/solutionsImages/airportpagepo
 import light from '../../assets/images/supportImages/light.png'
 import manual from '../../assets/images/supportImages/manual.png'
 import Navbar from '../../Components/Header/Navbar';
+import SideComponent from '../../Components/sideComponent/SideComponent';
 
 const StyleWrapper = styled.div`
   input[type="file"]::file-selector-button {
@@ -93,6 +94,7 @@ const Support = () => {
     <StyleWrapper>
       <div className="w-full overflow-hidden">
         <Navbar />
+        <SideComponent/>
 
         <div className="w-full h-[300px] max-sm:h-[200px] relative flex items-center justify-center">
           <img

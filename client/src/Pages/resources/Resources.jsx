@@ -4,11 +4,13 @@ import ResourcesInsites from './ResourcesInsites';
 import Media from './Media';
 import hero from '../../assets/images/allProductsimages/hero.png';
 import Navbar from '../../Components/Header/Navbar';
+import SideComponent from '../../Components/sideComponent/SideComponent';
 
 export const Resources = () => {
   return (
     <div className="w-full overflow-hidden">
       <Navbar />
+      <SideComponent/>
 
       <div className="w-full h-[300px] max-sm:h-[200px] relative flex items-center  justify-start ">
         <img

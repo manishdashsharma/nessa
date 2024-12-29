@@ -6,15 +6,17 @@ const Routes = () => {
     const getMainRoutes = [
         { title: 'Home', route: '/', icon: 'LayoutDashboard', status: 'Published' },
         { title: 'Solutions', route: '/solutions', icon: 'Lightbulb', status: 'Published' },
-        { title: 'All Products', route: '/allproducts', icon: 'Package', status: 'Unpublished' },
+        { title: 'All Products', route: '/allproducts', icon: 'Package', status: 'Published' },
         { title: 'Product', route: '/product', icon: 'Box', status: 'Published' },
-        { title: 'Resources', route: '/resources', icon: 'FileText', status: 'Unpublished' },
+        { title: 'Resources', route: '/resources', icon: 'FileText', status: 'Published' },
         { title: 'About Us', route: '/aboutus', icon: 'Users', status: 'Published' },
-        { title: 'Contact Us', route: '/contactus', icon: 'PhoneCall', status: 'Unpublished' },
+        { title: 'Contact Us', route: '/contactus', icon: 'PhoneCall', status: 'Published' },
         { title: 'Support', route: '/support', icon: 'Headphones', status: 'Published' },
         { title: 'Terms of Service', route: '/terms', icon: 'FileText', status: 'Published' },
         { title: 'Privacy Policy', route: '/privacy', icon: 'Shield', status: 'Published' },
         { title: 'ESG Policy', route: '/esgpolicy', icon: 'Leaf', status: 'Published' },
+        { title: 'Projects', route: '/projects', icon: 'Leaf', status: 'Published' },
+        { title: 'Value Added Services', route: '/valueaddedservices', icon: 'Leaf', status: 'Published' },
       ];
       
 

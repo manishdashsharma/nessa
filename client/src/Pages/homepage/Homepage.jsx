@@ -20,6 +20,7 @@ import indiaMap from '../../assets/images/homepageimages/indiaMap.png';
 import indiaFlag from '../../assets/images/homepageimages/india.png';
 import rectangle69 from '../../assets/images/homepageimages/Rectangle69.png';
 import Navbar from '../../Components/Header/Navbar';
+import SideComponent from '../../Components/sideComponent/SideComponent';
 
 
 
@@ -27,6 +28,7 @@ const Homepage = () => {
   return (
     <div className="w-full overflow-hidden">
       <Navbar />
+      <SideComponent/>
 
       {/* Hero Content  */}
       <div className="w-full h-[70vh] relative">

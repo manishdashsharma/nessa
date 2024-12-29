@@ -9,6 +9,7 @@ import styled from 'styled-components';
 import airportpageposter from '../../assets/images/solutionsImages/airportpageposter.png'
 import toast from 'react-hot-toast';
 import Navbar from '../../Components/Header/Navbar';
+import SideComponent from '../../Components/sideComponent/SideComponent';
 
 
 const StyleWrapper = styled.div`
@@ -93,6 +94,7 @@ const ContactUs = () => {
     <StyleWrapper>
       <div className="w-full overflow-hidden">
         <Navbar />
+        <SideComponent/>
 
         <div className="w-full h-[300px] max-sm:h-[200px] relative flex items-center  justify-center ">
           <img

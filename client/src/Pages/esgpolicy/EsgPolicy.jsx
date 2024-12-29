@@ -1,4 +1,5 @@
 import Navbar from '../../Components/Header/Navbar'
+import SideComponent from '../../Components/sideComponent/SideComponent'
 import { EsgPolicyConfig } from './EsgPolicyConfig'
 
 const EsgPolicy = () => {
@@ -8,6 +9,7 @@ const EsgPolicy = () => {
     <div className="min-h-screen bg-white">
     {/* Header */}
     <Navbar />
+    <SideComponent />
     <div className="bg-blue-200 text-black  py-20"> 
       <h1 className="text-2xl font-semibold text-center">{EsgPolicyConfig.title}</h1>
     </div>

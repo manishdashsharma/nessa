@@ -5,6 +5,7 @@ import RelatedProductsSwipe from './RelatedProducts';
 import ProductTabs from './Productdetails';
 import { IoMdShare } from 'react-icons/io';
 import Navbar from '../../Components/Header/Navbar';
+import SideComponent from '../../Components/sideComponent/SideComponent';
 
 const Product = () => {
   const [selectedImage, setSelectedImage] = useState(0);
@@ -43,6 +44,7 @@ const Product = () => {
   return (
     <div className="overflow-hidden text-lg">
       <Navbar />
+      <SideComponent/>
 
       <div className="w-full flex max-lg:flex-col max-lg:gap-10 px-[5vw] py-[50px]">
         {/* product iamges section only visible after w-1024 */}

@@ -15,12 +15,14 @@ import ourVision from '../../assets/images/aboutUs/ourVision.png'
 import ourMission from '../../assets/images/aboutUs/ourVision.png'
 import customersegment from '../../assets/images/aboutUs/customersegment.svg'
 import Navbar from '../../Components/Header/Navbar';
+import SideComponent from '../../Components/sideComponent/SideComponent';
 
 
 const AboutUs = () => {
   return (
     <div className="w-full overflow-hidden">
       <Navbar />
+      <SideComponent/>
 
       <div className="w-full h-[300px] max-sm:h-[200px] relative flex items-center  justify-start ">
         <img

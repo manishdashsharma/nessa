@@ -1,5 +1,6 @@
 
 import Navbar from '../../Components/Header/Navbar'
+import SideComponent from '../../Components/sideComponent/SideComponent'
 import { termsConfig } from './TermsConfig'
 
 const Terms = () => {
@@ -8,6 +9,7 @@ const Terms = () => {
     <div className="min-h-screen bg-white">
     {/* Header */}
     <Navbar />
+    <SideComponent />
     <div className="bg-blue-200 text-black  py-20"> 
       <h1 className="text-2xl font-semibold text-center">{termsConfig.title}</h1>
     </div>

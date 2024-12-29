@@ -6,12 +6,14 @@ import experties1 from '../../assets/images/solutionsImages/experties1.png'
 import experties2 from '../../assets/images/solutionsImages/experties2.png'
 import TrendingProductsSwipe from '../../Components/trendingProducts/TrendingProductsSwiper';
 import Navbar from '../../Components/Header/Navbar';
+import SideComponent from '../../Components/sideComponent/SideComponent';
 
 const Solutions = () => {
    
   return (
     <div className="w-full overflow-hidden ">
       <Navbar />
+      <SideComponent/>
 
       <div className="w-full h-[300px] max-sm:h-[200px] relative flex items-center  justify-start ">
         <img

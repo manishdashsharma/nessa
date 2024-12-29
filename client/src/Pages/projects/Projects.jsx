@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { projects } from './ProjectConfig';
 import hero from '../../assets/images/allProductsimages/hero.png';
 import Navbar from '../../Components/Header/Navbar';
+import SideComponent from '../../Components/sideComponent/SideComponent';
 
 export const Projects = () => {
 
@@ -44,6 +45,7 @@ export const Projects = () => {
   return (
     <div className="w-full overflow-hidden">
       <Navbar />
+      <SideComponent/>
 
       <div className="w-full h-[300px] max-sm:h-[200px] relative flex items-center  justify-start ">
         <img

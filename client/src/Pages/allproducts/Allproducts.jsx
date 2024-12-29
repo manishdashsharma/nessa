@@ -2,12 +2,14 @@
 import ShowProducts from './ShowProducts'
 import hero from '../../assets/images/allProductsimages/hero.png'
 import Navbar from '../../Components/Header/Navbar';
+import SideComponent from '../../Components/sideComponent/SideComponent';
 
 const Allproducts = () => {
   return (
     <div className='overflow-hidden'>
       
       <Navbar />
+      <SideComponent/>
 
         <div className="w-full h-[300px] max-sm:h-[200px] relative flex items-center  justify-center ">
           <img

@@ -28,7 +28,7 @@ const App = () => {
            
             <Toaster reverseOrder={false} />
 
-      
+
             <Routes>
                 <Route path="/welcome" element={<WelcomePage />} />
                 <Route path="/" element={<Homepage />} />

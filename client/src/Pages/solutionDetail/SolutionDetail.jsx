@@ -5,6 +5,7 @@ import partner1 from '../../assets/images/homepageimages/partner1.png'
 import partner2 from '../../assets/images/homepageimages/partner2.png'
 import partner3 from '../../assets/images/homepageimages/partner3.png'
 import Navbar from '../../Components/Header/Navbar';
+import SideComponent from '../../Components/sideComponent/SideComponent';
 
 const SolutionDetail = () => {
   const { type } = useParams(); // Extract 'type' parameter from the URL
@@ -17,6 +18,7 @@ const SolutionDetail = () => {
   return (
     <div className="w-full overflow-hidden">
       <Navbar />
+      <SideComponent/>
 
       <div className="w-full h-[300px] max-sm:h-[200px] relative flex items-center  justify-start ">
         <img
