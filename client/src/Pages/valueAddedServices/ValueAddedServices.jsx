@@ -1,12 +1,12 @@
-import React from "react";
-import Navbar from "../../components/header/Navbar";
-import hero from "../../assets/images/allProductsimages/hero.png";
+
+import hero from '../../assets/images/allProductsimages/hero.png';
+import Navbar from '../../components/header/Navbar';
 import {
   ourRulerUpliftmentsSolution,
   ourRulerUpliftmentsSolutionRightSection,
   ourValuePreposition,
-} from "./ValueAddedServicesConfig";
-import { RiLightbulbFlashLine } from "react-icons/ri";
+} from './ValueAddedServicesConfig';
+import { RiLightbulbFlashLine } from 'react-icons/ri';
 
 export const ValueAddedServices = () => {
   return (
@@ -41,27 +41,27 @@ export const ValueAddedServices = () => {
               style={{
                 background:
                   index === 1 || index === 4
-                    ? "#0074E0"
-                    : "linear-gradient(to right, #841D84, #3DC3BB, #FF8983)",
+                    ? '#0074E0'
+                    : 'linear-gradient(to right, #841D84, #3DC3BB, #FF8983)',
               }}
             >
               <div
                 className={`border-2  ${
                   index === 1 || index === 4
-                    ? "bg-blue-500 border-white text-white "
-                    : "bg-white border-blue-500 "
+                    ? 'bg-blue-500 border-white text-white '
+                    : 'bg-white border-blue-500 '
                 } w-full h-full rounded-2xl p-6 shadow-md`}
               >
                 <div className="flex items-center mb-4">
                   <RiLightbulbFlashLine
                     className={`text-4xl ${
-                      index !== 1 && index !== 4 ? "text-blue-500" : ""
+                      index !== 1 && index !== 4 ? 'text-blue-500' : ''
                     }`}
                   />
                 </div>
                 <h3
                   className={`text-xl font-semibold mb-2 ${
-                    index !== 1 && index !== 4 ? "text-blue-500" : ""
+                    index !== 1 && index !== 4 ? 'text-blue-500' : ''
                   }`}
                 >
                   {item.title}
