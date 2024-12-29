@@ -1,11 +1,7 @@
-name: Deploy to Server
+name: Deploy to VPS Server
 
 on:
   push:
-    branches:
-      - main
-
-  pull_request:
     branches:
       - main
 
@@ -13,7 +9,25 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-    - name: Deployment Success
-      run: echo "Deployment successful"
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H 194.238.22.161 >> ~/.ssh/known_hosts
+
+      - name: Deploy to Server
+        env:
+          DEPLOY_PATH: /home/nessa
+          DEPLOY_HOST: 194.238.22.161
+          DEPLOY_USER: root
+        run: |
+          ssh $DEPLOY_USER@$DEPLOY_HOST << 'EOF'
+            cd $DEPLOY_PATH
+            git pull origin main
+            docker-compose --env-file .env.production -f docker-compose.prod.yml up -d --build
+            docker system prune -f
+          EOF
