@@ -21,9 +21,9 @@ jobs:
 
       - name: Deploy to Server
         env:
-          DEPLOY_PATH: /home/nessa
-          DEPLOY_HOST: 194.238.22.161
-          DEPLOY_USER: root
+          DEPLOY_PATH: "/home/nessa"
+          DEPLOY_HOST: "194.238.22.161"
+          DEPLOY_USER: "root"
         run: |
           set -e  # Fail the script on any error
           echo "Starting deployment to $DEPLOY_HOST..."
@@ -31,13 +31,20 @@ jobs:
           # SSH into the server and execute deployment steps
           ssh $DEPLOY_USER@$DEPLOY_HOST << 'EOF'
             echo "Checking deployment directory..."
+            DEPLOY_PATH="$DEPLOY_PATH"  # Explicitly set the variable within the remote context
+
+            if [ -z "$DEPLOY_PATH" ]; then
+              echo "DEPLOY_PATH variable is empty. Please set it correctly."
+              exit 1
+            fi
+
             if [ ! -d "$DEPLOY_PATH" ]; then
               echo "Deployment path does not exist, creating..."
-              mkdir -p $DEPLOY_PATH || { echo "Failed to create deployment path"; exit 1; }
+              mkdir -p "$DEPLOY_PATH" || { echo "Failed to create deployment path"; exit 1; }
             fi
 
             echo "Navigating to deployment directory..."
-            cd $DEPLOY_PATH || { echo "Failed to navigate to $DEPLOY_PATH"; exit 1; }
+            cd "$DEPLOY_PATH" || { echo "Failed to navigate to $DEPLOY_PATH"; exit 1; }
 
             echo "Pulling latest code from repository..."
             if [ ! -d ".git" ]; then
