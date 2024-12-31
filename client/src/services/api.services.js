@@ -15,3 +15,13 @@ export const apiDetailsStatus = async() =>{
   const response = await servicesAxiosInstance('/v1/api-details-check')
   return response.data
 }
+
+export const uploadFile = async (file) => {
+  const response = await servicesAxiosInstance.post('/v1/upload-file', file);
+  return response.data;
+};
+
+export const saveContactUs = async (contactData) => {
+  const response = await servicesAxiosInstance.post('/v1/save-contact-us-data', contactData);
+  return response.data;
+};

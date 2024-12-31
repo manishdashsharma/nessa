@@ -10,6 +10,7 @@ import airportpageposter from '../../assets/images/solutionsImages/airportpagepo
 import toast from 'react-hot-toast';
 import Navbar from '../../Components/Header/Navbar';
 import SideComponent from '../../Components/sideComponent/SideComponent';
+import { saveContactUs, uploadFile } from '../../services/api.services';
 
 
 const StyleWrapper = styled.div`
@@ -25,68 +26,152 @@ const StyleWrapper = styled.div`
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
-    fullName: '',
+    name: '',
     email: '',
     companyName: '',
-    phone: '',
+    phoneNumber: '',
     subject: 'General Inquiry',
-    file: null,
+    fileLink: '',
     message: '',
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
   const [errors, setErrors] = useState({});
-
   const validateForm = () => {
     const newErrors = {};
-    if (!formData.fullName) newErrors.fullName = 'Full Name is required.';
+
+    // Name validation
+    if (!formData.name.trim()) {
+      newErrors.name = 'Full Name is required.';
+    } else if (formData.name.length < 2) {
+      newErrors.name = 'Name must be at least 2 characters.';
+    }
+
+    // Email validation
     if (!formData.email) {
       newErrors.email = 'Email is required.';
-    } else if (
-      !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(formData.email)
-    ) {
-      newErrors.email = 'Invalid email address.';
+    } else if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(formData.email)) {
+      newErrors.email = 'Please enter a valid email address.';
     }
-    if (!formData.phone) {
-      newErrors.phone = 'Phone Number is required.';
-    } else if (!/^[0-9]+$/.test(formData.phone)) {
-      newErrors.phone = 'Invalid phone number.';
+
+    // Company validation
+    if (!formData.companyName.trim()) {
+      newErrors.companyName = 'Company Name is required.';
     }
-    if (!formData.message) newErrors.message = 'Message is required.';
+
+    // Phone validation
+    if (!formData.phoneNumber) {
+      newErrors.phoneNumber = 'Phone Number is required.';
+    } else if (!/^\+(?:[0-9] ?){6,14}[0-9]$/.test(formData.phoneNumber)) {
+      newErrors.phoneNumber = 'Please enter a valid phone number with country code (e.g., +91XXXXXXXXXX)';
+    }
+
+    // Message validation
+    if (!formData.message.trim()) {
+      newErrors.message = 'Message is required.';
+    } else if (formData.message.length < 10) {
+      newErrors.message = 'Message must be at least 10 characters long.';
+    }
+
     return newErrors;
   };
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: ''
+      }));
+    }
+  };
+  
+
+  // handle phone number
+  const handlePhoneChange = (e) => {
+    let value = e.target.value.replace(/[^\d+]/g, '');
+    if (value && !value.startsWith('+')) {
+      value = '+' + value;
+    }
+    setFormData(prev => ({
+      ...prev,
+      phoneNumber: value
     }));
   };
+  
+  // handle file upload
+  const handleFileChange = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
 
-  const handleFileChange = (e) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      file: e.target.files[0],
-    }));
+    if (file.size > 1000000) {
+      toast.error('File size must be less than 1MB');
+      e.target.value = null;
+      return;
+    }
+
+    setIsUploading(true);
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('category', 'CONTACT_US');
+
+      const response = await uploadFile(formData);
+      if (response.success) {
+        setFormData(prev => ({
+          ...prev,
+          fileLink: response.data
+        }));
+        toast.success(`File uploaded successfully ${response.data}`);
+      }
+    } catch (error) {
+      toast.error(error.message || 'Error uploading file');
+      e.target.value = null;
+    } finally {
+      setIsUploading(false);
+    }
   };
 
-  const handleSubmit = (e) => {
+  // handle submit form 
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = validateForm();
+
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
-    } else {
-      setErrors({});
-      toast.success('Message sent successfully!');
-      setFormData({
-        fullName: '',
-        email: '',
-        companyName: '',
-        phone: '',
-        subject: 'General Inquiry',
-        file: null,
-        message: '',
-      });
+      toast.error('Please fix all errors before submitting');
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      const response = await saveContactUs(formData);
+      console.log(formData);
+      if (response.success) {
+        toast.success('Message sent successfully!');
+        setFormData({
+          name: '',
+          email: '',
+          companyName: '',
+          phoneNumber: '',
+          subject: 'General Inquiry',
+          fileLink: '',
+          message: '',
+        });
+        setErrors({});
+      } else {
+        throw new Error(response.message || 'Failed to send message');
+      }
+    } catch (error) {
+      toast.error(error.response?.data?.message || 'Failed to send message');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -94,7 +179,7 @@ const ContactUs = () => {
     <StyleWrapper>
       <div className="w-full overflow-hidden">
         <Navbar />
-        <SideComponent/>
+        <SideComponent />
 
         <div className="w-full h-[300px] max-sm:h-[200px] relative flex items-center  justify-center ">
           <img
@@ -201,20 +286,15 @@ const ContactUs = () => {
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
               <div>
-                <label className="block text-gray-700  ">Full Name</label>
+                <label className="block text-gray-700">Full Name</label>
                 <input
-                  name="fullName"
-                  value={formData.fullName}
+                  name="name"
+                  value={formData.name}
                   onChange={handleInputChange}
-                  className={`w-full p-2 border-b-2 font-semibold outline-none focus:border-blue-800  ${
-                    errors.fullName ? 'border-red-500' : 'border-gray-500'
-                  } rounded`}
+                  className={`w-full p-2 border-b-2 font-semibold outline-none focus:border-blue-800 ${errors.name ? 'border-red-500' : 'border-gray-500'
+                    } rounded`}
                 />
-                {errors.fullName && (
-                  <span className="text-red-500 text-sm">
-                    {errors.fullName}
-                  </span>
-                )}
+                {errors.name && <span className="text-red-500 text-sm">{errors.name}</span>}
               </div>
               <div>
                 <label className="block text-gray-700  ">Email ID</label>
@@ -222,9 +302,8 @@ const ContactUs = () => {
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  className={`w-full p-2 border-b-2 font-semibold outline-none focus:border-blue-800   ${
-                    errors.email ? 'border-red-500' : 'border-gray-500'
-                  } rounded`}
+                  className={`w-full p-2 border-b-2 font-semibold outline-none focus:border-blue-800   ${errors.email ? 'border-red-500' : 'border-gray-500'
+                    } rounded`}
                 />
                 {errors.email && (
                   <span className="text-red-500 text-sm">{errors.email}</span>
@@ -238,19 +317,22 @@ const ContactUs = () => {
                   onChange={handleInputChange}
                   className="w-full p-2 border-b-2 font-semibold outline-none focus:border-blue-800  border-gray-500 rounded"
                 />
+                 {errors.companyName && (
+                  <span className="text-red-500 text-sm">{errors.companyName}</span>
+                )}
               </div>
               <div>
                 <label className="block text-gray-700  ">Phone Number</label>
                 <input
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleInputChange}
-                  className={`w-full p-2 border-b-2 font-semibold outline-none focus:border-blue-800  ${
-                    errors.phone ? 'border-red-500' : 'border-gray-500'
-                  } rounded`}
+                  name="phoneNumber"
+                  value={formData.phoneNumber}
+                  onChange={handlePhoneChange}
+                  placeholder="+91XXXXXXXXXX"
+                  className={`w-full p-2 border-b-2 font-semibold outline-none focus:border-blue-800 ${errors.phoneNumber ? 'border-red-500' : 'border-gray-500'
+                    } rounded`}
                 />
-                {errors.phone && (
-                  <span className="text-red-500 text-sm">{errors.phone}</span>
+                 {errors.phoneNumber && (
+                  <span className="text-red-500 text-sm">{errors.phoneNumber }</span>
                 )}
               </div>
             </div>
@@ -285,44 +367,47 @@ const ContactUs = () => {
             </div>
 
             <div className="mt-6">
-              <label className="block text-gray-700 mb-2 ">File Upload</label>
+              <label className="block text-gray-700 mb-2">File Upload</label>
               <input
                 type="file"
-                onChange={(e) => {
-                  if (e.target.files[0].size > 1000000) {
-                    e.target.value = null;
-                    alert('File size exceeds 100KB.');
-                  } else {
-                    handleFileChange(e);
-                  }
-                }}
-                className="w-fit h-[40px] border    border-gray-500 rounded"
+                onChange={handleFileChange}
+                className="w-fit h-[40px] border border-gray-500 rounded"
+                disabled={isUploading}
               />
+              {isUploading && (
+                <p className="text-sm text-blue-500 mt-1">Uploading file...</p>
+              )}
+              {formData.fileLink && (
+                <p className="text-sm text-green-500 mt-1">File uploaded successfully</p>
+              )}
+              <p className="text-sm text-gray-500 mt-1">Maximum file size: 1MB</p>
             </div>
-
             <div className="mt-10">
               <label className="block text-gray-700  ">Message</label>
               <textarea
                 name="message"
                 value={formData.message}
                 onChange={handleInputChange}
-                className={`w-full p-2 border-b-2 font-semibold outline-none focus:border-blue-800 h-[50px] max-h-[100px] ${
-                  errors.message ? 'border-red-500' : 'border-gray-500'
-                } rounded`}
+                className={`w-full p-2 border-b-2 font-semibold outline-none focus:border-blue-800 h-[50px] max-h-[100px] ${errors.message ? 'border-red-500' : 'border-gray-500'
+                  } rounded`}
               ></textarea>
               {errors.message && (
                 <span className="text-red-500 text-sm">{errors.message}</span>
               )}
             </div>
 
+
             <div className="w-full flex justify-end">
               <button
                 type="submit"
-                className="mt-10 bg-blue-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-600 transition"
+                disabled={isSubmitting || isUploading}
+                className={`mt-10 bg-blue-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-600 transition ${(isSubmitting || isUploading) ? 'opacity-50 cursor-not-allowed' : ''
+                  }`}
               >
-                Send Message
+                {isSubmitting ? 'Sending...' : 'Send Message'}
               </button>
             </div>
+
           </form>
         </div>
 
