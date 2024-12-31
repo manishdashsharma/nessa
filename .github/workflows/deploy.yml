@@ -71,5 +71,5 @@ jobs:
         run: |
           echo "Waiting for services to start..."
           sleep 30  # Give services time to start
-          curl -I http://194.238.22.161:3000 || { echo "Validation failed: Service is not reachable"; exit 1; }
+          curl -I http://194.238.22.161:5173 || { echo "Validation failed: Service is not reachable"; exit 1; }
           echo "Validation successful: Service is up and running."
