@@ -25,9 +25,39 @@ jobs:
           DEPLOY_HOST: 194.238.22.161
           DEPLOY_USER: root
         run: |
+          set -e  # Fail the script on any error
+          echo "Starting deployment to $DEPLOY_HOST..."
+
+          # SSH into the server and execute deployment steps
           ssh $DEPLOY_USER@$DEPLOY_HOST << 'EOF'
-            cd $DEPLOY_PATH
-            git pull origin main
-            docker-compose --env-file .env.production -f docker-compose.prod.yml up -d --build
-            docker system prune -f
+            echo "Checking deployment directory..."
+            if [ ! -d "$DEPLOY_PATH" ]; then
+              echo "Deployment path does not exist, creating..."
+              mkdir -p $DEPLOY_PATH || { echo "Failed to create deployment path"; exit 1; }
+            fi
+
+            echo "Navigating to deployment directory..."
+            cd $DEPLOY_PATH || { echo "Failed to navigate to $DEPLOY_PATH"; exit 1; }
+
+            echo "Pulling latest code from repository..."
+            if [ ! -d ".git" ]; then
+              echo "Git repository not found. Cloning repository..."
+              git clone git@github.com:your-username/your-repo.git . || { echo "Failed to clone repository"; exit 1; }
+            fi
+            git reset --hard  # Ensure a clean state
+            git pull origin main || { echo "Git pull failed"; exit 1; }
+
+            echo "Bringing up Docker services..."
+            docker-compose --env-file .env.production -f docker-compose.prod.yml up -d --build || { echo "Docker Compose failed"; exit 1; }
+
+            echo "Cleaning up unused Docker resources..."
+            docker system prune -f || { echo "Docker prune failed"; exit 1; }
+
+            echo "Deployment completed successfully!"
           EOF
+
+      - name: Validate Deployment
+        run: |
+          echo "Validating deployment..."
+          curl -I http://194.238.22.161:your_app_port || { echo "Validation failed: Service is not reachable"; exit 1; }
+          echo "Validation successful: Service is up and running."
