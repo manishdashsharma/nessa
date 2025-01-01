@@ -396,8 +396,7 @@ const Navbar = () => {
                                     transition={{ duration: 0.2 }}>
                                     <IoIosArrowDown
                                         onClick={() => {
-                                            setsoluitonOpen(!soluitonOpen)
-                                            setcorporateOpen(false)
+                                            setcorporateOpen(!corporateOpen)
                                         }}
                                         className="w-5 h-5 text-black "
                                     />
