@@ -4,6 +4,7 @@ import locationStatsModel from '../model/locationStatsModel.js'
 import productModel from '../model/productModel.js'
 import utilsModel from '../model/utilsModel.js'
 import contactUsModel from '../model/contactUsModel.js'
+import supportModel from '../model/supportEnquiryModel.js'
 
 export default {
     connect: async () => {
@@ -65,6 +66,21 @@ export default {
     },
     updateContactUsById: (id,data) =>{
         return contactUsModel.findByIdAndUpdate(id, data, { new: true ,runValidators: true});
+    },
+    saveSupportEnquiry: (payload) => {
+        return supportModel.create(payload)
+    },
+    querySupportEnquiry: async (findQuery, limit, offset) => {
+        return supportModel.find(findQuery)
+            .skip(offset)
+            .limit(limit);
+
+    },
+    countSupportEnquiryDocuments: (findQuery) => {
+        return supportModel.countDocuments(findQuery);
+    },
+    updateSupportEnquiryById: (id,data) =>{
+        return supportModel.findByIdAndUpdate(id, data, { new: true ,runValidators: true});
     }
 }
 

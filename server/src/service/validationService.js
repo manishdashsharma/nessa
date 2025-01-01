@@ -37,9 +37,10 @@ export const ValidateAddProduct = Joi.object({
     productImageUrl: Joi.string().uri().required(),
     brochureUrl: Joi.string().uri().required(),
     applicationImageUrls: Joi.array().items(Joi.string().uri()).required(),
-    bestSuitedFor: Joi.string()
-        .valid(...Object.values(EBestSuitedFor))
-        .required(),
+    bestSuitedFor: Joi.array()
+    .items(Joi.string().valid(...Object.values(EBestSuitedFor)))
+    .required(),
+    SKUId: Joi.string().required()
 });
 
 
@@ -67,7 +68,7 @@ export const ValidateUpdateUtilsData = Joi.object({
     }) 
 });
 
-export const validateContactUs = Joi.object({
+export const ValidateContactUs = Joi.object({
     name: Joi.string().required(),
     email: Joi.string().email().required(),
     phoneNumber: Joi.string().required(),
@@ -78,6 +79,23 @@ export const validateContactUs = Joi.object({
 })
 
 export const ValidateUpdateContactUs = Joi.object({
+    isRead: Joi.boolean().optional(),
+    isSpam: Joi.boolean().optional(),
+    isSolved: Joi.boolean().optional(),
+})
+
+export const ValidateSupportEnquiry = Joi.object({
+    name: Joi.string().required(),
+    email: Joi.string().email().required(),
+    phoneNumber: Joi.string().required(),
+    message: Joi.string().required(),
+    fileLink: Joi.string().uri().required(),
+    companyName: Joi.string().required(),
+    productName: Joi.string().required(),
+    productSKUId : Joi.string().required(),
+})
+
+export const ValidateUpdateSupportEnquiry = Joi.object({
     isRead: Joi.boolean().optional(),
     isSpam: Joi.boolean().optional(),
     isSolved: Joi.boolean().optional(),

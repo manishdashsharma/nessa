@@ -214,19 +214,19 @@ export default {
         },
         {
             title: "Support Form",
-            status: "Under Development",
+            status: "Published",
             category: "Support Service",
             description: "API service to manage support form submissions, enabling customers to report issues and receive support, including email notifications or ticket generation."
         },
         {
             title: "Fetch Support Form Data",
-            status: "Under Development",
+            status: "Published",
             category: "Support Service",
             description: "API service to retrieve support form submissions with options to filter, sort, and paginate based on criteria such as priority, status, or issue category."
         },
         {
             title: "Update Support Form Status",
-            status: "Under Development",
+            status: "Published",
             category: "Support Service",
             description: "API service to update the status or priority of a support form submission, enabling better tracking and resolution of customer-reported issues."
         }        
