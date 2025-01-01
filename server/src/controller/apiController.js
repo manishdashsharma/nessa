@@ -4,8 +4,7 @@ import httpError from '../util/httpError.js'
 import quicker from '../util/quicker.js'
 import databaseService from '../service/databaseService.js'
 import { uploadOnCloudinary } from '../service/cloudinaryService.js'
-import { ValidateAddProduct, ValidateAddUtilsData, validateContactUs, validateJoiSchema, ValidateUpdateContactUs, ValidateUpdateProduct, ValidateUpdateUtilsData } from '../service/validationService.js'
-import contactUsModel from '../model/contactUsModel.js'
+import { ValidateAddProduct, ValidateAddUtilsData, ValidateContactUs, validateJoiSchema, ValidateSupportEnquiry, ValidateUpdateContactUs, ValidateUpdateProduct, ValidateUpdateSupportEnquiry, ValidateUpdateUtilsData } from '../service/validationService.js'
 
 export default {
     self: (req, res, next) => {
@@ -102,7 +101,7 @@ export default {
                 return httpError(next, error, req, 422)
             }
 
-            const { name, description,bestSuitedFor, categories, subcategories, specification, feature, productImageUrl, applicationImageUrls, brochureUrl } = value
+            const { name, description,bestSuitedFor, categories, subcategories, specification, feature, productImageUrl, applicationImageUrls, brochureUrl, SKUId } = value
 
             const productData = {
                 name,
@@ -115,7 +114,8 @@ export default {
                 productImageUrl,
                 brochureUrl,
                 productImageUrl,
-                applicationImageUrls
+                applicationImageUrls,
+                SKUId
             }
 
             const savedProduct = await databaseService.saveProduct(productData)
@@ -399,7 +399,99 @@ export default {
             const updatedContactUs = await databaseService.updateContactUsById(id,value)
     
             if (!updatedContactUs) {
-                return httpError(next, new Error(responseMessage.NOT_FOUND), req, 404);
+                return httpError(next, new Error(responseMessage.NOT_FOUND("Required Data")), req, 404);
+            }
+    
+            httpResponse(req, res, 200, responseMessage.SUCCESS, updatedContactUs)
+        } catch (err) {
+            httpError(next, err, req, 500);
+        }
+    },
+    saveSupportEnquiry: async (req, res, next) => {
+        try {
+            const { body } = req
+
+            const { value, error } = validateJoiSchema(ValidateSupportEnquiry, body)
+            if (error) {
+                return httpError(next, error, req, 422)
+            }
+
+            const { name, email, phoneNumber, subject, message, fileLink, companyName, productName, productSKUId } = value
+
+            const newContactUs = await databaseService.saveSupportEnquiry({
+                name,
+                email,
+                phoneNumber,
+                subject,
+                message,
+                fileLink,
+                companyName,
+                productName,
+                productSKUId
+            })
+
+            if(!newContactUs){
+                return httpError(next, new Error(responseMessage.FAILED_TO_SAVE), req, 500)
+            }
+
+            httpResponse(req, res, 200, responseMessage.SUCCESS)
+        } catch (err) {
+            httpError(next, err, req, 500)
+        }
+    },
+    querySupportEnquiryData: async (req, res, next) => {
+        try {
+            const { limit = 10, offset = 0, subject, isRead, isSpam, isSolved } = req.query;
+    
+            const query = {};
+            
+            if (isRead !== undefined) {
+                query.isRead = isRead === 'true';
+            }
+            if (isSpam !== undefined) {
+                query.isSpam = isSpam === 'true';
+            }
+            if (isSolved !== undefined) {
+                query.isSolved = isSolved === 'true';
+            }
+            
+            
+            const contactUsList = await databaseService.querySupportEnquiry(query, limit, offset);
+                 
+            const total = await databaseService.countSupportEnquiryDocuments(query);
+    
+            const response = {
+                total,
+                limit: Number(limit),
+                offset: Number(offset),
+                contactUsList
+            }
+    
+            httpResponse(req, res, 200, responseMessage.SUCCESS, response)
+        } catch (err) {
+            console.error('Error:', err);
+            httpError(next, err, req, 500);
+        }
+    },
+    updateSupportEnquiryData: async (req, res, next) => {
+        try {
+            const { id } = req.params;
+            const { body } = req;
+    
+            if(!id) {
+                return httpError(next, new Error(responseMessage.CUSTOM_MESSAGE('Document ID is missing')), req, 400);
+            }
+
+            const { value, error } = validateJoiSchema(ValidateUpdateSupportEnquiry, body)
+
+            if (error) {
+                return httpError(next, error, req, 422);
+            }
+    
+            const updatedContactUs = await databaseService.updateSupportEnquiryById(id,value)
+    
+            if (!updatedContactUs) {
+                return httpError(next, new Error(responseMessage.NOT_FOUND("Required Data")), req, 404);
             }
     
             httpResponse(req, res, 200, responseMessage.SUCCESS, updatedContactUs)

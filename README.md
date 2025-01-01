@@ -60,17 +60,3 @@ Nessa is licensed under the **[MIT License](https://github.com/manishdashsharma/
 This project is developed under **[FutureDesks](https://futuredesks.in/)**, a pioneer in delivering innovative technological solutions tailored for a brighter future.  
 
 ---
-
-## 🛡️ API Endpoints  
-
-Here are the available API routes provided by this project. **All endpoints are ready and operational:**
-
-- **`GET /self`**: Returns self-information.  
-- **`GET /health`**: Performs a health check for the backend services.  
-- **`GET /save-location-stats`**: Saves location statistics.  
-- **`GET /fetch-location-stats`**: Fetches location statistics.  
-- **`GET /website-count`**: Retrieves website visit counts.  
-- **`POST /add-product`**: Adds a new product (requires file uploads).  
-- **`GET /query-product-data`**: Fetches product-related data.  
-- **`POST /update-product/:id`**: Updates product details for a given ID.  
-- **`GET /increase-enquired/:id`**: Increments the "enquired" count for a product by ID.  

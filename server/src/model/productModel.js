@@ -63,8 +63,13 @@ const productSchema = new mongoose.Schema(
             required: true 
         },
         bestSuitedFor: { 
-            type: String, 
+            type: [String], 
             required: true 
+        },
+        SKUId:{
+            type: String,
+            required: true,
+            unique: true,
         },
         isActive: {
             type: Boolean,

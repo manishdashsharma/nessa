@@ -22,5 +22,8 @@ router.route('/remove-utils-data/:id').delete(apiController.removeUtilsData)
 router.route('/save-contact-us-data').post(apiController.saveContactUs)
 router.route('/query-contact-us-data').get(apiController.queryContactUsData)
 router.route('/update-contact-us-data/:id').post(apiController.updateContactUsData)
+router.route('/save-support-enquiry').post(apiController.saveSupportEnquiry)
+router.route('/query-support-enquiry-data').get(apiController.querySupportEnquiryData)
+router.route('/update-support-enquiry-data/:id').post(apiController.updateSupportEnquiryData)
 
 export default router
