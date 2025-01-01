@@ -17,7 +17,7 @@ export const solutionsdata = [
     {
         poster:airport,
         heading:'Airport',
-        link:'',
+        link:'airport',
 
         solutionDetail:{
             heading:'Airport Lighting Solution',
@@ -88,7 +88,7 @@ export const solutionsdata = [
     {
         poster:mines,
         heading:'Mines',
-        link:'',
+        link:'mines',
 
         solutionDetail:{
             heading:'Mines Lighting Solution',
@@ -159,7 +159,7 @@ export const solutionsdata = [
     {
         poster:stadium,
         heading:'Stadium',
-        link:'',
+        link:'stadium',
 
         solutionDetail:{
             heading:'Stadium Lighting Solution',
@@ -227,7 +227,7 @@ export const solutionsdata = [
     {
     poster:petrolpump,
        heading:'Petrol Pump',
-       link:'',
+       link:'petrolpump',
         solutionDetail:{
            heading:'Petrol Pump Lighting Solution',
            heroposter:airportpageposter,
@@ -297,7 +297,7 @@ export const solutionsdata = [
    {
        poster: refinery,
        heading:'Refinery',
-       link:'',
+       link:'refinery',
         solutionDetail:{
            heading:'Refinery Lighting Solution',
            heroposter:airportpageposter,
@@ -367,7 +367,7 @@ export const solutionsdata = [
    {
        poster:highway,
        heading:'Highways',
-       link:'',
+       link:'highways',
         solutionDetail:{
            heading:'Highway Lighting Solution',
            heroposter:airportpageposter,
@@ -437,7 +437,7 @@ export const solutionsdata = [
    {
        poster:tunnel,
        heading:'Tunnels',
-       link:'',
+       link:'tunnels',
         solutionDetail:{
            heading:'Tunnel Lighting Solution',
            heroposter:airportpageposter,
@@ -507,7 +507,7 @@ export const solutionsdata = [
    {
        poster:rural,
        heading:'Rural Hilly and Forest Area',
-       link:'',
+       link:'rural',
         solutionDetail:{
            heading:'Rural Area Lighting Solution',
            heroposter:airportpageposter,
@@ -577,7 +577,7 @@ export const solutionsdata = [
    {
        poster:ports,
        heading:'Ports Logistic Parks',
-       link:'',
+       link:'ports',
         solutionDetail:{
            heading:'Ports Lighting Solution',
            heroposter:airportpageposter,
@@ -647,7 +647,7 @@ export const solutionsdata = [
    {
        poster:hazardous,
        heading:'Hazardous Area',
-       link:'',
+       link:'hazardous',
         solutionDetail:{
            heading:'Hazardous Area Lighting Solution',
            heroposter:airportpageposter,
@@ -717,7 +717,7 @@ export const solutionsdata = [
    {
        poster:thermalpowerplant,
        heading:'Thermal Power Plant',
-       link:'',
+       link:'thermalpowerplant',
         solutionDetail:{
            heading:'Thermal Power Plant Lighting Solution',
            heroposter:airportpageposter,
@@ -787,7 +787,7 @@ export const solutionsdata = [
    {
        poster:solarpark,
        heading:'Solar Parks',
-       link:'',
+       link:'solarpark',
         solutionDetail:{
            heading:'Solar Park Lighting Solution',
            heroposter:airportpageposter,
