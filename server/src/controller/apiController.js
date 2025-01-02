@@ -318,7 +318,7 @@ export default {
         try {
             const { body } = req
 
-            const { value, error } = validateJoiSchema(validateContactUs, body)
+            const { value, error } = validateJoiSchema(ValidateContactUs, body)
             if (error) {
                 return httpError(next, error, req, 422)
             }
