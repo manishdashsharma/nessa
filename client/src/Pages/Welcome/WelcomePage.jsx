@@ -6,6 +6,7 @@ import ServerHealth from './ServerHealth';
 import Footer from './Footer';
 import ApiStatusDashboard from './ApiStatusDashboard';
 import Routes from './Routes';
+import IPAnalyticsDashboard from './IPAnalyticsDashboard';
 
 
 const WelcomePage = () => {
@@ -44,6 +45,12 @@ const WelcomePage = () => {
                 Status
               </a>
               <a
+                href="#ipanalyticdashboard"
+                className="text-gray-300 hover:text-white transition-colors"
+              >
+                IP Analytics Dashboard
+              </a>
+              <a
                 href="#api-status"
                 className="text-gray-300 hover:text-white transition-colors"
               >
@@ -74,6 +81,10 @@ const WelcomePage = () => {
 
           <div id="status" className="py-20">
             <ServerHealth />
+          </div>
+
+          <div id="ipanalyticdashboard" className="py-20">
+            <IPAnalyticsDashboard />
           </div>
 
           <div id="api-status" className="py-20">

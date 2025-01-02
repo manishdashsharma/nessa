@@ -10,6 +10,11 @@ export const saveVisitorLocation = async () => {
     return response.data
 }
 
+export const fetchVisitorLocation = async () => {
+  const response = await servicesAxiosInstance.get('/v1/fetch-location-stats')
+  return response.data
+}
+
 export const apiDetailsStatus = async () => {
     const response = await servicesAxiosInstance('/v1/api-details-check')
     return response.data
@@ -25,7 +30,6 @@ export const saveContactUs = async (contactData) => {
     return response.data
 }
 
-// Add new support enquiry API endpoint
 export const saveSupportEnquiry = async (supportData) => {
     const response = await servicesAxiosInstance.post('/v1/save-support-enquiry', supportData)
     return response.data
