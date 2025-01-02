@@ -149,7 +149,6 @@ const Support = () => {
        setIsSubmitting(true)
        try {
            const response = await saveSupportEnquiry(formData)
-           console.log(formData)
            if (response.success) {
                toast.success('Message sent successfully!')
                setFormData({

@@ -150,7 +150,6 @@ const ContactUs = () => {
         setIsSubmitting(true)
         try {
             const response = await saveContactUs(formData)
-            console.log(formData)
             if (response.success) {
                 toast.success('Message sent successfully!')
                 setFormData({
