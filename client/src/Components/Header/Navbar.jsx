@@ -203,7 +203,7 @@ const Navbar = () => {
                             className="text-black">
                             Home
                         </Link>
-                        <Link className="text-black flex items-center gap-1 relative">
+                        <div className="text-black flex items-center gap-1 relative">
                             <div className=" w-full justify-between px-4 flex items-center gap-1">
                                 <Link
                                     to="/solutions"
@@ -250,13 +250,13 @@ const Navbar = () => {
                                     </motion.div>
                                 )}
                             </AnimatePresence>
-                        </Link>
+                        </div>
                         <Link
                             to="/allproducts"
                             className="text-black flex items-center gap-1">
                             Products
                         </Link>
-                        <Link className="text-black flex items-center gap-1 relative">
+                        <div className="text-black flex items-center gap-1 relative">
                             Corporates
                             <motion.div
                                 animate={{ rotate: corporateOpen ? 180 : 0 }}
@@ -297,7 +297,7 @@ const Navbar = () => {
                                     </motion.div>
                                 )}
                             </AnimatePresence>
-                        </Link>
+                        </div>
                         <div className="text-black">Insights</div>
                         <Link
                             to="/aboutus"

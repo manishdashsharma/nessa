@@ -7,6 +7,7 @@ import { Pagination, Autoplay, Navigation } from 'swiper/modules';
 import solar from '../../../assets/images/homepageimages/solar.png'
 import street from '../../../assets/images/homepageimages/street.png'
 import whitepaper from '../../../assets/images/homepageimages/whitepaper.png'
+import { Link } from 'react-router-dom';
 
 const slideData = [
   {
@@ -109,7 +110,7 @@ export default function InsitesSwiper() {
             <div className="slide-text flex flex-col gap-2">
               <h4>{slide.category}</h4>
               <h3 className='font-bold'>{slide.title}</h3>
-              <a href="#">{slide.link}</a>
+              <Link href="#">{slide.link}</Link>
             </div>
           </div>
         </SwiperSlide>
