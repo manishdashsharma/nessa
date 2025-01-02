@@ -8,14 +8,25 @@ const useTrackPageVisit = () => {
   useEffect(() => {
     const trackVisit = async () => {
       try {
-        await saveVisitorLocation(); 
+        // Attempt to get the user's geolocation
+        navigator.geolocation.getCurrentPosition(
+          async (position) => {
+            const { latitude, longitude } = position.coords;
+
+            // Send lat/long to the API if successfully retrieved
+            await saveVisitorLocation({ latitude, longitude });
+          },
+          async () => {
+            // If geolocation fails, send API request without lat/long
+            await saveVisitorLocation();
+          }
+        );
       } catch (error) {
         console.error('Failed to track visitor location:', error);
       }
     };
 
-    trackVisit(); 
-
+    trackVisit();
   }, [location]);
 };
 

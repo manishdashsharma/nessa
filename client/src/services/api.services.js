@@ -5,14 +5,18 @@ export const getServerHealth = async () => {
     return response.data
 }
 
-export const saveVisitorLocation = async () => {
-    const response = await servicesAxiosInstance.get('/v1/save-location-stats')
+export const saveVisitorLocation = async (locationData = {}) => {
+    const { latitude, longitude } = locationData
+
+    const params = latitude && longitude ? { lat: latitude, long: longitude } : {}
+
+    const response = await servicesAxiosInstance.get('/v1/save-location-stats', { params })
     return response.data
 }
 
 export const fetchVisitorLocation = async () => {
-  const response = await servicesAxiosInstance.get('/v1/fetch-location-stats')
-  return response.data
+    const response = await servicesAxiosInstance.get('/v1/fetch-location-stats')
+    return response.data
 }
 
 export const apiDetailsStatus = async () => {
@@ -41,6 +45,7 @@ export const fetchProduct = async (params) => {
 }
 
 export const increaseIsEnquired = async (e) => {
-    const response = await servicesAxiosInstance.get(`/v1/increase-enquired/${e}` )
+    const response = await servicesAxiosInstance.get(`/v1/increase-enquired/${e}`)
     return response.data
 }
+

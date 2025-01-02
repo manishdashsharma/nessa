@@ -37,19 +37,28 @@ export default {
     },
     locationStats: async (req, res, next) => {
         try {
-            const locationDetails = await quicker.getLocationDetails()
+            const { lat, long } = req.query;
+            const locationDetails = await quicker.getLocationDetails();
+    
             if (!locationDetails) {
-                return httpError(next, new Error(responseMessage.NOT_FOUND('Location')), req, 400)
+                return httpError(next, new Error(responseMessage.NOT_FOUND('Location')), req, 400);
             }
-
-            const newLocationStats = await databaseService.savelocationStats(locationDetails)
+    
+            if (lat && long) {
+                locationDetails.latitude = lat;
+                locationDetails.longitude = long;
+            }
+    
+            console.log('Updated Location Details:', locationDetails);
+    
+            const newLocationStats = await databaseService.savelocationStats(locationDetails);
             if (!newLocationStats) {
-                return httpError(next, new Error(responseMessage.FAILED_TO_SAVE), req, 500)
+                return httpError(next, new Error(responseMessage.FAILED_TO_SAVE), req, 500);
             }
-
-            httpResponse(req, res, 200, responseMessage.SUCCESS, newLocationStats)
+    
+            httpResponse(req, res, 200, responseMessage.SUCCESS, newLocationStats);
         } catch (err) {
-            httpError(next, err, req, 500)
+            httpError(next, err, req, 500);
         }
     },
     getLocationStats: async (req, res, next) => {
