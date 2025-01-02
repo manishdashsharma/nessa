@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Search } from 'lucide-react'
 import { Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts'
-import { Pagination } from '@mui/material'
+
 import { fetchVisitorLocation } from '../../services/api.services'
 import MapComponent from './MapComponent'
 
@@ -138,7 +138,7 @@ const IPAnalyticsDashboard = () => {
                 </div>
 
                 {/* Data Table with Pagination */}
-                <div className="bg-white/5 p-4 rounded-xl border border-white/10 rounded-lg overflow-hidden">
+                {/* <div className="bg-white/5 p-4 rounded-xl border border-white/10 rounded-lg overflow-hidden">
                     <div className="p-6 border-b border-gray-700">
                         <h2 className="text-xl font-semibold">Visitor Details</h2>
                     </div>
@@ -176,7 +176,7 @@ const IPAnalyticsDashboard = () => {
                             color="primary"
                         />
                     </div>
-                </div>
+                </div> */}
             </div>
         </div>
     )
