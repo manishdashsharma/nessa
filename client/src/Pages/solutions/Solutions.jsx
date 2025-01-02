@@ -48,7 +48,7 @@ const Solutions = () => {
 
       <div className="grid lg:grid-cols-3 md:grid-cols-2 max-sm:grid-cols-1  gap-y-20  justify-items-center p-[5vw]">
         {solutionsdata.map((solution, index) => (
-          <Link to={`/solutions/${solution.heading.toLowerCase()}`}  key={index} className="relative h-[350px] lg:w-[25vw] md:w-[35vw] w-full flex justify-center items-end">
+          <Link to={`/solutions/${solution.link}`}  key={index} className="relative h-[350px] lg:w-[25vw] md:w-[35vw] w-full flex justify-center items-end">
             <img className="w-full h-full object-cover absolute" src={solution.poster} alt="" />
             <h1 className="rounded-md w-[95%] bg-white text-xl py-[10px] mb-[10px] flex items-center justify-center relative z-[2]">
               {solution.heading}

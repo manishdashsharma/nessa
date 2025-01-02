@@ -11,7 +11,7 @@ const SolutionDetail = () => {
   const { type } = useParams(); // Extract 'type' parameter from the URL
 
   const data = solutionsdata.find(
-    (solution) => solution.heading.toLowerCase() === type.toLowerCase()
+    (solution) => solution.link === type.toLowerCase()
   ); // Find the object based on 'heading'
 
 
