@@ -27,6 +27,9 @@ export default {
     queryProductData: (findQuery, limit, offset) => {
         return productModel.find(findQuery).limit(Number(limit)).skip(Number(offset)).sort({ isEnquired: -1 })
     },
+    queryProductDataById: (id) =>{
+        return productModel.findById(id)
+    },
     countDocuments: (findQuery) =>{
         return productModel.countDocuments(findQuery)
     },

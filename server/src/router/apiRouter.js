@@ -13,6 +13,7 @@ router.route('/website-count').get(apiController.websiteCount)
 router.route('/upload-file').post(uploadFiles, apiController.uploadFile);
 router.route('/add-product').post(uploadFiles,apiController.addProduct);
 router.route('/query-product-data').get(apiController.fetchProduct);
+router.route('/query-product/:id').get(apiController.querySingleProduct)
 router.route('/update-product/:id').post(apiController.updateProduct);
 router.route('/increase-enquired/:id').get(apiController.increaseIsEnquired)
 router.route('/save-utils-data').post(apiController.addUtilsData)

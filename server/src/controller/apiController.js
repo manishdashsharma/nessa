@@ -188,6 +188,22 @@ export default {
             httpError(next, err, req, 500)
         }
     },
+    querySingleProduct: async(req, res, next) => {
+        try {
+            const { id } = req.params
+            if (!id) {
+                return httpError(next, new Error(responseMessage.NOT_FOUND('ID')), req, 404)
+            }
+            const response = await databaseService.queryProductDataById(id)
+            if (!response) {
+                return httpError(next, new Error(responseMessage.NOT_FOUND), req, 404)
+            }
+
+            httpResponse(req, res, 200, responseMessage.SUCCESS, response)
+        } catch (err) {
+            httpError(next, err, req, 500)
+        }
+    },
     updateProduct: async (req, res, next) => {
         try {
             const { body } = req
