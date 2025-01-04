@@ -17,7 +17,7 @@ RUN npm install -g vite
 COPY . .
 
 # Expose the port the app runs on
-EXPOSE 5173
+EXPOSE 8000
 
 # Start the development server
 CMD ["npm", "run", "dev"]
