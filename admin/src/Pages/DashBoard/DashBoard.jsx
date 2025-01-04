@@ -1,7 +1,8 @@
 import { useState } from "react";
 // import { Settings } from "lucide-react";
 import { useNavigate, Outlet } from "react-router-dom";
-import { dashboardConfig } from "./dashboardConfig";
+import { dashboardConfig } from "./dashBoardConfig";
+
 
 const Dashboard = () => {
   // const [isSettingsOpen, setIsSettingsOpen] = useState(false);
