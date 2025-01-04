@@ -58,7 +58,7 @@ services:
       - '8000:8000'
     restart: always
     env_file: 
-      - ./.env.development
+      - ./.env.production
     volumes:
       - ./admin/src:/usr/src/app/src
       - ./admin/package.json:/usr/src/app/package.json
