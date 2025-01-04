@@ -7,20 +7,6 @@ export const aboutUsPara2 =
 export const whoWeAre = {
   para: 'At Nessa Illumination Technologies, we stand as a beacon of innovation and reliability in the LED and solar lighting industry. From crafting cutting-edge products to delivering tailored solutions, we’ve been transforming the way industries and communities light their world.',
 
-  items: [
-    {
-      tital: '16+ Years of Expertise',
-      text: 'Every Nessa product is designed and manufactured at our state-of-the-art facility in Ahmedabad, spanning 17,000 sq. ft.',
-    },
-    {
-      tital: 'Dedicated R&D Hub',
-      text: 'Our in-house Nessa Technology & Innovation Centre in Ahmedabad is the engine of our progress.',
-    },
-    {
-      tital: 'Trusted by PSUs and Beyond',
-      text: 'Recognized and approved by numerous Public Sector Undertakings (PSUs) across India, our products reflect trust, durability, and quality.',
-    },
-  ],
 };
 
 // Import images

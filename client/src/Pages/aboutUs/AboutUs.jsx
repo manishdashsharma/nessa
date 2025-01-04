@@ -12,13 +12,82 @@ import CertificatesSwiper from './CertificatesSwiper';
 import hero from '../../assets/images/solutionsImages/hero.png';
 import rectangle69 from '../../assets/images/homepageimages/Rectangle69.png';
 import ourVision from '../../assets/images/aboutUs/ourVision.png'
-import ourMission from '../../assets/images/aboutUs/ourVision.png'
+import ourMission from '../../assets/images/aboutUs/ourMission.png'
 import customersegment from '../../assets/images/aboutUs/customersegment.svg'
 import Navbar from '../../Components/Header/Navbar';
 import SideComponent from '../../Components/sideComponent/SideComponent';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useState } from 'react';
+import PartnersReviewsSwiper from '../../Components/partnerreviews/PartnersReviewsSwiper';
+import demoVideo from '../../assets/images/demoVideo.mp4';
+
 
 
 const AboutUs = () => {
+
+
+
+  const whyChooseNessaBoxData = [
+    {
+      title: '16+ Years of Expertise',
+      description: 'Every Nessa product is designed and manufactured at our state-of-the-art facility in Ahmedabad, spanning 17,000 sq. ft.',
+    },
+    {
+      title: 'Dedicated R&D Hub',
+      description: 'Our in-house Nessa Technology & Innovation Centre in Ahmedabad is the engine of our progress.',
+    },
+    {
+      title: 'Trusted by PSUs and Beyond',
+      description: 'Recognized and approved by numerous Public Sector Undertakings (PSUs) across India, our products reflect trust, durability, and quality.',
+    },
+  ]
+
+  const [hover, sethover] = useState('')
+
+  const whyChooseNessaBox = (item, index) => {
+    return (
+
+      <div
+        key={index}
+        onMouseEnter={() => sethover(index)}
+        onMouseLeave={() => sethover('')}
+        className="w-[22vw] pt-[20px] rounded-2xl shadow-md max-md:w-full relative overflow-hidden cursor-pointer"
+        style={{
+          background:
+            'linear-gradient(to right, #841D84, #3DC3BB, #FF8983)',
+        }}
+      >
+        <AnimatePresence>
+          {hover === index && (
+            <motion.div
+              key="overlay"
+              initial={{ y: '100%' }}
+              animate={{ y: 0 }}
+              exit={{ y: '100%' }}
+              transition={{
+                duration: 0.3,
+                ease: 'easeInOut'
+              }}
+              className="absolute inset-0 rounded-2xl bg-blue-500"
+            />
+          )}
+        </AnimatePresence>
+        <div className="border-2 h-full border-blue-500 bg-white w-full rounded-2xl p-6 shadow-md">
+          <div className="flex items-center mb-4 relative z-[2]">
+            <RiLightbulbFlashLine className={`text-4xl  ${hover === index ? 'text-white ' : 'text-blue-500'}`} />
+          </div>
+          <h3 className={`text-xl font-semibold mb-2 relative z-[2]  ${hover === index ? 'text-white ' : 'text-blue-500'} `}>
+            {item.title}
+          </h3>
+          <p className={`relative z-[2]  ${hover === index ? 'text-white ' : 'text-black'}`}>
+            {item.description}
+          </p>
+        </div>
+      </div>
+    )
+  }
+
+
   return (
     <div className="w-full overflow-hidden">
       <Navbar />
@@ -52,11 +121,14 @@ const AboutUs = () => {
       </div>
 
       <div className="w-full h-fit px-[5vw] pb-[50px]">
-        <img
-          className="w-full h-fit object-cover"
-          src={rectangle69}
-          alt=""
-        />
+        <video
+                 className="w-full h-fit object-cover bg-gray-300 rounded-xl"
+                 src={demoVideo}
+                 autoPlay 
+                 muted
+                 loop
+                 alt=""
+               > </video>
       </div>
 
       {/* about us para */}
@@ -140,40 +212,9 @@ const AboutUs = () => {
         </div>
 
         <div className="grid grid-cols-3 justify-items-center max-md:grid-cols-1 gap-4 px-[5vw] py-8">
-          {whoWeAre.items.map((item, index) => (
-            <div
-              key={index}
-              className="w-[25vw] pt-[20px] rounded-2xl shadow-md max-md:w-full"
-              style={{
-                background:
-                  index === 1
-                    ? '#0074E0'
-                    : 'linear-gradient(to right, #841D84, #3DC3BB, #FF8983)',
-              }}
-            >
-              <div
-                className={`border-2  ${
-                  index === 1
-                    ? 'bg-blue-500 border-white text-white '
-                    : 'bg-white border-blue-500 '
-                } w-full h-full rounded-2xl p-6 shadow-md`}
-              >
-                <div className="flex items-center mb-4">
-                  <RiLightbulbFlashLine
-                    className={`text-4xl ${index !== 1 ? 'text-blue-500' : ''}`}
-                  />
-                </div>
-                <h3
-                  className={`text-xl font-semibold mb-2 ${
-                    index !== 1 ? 'text-blue-500' : ''
-                  }`}
-                >
-                  {item.tital}
-                </h3>
-                <p>{item.text}</p>
-              </div>
-            </div>
-          ))}
+          {whyChooseNessaBoxData.map((item, index) => whyChooseNessaBox(item, index))}
+
+
         </div>
       </div>
 
@@ -263,7 +304,7 @@ const AboutUs = () => {
           <div className="flex relative shrink-0 mt-9 h-2.5 bg-[#b3d6f6] rounded-[50px] w-[51px]" />
         </div>
 
-        <div className="px-[5vw] ">
+        <div className="px-[5vw] w-full flex justify-center">
           <img
             className="mt-[50px] "
             src={customersegment}
@@ -281,12 +322,12 @@ const AboutUs = () => {
         <div className="w-full flex justify-center">
           <div className="flex relative shrink-0 mt-9 h-2.5 bg-[#b3d6f6] rounded-[50px] w-[51px]" />
         </div>
-        <div className=" ">
+        <div className=" px-[5vw] ">
           <ProductAndTestingSwiper />
         </div>
       </div>
       {/*  certificates */}
-      <div className="w-full py-[50px]">
+      <div className="w-full py-[50px] px-[5vw]">
         <div className=" px-[5vw] text-4xl font-semibold leading-snug text-center text-black z-[2] relative">
           <span className="text-blue-500"> Certification</span>
         </div>
@@ -309,6 +350,9 @@ const AboutUs = () => {
           
         </div>
       </div>
+
+      {/* partners review */}
+      <PartnersReviewsSwiper/>
     </div>
   );
 };

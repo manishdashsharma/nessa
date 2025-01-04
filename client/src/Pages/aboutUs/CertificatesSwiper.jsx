@@ -33,11 +33,11 @@ export default function CertificatesSwiper() {
           },
           768: {
             slidesPerView: 3,
-            spaceBetween: 40,
+            spaceBetween: 20,
           },
           1424: {
             slidesPerView: 4,
-            spaceBetween: 40,
+            spaceBetween: 20,
           },
          
         }}
@@ -53,7 +53,7 @@ export default function CertificatesSwiper() {
             <SwiperSlide key={index} className='mb-[50px]  '>
               <div className='flex w-full justify-center items-center'>
 
-                <div className='relative h-[350px] w-[300px] flex justify-center items-center'>
+                <div className='relative h-[400px]  flex justify-center items-center'>
                   <img className=' w-full h-full  object-contain' src={img} alt="" />
                 </div>
 

@@ -18,7 +18,8 @@ import nirmalogo from '../../assets/images/homepageimages/nirmalogo.png';
 import lamp from '../../assets/images/homepageimages/lamp.png';
 import indiaMap from '../../assets/images/homepageimages/indiaMap.png';
 import indiaFlag from '../../assets/images/homepageimages/india.png';
-import rectangle69 from '../../assets/images/homepageimages/Rectangle69.png';
+// import rectangle69 from '../../assets/images/Rectangle69.png';
+import demoVideo from '../../assets/images/demoVideo.mp4';
 import Navbar from '../../Components/Header/Navbar';
 import SideComponent from '../../Components/sideComponent/SideComponent';
 import PartnersReviewsSwiper from '../../Components/partnerreviews/PartnersReviewsSwiper';
@@ -76,7 +77,7 @@ const Homepage = () => {
             />
           )}
         </AnimatePresence>
-        <div className="border-2 border-blue-500 bg-white w-full rounded-2xl p-6 shadow-md">
+        <div className="border-2 border-blue-500 bg-white w-full h-full rounded-2xl p-6 shadow-md">
           <div className="flex items-center mb-4 relative z-[2]">
             <RiLightbulbFlashLine className={`text-4xl  ${hover === index ? 'text-white ' : 'text-blue-500'}`} />
           </div>
@@ -425,58 +426,7 @@ const Homepage = () => {
           <div className="grid grid-cols-3 justify-items-center max-md:grid-cols-1 gap-4 px-[5vw] py-8">
             {whyChooseNessaBoxData.map((item, index) => whyChooseNessaBox(item, index))}
 
-            {/* <div
-              className="w-[22vw] pt-[20px] rounded-2xl shadow-md max-md:w-full"
-              style={{
-                background:
-                  'linear-gradient(to right, #841D84, #3DC3BB, #FF8983)',
-              }}
-            >
-              <div className="border-2 border-blue-500 bg-white w-full rounded-2xl p-6 shadow-md">
-                <div className="flex items-center mb-4">
-                  <RiLightbulbFlashLine className="text-4xl text-blue-500" />
-                </div>
-                <h3 className="text-xl font-semibold mb-2">
-                  16+ Years of Expertise
-                </h3>
-                <p>
-                  Lighting the way for over 16 years, trusted by industries
-                  worldwide.
-                </p>
-              </div>
-            </div>
-
-            <div className="w-[22vw] pt-[20px] bg-blue-500 rounded-2xl shadow-md max-md:w-full">
-              <div className=" w-full rounded-2xl p-6  bg-blue-500 text-white ">
-                <div className="flex  items-center  mb-4">
-                  <RiLightbulbFlashLine className="text-4xl" />
-                </div>
-                <h3 className="text-xl font-semibold mb-2">Global Reach</h3>
-                <p>
-                  Serving clients in 20+ countries across all major continents.
-                </p>
-              </div>
-            </div>
-            <div
-              className="w-[22vw] pt-[20px] rounded-2xl shadow-md max-md:w-full"
-              style={{
-                background:
-                  'linear-gradient(to right, #841D84, #3DC3BB, #FF8983)',
-              }}
-            >
-              <div className="border-2 border-blue-500 bg-white w-full rounded-2xl p-6 shadow-md ">
-                <div className="flex items-center mb-4">
-                  <RiLightbulbFlashLine className="text-4xl text-blue-500" />
-                </div>
-                <h3 className="text-xl font-semibold mb-2">
-                  Inhouse Manufacturing
-                </h3>
-                <p>
-                  Complete control from design to delivery for unmatched
-                  quality.
-                </p>
-              </div>
-            </div> */}
+           
           </div>
         </div>
       </div>
@@ -501,11 +451,16 @@ const Homepage = () => {
         </div>
       </div>
       <div className="w-full h-fit px-[5vw] pb-[50px]">
-        <img
-          className="w-full h-fit object-cover"
-          src={rectangle69}
+        <video
+          className="w-full h-fit object-cover bg-gray-300 rounded-xl"
+          src={demoVideo}
+          autoPlay 
+          muted
+          loop
           alt=""
-        />
+        > </video>
+
+        {/* <video src=""></video> */}
       </div>
 
       {/* Partners Reviews Swiper */}

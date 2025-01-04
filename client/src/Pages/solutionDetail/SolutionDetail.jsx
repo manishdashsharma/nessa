@@ -6,6 +6,7 @@ import partner2 from '../../assets/images/homepageimages/partner2.png'
 import partner3 from '../../assets/images/homepageimages/partner3.png'
 import Navbar from '../../Components/Header/Navbar';
 import SideComponent from '../../Components/sideComponent/SideComponent';
+import PartnersReviewsSwiper from '../../Components/partnerreviews/PartnersReviewsSwiper';
 
 const SolutionDetail = () => {
   const { type } = useParams(); // Extract 'type' parameter from the URL
@@ -151,7 +152,7 @@ const SolutionDetail = () => {
           <div className="flex relative shrink-0 mt-9 h-2.5 bg-[#b3d6f6] rounded-[50px] w-[51px]" />
         </div>
       </div>
-      <div className="w-full  flex items-center justify-center gap-20 mt-[50px]">
+      <div className="w-full flex-wrap flex items-center justify-center gap-20 mt-[50px]">
         {/* clients images path  */}
         {[
           partner1,
@@ -168,6 +169,9 @@ const SolutionDetail = () => {
           />
         ))}
       </div>
+
+      {/* partners review */}
+      <PartnersReviewsSwiper/>
     </div>
   );
 };

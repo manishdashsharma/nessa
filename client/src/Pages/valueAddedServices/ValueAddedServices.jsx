@@ -17,8 +17,85 @@ import smartCommunityCenter from '../../assets/images/valueAddedServicesImages/s
 import waterTreatmentPlants from '../../assets/images/valueAddedServicesImages/waterTreatmentPlant.png';
 import solarBasedLight from '../../assets/images/valueAddedServicesImages/solarBasedLight.png';
 import villageStadiumLight from '../../assets/images/valueAddedServicesImages/villageStadiumLight.png';
+import { useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 
 export const ValueAddedServices = () => {
+
+    
+
+    const whyChooseNessaBoxData = [
+        {
+            title: 'Expert Team',
+            description: 'We boast a multidisciplinary team of seasoned professionals.',
+        },
+        {
+            title: 'Comprehensive Service',
+            description: 'We offer CSR policy formulation, program design, monitoring and evaluation, CSR reporting, and tax-efficient project structures.',
+        },
+        {
+            title: 'Strategic Expertise',
+            description: 'Our team excels in defining CSR strategies, implementation modalities, and developing standardized processes and systems for effective CSR implementation.',
+        },
+        {
+            title: 'Client Support',
+            description: 'We assist clients in onboarding partners, monitoring and evaluating projects, and keeping the CSR committee updated with industry trends and reporting.',
+        },
+        {
+            title: 'Real-Time Monitoring',
+            description: 'Our CSR tool provides real-time information to stakeholders and facilitates concurrent project monitoring.',
+        },
+        {
+            title: 'Thorough Consulting',
+            description: 'Our CSR project management services offer a comprehensive consulting approach, ensuring effective and impactful CSR initiatives.',
+        },
+    ]
+
+    const [hover, sethover] = useState('')
+
+    const whyChooseNessaBox = (item, index) => {
+        return (
+
+            <div
+                key={index}
+                onMouseEnter={() => sethover(index)}
+                onMouseLeave={() => sethover('')}
+                className="w-[25vw] pt-[20px] rounded-2xl shadow-md max-lg:w-[40vw] max-md:w-full relative overflow-hidden cursor-pointer"
+                style={{
+                    background:
+                        'linear-gradient(to right, #841D84, #3DC3BB, #FF8983)',
+                }}
+            >
+                <AnimatePresence>
+                    {hover === index && (
+                        <motion.div
+                            key="overlay"
+                            initial={{ y: '100%' }}
+                            animate={{ y: 0 }}
+                            exit={{ y: '100%' }}
+                            transition={{
+                                duration: 0.3,
+                                ease: 'easeInOut'
+                            }}
+                            className="absolute inset-0 rounded-2xl bg-blue-500"
+                        />
+                    )}
+                </AnimatePresence>
+                <div className="border-2  h-full border-blue-500 bg-white w-full rounded-2xl p-6 shadow-md">
+                    <div className="flex items-center mb-4 relative z-[2]">
+                        <RiLightbulbFlashLine className={`text-4xl  ${hover === index ? 'text-white ' : 'text-blue-500'}`} />
+                    </div>
+                    <h3 className={`text-xl font-semibold mb-2 relative z-[2]  ${hover === index ? 'text-white ' : 'text-blue-500'} `}>
+                        {item.title}
+                    </h3>
+                    <p className={`relative z-[2]  ${hover === index ? 'text-white ' : 'text-black'}`}>
+                        {item.description}
+                    </p>
+                </div>
+            </div>
+        )
+    }
+
   return (
       <div className="overflow-hidden">
           <Navbar />
@@ -42,33 +119,15 @@ export const ValueAddedServices = () => {
                   <div className="flex relative shrink-0 mt-9 h-2.5 bg-[#b3d6f6] rounded-[50px] w-[51px]" />
               </div>
 
-              <div className="grid grid-cols-3 justify-items-center max-[900px]:grid-cols-2 max-md:grid-cols-1 gap-4 px-[5vw] py-8">
-                  {ourValuePreposition.items.map((item, index) => (
-                      <div
-                          key={index}
-                          className="w-[25vw] pt-[20px] rounded-2xl mt-[40px] shadow-md max-[900px]:w-[40vw] max-md:w-full"
-                          style={{
-                              background: index === 1 || index === 4 ? '#0074E0' : 'linear-gradient(to right, #841D84, #3DC3BB, #FF8983)'
-                          }}>
-                          <div
-                              className={`border-2  ${
-                                  index === 1 || index === 4 ? 'bg-blue-500 border-white text-white ' : 'bg-white border-blue-500 '
-                              } w-full h-full rounded-2xl p-6 shadow-md`}>
-                              <div className="flex items-center mb-4">
-                                  <RiLightbulbFlashLine className={`text-4xl ${index !== 1 && index !== 4 ? 'text-blue-500' : ''}`} />
-                              </div>
-                              <h3 className={`text-xl font-semibold mb-2 ${index !== 1 && index !== 4 ? 'text-blue-500' : ''}`}>{item.title}</h3>
-                              <p className="text-base">{item.text}</p>
-                          </div>
-                      </div>
-                  ))}
+              <div className="grid grid-cols-3 justify-items-center max-lg:grid-cols-2 max-md:grid-cols-1 gap-4 gap-y-8 px-[5vw] py-8">
+                  {whyChooseNessaBoxData.map((item, index) => whyChooseNessaBox(item, index))}
               </div>
           </div>
 
           {/* {Our ruler upliftments solution} */}
           <div className=" ">
               <div className=" text-4xl font-semibold leading-snug text-center text-black z-[2] relative">
-                  <span className="text-blue-500"> Our Value</span> Preposition
+                  Our <span className="text-blue-500"> ruler upliftments </span> solution
               </div>
               <div className="w-full flex justify-center">
                   <div className="flex relative shrink-0 mt-9 h-2.5 bg-[#b3d6f6] rounded-[50px] w-[51px]" />

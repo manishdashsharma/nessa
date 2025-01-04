@@ -24,24 +24,25 @@ export default function ProductAndTestingSwiper() {
         }}
         breakpoints={{
           550:{
-                slidesPerView: 2,
+                slidesPerView: 1,
                 spaceBetween: 20,
             },
-          640: {
+          690: {
             slidesPerView: 2,
-            spaceBetween: 20,
+            spaceBetween: 40,
           },
-          768: {
+          900:{
             slidesPerView: 3,
             spaceBetween: 40,
           },
+          
          
         }}
         navigation={{
             clickable:true
         }}
         modules={[Pagination , Navigation]}
-        className="mySwiper  mt-[50px]"
+        className="mySwiper  mt-[50px] px-[40px]"
       >
         {
           productAndTesting.map((product, index) => (
@@ -49,7 +50,7 @@ export default function ProductAndTestingSwiper() {
             <SwiperSlide key={index} className='mb-[50px]  '>
               <div className='flex w-full justify-center items-center'>
 
-                <div className='relative h-[350px] w-[300px] flex justify-center items-center'>
+                <div className='relative h-[30vw] min-h-[400px]  flex justify-center items-center'>
                   <img className=' w-full h-full  object-cover' src={product.img} alt="" />
                   <h1 className="absolute bottom-0 rounded-md w-[95%] bg-white text-xl py-[10px] mb-[10px] flex items-center justify-center  z-[2]">{product.title}</h1>
                 </div>

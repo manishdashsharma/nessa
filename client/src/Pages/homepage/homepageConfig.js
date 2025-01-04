@@ -10,6 +10,7 @@ import nigeriaFlag from '../../assets/images/homepageimages/nigeria.png';
 import zambiaFlag from '../../assets/images/homepageimages/zambia.png';
 import ugandaFlag from '../../assets/images/homepageimages/uganda.png';
 import israelFlag from '../../assets/images/homepageimages/israel.png';
+import omanFlag from '../../assets/images/homepageimages/Oman.png';
 import bangladeshFlag from '../../assets/images/homepageimages/bangladesh.png';
 import ethiopiaFlag from '../../assets/images/homepageimages/ethiopia.png';
 import ghanaFlag from '../../assets/images/homepageimages/ghana.png';
@@ -56,7 +57,7 @@ export const countries = [
   { country: 'Zambia', flag: zambiaFlag },
   { country: 'Uganda', flag: ugandaFlag },
   { country: 'Israel', flag: israelFlag },
-  { country: 'Oman', flag: israelFlag },
+  { country: 'Oman', flag:  omanFlag},
   { country: 'Bangladesh', flag: bangladeshFlag },
   { country: 'Ethiopia', flag: ethiopiaFlag },
   { country: 'Ghana', flag: ghanaFlag },

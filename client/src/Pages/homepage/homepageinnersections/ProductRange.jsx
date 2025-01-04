@@ -1,8 +1,11 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import TrendingProductsSwipe from '../../../Components/trendingProducts/TrendingProductsSwiper';
 import ACLight from '../../../assets/images/productRange/aclight.png';
 import SolarLight from '../../../assets/images/productRange/solarlight.png';
 import Electronics from '../../../assets/images/productRange/electronics.png';
+import { useEffect, useState } from 'react';
+import { fetchProducts } from '../../../services/api.services';
+
 
 const categories = [
   {
@@ -20,6 +23,11 @@ const categories = [
 ];
 
 export function ProductRange() {
+
+
+
+ 
+
   const renderCategoryCard = ({ name, image }, index) => (
     <div
       key={index}
@@ -65,7 +73,7 @@ export function ProductRange() {
        
        {/* trending products */}
       <div className='px-[4vw]'>
-       <TrendingProductsSwipe/>
+       <TrendingProductsSwipe />
       </div>
       <div className="w-full flex items-center justify-center">
         <Link

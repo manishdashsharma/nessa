@@ -5,7 +5,7 @@ import { IoEarthOutline } from 'react-icons/io5'
 import { FaCaretDown } from 'react-icons/fa'
 import { IoIosArrowDown } from 'react-icons/io'
 import { Link } from 'react-router-dom'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { IoMenu, IoClose } from 'react-icons/io5'
 import logo from '../../assets/images/navbar/logo.svg'
 import { BiSolidPlaneAlt } from 'react-icons/bi'
@@ -22,6 +22,27 @@ const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const [soluitonOpen, setsoluitonOpen] = useState(false)
     const [corporateOpen, setcorporateOpen] = useState(false)
+
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (isMenuOpen) {
+                setIsMenuOpen(false)
+            }
+            if (soluitonOpen) {
+                setsoluitonOpen(false)
+            }
+            if (corporateOpen) {
+                setcorporateOpen(false)
+            }
+        }
+
+        window.addEventListener('scroll', handleScroll)
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll)
+        }
+    }, [isMenuOpen, soluitonOpen, corporateOpen])
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen)
@@ -40,6 +61,7 @@ const Navbar = () => {
             transition: {
                 duration: 0.2,
                 ease: 'easeOut'
+            
             }
         },
         exit: {
@@ -47,7 +69,7 @@ const Navbar = () => {
             y: -10,
             scale: 0.95,
             transition: {
-                duration: 0.15,
+                duration: 0.2,
                 ease: 'easeIn'
             }
         }
@@ -203,8 +225,8 @@ const Navbar = () => {
                             className="text-black">
                             Home
                         </Link>
-                        <div className="text-black flex items-center gap-1 relative">
-                            <div className=" w-full justify-between px-4 flex items-center gap-1">
+                        <div onMouseEnter={() => { setsoluitonOpen(true); setcorporateOpen(false) }} onMouseLeave={() => { setsoluitonOpen(false); setcorporateOpen(false) }} className="text-black flex items-center gap-1 relative">
+                            <div  className=" w-full justify-between px-4 flex items-center gap-1 cursor-pointer">
                                 <Link
                                     to="/solutions"
                                     className="">
@@ -214,10 +236,7 @@ const Navbar = () => {
                                     animate={{ rotate: soluitonOpen ? 180 : 0 }}
                                     transition={{ duration: 0.2 }}>
                                     <IoIosArrowDown
-                                        onClick={() => {
-                                            setsoluitonOpen(!soluitonOpen)
-                                            setcorporateOpen(false)
-                                        }}
+                                      
                                         className="w-5 h-5 text-black "
                                     />
                                 </motion.div>
@@ -229,7 +248,7 @@ const Navbar = () => {
                                         initial="hidden"
                                         animate="visible"
                                         exit="exit"
-                                        className="w-[600px] shadow-2xl grid grid-cols-2 text-base rounded-xl bg-white p-[30px] absolute top-[110%] left-[-100%] z-[99]">
+                                        className="w-[600px] shadow-2xl grid grid-cols-2 text-base rounded-xl bg-white p-[30px] absolute top-[100%] left-[-100%] z-[99]">
                                         {solutionsDropdown.map((item, index) => (
                                             <motion.div
                                                 key={index}
@@ -256,16 +275,13 @@ const Navbar = () => {
                             className="text-black flex items-center gap-1">
                             Products
                         </Link>
-                        <div className="text-black flex items-center gap-1 relative">
+                        <div onMouseEnter={() => {setcorporateOpen(true); setsoluitonOpen(false)}} onMouseLeave={() => {setcorporateOpen(false); setsoluitonOpen(false)}} className="text-black flex items-center gap-1 relative cursor-pointer">
                             Corporates
                             <motion.div
                                 animate={{ rotate: corporateOpen ? 180 : 0 }}
                                 transition={{ duration: 0.2 }}>
                                 <IoIosArrowDown
-                                    onClick={() => {
-                                        setcorporateOpen(!corporateOpen)
-                                        setsoluitonOpen(false)
-                                    }}
+                                   
                                     className="w-5 h-5 text-black"
                                 />
                             </motion.div>
@@ -334,7 +350,9 @@ const Navbar = () => {
                             Home
                         </Link>
                         <div className="text-black relative">
-                            <div className=" w-full justify-between px-4 flex items-center gap-1">
+                            <div onClick={() => {
+                                setsoluitonOpen(!soluitonOpen)
+                            }} className=" w-full justify-between px-4 flex items-center gap-1 cursor-pointer">
                                 <Link
                                     to="/solutions"
                                     className="">
@@ -345,9 +363,7 @@ const Navbar = () => {
                                     animate={{ rotate: soluitonOpen ? 180 : 0 }}
                                     transition={{ duration: 0.2 }}>
                                     <IoIosArrowDown
-                                        onClick={() => {
-                                            setsoluitonOpen(!soluitonOpen)
-                                        }}
+                                        
                                         className="w-5 h-5 text-black "
                                     />
                                 </motion.div>
@@ -387,18 +403,18 @@ const Navbar = () => {
                             Products
                         </Link>
                         <div className="text-black relative">
-                            <div className=" w-full justify-between px-4 flex items-center gap-1">
+                            <div onClick={() => {
+                                setcorporateOpen(!corporateOpen)
+                            }} className=" w-full justify-between px-4 flex items-center gap-1 cursor-pointer">
                                 <div className="">
                                     Corporates
                                 </div>
                                 <motion.div
-                                    animate={{ rotate: soluitonOpen ? 180 : 0 }}
+                                    animate={{ rotate: corporateOpen ? 180 : 0 }}
                                     transition={{ duration: 0.2 }}>
                                     <IoIosArrowDown
-                                        onClick={() => {
-                                            setcorporateOpen(!corporateOpen)
-                                        }}
-                                        className="w-5 h-5 text-black "
+                                       
+                                        className="w-5 h-5 text-black cursor-pointer"
                                     />
                                 </motion.div>
                             </div>
