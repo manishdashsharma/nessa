@@ -39,17 +39,18 @@ cleanup() {
 
   # Stop all running Nessa containers
   echo "Stopping all Nessa containers..."
-  docker stop mongo_container client server > /dev/null 2>&1
+  docker stop mongo_container client server admin > /dev/null 2>&1
 
   # Remove all Nessa containers
   echo "Removing all Nessa containers..."
-  docker rm mongo_container client server > /dev/null 2>&1
+  docker rm mongo_container client server admin > /dev/null 2>&1
 
   # Remove all Nessa images
   echo "Removing all Nessa Docker images..."
   docker rmi $(docker images -q --filter "reference=mongo*") > /dev/null 2>&1
   docker rmi $(docker images -q --filter "reference=client*") > /dev/null 2>&1
   docker rmi $(docker images -q --filter "reference=server*") > /dev/null 2>&1
+  docker rmi $(docker images -q --filter "reference=admin*") > /dev/null 2>&1
 
   # Remove the MongoDB volume
   echo "Removing the MongoDB Docker volume..."
@@ -106,9 +107,11 @@ show_menu() {
   echo "2) Server (Only start the server)"
   echo "3) Client (Only start the client)"
   echo "4) Server & Client (Start both server and client)"
-  echo "5) Back to environment selection"
-  echo "6) Exit"
-  read -p "Enter your choice [1-6]: " service_choice
+  echo "5) Admin (Only start the admin panel)"
+  echo "6) Server & Admin (Start server and admin panel)"
+  echo "7) Back to environment selection"
+  echo "8) Exit"
+  read -p "Enter your choice [1-8]: " service_choice
 
   return 0
 }
@@ -150,14 +153,24 @@ if [ $# -eq 0 ]; then
         break
         ;;
       5)
-        continue
+        echo "You chose: Admin. Starting only the admin panel..."
+        start_services $ENV "admin"
+        break
         ;;
       6)
+        echo "You chose: Server & Admin. Starting server and admin panel..."
+        start_services $ENV "server admin"
+        break
+        ;;
+      7)
+        continue
+        ;;
+      8)
         echo "Exiting..."
         exit 0
         ;;
       *)
-        echo "Invalid choice. Please select a valid option (1-6)."
+        echo "Invalid choice. Please select a valid option (1-8)."
         ;;
     esac
   done

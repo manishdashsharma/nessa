@@ -52,6 +52,24 @@ services:
     networks:
       - queue-net
 
+  admin:
+    container_name: admin
+    build:
+      context: ./admin
+      dockerfile: docker/development/Dockerfile
+    ports:
+      - '8000:8000'
+    restart: always
+    env_file: 
+      - ./.env.development
+    volumes:
+      - ./admin/src:/usr/src/app/src
+      - ./admin/package.json:/usr/src/app/package.json
+    depends_on:
+      - server
+    networks:
+      - queue-net
+
 networks:
   queue-net:
     driver: bridge
