@@ -13,10 +13,10 @@ export const dashboardConfig = {
     title: "MyApp",
   },
   generalItems: [
-    { label: "Dashboard", icon: FaHome, path: "/admin/dashboard", sublabels: [] },
-    { label: "Product", icon: FaBoxOpen, path: "/admin/dashboard/product", sublabels: [] },
-    { label: "Contact Us", icon: FaEnvelope, path: "/admin/dashboard/contactus", sublabels: [] },
-    { label: "Support", icon: FaLifeRing, path: "/admin/dashboard/support", sublabels: [] },
+    { label: "Dashboard", icon: FaHome, path: "/dashboard", sublabels: [] },
+    { label: "Product", icon: FaBoxOpen, path: "/dashboard/product", sublabels: [] },
+    { label: "Contact Us", icon: FaEnvelope, path: "/dashboard/contactus", sublabels: [] },
+    { label: "Support", icon: FaLifeRing, path: "/dashboard/support", sublabels: [] },
   ],
   settingItems: [
     // { label: "Account Setting", icon: FaCog, path: "/account-settings" },
