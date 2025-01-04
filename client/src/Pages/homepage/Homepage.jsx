@@ -21,14 +21,82 @@ import indiaFlag from '../../assets/images/homepageimages/india.png';
 import rectangle69 from '../../assets/images/homepageimages/Rectangle69.png';
 import Navbar from '../../Components/Header/Navbar';
 import SideComponent from '../../Components/sideComponent/SideComponent';
-
+import PartnersReviewsSwiper from '../../Components/partnerreviews/PartnersReviewsSwiper';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useState } from 'react';
 
 
 const Homepage = () => {
+
+
+
+  const whyChooseNessaBoxData = [
+    {
+      title: '16+ Years of Expertise',
+      description: 'Lighting the way for over 16 years, trusted by industries worldwide.',
+    },
+    {
+      title: 'Global Reach',
+      description: 'Serving clients in 20+ countries across all major continents.',
+    },
+    {
+      title: 'Inhouse Manufacturing',
+      description: 'Complete control from design to delivery for unmatched quality.',
+    },
+
+  ]
+
+  const [hover, sethover] = useState('')
+
+  const whyChooseNessaBox = (item, index) => {
+    return (
+
+      <div
+        key={index}
+        onMouseEnter={() => sethover(index)}
+        onMouseLeave={() => sethover('')}
+        className="w-[22vw] pt-[20px] rounded-2xl shadow-md max-md:w-full relative overflow-hidden cursor-pointer"
+        style={{
+          background:
+            'linear-gradient(to right, #841D84, #3DC3BB, #FF8983)',
+        }}
+      >
+        <AnimatePresence>
+          {hover === index && (
+            <motion.div
+              key="overlay"
+              initial={{ y: '100%' }}
+              animate={{ y: 0 }}
+              exit={{ y: '100%' }}
+              transition={{
+                duration: 0.3,
+                ease: 'easeInOut'
+              }}
+              className="absolute inset-0 rounded-2xl bg-blue-500"
+            />
+          )}
+        </AnimatePresence>
+        <div className="border-2 border-blue-500 bg-white w-full rounded-2xl p-6 shadow-md">
+          <div className="flex items-center mb-4 relative z-[2]">
+            <RiLightbulbFlashLine className={`text-4xl  ${hover === index ? 'text-white ' : 'text-blue-500'}`} />
+          </div>
+          <h3 className={`text-xl font-semibold mb-2 relative z-[2]  ${hover === index ? 'text-white ' : 'text-blue-500'} `}>
+            {item.title}
+          </h3>
+          <p className={`relative z-[2]  ${hover === index ? 'text-white ' : 'text-black'}`}>
+            {item.description}
+          </p>
+        </div>
+      </div>
+    )
+  }
+
+
+
   return (
     <div className="w-full overflow-hidden">
       <Navbar />
-      <SideComponent/>
+      <SideComponent />
 
       {/* Hero Content  */}
       <div className="w-full h-[70vh] relative">
@@ -72,9 +140,9 @@ const Homepage = () => {
             </p>
 
             {/* discover Button */}
-            <button className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-lg font-medium transition-colors">
+            <Link to="solutions" className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-lg font-medium transition-colors">
               Discover All Solutions
-            </button>
+            </Link>
           </div>
         </div>
       </div>
@@ -258,9 +326,9 @@ const Homepage = () => {
         </div>
       </div>
       <div className="w-full flex items-center justify-center">
-        <button className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-lg font-medium transition-colors">
+        <Link to="solutions" className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-lg font-medium transition-colors">
           Discover All Solutions
-        </button>
+        </Link>
       </div>
 
       {/* product range  */}
@@ -355,7 +423,9 @@ const Homepage = () => {
         </div>
         <div>
           <div className="grid grid-cols-3 justify-items-center max-md:grid-cols-1 gap-4 px-[5vw] py-8">
-            <div
+            {whyChooseNessaBoxData.map((item, index) => whyChooseNessaBox(item, index))}
+
+            {/* <div
               className="w-[22vw] pt-[20px] rounded-2xl shadow-md max-md:w-full"
               style={{
                 background:
@@ -406,7 +476,7 @@ const Homepage = () => {
                   quality.
                 </p>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
@@ -439,7 +509,10 @@ const Homepage = () => {
       </div>
 
       {/* Partners Reviews Swiper */}
-      {/* <PartnersReviewsSwiper/> */}
+      <div className="  " style={{ background: 'linear-gradient(to bottom, #f7faff, #deeefc)' }}>
+
+        <PartnersReviewsSwiper />
+      </div>
 
       {/* recognized excellence */}
       <RecognizeEx />
@@ -450,10 +523,10 @@ const Homepage = () => {
         style={{ background: 'linear-gradient(to bottom, #f7faff, #deeefc)' }}
       >
         <div className=" text-4xl py-[50px] font-semibold leading-snug text-center text-black z-[2] relative">
-        Insights & 
-          <span className="text-blue-500"> Resources</span> 
+          Insights &
+          <span className="text-blue-500"> Resources</span>
         </div>
-        <InsitesSwiper/>
+        <InsitesSwiper />
       </div>
 
 

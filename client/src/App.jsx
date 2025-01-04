@@ -16,6 +16,7 @@ import { Resources } from './Pages/resources/Resources';
 import AllProducts from './Pages/allproducts/Allproducts';
 import Product from './Pages/product/Product';
 import AboutUs from './Pages/aboutUs/AboutUs';
+import ScrollToTop from './Components/ScrollToTop';
 import { Projects } from './Pages/projects/Projects';
 import { ValueAddedServices } from './Pages/valueAddedServices/ValueAddedServices';
 
@@ -28,6 +29,7 @@ const App = () => {
            
             <Toaster reverseOrder={false} />
 
+            <ScrollToTop />
 
             <Routes>
                 <Route path="/welcome" element={<WelcomePage />} />
@@ -42,7 +44,7 @@ const App = () => {
                 <Route path="/support" element={<Support />} />
                 <Route path="/resources" element={<Resources />} />
                 <Route path="/allproducts" element={<AllProducts />} />
-                <Route path="/product" element={<Product />} />
+                <Route path="/product/:id" element={<Product />} />
                 <Route path="/projects" element={<Projects />} />
                 <Route path="/valueAddedServices" element={<ValueAddedServices />} />
                 

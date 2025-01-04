@@ -57,7 +57,7 @@ export default function RecoExSec1() {
             heading: 'SEWA, bizmen use LEDs to lead veg vendors out of darkness!',
           },
         ].map((slide, index) => (
-          <SwiperSlide key={index} className="bg-[var(--light-blue)]">
+          <SwiperSlide key={index} className="bg-[#EEF7FF]">
             <div className="flex flex-col items-center justify-center gap-4">
               <img
                 className="w-[80%] object-cover"

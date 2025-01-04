@@ -1,9 +1,12 @@
 
 import React, { useEffect, useState } from 'react'
 import { FaChevronUp, FaChevronDown } from 'react-icons/fa'
-import { fetchProduct, increaseIsEnquired } from '../../services/api.services'
+import {  fetchProducts, increaseIsEnquired } from '../../services/api.services'
 import { motion, AnimatePresence } from 'framer-motion'
 import toast from 'react-hot-toast'
+import { useNavigate } from 'react-router-dom'
+
+
 
 const categories = {
      'AC Lighting': [
@@ -33,6 +36,9 @@ const categories = {
 const ITEMS_PER_PAGE = 12
 
 export default function ShowProducts() {
+    
+    const navigate = useNavigate()
+
     const [products, setProducts] = useState([])
     const [loading, setLoading] = useState(false)
     const [currentPage, setCurrentPage] = useState(1)
@@ -42,6 +48,8 @@ export default function ShowProducts() {
     const [selectedFilters, setSelectedFilters] = useState([])
     const [loadingProduct, setLoadingProduct] = useState(null)
     const [totalCount, setTotalCount] = useState(0)
+ 
+
 
     useEffect(() => {
         const fetchFilteredProducts = async () => {
@@ -54,7 +62,7 @@ export default function ShowProducts() {
                     subcategories: selectedFilters.length > 0 ? selectedFilters : undefined
                 }
 
-                const response = await fetchProduct(params)
+                const response = await fetchProducts(params)
                 if (response?.data) {
                     setProducts(response.data.products)
                     setTotalCount(response.data.total || 0)
@@ -174,6 +182,7 @@ export default function ShowProducts() {
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     transition={{ duration: 0.2 }}
+                                    onClick={()=>navigate(`/product/${product._id}`)}
                                     className="bg-gray-100 rounded-lg p-4 flex flex-col justify-between">
                                     <img
                                         src={product.image}
@@ -193,8 +202,11 @@ export default function ShowProducts() {
                                         {loadingProduct === product._id ? 'Loading...' : 'Enquire Now'}
                                     </button>
                                 </motion.div>
+                                
                             ))}
+                            
                         </div>
+                        
                     )}
 
                     {/* Pagination */}

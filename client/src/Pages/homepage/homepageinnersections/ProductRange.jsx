@@ -64,12 +64,12 @@ export function ProductRange() {
     
        
        {/* trending products */}
-      <div>
+      <div className='px-[4vw]'>
        <TrendingProductsSwipe/>
       </div>
       <div className="w-full flex items-center justify-center">
         <Link
-          to=""
+          to="/allproducts"
           className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 mt-[50px] rounded-lg font-medium transition-colors"
         >
           View All Products

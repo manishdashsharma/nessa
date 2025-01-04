@@ -5,11 +5,52 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Pagination, Navigation } from 'swiper/modules';
 import { RelatedProductData } from './RelatedproductsConfig';
+import { fetchProducts } from '../../services/api.services';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
-export default function RelatedProductsSwipe() {
+export default function RelatedProductsSwipe({product}) {
+
+  const navigate = useNavigate()
+
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchFilteredProducts = async () => {
+      try {
+        setLoading(true)
+        const params = {
+          limit: 12,
+          offset: 0,
+          query: 'required',
+          subcategories: product.subcategories
+        }
+
+        const response = await fetchProducts(params)
+        if (response?.data) {
+          setProducts(response.data.products)
+          setTotalCount(response.data.total || 0)
+        }
+      } catch (error) {
+        console.error('Error fetching product data:', error)
+        toast.error('Failed to load products')
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchFilteredProducts()
+  }, [product])
+
   return (
     <>
+      {loading ? (
+        <div className="flex justify-center items-center h-64">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500" />
+        </div>
+      ) : (
       <Swiper
         slidesPerView={1}
         spaceBetween={10}
@@ -31,11 +72,11 @@ export default function RelatedProductsSwipe() {
             slidesPerView: 2,
             spaceBetween: 20,
           },
-          768: {
+          850: {
             slidesPerView: 3,
-            spaceBetween: 40,
+            spaceBetween: 0,
           },
-          1224: {
+          1280: {
             slidesPerView: 4,
             spaceBetween: 50,
           },
@@ -43,20 +84,20 @@ export default function RelatedProductsSwipe() {
         modules={[Pagination, Navigation]}
         className="mySwiper mt-[40px]   "
       >
-        {RelatedProductData.map((product, index) => (
-          <SwiperSlide key={index} className=" p-[20px] ">
-            <div className="h-[400px] max-sm:flex max-sm:flex-col max-sm:items-center  mb-[40px]  p-[10px]  border-[2px] bg-white border-[#d6d0d0] ">
+        {products.map((product, index) => (
+          <SwiperSlide key={index} className=" p-[20px]  ">
+            <div onClick={() => navigate(`/product/${product._id}`)}  className={`h-[400px]  xl:w-[22vw]  max-[850px]:w-[33vw] max-[640px]:w-[50vw]  max-sm:flex max-sm:flex-col max-sm:items-center  mb-[40px]  p-[10px]  border-[2px] bg-white border-[#d6d0d0] `}>
               <img
                 className=" mb-[10px] h-[70%] object-cover"
-                src={product.productImage}
-                alt=""
+                src={product.productImageurl}
+                alt={product.name + ' Image'}
               />
-              <h1>{product.category}</h1>
-              <h1 className="mt-[10px] text-xl">{product.productName}</h1>
+              <h1 className='text-sm'>{product.categories}- {product.subcategories}</h1>
+              <h1 className="mt-[10px] text-xl">{product.name}</h1>
             </div>
           </SwiperSlide>
         ))}
-      </Swiper>
+      </Swiper>)}
     </>
   );
 }

@@ -1,4 +1,4 @@
-import  { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { MdOutlineBookmarkAdd } from 'react-icons/md';
 import { productConfig, solution } from './ProductConfig';
 import RelatedProductsSwipe from './RelatedProducts';
@@ -6,11 +6,69 @@ import ProductTabs from './Productdetails';
 import { IoMdShare } from 'react-icons/io';
 import Navbar from '../../Components/Header/Navbar';
 import SideComponent from '../../Components/sideComponent/SideComponent';
+import { useParams } from 'react-router-dom';
+import { fetchProduct, increaseIsEnquired } from '../../services/api.services';
+import toast from 'react-hot-toast';
+import OfficeImage from '../../assets/images/products/office.png';
+import bankImage from '../../assets/images/products/bank.png';
+import industriesImage from '../../assets/images/products/industry.png';
 
 const Product = () => {
-  const [selectedImage, setSelectedImage] = useState(0);
 
-  const images = productConfig.productImage;
+  const { id } = useParams();
+  const [images, setimages] = useState(['', '', '', ''])
+  const [selectedImage, setSelectedImage] = useState(0);
+  // const images = productConfig.productImage;
+
+  const [loading, setLoading] = useState(true);
+  const [loadingEnquire, setLoadingEnquire] = useState(null)
+
+  const [product, setproduct] = useState(null)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true)
+        const response = await fetchProduct(id)
+        setproduct(response.data)
+        setSelectedImage
+      } catch (e) {
+        toast.error(e.message)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchData()
+    console.log(product)
+  }, [id])
+
+  const chooseImage = (item) => {
+    if (item === 'Offices') {
+      return <img src={OfficeImage} alt="" />
+    } else if (item === 'Bank') {
+      return <img src={bankImage} alt="" />
+    } else if (item === 'Industries') {
+      return <img src={industriesImage} alt="" />
+    } else { return '' }
+  }
+
+  const enquireAdd = async (productId) => {
+    try {
+      setLoadingEnquire(productId)
+      const response = await increaseIsEnquired(productId)
+      if (response.success) {
+        toast.success('Enquiry added successfully')
+      } else {
+        toast.error('Enquiry failed')
+      }
+    } catch (error) {
+      console.error(error)
+      toast.error('An error occurred')
+    } finally {
+      setLoadingEnquire(null)
+    }
+  }
 
   const photoSection = () => (
     <>
@@ -19,12 +77,11 @@ const Product = () => {
           <button
             key={index}
             onClick={() => setSelectedImage(index)}
-            className={`border-2 rounded-lg p-1 h-[100px] max-sm:h-[50px] w-[100px] max-sm:w-[50px] bg-blue-50 ${
-              selectedImage === index ? 'border-blue-500' : 'border-gray-200'
-            }`}
+            className={`border-2 rounded-lg p-1 h-[100px] max-sm:h-[50px] w-[100px] max-sm:w-[50px] bg-blue-50 ${selectedImage === index ? 'border-blue-500' : 'border-gray-200'
+              }`}
           >
             <img
-              src={img}
+              src={product.productImageUrl}
               alt={`Thumbnail ${index + 1}`}
               className="w-full h-full"
             />
@@ -33,18 +90,24 @@ const Product = () => {
       </div>
       <div className="w-[70%] max-lg:w-full h-[500px] max-lg:h-[300px] p-4 bg-blue-50 rounded-xl">
         <img
-          src={images[selectedImage]}
-          alt="Solar LED Flood Light"
+          src={product.productImageUrl}
+          alt={product.name}
           className="w-full h-full object-contain "
         />
       </div>
     </>
   );
 
+
+  // Show loading spinner
+  if (loading) {
+    return <div className="text-center mt-10">Loading product details...</div>;
+  }
+
   return (
     <div className="overflow-hidden text-lg">
       <Navbar />
-      <SideComponent/>
+      <SideComponent />
 
       <div className="w-full flex max-lg:flex-col max-lg:gap-10 px-[5vw] py-[50px]">
         {/* product iamges section only visible after w-1024 */}
@@ -57,7 +120,7 @@ const Product = () => {
           <div>
             <div className="flex justify-between items-start ">
               <h1 className="text-3xl font-bold">
-                {productConfig.productName}
+                {product.name}
               </h1>
 
               <div className="flex gap-4">
@@ -71,11 +134,13 @@ const Product = () => {
             </div>
 
             <p className="text-gray-600 border-b text-base">
-              SKU: {productConfig.productSku}
+              SKUId : {product.SKUId}
             </p>
           </div>
-
-          <p className="text-gray-700">{productConfig.productDescription}</p>
+          <p className="text-gray-600 text-base">
+            Category : {product.categories}-{product.subcategories}
+          </p>
+          <p className="text-gray-700">{product.description}</p>
 
           {/* product iamges section only visible bellow w-1024 */}
           <div className="w-1/2 hidden max-lg:flex max-lg:w-full  max-lg:flex-col gap-5 h-[500px] max-lg:h-fit">
@@ -85,72 +150,83 @@ const Product = () => {
           <div>
             <h2 className="text-lg font-semibold mb-4">Best Suited For</h2>
             <div className="flex  gap-4">
-              {productConfig.bestSuittedFor.map((item, index) => (
+              {product.bestSuitedFor.map((item, index) => (
                 <div
                   key={index}
                   className="w-[100px] h-[100px] flex flex-col justify-center items-center"
                 >
-                  <img src={item.image} alt="" />
-                  <h1 className="mt-2">{item.name}</h1>
+                  {chooseImage(item)}
+                  <h1 className="mt-2">{item}</h1>
                 </div>
               ))}
             </div>
           </div>
 
           <div className="flex gap-4">
-            <button className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600">
-              Enquire Now
+            <button
+              onClick={() => enquireAdd(product._id)}
+              className={` bg-blue-500 text-white border border-blue-500   px-6 py-3 rounded-lg transition-colors ${loadingEnquire === product._id ? 'opacity-80 cursor-not-allowed' : 'hover:bg-blue-600'
+                }`}
+              disabled={loadingEnquire === product._id}>
+              {loadingEnquire === product._id ? 'Loading...' : 'Enquire Now'}
             </button>
-            <button className="border border-blue-500 text-blue-500 px-6 py-3 rounded-lg hover:bg-blue-50">
+            <a href={product.brochureUrl} target='_blank' download className="border border-blue-500 text-blue-500 px-6 py-3 rounded-lg hover:bg-blue-50">
               Download Datasheet
-            </button>
+            </a>
           </div>
         </div>
       </div>
 
-      <ProductTabs />
+      <ProductTabs product={product} />
 
       <div className=" bg-blue-100" >
-          <div className="w-full pt-16  max-md:pb-2 px-[5vw]  text-center  relative ">
-            <div className="flex flex-col md:flex-row items-center justify-center gap-8 z-[2] relative">
-              <img
-                className="w-full md:w-1/2 h-auto shadow-lg z-[2]"
-                src={solution[0].image}
-                alt="Stadium Lighting"
-              />
-              <div className="text-left md:w-1/2 ">
-                <h3 className="text-2xl font-bold mb-2">
-                  {solution[0].heading}
-                </h3>
-                <p className="mb-4">{solution[0].para}</p>
 
-                
+        {
+          product.feature.useCases.map((useCase, index) => (
+            index % 2 === 0 ? <div className="w-full min-h-[300px] py-16  max-md:pb-2 px-[5vw]  text-center">
+              <div className="flex flex-col md:flex-row items-center justify-center gap-8">
+                <img
+                  className="w-full md:w-1/2 h-auto  hidden max-md:block  shadow-lg"
+                  src={useCase.imageUrl}
+                  alt=""
+                />
+                <div className="text-left md:w-1/2 ">
+                  <h3 className="text-2xl font-bold mb-2">
+                    {useCase.title}
+                  </h3>
+                  <p className="mb-4 ">{useCase.description}</p>
+
+
+                </div>
+                <img
+                  className="w-full md:w-1/2 h-auto max-md:hidden  shadow-lg"
+                  src={useCase.imageUrl}
+                  alt={useCase.title + ' Image'}
+                />
+              </div>
+            </div> : <div className="w-full min-h-[300px] pt-16  max-md:pb-2 px-[5vw]  text-center  relative ">
+              <div className="flex flex-col md:flex-row items-center justify-center gap-8 z-[2] relative">
+                <img
+                  className="w-full md:w-1/2 h-auto shadow-lg z-[2]"
+                  src={useCase.imageUrl}
+                  alt={useCase.title + ' Image'}
+                />
+                <div className="text-left md:w-1/2 ">
+                  <h3 className="text-2xl font-bold mb-2">
+                    {useCase.title}
+                  </h3>
+                  <p className="mb-4">{useCase.description}</p>
+
+
+                </div>
               </div>
             </div>
-          </div>
-          <div className="w-full py-16  max-md:pb-2 px-[5vw]  text-center">
-            <div className="flex flex-col md:flex-row items-center justify-center gap-8">
-              <img
-                className="w-full md:w-1/2 h-auto  hidden max-md:block  shadow-lg"
-                src={solution[1].image}
-                alt=""
-              />
-              <div className="text-left md:w-1/2 ">
-                <h3 className="text-2xl font-bold mb-2">
-                  {solution[1].heading}
-                </h3>
-                <p className="mb-4 ">{solution[1].para}</p>
+          ))
+        }
 
-               
-              </div>
-              <img
-                className="w-full md:w-1/2 h-auto max-md:hidden  shadow-lg"
-                src={solution[1].image}
-                alt=""
-              />
-            </div>
-          </div>
-        </div>
+
+
+      </div>
 
       <div className="">
         {/* related products */}
@@ -160,9 +236,11 @@ const Product = () => {
           </div>
           <div className="flex relative shrink-0 mt-4 h-2.5 bg-[var(--light-blue)] rounded-[50px] w-[51px]" />
         </div>
-       
 
-        <RelatedProductsSwipe />
+        <div className='px-[5vw]'>
+          
+        <RelatedProductsSwipe product={product} />
+        </div>
       </div>
     </div>
   );

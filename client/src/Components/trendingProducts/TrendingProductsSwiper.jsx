@@ -11,7 +11,7 @@ export default function TrendingProductsSwipe() {
     <>
       <Swiper
         slidesPerView={1}
-        spaceBetween={10}
+        spaceBetween={5}
         pagination={{
           dynamicBullets:true,
           
@@ -30,21 +30,21 @@ export default function TrendingProductsSwipe() {
             slidesPerView: 2,
             spaceBetween: 20,
           },
-          768: {
+          800: {
             slidesPerView: 3,
-            spaceBetween: 40,
+            spaceBetween: 0,
           },
-          1224: {
+          1280: {
             slidesPerView: 4,
-            spaceBetween: 50,
+            spaceBetween: 0,
           },
         }}
         modules={[Pagination, Navigation]}
         className="mySwiper mt-[40px]   "
       >
         {trendingProductData.map((product, index) => (
-          <SwiperSlide key={index} className=" p-[20px] ">
-            <div className="h-[400px] max-sm:flex max-sm:flex-col max-sm:items-center  mb-[40px]  p-[10px]  border-[2px] bg-white border-[#d6d0d0] ">
+          <SwiperSlide key={index} className="  ">
+            <div className="h-[400px]  xl:w-[22vw]  max-[850px]:w-[33vw] max-[640px]:w-[50vw] max-sm:flex max-sm:flex-col max-sm:items-center  mb-[40px]  p-[10px]  border-[2px] bg-white border-[#d6d0d0] ">
               <img
                 className=" mb-[10px] h-[70%] object-cover"
                 src={product.productImage}

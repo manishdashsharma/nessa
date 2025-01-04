@@ -39,7 +39,7 @@ export const saveSupportEnquiry = async (supportData) => {
     return response.data
 }
 
-export const fetchProduct = async (params) => {
+export const fetchProducts = async (params) => {
     const response = await servicesAxiosInstance.get('/v1/query-product-data', { params })
     return response.data
 }
@@ -49,3 +49,7 @@ export const increaseIsEnquired = async (e) => {
     return response.data
 }
 
+export const fetchProduct = async (id) => {
+    const response = await servicesAxiosInstance.get(`/v1/query-product/${id}` )
+    return response.data
+}

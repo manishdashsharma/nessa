@@ -13,7 +13,7 @@ const RecognizeEx = () => {
         <div className="flex relative shrink-0 mt-9 h-2.5 bg-[#b3d6f6] rounded-[50px] w-[51px]" />
       </div>
       <div className="w-full  flex max-md:flex-col ">
-        <div className="w-1/2 max-md:w-full py-[50px] bg-[var(--light-blue)]">
+        <div className="w-1/2 max-md:w-full py-[50px] bg-[#EEF7FF]">
           <div className=" text-2xl font-semibold leading-snug text-center text-black z-[2] relative">
             Nessa in
             <span className="text-blue-500"> News</span>

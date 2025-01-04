@@ -6,7 +6,7 @@ import { ImPower } from 'react-icons/im';
 
 
 
-const ProductTabs = () => {
+const ProductTabs = ({product}) => {
   const [activeTab, setActiveTab] = useState('features');
  
   
@@ -36,24 +36,7 @@ const ProductTabs = () => {
       bgColor: 'bg-blue-50'
     }
   ];
- const specification = [
-     { label: 'Power', value: '100W' },
-     { label: 'Maximum Temperature of Heat Sink', value: '65°C' },
-     { label: 'Input Range', value: '24V DC' },
-     { label: 'Light Source', value: 'OSRAM LED' },
-     { label: 'Primary Thermal Management', value: 'Single Piece MCPCB with thermal pads' },
-     { label: 'Secondary Thermal Management', value: 'High Pressure Aluminium Die Cast' },
-     { label: 'Driver Efficiency', value: '>85%' },
-     { label: 'Net Power Consumption', value: '100 ± 10% W' },
-     { label: 'LED Luminous Efficacy', value: '≥145 lm/W' },
-     { label: 'CRI', value: '>70' },
-     { label: 'Color', value: 'Cool White, Warm White' },
-     { label: 'Color Temperature', value: '2700-6500K' },
-     { label: 'LED Beam Angle', value: '120°' },
-     { label: 'Storage Temperature', value: '35°C' },
-     { label: 'Working Life', value: '>50,000 Hrs.' },
-     { label: 'IP Rating', value: 'IP65' }
- ]
+ const specification = product.specification
   const applications = [
       'https://res.cloudinary.com/dvtfhco4j/image/upload/v1734735158/ac_lighting/image5.jpg',
       'https://res.cloudinary.com/dvtfhco4j/image/upload/v1734735158/ac_lighting/image5.jpg',
@@ -90,22 +73,22 @@ const ProductTabs = () => {
                   key={activeTab}
                   initial={{ x: 200, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
-                  //   exit={{ x: -200, opacity: 0 }}
+                    exit={{ x: -200, opacity: 0 }}
                   transition={{ duration: 0.5, ease: 'easeInOut' }}>
                   {activeTab === 'features' && (
                       <div className="grid grid-cols-3  max-sm:grid-cols-1 gap-8   ">
-                          {features.map((feature) => (
+                          {product.feature.highlighted.map((feature , index) => (
                               <motion.div
-                                  key={feature.id}
+                                  key={index}
                                   initial={{ y: 20, opacity: 0 }}
                                   animate={{ y: 0, opacity: 1 }}
                                   transition={{ delay: feature.id * 0.2 }}
                                   className="h-[200px] max-sm:h-fit  flex flex-col items-center justify-center text-center">
                                   <div
-                                      className={`${feature.bgColor} h-[80px] w-[80px] flex items-center justify-center text-3xl p-4 rounded-full mb-4`}>
+                                      className={`bg-blue-50 h-[80px] w-[80px] flex items-center justify-center text-3xl p-4 rounded-full mb-4`}>
                                       {feature.icon}
                                   </div>
-                                  <h3 className="text-gray-800 font-medium">{feature.title}</h3>
+                                  <h3 className="text-gray-800 font-medium">{feature}</h3>
                               </motion.div>
                           ))}
                       </div>
@@ -113,12 +96,12 @@ const ProductTabs = () => {
 
                   {activeTab === 'specification' && (
                       <div className="grid grid-cols-2 gap-4 p-4 max-md:grid-cols-1 ">
-                          {specification.map((row, index) => (
+                          {Object.entries(specification).map(([key, value]) =>(
                               <div
-                                  key={index}
+                                  key={key}
                                   className="grid grid-cols-2 items-center py-2">
-                                  <div className="font-bold text-gray-700">{row.label}</div>
-                                  <div className="text-gray-500">{row.value}</div>
+                                  <div className="font-bold text-gray-700">{key}</div>
+                                  <div className="text-gray-500">{value}</div>
                               </div>
                           ))}
                       </div>
@@ -127,7 +110,7 @@ const ProductTabs = () => {
                   {activeTab === 'applications' && (
                       <div className="text-center text-gray-600 ">
                           <div className="grid grid-cols-4 max-sm:grid-cols-1 gap-8  ">
-                              {applications.map((image ,index) => (
+                              {product.applicationImageUrls.map((image ,index) => (
                                   <motion.div
                                       key={index}
                                       initial={{ y: 20, opacity: 0 }}
