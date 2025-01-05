@@ -126,7 +126,7 @@ const ContactUs = () => {
                     ...prev,
                     fileLink: response.data
                 }))
-                toast.success(`File uploaded successfully ${response.data}`)
+                toast.success(`File uploaded successfully`)
             }
         } catch (error) {
             toast.error(error.message || 'Error uploading file')
