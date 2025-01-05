@@ -3,7 +3,7 @@ version: '3.9'
 services:
   mongo:
     container_name: mongo_container
-    image: 'mongo'
+    image: 'mongo:6.0'
     volumes:
       - mongo-data:/data/db
     networks:
@@ -46,10 +46,11 @@ services:
       - ./server/src:/usr/src/app/src
       - ./server/package.json:/usr/src/app/package.json
       - ./server/nodemon.json:/usr/src/app/nodemon.json
-      - ./server/public:/usr/src/app/public:rw
+      - ./server/public:/usr/src/app/public
     user: "node"
     networks:
       - queue-net
+
   admin:
     container_name: admin
     build:
@@ -88,6 +89,7 @@ services:
       - server
       - client
       - admin
+
 networks:
   queue-net:
     driver: bridge

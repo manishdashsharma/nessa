@@ -49,8 +49,6 @@ export default {
                 locationDetails.longitude = long;
             }
     
-            console.log('Updated Location Details:', locationDetails);
-    
             const newLocationStats = await databaseService.savelocationStats(locationDetails);
             if (!newLocationStats) {
                 return httpError(next, new Error(responseMessage.FAILED_TO_SAVE), req, 500);

@@ -1,5 +1,5 @@
-# Use a specific node version instead of latest for stability
-FROM node:20-slim
+# Use official Node.js image as base
+FROM node:18
 
 # Switch to root temporarily to set up directories
 USER root
