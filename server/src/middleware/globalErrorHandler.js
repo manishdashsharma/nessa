@@ -1,3 +1,5 @@
+
 export default (err, _, res, __) => {
-    res.status(err.statusCode).json(err);
+    const statusCode = err.statusCode || 500;
+    res.status(statusCode).json(err);
 };
