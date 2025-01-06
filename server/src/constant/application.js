@@ -81,3 +81,10 @@ export const ESubject = Object.freeze({
     CSR_INQUIRY: 'CSR Inquiry',
     CAREER_INQUIRY: 'Career Inquiry'
 })
+
+export const allowedUsers = Object.freeze([
+    { email: 'info@quicker.in', password: 'password123' },
+    { email: 'contact@quicker.in', password: 'securePass456' },
+    { email: 'project@quicker.in', password: 'admin789' },
+    { email: 'sales@quicker.in', password: 'sales@2023' },
+]);

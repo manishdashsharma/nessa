@@ -6,5 +6,7 @@ export default {
     ALREADY_EXIST: (entity, identifier) => `${entity} already exist with ${identifier}`,
     INVALID_IP: `Invalid IP address`,
     FAILED_TO_SAVE: `Failed to save the data`,
-    CUSTOM_MESSAGE: (entity) =>`${entity}`
+    CUSTOM_MESSAGE: (entity) =>`${entity}`,
+    UNAUTHORIZED: `You are not authorized to perform this action`,
+    INVALID_CREDENTIALS: `Invalid credentials`,
 }

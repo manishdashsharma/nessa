@@ -101,6 +101,49 @@ export const ValidateUpdateSupportEnquiry = Joi.object({
     isSolved: Joi.boolean().optional(),
 })
 
+export const ValidateLogin = Joi.object({
+    emailAddress: Joi.string().email().trim().required(),
+    password: Joi.string().min(8).max(24).trim().required(),
+})
+
+export const ValidateSoulution = Joi.object({
+    title: Joi.string().required(),
+    subTitle: Joi.string().required(),
+    description:Joi.string().required(),
+    categories: Joi.string()
+        .valid(...Object.values(EProductCategories.SOLUTIONS))
+        .required(),
+    subcategories: Joi.string()
+        .custom((value, helpers) => {
+            const { categories } = helpers.state.ancestors[0];
+            if (!categories) {
+                return helpers.message('`categories` is required before `subcategories`.');
+            }
+
+            const validSubCategories = quicker.subCategoriesMap[categories];
+            if (!validSubCategories || !validSubCategories.includes(value)) {
+                return helpers.message(`Invalid subcategory '${value}' for category: '${categories}'.`);
+            }
+
+            return value;
+        })
+        .required(),
+    thumbnail:Joi.string().uri().required(),
+    solutionImageUrl: Joi.string().uri().required(),
+    realtedProduct: Joi.array().items(
+        Joi.object({
+            title: Joi.string().required(),
+            application: Joi.string().allow(''),
+            products: Joi.array().items(
+                Joi.object({
+                    name: Joi.string().required(),
+                    description: Joi.string().required()
+                })
+            )
+        })
+    )
+})
+
 export const validateJoiSchema = (schema, value) => {
     const result = schema.validate(value);
     return {

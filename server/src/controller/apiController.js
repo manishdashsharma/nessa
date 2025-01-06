@@ -4,7 +4,9 @@ import httpError from '../util/httpError.js'
 import quicker from '../util/quicker.js'
 import databaseService from '../service/databaseService.js'
 import { uploadOnCloudinary } from '../service/cloudinaryService.js'
-import { ValidateAddProduct, ValidateAddUtilsData, ValidateContactUs, validateJoiSchema, ValidateSupportEnquiry, ValidateUpdateContactUs, ValidateUpdateProduct, ValidateUpdateSupportEnquiry, ValidateUpdateUtilsData } from '../service/validationService.js'
+import { ValidateAddProduct, ValidateAddUtilsData, ValidateContactUs, validateJoiSchema, ValidateLogin, ValidateSupportEnquiry, ValidateUpdateContactUs, ValidateUpdateProduct, ValidateUpdateSupportEnquiry, ValidateUpdateUtilsData } from '../service/validationService.js'
+import { allowedUsers, EApplicationEnvironment } from '../constant/application.js'
+import config from '../config/config.js'
 
 export default {
     self: (req, res, next) => {
@@ -520,6 +522,67 @@ export default {
             httpResponse(req, res, 200, responseMessage.SUCCESS, updatedContactUs)
         } catch (err) {
             httpError(next, err, req, 500);
+        }
+    },
+    signIn: (req, res, next) => {
+        try {
+            const { body } = req;
+
+            const { error, value } = validateJoiSchema(ValidateLogin, body)
+            if (error) {
+                return httpError(next, error, req, 422)
+            }
+
+            const { emailAddress, password } = value
+
+            const user = allowedUsers.find(
+                (user) => user.email === emailAddress && user.password === password
+            );
+            
+            if (!user) {
+                return httpError(next, new Error(responseMessage.INVALID_CREDENTIALS), req, 401);
+            }
+
+            const accessToken = quicker.generateToken(
+                {
+                    email: user.email
+                },
+                config.ACCESS_TOKEN.SECRET,
+                config.ACCESS_TOKEN.EXPIRY
+            )
+
+            const DOMAIN = quicker.getDomainFromUrl(config.SERVER_URL)
+
+            res.cookie('accessToken', accessToken, {
+                path: '/api/v1',
+                domain: DOMAIN,
+                sameSite: 'strict',
+                maxAge: 1000 * config.ACCESS_TOKEN.EXPIRY,
+                httpOnly: true,
+                secure: !(config.ENV === EApplicationEnvironment.DEVELOPMENT)
+            })
+
+            httpResponse(req, res, 200, responseMessage.SUCCESS,{accessToken})
+        } catch (err) {
+            httpError(next, err, req, 500)
+        }
+    },
+    selfIdentification: (req, res, next) => {
+        try {
+            const { authenticatedUser } = req
+            httpResponse(req, res, 200, responseMessage.SUCCESS,authenticatedUser)
+        } catch (err) {
+            httpError(next, err, req, 500)
+        }
+    },
+    saveSolutions: (req, res, next) => {
+        try {
+            const { body } = req
+
+            const {error, value} = validateJoiSchema(ValidateSoulution, body)
+            httpResponse(req, res, 200, responseMessage.SUCCESS)
+        } catch (err) {
+            httpError(next, err, req, 500)
         }
     },
 }
