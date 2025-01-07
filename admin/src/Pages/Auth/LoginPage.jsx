@@ -3,18 +3,8 @@ import { motion } from 'framer-motion';
 import toast from 'react-hot-toast';
 import logo from '../../assets/logo.svg';
 import { useNavigate } from 'react-router-dom';
+import { signIn } from '../../service/apiService';
 
-const fakeApiCall = (email, password) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (email === 'test@example.com' && password === 'password') {
-        resolve('Login successful!');
-      } else {
-        reject('Invalid email or password');
-      }
-    }, 1000);
-  });
-};
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -26,11 +16,12 @@ const LoginPage = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const message = await fakeApiCall(email, password);
-      toast.success(message);
-      navigate('/admin/home')
+      const response = await signIn(email, password);
+      localStorage.setItem('accessToken', response.data.accessToken);
+      toast.success("Sign In Successful");
+      navigate('/dashboard');
     } catch (error) {
-      toast.error(error);
+      toast.error("Check your credentials");
     } finally {
       setLoading(false);
     }

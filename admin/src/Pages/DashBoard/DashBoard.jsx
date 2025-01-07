@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 // import { Settings } from "lucide-react";
 import { useNavigate, Outlet } from "react-router-dom";
 import { dashboardConfig } from "./dashBoardConfig";
@@ -24,6 +24,13 @@ const Dashboard = () => {
       [index]: !prev[index],
     }));
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem('accessToken');
+    if (!token) {
+        navigate('/');
+    }
+}, [navigate]);
 
   // const handleSettingItemClick = (item) => {
   //   if (item.path.startsWith("http")) {

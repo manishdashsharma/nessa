@@ -4,6 +4,7 @@ import Pagination from '@mui/material/Pagination';
 import CircularProgress from '@mui/material/CircularProgress';
 import AddIcon from '@mui/icons-material/Add';
 import ProductModal from '../../Components/Modal/ProductModal';
+import { useNavigate } from 'react-router-dom';
 
 
 const ProductPage = () => {
@@ -12,8 +13,16 @@ const ProductPage = () => {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [openModal, setOpenModal] = useState(false);
+  const navigate = useNavigate()
 
   const itemsPerPage = 2;
+
+  useEffect(() => {
+    const token = localStorage.getItem('accessToken');
+    if (!token) {
+        navigate('/');
+    }
+}, [navigate]);
 
   useEffect(() => {
     const fetchProduct = async () => {

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Pagination } from '@mui/material';
 import { format } from 'date-fns';
 import { fetchSupportTickets, updateSupportTicket } from '../../service/apiService';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
 
 const SupportPage = () => {
   const [tickets, setTickets] = useState([]);
@@ -15,7 +17,15 @@ const SupportPage = () => {
     isSolved: ''
   });
 
+  const navigate = useNavigate()
   const ITEMS_PER_PAGE = 5;
+
+  useEffect(() => {
+    const token = localStorage.getItem('accessToken');
+    if (!token) {
+        navigate('/');
+    }
+}, [navigate]);
 
   useEffect(() => {
     fetchTickets();
@@ -23,7 +33,14 @@ const SupportPage = () => {
 
   const fetchTickets = async () => {
     try {
+
       setLoading(true);
+
+      const token = localStorage.getItem('accessToken');
+        if (!token) {
+            toast.error('Authentication failed: No token found');
+            return;
+        }
       const apiFilters = {
         limit: ITEMS_PER_PAGE,
         offset: (page - 1) * ITEMS_PER_PAGE,
@@ -33,18 +50,21 @@ const SupportPage = () => {
         isSolved: filters.isSolved === '' ? undefined : filters.isSolved === 'true'
       };
 
-      const response = await fetchSupportTickets(apiFilters);
+      console.log(apiFilters);
+      
+
+      const response = await fetchSupportTickets({ ...apiFilters, token });
       
       if (response.success && response.data) {
         setTickets(response.data.contactUsList);
         setTotalCount(response.data.total);
       } else {
-        console.error('API call succeeded but returned unexpected data structure:', response);
+        toast.error('Failed to get support us tickets')
         setTickets([]);
         setTotalCount(0);
       }
     } catch (error) {
-      console.error('Error fetching tickets:', error);
+      toast.error('Failed to get support us tickets')
       setTickets([]);
       setTotalCount(0);
     } finally {
@@ -54,18 +74,16 @@ const SupportPage = () => {
 
   const handleStatusUpdate = async (ticketId, field, value) => {
     try {
-      // Optimistic update
       setTickets(tickets.map(ticket => 
         ticket._id === ticketId ? { ...ticket, [field]: value } : ticket
       ));
       
-      // Prepare update data
       const updateData = {
         [field]: value
       };
 
       // Call update API
-      const response = await updateSupportTicket(ticketId, updateData);
+      const response = await updateSupportTicket(localStorage.getItem('accessToken'),ticketId, updateData);
       
       if (!response.success) {
         console.error('Failed to update ticket:', response.message);

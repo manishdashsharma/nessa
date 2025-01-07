@@ -5,6 +5,7 @@ import productModel from '../model/productModel.js'
 import utilsModel from '../model/utilsModel.js'
 import contactUsModel from '../model/contactUsModel.js'
 import supportModel from '../model/supportEnquiryModel.js'
+import solutionModel from '../model/solutionModel.js'
 
 export default {
     connect: async () => {
@@ -84,6 +85,18 @@ export default {
     },
     updateSupportEnquiryById: (id,data) =>{
         return supportModel.findByIdAndUpdate(id, data, { new: true ,runValidators: true});
+    },
+    saveSolutionData: (payload) => {
+        return solutionModel.create(payload)
+    },
+    queryAllSolutions: () => {
+        return solutionModel.find()
+    },
+    querySolutionById: (id) => {
+        return solutionModel.findById(id)
+    },
+    updateSolutionData: (id,data) => {
+        return solutionModel.findByIdAndUpdate(id, data, { new: true });
     }
 }
 

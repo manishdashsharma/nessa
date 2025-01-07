@@ -4,7 +4,7 @@ import httpError from '../util/httpError.js'
 import quicker from '../util/quicker.js'
 import databaseService from '../service/databaseService.js'
 import { uploadOnCloudinary } from '../service/cloudinaryService.js'
-import { ValidateAddProduct, ValidateAddUtilsData, ValidateContactUs, validateJoiSchema, ValidateLogin, ValidateSupportEnquiry, ValidateUpdateContactUs, ValidateUpdateProduct, ValidateUpdateSupportEnquiry, ValidateUpdateUtilsData } from '../service/validationService.js'
+import { ValidateAddProduct, ValidateAddUtilsData, ValidateContactUs, validateJoiSchema, ValidateLogin, ValidateSoulution, ValidateSupportEnquiry, ValidateUpdateContactUs, ValidateUpdateProduct, ValidateUpdateSolution, ValidateUpdateSupportEnquiry, ValidateUpdateUtilsData } from '../service/validationService.js'
 import { allowedUsers, EApplicationEnvironment } from '../constant/application.js'
 import config from '../config/config.js'
 
@@ -575,15 +575,83 @@ export default {
             httpError(next, err, req, 500)
         }
     },
-    saveSolutions: (req, res, next) => {
+    saveSolutions: async(req, res, next) => {
         try {
             const { body } = req
 
             const {error, value} = validateJoiSchema(ValidateSoulution, body)
+
+            if (error) {
+                return httpError(next, error, req, 422)
+            }
+
+            const newSolution = await databaseService.saveSolutionData(value)
+
+            if(!newSolution){
+                return httpError(next, new Error(responseMessage.FAILED_TO_SAVE), req, 500)
+            }
             httpResponse(req, res, 200, responseMessage.SUCCESS)
         } catch (err) {
             httpError(next, err, req, 500)
         }
     },
+    querySolutions: async (req, res, next) => {
+        try {
+            const solutionsList = await databaseService.queryAllSolutions();
+
+            if(!solutionsList){
+                return httpError(next, new Error(responseMessage.NOT_FOUND("Data")), req, 404)
+            }
+            const response = []
+            solutionsList.forEach(element => {
+                response.push({
+                    _id: element._id,
+                    subcategories: element.subcategories,
+                    thumbnail: element.thumbnail
+                })
+            });
+            httpResponse(req, res, 200, responseMessage.SUCCESS, response)
+        } catch (err) {
+            console.error('Error:', err);
+            httpError(next, err, req, 500);
+        }
+    },
+    querySolution: async (req, res, next) => {
+        try {
+            const { id } = req.params;
+
+            const solutionsList = await databaseService.querySolutionById(id);
+
+            if(!solutionsList){
+                return httpError(next, new Error(responseMessage.NOT_FOUND("Data")), req, 404)
+            }
+            httpResponse(req, res, 200, responseMessage.SUCCESS, solutionsList)
+        } catch (err) {
+            console.error('Error:', err);
+            httpError(next, err, req, 500);
+        }
+    },
+    updateSolutions : async (req, res, next) => {
+        try {
+            const { id } = req.params;
+            const { body } = req;
+    
+            const { error, value } = validateJoiSchema(ValidateUpdateSolution, body)
+    
+            if (error) {
+                return httpError(next, error, req, 422);
+            }
+    
+            const updatedSolution = await databaseService.updateSolutionData(id, value);
+    
+            if (!updatedSolution) {
+                return httpError(next, new Error(responseMessage.FAILED_TO_UPDATE), req, 500);
+            }
+    
+            httpResponse(req, res, 200, responseMessage.SUCCESS);
+        } catch (err) {
+            httpError(next, err, req, 500);
+        }
+    }
 }
 

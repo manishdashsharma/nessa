@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Pagination } from '@mui/material';
 import { format } from 'date-fns';
 import { fetchContactUs, updateContactUs } from '../../service/apiService';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
 
 const ContactUsPage = () => {
   const [contacts, setContacts] = useState([]);
@@ -14,12 +16,27 @@ const ContactUsPage = () => {
     isSpam: '',
     isSolved: ''
   });
+  const navigate = useNavigate();
 
   const ITEMS_PER_PAGE = 5;
+
+  useEffect(() => {
+      const token = localStorage.getItem('accessToken');
+      if (!token) {
+          navigate('/');
+      }
+  }, [navigate]);
 
   const fetchData = async () => {
     try {
       setLoading(true);
+
+      const token = localStorage.getItem('accessToken');
+        if (!token) {
+            toast.error('Authentication failed: No token found');
+            return;
+        }
+
       const apiFilters = {
         limit: ITEMS_PER_PAGE,
         offset: (page - 1) * ITEMS_PER_PAGE,
@@ -29,7 +46,7 @@ const ContactUsPage = () => {
         isSolved: filters.isSolved === '' ? undefined : filters.isSolved === 'true'
       };
 
-      const response = await fetchContactUs(apiFilters);
+      const response = await fetchContactUs({...apiFilters,token});
       
       if (response?.success && response?.statusCode === 200) {
         setContacts(response.data.contactUsList || []);
@@ -52,18 +69,20 @@ const ContactUsPage = () => {
     fetchData();
   }, [page, filters]);
 
+  
+
   const handleStatusUpdate = async (contactId, field, value) => {
+    
     try {
-      // Optimistic update
       setContacts(contacts.map(contact => 
-        contact.id === contactId ? { ...contact, [field]: value } : contact
+        contact._id === contactId ? { ...contact, [field]: value } : contact
       ));
       
       const updateData = {
         [field]: value
       };
 
-      const response = await updateContactUs(contactId, updateData);
+      const response = await updateContactUs(localStorage.getItem('accessToken'),contactId, updateData);
       
       if (!response?.success || response?.statusCode !== 200) {
         console.error('Failed to update contact:', response?.message);
@@ -205,7 +224,7 @@ const ContactUsPage = () => {
                               <input
                                 type="checkbox"
                                 checked={contact[key]}
-                                onChange={(e) => handleStatusUpdate(contact.id, key, e.target.checked)}
+                                onChange={(e) => handleStatusUpdate(contact._id, key, e.target.checked)}
                                 className="rounded border-gray-300 text-blue-600 focus:ring-blue-500 h-4 w-4 transition-colors"
                               />
                               <span className="text-sm text-gray-700">{label}</span>

@@ -15,10 +15,12 @@ export const fetchVisitorLocation = async () => {
     return response.data
 }
 
-export const fetchSupportTickets = async ({ limit, offset, subject, isRead, isSpam, isSolved } = {}) => {
+export const fetchSupportTickets = async ({ limit, offset, subject, isRead, isSpam, isSolved,token } = {}) => {
     const params = new URLSearchParams();
 
-    // Add parameters to the query string if they are provided
+    const headers= {
+        Authorization: `Bearer ${token}`
+    }
     if (limit !== undefined) params.append('limit', limit);
     if (offset !== undefined) params.append('offset', offset);
     if (subject !== undefined) params.append('subject', subject);
@@ -26,17 +28,24 @@ export const fetchSupportTickets = async ({ limit, offset, subject, isRead, isSp
     if (isSpam !== undefined) params.append('isspam', isSpam);
     if (isSolved !== undefined) params.append('issolved', isSolved);
 
-    const response = await servicesAxiosInstance.get(`/v1/query-support-enquiry-data/?${params.toString()}`);
+    const response = await servicesAxiosInstance.get(`/v1/query-support-enquiry-data/?${params.toString()}`,{
+        headers
+    });
     return response.data;
 };
 
-export const updateSupportTicket = async (ticketId, data) => {
-    const response = await servicesAxiosInstance.post(`/v1/update-support-enquiry-data/${ticketId}`,  data);
+export const updateSupportTicket = async (token,ticketId, data) => {
+    const headers= {
+        Authorization: `Bearer ${token}`
+    }
+    const response = await servicesAxiosInstance.post(`/v1/update-support-enquiry-data/${ticketId}`,  data,{
+        headers
+    });
     return response.data;
 }
 
 
-export const fetchContactUs = async ({ limit, offset, subject, isRead, isSpam, isSolved } = {}) => {    
+export const fetchContactUs = async ({ limit, offset, subject, isRead, isSpam, isSolved,token } = {}) => {    
     const params = new URLSearchParams();
     if (limit !== undefined) params.append('limit', limit);
     if (offset !== undefined) params.append('offset', offset);
@@ -45,11 +54,31 @@ export const fetchContactUs = async ({ limit, offset, subject, isRead, isSpam, i
     if (isSpam !== undefined) params.append('isspam', isSpam);
     if (isSolved !== undefined) params.append('issolved', isSolved);
 
-    const response = await servicesAxiosInstance.get(`/v1/query-contact-us-data/?${params.toString()}`);
+    const headers= {
+        Authorization: `Bearer ${token}`
+    }
+    const response = await servicesAxiosInstance.get(`/v1/query-contact-us-data/?${params.toString()}`,{
+        headers
+    });
     return response.data;
 }
 
-export const updateContactUs = async (contactId, data) => {
-    const response = await servicesAxiosInstance.post(`/v1/update-contact-us-data/${contactId}`, data);
+export const updateContactUs = async (token,contactId, data) => {
+    console.log(contactId);
+    
+    const headers= {
+        Authorization: `Bearer ${token}`
+    }
+    const response = await servicesAxiosInstance.post(`/v1/update-contact-us-data/${contactId}`, data, {
+        headers
+    });
     return response.data;
 }
+
+export const signIn = async (email,password) => {
+    const response = await servicesAxiosInstance.post('/v1/sign-in', {
+        "emailAddress":email,
+        "password":password
+    });
+    return response.data;
+};

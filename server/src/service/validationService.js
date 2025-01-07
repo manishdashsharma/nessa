@@ -111,7 +111,7 @@ export const ValidateSoulution = Joi.object({
     subTitle: Joi.string().required(),
     description:Joi.string().required(),
     categories: Joi.string()
-        .valid(...Object.values(EProductCategories.SOLUTIONS))
+        .valid(...Object.values(EProductCategories))
         .required(),
     subcategories: Joi.string()
         .custom((value, helpers) => {
@@ -130,20 +130,44 @@ export const ValidateSoulution = Joi.object({
         .required(),
     thumbnail:Joi.string().uri().required(),
     solutionImageUrl: Joi.string().uri().required(),
-    realtedProduct: Joi.array().items(
+    relatedProduct: Joi.array().items(
         Joi.object({
             title: Joi.string().required(),
             application: Joi.string().allow(''),
             products: Joi.array().items(
                 Joi.object({
+                    productId: Joi.string().regex(/^[0-9a-fA-F]{24}$/).required(),
                     name: Joi.string().required(),
                     description: Joi.string().required()
                 })
-            )
+            ).required()
         })
     )
 })
 
+export const ValidateUpdateSolution = Joi.object({
+    title: Joi.string().optional(),
+    subTitle: Joi.string().optional(),
+    description: Joi.string().optional(),
+    subcategories: Joi.string().optional(),
+    thumbnail: Joi.string().uri().optional(),
+    solutionImageUrl: Joi.string().uri().optional(),
+    relatedProduct: Joi.array().items(
+        Joi.object({
+            title: Joi.string().optional(),
+            application: Joi.string().optional(),
+            products: Joi.array().items(
+                Joi.object({
+                    productId: Joi.string().required(),
+                    name: Joi.string().optional(),
+                    description: Joi.string().optional(),
+                    _id: Joi.string().optional(),
+                })
+            ).optional(),
+            _id: Joi.string().optional()
+        })
+    ).optional()
+});
 export const validateJoiSchema = (schema, value) => {
     const result = schema.validate(value);
     return {
