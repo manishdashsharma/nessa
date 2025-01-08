@@ -24,10 +24,6 @@ const categories = [
 
 export function ProductRange() {
 
-
-
- 
-
   const renderCategoryCard = ({ name, image }, index) => (
     <div
       key={index}
@@ -48,7 +44,7 @@ export function ProductRange() {
 
   return (
     <div
-      className=" relative flex-col items-center  py-14   mt-20 w-full h-fit max-md:mt-10 max-md:max-w-full"
+      className=" relative   py-14   mt-20 w-full h-fit max-md:mt-10 max-md:max-w-full"
       style={{ background: 'linear-gradient(to bottom, #f7faff, #deeefc)' }}
     >
       <div className="relative text-4xl font-semibold leading-snug text-center text-black">

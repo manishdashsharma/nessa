@@ -50,6 +50,16 @@ export const increaseIsEnquired = async (e) => {
 }
 
 export const fetchProduct = async (id) => {
-    const response = await servicesAxiosInstance.get(`/v1/query-product/${id}` )
+    const response = await servicesAxiosInstance.get(`/v1/query-product/${id}`)
+    return response.data
+}
+
+export const allSolutions = async () => {
+    const response = await servicesAxiosInstance.get('/v1/query-solutions')
+    return response.data
+}
+
+export const solutionData = async (id) => {
+    const response = await servicesAxiosInstance.get(`/v1/query-solution/${id}`)
     return response.data
 }

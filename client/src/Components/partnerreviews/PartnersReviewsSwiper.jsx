@@ -173,8 +173,8 @@ export default function PartnersReviewsSwiper() {
         modules={[Pagination, Autoplay, Navigation]}
         className="mySwiper w-full min-h-[550px] px-[5vw]  "
       >
-        { testimonialData.map((testimonial)=>(
-          <SwiperSlide className="cursor-pointer  py-[50px] flex items-center justify-center relative mb-[50px] ">
+        { testimonialData.map((testimonial , index)=>(
+          <SwiperSlide key={index} className="cursor-pointer  py-[50px] flex items-center justify-center relative mb-[50px] ">
             <div className=" bg-blue-500 pb-[30px]  rounded-3xl shadow-lg  max-w-md transform transition-transform hover:scale-105 ">
 
             <div className="bg-white min-h-[400px]  rounded-3xl shadow-lg p-8 max-w-md ">

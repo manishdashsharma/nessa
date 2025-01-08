@@ -17,12 +17,104 @@ import { GiForest } from 'react-icons/gi'
 import { PiSolarPanel } from 'react-icons/pi'
 import { AnimatePresence, motion } from 'framer-motion'
 import { GrResources } from 'react-icons/gr'
+import { allSolutions } from '../../services/api.services'
 
 const Navbar = () => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false)
-    const [soluitonOpen, setsoluitonOpen] = useState(false)
-    const [corporateOpen, setcorporateOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [soluitonOpen, setsoluitonOpen] = useState(false)
+  const [corporateOpen, setcorporateOpen] = useState(false)
+  const [solutionsDropdown, setSolutionsDropdown] = useState([
+      {
+          logo: <BiSolidPlaneAlt className={`text-[#1E90FF] bg-[#1E90FF] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
+          link: '',
+          subcategories: 'Airports'
+      },
+      {
+          logo: <GiMineWagon className={`text-[#FF8C00] bg-[#FF8C00] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
+          link: '',
+          subcategories: 'Mines'
+      },
+      {
+          logo: <MdStadium className={`text-[#9370DB] bg-[#9370DB] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
+          link: '',
+          subcategories: 'Stadium'
+      },
+      {
+          logo: <FaGasPump className={`text-[#FF6347] bg-[#FF6347] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
+          link: '',
+          subcategories: 'Petrol Pump'
+      },
+      {
+          logo: <GiRefinery className={`text-[#32CD32] bg-[#32CD32] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
+          link: '',
+          subcategories: 'Refinery'
+      },
+      {
+          logo: <FaRoad className={`text-[#4169E1] bg-[#4169E1] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
+          link: '',
+          subcategories: 'Highways'
+      },
+      {
+          logo: <FaCarTunnel className={`text-[#FFB6C1] bg-[#FFB6C1] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
+          link: '',
+          subcategories: 'Tunnels'
+      },
+      {
+          logo: <GiForest className={`text-[#32CD32] bg-[#32CD32] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
+          link: '',
+          subcategories: 'Rural, Hilly & Forest Areas'
+      },
+      {
+          logo: <GiShipBow className={`text-[#98FB98] bg-[#98FB98] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
+          link: '',
+          subcategories: 'Ports & Logistic Parks'
+      },
+      {
+          logo: <GiHazardSign className={`text-[#FF4500] bg-[#FF4500] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
+          link: '',
+          subcategories: 'Hazardous Areas'
+      },
+      {
+          logo: <GiRefinery className={`text-[#FFD700] bg-[#FFD700] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
+          link: '',
+          subcategories: 'Thermal Power Plants'
+      },
+      {
+          logo: <PiSolarPanel className={`text-[#FFA07A] bg-[#FFA07A] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
+          link: '',
+          subcategories: 'Solar Parks'
+      }
+  ])
 
+  const [loading, setloading] = useState(true)
+
+  useEffect(() => {
+      const fetchSolutions = async () => {
+          try {
+              setloading(true)
+              const response = await allSolutions()
+              if (response?.data) {
+                  // Update solutionsDropdown links based on API data
+                  setSolutionsDropdown((prevDropdown) => {
+                      return prevDropdown.map((item) => {
+                          const matchingSolution = response.data.find((solution) => solution.subcategories === item.subcategories)
+                          return {
+                              ...item,
+                              link: matchingSolution ? `/solutions/${matchingSolution._id}` : '/'
+                          }
+                      })
+                  })
+              }
+          } catch (error) {
+              console.error('Error fetching product data:', error)
+              toast.error('Failed to load products')
+          } finally {
+              setloading(false)
+          }
+      }
+
+      fetchSolutions()
+  }, [])
 
     useEffect(() => {
         const handleScroll = () => {
@@ -87,69 +179,6 @@ const Navbar = () => {
         })
     }
 
-    const solutionsDropdown = [
-        {
-            logo: <BiSolidPlaneAlt className={`text-[#1E90FF]  bg-[#1E90FF] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
-            link: '/solutions/airport',
-            title: 'Airport'
-        },
-        {
-            logo: <GiMineWagon className={`text-[#FF8C00]  bg-[#FF8C00] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
-            link: '/solutions/mines',
-            title: 'Mines'
-        },
-        {
-            logo: <MdStadium className={`text-[#9370DB]  bg-[#9370DB] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
-            link: '/solutions/stadium',
-            title: 'Stadium'
-        },
-        {
-            logo: <FaGasPump className={`text-[#FF6347]  bg-[#FF6347] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
-            link: '/solutions/petrolpump',
-            title: 'PetrolPump'
-        },
-        {
-            logo: <GiRefinery className={`text-[#32CD32]  bg-[#32CD32] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
-            link: '/solutions/refinery',
-            title: 'Refinery'
-        },
-        {
-            logo: <FaRoad className={`text-[#4169E1]  bg-[#4169E1] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
-            link: '/solutions/highways',
-            title: 'Highways'
-        },
-        {
-            logo: <FaCarTunnel className={`text-[#FFB6C1]  bg-[#FFB6C1] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
-            link: '/solutions/tunnels',
-            title: 'Tunnels'
-        },
-        {
-            logo: <GiForest className={`text-[#32CD32]  bg-[#32CD32] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
-            link: '/solutions/rural',
-            title: 'Rural, Hilly & Forest Areas',
-            color: '#'
-        },
-        {
-            logo: <GiShipBow className={`text-[#98FB98]  bg-[#98FB98] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
-            link: '/solutions/ports',
-            title: 'Ports & Logistic Parks'
-        },
-        {
-            logo: <GiHazardSign className={`text-[#FF4500]  bg-[#FF4500] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
-            link: '/solutions/hazardous',
-            title: 'Hazardous Areas'
-        },
-        {
-            logo: <GiRefinery className={`text-[#FFD700]  bg-[#FFD700] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
-            link: '/solutions/thermalpowerplant',
-            title: 'Thermal Power Plants'
-        },
-        {
-            logo: <PiSolarPanel className={`text-[#FFA07A]  bg-[#FFA07A] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
-            link: '/solutions/solarpark',
-            title: 'Solar Parks'
-        }
-    ]
 
     const CorporateDropdown = [
         {
@@ -173,6 +202,14 @@ const Navbar = () => {
             title: 'Support'
         }
     ]
+
+    if (loading) {
+        return (
+            <div className="flex justify-center items-center h-64">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500" />
+            </div>
+        )
+    }
 
     return (
         <div className="w-screen  text-xl">
@@ -261,7 +298,7 @@ const Navbar = () => {
                                                     className="w-[300px]">
                                                     <div className="flex w-full gap-[10px] mb-2 items-center hover:bg-gray-50 p-2 rounded-lg transition-colors duration-200">
                                                         <div className="flex items-center justify-center text-3xl">{item.logo}</div>
-                                                        <h1>{item.title}</h1>
+                                                        <h1>{item.subcategories}</h1>
                                                     </div>
                                                 </Link>
                                             </motion.div>

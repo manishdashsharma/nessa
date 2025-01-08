@@ -8,6 +8,7 @@ import { trendingProductData } from './TrendingProductConfig';
 import { fetchProducts } from '../../services/api.services';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 export default function TrendingProductsSwipe() {
 
@@ -31,7 +32,6 @@ export default function TrendingProductsSwipe() {
         const response = await fetchProducts(params)
         if (response?.data) {
           setProducts(response.data.products)
-          setTotalCount(response.data.total || 0)
         }
       } catch (error) {
         console.error('Error fetching product data:', error)
@@ -44,6 +44,15 @@ export default function TrendingProductsSwipe() {
     fetchFilteredProducts()
   }, [])
 
+  
+    if (loading) {
+        return (
+            <div className="flex justify-center items-center h-64">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500" />
+            </div>
+        )
+    }
+
   return (
     <>
       <Swiper
@@ -51,7 +60,6 @@ export default function TrendingProductsSwipe() {
         spaceBetween={5}
         pagination={{
           dynamicBullets:true,
-          
           dynamicMainBullets:3,
           clickable: true,
         }}

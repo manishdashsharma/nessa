@@ -8,6 +8,7 @@ import { RelatedProductData } from './RelatedproductsConfig';
 import { fetchProducts } from '../../services/api.services';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 
 export default function RelatedProductsSwipe({product}) {
@@ -31,7 +32,7 @@ export default function RelatedProductsSwipe({product}) {
         const response = await fetchProducts(params)
         if (response?.data) {
           setProducts(response.data.products)
-          setTotalCount(response.data.total || 0)
+          // setTotalCount(response.data.total || 0)
         }
       } catch (error) {
         console.error('Error fetching product data:', error)

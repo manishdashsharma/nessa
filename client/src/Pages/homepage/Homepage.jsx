@@ -334,6 +334,7 @@ const Homepage = () => {
 
       {/* product range  */}
       <ProductRange />
+      
 
       {/* trusted by industries */}
       <div className="w-full h-fit px-[5vw] py-[5vw] flex flex-col items-center justify-center relative">

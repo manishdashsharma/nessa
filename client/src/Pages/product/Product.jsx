@@ -30,8 +30,12 @@ const Product = () => {
       try {
         setLoading(true)
         const response = await fetchProduct(id)
-        setproduct(response.data)
-        setSelectedImage
+        if(response){
+          setproduct(response.data)
+          setSelectedImage
+        }else{
+          toast.error('something went wrong')
+        }
       } catch (e) {
         toast.error(e.message)
       } finally {
@@ -40,7 +44,6 @@ const Product = () => {
     }
 
     fetchData()
-    console.log(product)
   }, [id])
 
   const chooseImage = (item) => {
@@ -100,9 +103,13 @@ const Product = () => {
 
 
   // Show loading spinner
-  if (loading) {
-    return <div className="text-center mt-10">Loading product details...</div>;
-  }
+ if (loading) {
+     return (
+         <div className="flex justify-center items-center h-64">
+             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500" />
+         </div>
+     )
+ }
 
   return (
     <div className="overflow-hidden text-lg">
@@ -183,7 +190,7 @@ const Product = () => {
 
         {
           product.feature.useCases.map((useCase, index) => (
-            index % 2 === 0 ? <div className="w-full min-h-[300px] py-16  max-md:pb-2 px-[5vw]  text-center">
+            index % 2 === 0 ? <div key={index} className="w-full min-h-[300px] py-16  max-md:pb-2 px-[5vw]  text-center">
               <div className="flex flex-col md:flex-row items-center justify-center gap-8">
                 <img
                   className="w-full md:w-1/2 h-auto  hidden max-md:block  shadow-lg"
@@ -204,7 +211,7 @@ const Product = () => {
                   alt={useCase.title + ' Image'}
                 />
               </div>
-            </div> : <div className="w-full min-h-[300px] pt-16  max-md:pb-2 px-[5vw]  text-center  relative ">
+            </div> : <div key={index} className="w-full min-h-[300px] pt-16  max-md:pb-2 px-[5vw]  text-center  relative ">
               <div className="flex flex-col md:flex-row items-center justify-center gap-8 z-[2] relative">
                 <img
                   className="w-full md:w-1/2 h-auto shadow-lg z-[2]"
