@@ -17,6 +17,7 @@ export const dashboardConfig = {
     { label: "Product", icon: FaBoxOpen, path: "/dashboard/product", sublabels: [] },
     { label: "Contact Us", icon: FaEnvelope, path: "/dashboard/contactus", sublabels: [] },
     { label: "Support", icon: FaLifeRing, path: "/dashboard/support", sublabels: [] },
+    { label: "Solution", icon: FaLifeRing, path: "/dashboard/solutions", sublabels: [] },
   ],
   settingItems: [
     // { label: "Account Setting", icon: FaCog, path: "/account-settings" },

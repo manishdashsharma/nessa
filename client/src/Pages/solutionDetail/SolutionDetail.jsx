@@ -1,5 +1,4 @@
 import { Link, useParams } from 'react-router-dom'
-import { solutionsdata } from '../solutions/SolutionsConfig'
 import { caseStudiesdata } from './SolutionDetailConfig'
 import partner1 from '../../assets/images/homepageimages/partner1.png'
 import partner2 from '../../assets/images/homepageimages/partner2.png'

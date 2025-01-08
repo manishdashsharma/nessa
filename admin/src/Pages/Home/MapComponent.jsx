@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 const MapComponent = ({ data }) => {
   useEffect(() => {
@@ -39,4 +40,16 @@ const MapComponent = ({ data }) => {
   );
 };
 
+MapComponent.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      latitude: PropTypes.number.isRequired,
+      longitude: PropTypes.number.isRequired,
+      cityName: PropTypes.string.isRequired,
+      countryName: PropTypes.string.isRequired,
+      ipAddress: PropTypes.string.isRequired,
+      regionName: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+};
 export default MapComponent;

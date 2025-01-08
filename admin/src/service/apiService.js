@@ -64,8 +64,6 @@ export const fetchContactUs = async ({ limit, offset, subject, isRead, isSpam, i
 }
 
 export const updateContactUs = async (token,contactId, data) => {
-    console.log(contactId);
-    
     const headers= {
         Authorization: `Bearer ${token}`
     }
@@ -82,3 +80,24 @@ export const signIn = async (email,password) => {
     });
     return response.data;
 };
+
+export const uploadFile = async (file) => {
+    const response = await servicesAxiosInstance.post('/v1/upload-file', file)
+    return response.data
+}
+
+export const saveSolution = async (token,data) => {
+    const headers= {
+        Authorization: `Bearer ${token}`
+    }
+    const response = await servicesAxiosInstance.post('/v1/save-solution', data, {
+        headers
+    });
+
+    return response.data;
+}
+
+export const querySolutions = async () => {
+    const response = await servicesAxiosInstance.get('/v1/query-solutions')
+    return response.data
+}
