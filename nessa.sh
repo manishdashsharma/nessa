@@ -69,7 +69,7 @@ start_services() {
   local services=$2
   
   if [ "$env" == "development" ]; then
-    docker-compose --env-file .env.development -f docker-compose.dev.yml up $services
+    docker compose --env-file .env.development -f docker-compose.dev.yml up $services
   elif [ "$env" == "production" ]; then
     docker-compose --env-file .env.production -f docker-compose.prod.yml up -d $services
   fi

@@ -6,6 +6,7 @@ import Dashboard from './Pages/DashBoard/DashBoard'
 import ProductPage from './Pages/Product/ProductPage'
 import SupportPage from './Pages/Support/SupportPage'
 import ContactUsPage from './Pages/ContactUS/ContactUsPage'
+import SolutionPage from './Pages/Solutions/SolutionPage'
 
 const App = () => {
     return (
@@ -18,6 +19,7 @@ const App = () => {
                     <Route path="product" element={<ProductPage />} />
                     <Route path="support" element={<SupportPage />} />
                     <Route path="contactus" element={<ContactUsPage />} />
+                    <Route path="solutions" element={<SolutionPage />} />
                 </Route>
             </Routes>
         </>

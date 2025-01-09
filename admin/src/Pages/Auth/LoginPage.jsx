@@ -7,8 +7,8 @@ import { signIn } from '../../service/apiService';
 
 
 const LoginPage = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('info@quicker.in');
+  const [password, setPassword] = useState('password123');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate()
 
