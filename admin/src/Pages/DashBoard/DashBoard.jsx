@@ -1,18 +1,19 @@
 import { useEffect, useState } from "react";
-// import { Settings } from "lucide-react";
 import { useNavigate, Outlet } from "react-router-dom";
 import { dashboardConfig } from "./dashBoardConfig";
-
+import { isTokenExpired } from "../../utils/utils";
 
 const Dashboard = () => {
-  // const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openSubmenus, setOpenSubmenus] = useState({});
   const navigate = useNavigate();
 
-  // const toggleSettings = () => {
-  //   setIsSettingsOpen((prev) => !prev);
-  // };
+  useEffect(() => {
+    const token = localStorage.getItem('accessToken');
+    if (!token || isTokenExpired(token)) {
+      navigate('/');
+    }
+  }, [navigate]);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen((prev) => !prev);
@@ -25,24 +26,10 @@ const Dashboard = () => {
     }));
   };
 
-  useEffect(() => {
-    const token = localStorage.getItem('accessToken');
-    if (!token) {
-        navigate('/');
-    }
-}, [navigate]);
-
-  // const handleSettingItemClick = (item) => {
-  //   if (item.path.startsWith("http")) {
-  //     window.open(item.path, "_blank");
-  //   } else if (item.path === "/signin") {
-  //     navigate("/signin");
-  //   } else {
-  //     navigate(`/dashboard${item.path}`);
-  //   }
-  //   setIsMobileMenuOpen(false);
-  //   setIsSettingsOpen(false);
-  // };
+  const handleLogout = () => {
+    localStorage.removeItem('accessToken');
+    navigate('/');
+  };
 
   return (
     <div className="flex min-h-screen">
@@ -108,30 +95,15 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* <div className="p-4">
-          <hr className="border-gray-600 mb-2" />
-          <div
-            className="flex items-center text-sm py-3 px-4 cursor-pointer hover:bg-orange-600	 hover:rounded-xl transition-all"
-            onClick={toggleSettings}
+        {/* Logout Button */}
+        <div className="p-4 mt-auto">
+          <button
+            onClick={handleLogout}
+            className="w-full py-2 px-4 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-all"
           >
-            <Settings className="w-5 h-5 mr-3" />
-            <span>Settings</span>
-          </div>
-          {isSettingsOpen && (
-            <div className="flex flex-col mt-2 bg-gray-700 rounded-md text-sm p-2">
-              {dashboardConfig.settingItems.map((item, index) => (
-                <div
-                  key={index}
-                  className="flex items-center p-2 cursor-pointer hover:bg-orange-600 hover:rounded-xl transition-all"
-                  onClick={() => handleSettingItemClick(item)}
-                >
-                  <item.icon className="w-5 h-5 mr-3" />
-                  <span>{item.label}</span>
-                </div>
-              ))}
-            </div>
-          )}
-        </div> */}
+            Logout
+          </button>
+        </div>
       </aside>
 
       <main className="flex-1 overflow-y-auto h-screen scrollbar-hide">

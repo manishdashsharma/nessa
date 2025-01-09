@@ -101,3 +101,14 @@ export const querySolutions = async () => {
     const response = await servicesAxiosInstance.get('/v1/query-solutions')
     return response.data
 }
+
+export const addProduct = async (token,data) => {
+    const headers= {
+        Authorization: `Bearer ${token}`
+    }
+    const response = await servicesAxiosInstance.post('/v1/add-product', data, {
+        headers
+    });
+
+    return response.data;   
+}

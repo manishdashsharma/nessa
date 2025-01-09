@@ -90,13 +90,12 @@ const SolutionPage = () => {
             )}
             
 
-            <div className="flex justify-center mt-6">
+            <div className="flex justify-center mt-8">
                 <Pagination
                     count={Math.ceil(solutions.length / itemsPerPage)}
                     page={currentPage}
                     onChange={handlePageChange}
                     color="primary"
-                    shape="rounded"
                 />
             </div>
 
