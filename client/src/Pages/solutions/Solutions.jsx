@@ -8,6 +8,7 @@ import SideComponent from '../../Components/sideComponent/SideComponent'
 import { useEffect, useState } from 'react'
 import { allSolutions } from '../../services/api.services'
 import TrendingProductsSwipe from '../../Components/trendingProducts/TrendingProductsSwiper'
+import toast from 'react-hot-toast'
 
 const Solutions = () => {
     const [loading, setloading] = useState(true)

@@ -66,7 +66,7 @@ const SideComponent = () => {
                       animate={{ 
                         opacity: 1, 
                         x: 0, 
-                        width: '180px',
+                        width: '200px',
                         transition: {
                           duration: 0.3,
                           ease: 'easeOut'

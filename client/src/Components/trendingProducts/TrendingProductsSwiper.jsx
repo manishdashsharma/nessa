@@ -7,7 +7,7 @@ import { Pagination, Navigation } from 'swiper/modules';
 import { trendingProductData } from './TrendingProductConfig';
 import { fetchProducts } from '../../services/api.services';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
 export default function TrendingProductsSwipe() {
@@ -88,8 +88,11 @@ export default function TrendingProductsSwipe() {
         className="mySwiper mt-[40px]   "
       >
         {products.map((product, index) => (
+          
           <SwiperSlide key={index} className="  ">
-            <div className="h-[400px]  xl:w-[22vw]  max-[850px]:w-[33vw] max-[640px]:w-[50vw] w-full max-sm:flex max-sm:flex-col max-sm:items-center  mb-[40px]  p-[10px]  border-[2px] bg-white border-[#d6d0d0] ">
+      
+            <div className=" h-[400px] w-full max-sm:flex max-sm:flex-col max-sm:items-center  mb-[40px]  p-[10px]  border-[2px] bg-white border-[#d6d0d0] ">
+              <Link to={`/product/${product._id}`} className='w-full h-full '>
               <img
                 className=" mb-[10px] h-[70%] object-cover"
                 src={product.productImageurl}
@@ -97,7 +100,11 @@ export default function TrendingProductsSwipe() {
               />
               <h1 className='text-sm'>{product.categories}- {product.subcategories}</h1>
               <h1 className="mt-[10px] text-xl">{product.name}</h1>
+              
+              </Link>
             </div>
+
+            
           </SwiperSlide>
         ))}
       </Swiper>

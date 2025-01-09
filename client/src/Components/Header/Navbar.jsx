@@ -18,6 +18,7 @@ import { PiSolarPanel } from 'react-icons/pi'
 import { AnimatePresence, motion } from 'framer-motion'
 import { GrResources } from 'react-icons/gr'
 import { allSolutions } from '../../services/api.services'
+import toast from 'react-hot-toast'
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -100,7 +101,7 @@ const Navbar = () => {
                           const matchingSolution = response.data.find((solution) => solution.subcategories === item.subcategories)
                           return {
                               ...item,
-                              link: matchingSolution ? `/solutions/${matchingSolution._id}` : '/'
+                              link: matchingSolution ? `/solutions/${matchingSolution._id}` : ''
                           }
                       })
                   })
@@ -179,6 +180,13 @@ const Navbar = () => {
         })
     }
 
+    
+    const handleSolutionClick = (e, link) => {
+        if (!link) {
+            e.preventDefault()
+            toast.error('Data not available for this solution')
+        }
+    }
 
     const CorporateDropdown = [
         {
@@ -262,8 +270,17 @@ const Navbar = () => {
                             className="text-black">
                             Home
                         </Link>
-                        <div onMouseEnter={() => { setsoluitonOpen(true); setcorporateOpen(false) }} onMouseLeave={() => { setsoluitonOpen(false); setcorporateOpen(false) }} className="text-black flex items-center gap-1 relative">
-                            <div  className=" w-full justify-between px-4 flex items-center gap-1 cursor-pointer">
+                        <div
+                            onMouseEnter={() => {
+                                setsoluitonOpen(true)
+                                setcorporateOpen(false)
+                            }}
+                            onMouseLeave={() => {
+                                setsoluitonOpen(false)
+                                setcorporateOpen(false)
+                            }}
+                            className="text-black flex items-center gap-1 relative">
+                            <div className=" w-full justify-between px-4 flex items-center gap-1 cursor-pointer">
                                 <Link
                                     to="/solutions"
                                     className="">
@@ -272,10 +289,7 @@ const Navbar = () => {
                                 <motion.div
                                     animate={{ rotate: soluitonOpen ? 180 : 0 }}
                                     transition={{ duration: 0.2 }}>
-                                    <IoIosArrowDown
-                                      
-                                        className="w-5 h-5 text-black "
-                                    />
+                                    <IoIosArrowDown className="w-5 h-5 text-black " />
                                 </motion.div>
                             </div>
                             <AnimatePresence>
@@ -295,6 +309,7 @@ const Navbar = () => {
                                                 animate="visible">
                                                 <Link
                                                     to={item.link}
+                                                    onClick={(e) => handleSolutionClick(e, item.link)}
                                                     className="w-[300px]">
                                                     <div className="flex w-full gap-[10px] mb-2 items-center hover:bg-gray-50 p-2 rounded-lg transition-colors duration-200">
                                                         <div className="flex items-center justify-center text-3xl">{item.logo}</div>
@@ -312,15 +327,21 @@ const Navbar = () => {
                             className="text-black flex items-center gap-1">
                             Products
                         </Link>
-                        <div onMouseEnter={() => {setcorporateOpen(true); setsoluitonOpen(false)}} onMouseLeave={() => {setcorporateOpen(false); setsoluitonOpen(false)}} className="text-black flex items-center gap-1 relative cursor-pointer">
+                        <div
+                            onMouseEnter={() => {
+                                setcorporateOpen(true)
+                                setsoluitonOpen(false)
+                            }}
+                            onMouseLeave={() => {
+                                setcorporateOpen(false)
+                                setsoluitonOpen(false)
+                            }}
+                            className="text-black flex items-center gap-1 relative cursor-pointer">
                             Corporates
                             <motion.div
                                 animate={{ rotate: corporateOpen ? 180 : 0 }}
                                 transition={{ duration: 0.2 }}>
-                                <IoIosArrowDown
-                                   
-                                    className="w-5 h-5 text-black"
-                                />
+                                <IoIosArrowDown className="w-5 h-5 text-black" />
                             </motion.div>
                             <AnimatePresence>
                                 {corporateOpen && (
@@ -387,9 +408,11 @@ const Navbar = () => {
                             Home
                         </Link>
                         <div className="text-black relative">
-                            <div onClick={() => {
-                                setsoluitonOpen(!soluitonOpen)
-                            }} className=" w-full justify-between px-4 flex items-center gap-1 cursor-pointer">
+                            <div
+                                onClick={() => {
+                                    setsoluitonOpen(!soluitonOpen)
+                                }}
+                                className=" w-full justify-between px-4 flex items-center gap-1 cursor-pointer">
                                 <Link
                                     to="/solutions"
                                     className="">
@@ -399,10 +422,7 @@ const Navbar = () => {
                                 <motion.div
                                     animate={{ rotate: soluitonOpen ? 180 : 0 }}
                                     transition={{ duration: 0.2 }}>
-                                    <IoIosArrowDown
-                                        
-                                        className="w-5 h-5 text-black "
-                                    />
+                                    <IoIosArrowDown className="w-5 h-5 text-black " />
                                 </motion.div>
                             </div>
                             <AnimatePresence>
@@ -440,19 +460,16 @@ const Navbar = () => {
                             Products
                         </Link>
                         <div className="text-black relative">
-                            <div onClick={() => {
-                                setcorporateOpen(!corporateOpen)
-                            }} className=" w-full justify-between px-4 flex items-center gap-1 cursor-pointer">
-                                <div className="">
-                                    Corporates
-                                </div>
+                            <div
+                                onClick={() => {
+                                    setcorporateOpen(!corporateOpen)
+                                }}
+                                className=" w-full justify-between px-4 flex items-center gap-1 cursor-pointer">
+                                <div className="">Corporates</div>
                                 <motion.div
                                     animate={{ rotate: corporateOpen ? 180 : 0 }}
                                     transition={{ duration: 0.2 }}>
-                                    <IoIosArrowDown
-                                       
-                                        className="w-5 h-5 text-black cursor-pointer"
-                                    />
+                                    <IoIosArrowDown className="w-5 h-5 text-black cursor-pointer" />
                                 </motion.div>
                             </div>
                             <AnimatePresence>

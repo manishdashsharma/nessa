@@ -1,42 +1,40 @@
-
 import React, { useEffect, useState } from 'react'
 import { FaChevronUp, FaChevronDown } from 'react-icons/fa'
-import {  fetchProducts, increaseIsEnquired } from '../../services/api.services'
+import { fetchProducts, increaseIsEnquired } from '../../services/api.services'
 import { motion, AnimatePresence } from 'framer-motion'
 import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
-
-
+import { IoIosArrowForward } from 'react-icons/io'
+import { IoIosArrowBack } from 'react-icons/io'
 
 const categories = {
-     'AC Lighting': [
-         'Street Light',
-         'Flood Light',
-         'Highway Light',
-         'Well Glass Light',
-         'Fission LED Street Light',
-         'Fission Flood Light',
-         'AC High Mast'
-     ],
-     Electronics: ['Drivers', 'Solar Charge Controllers'],
-     Solar: [
-         'Semi Integrated Solar',
-         'LED Street Light (Two in One)',
-         'Integrated Solar',
-         'LED Street Light (All in One)',
-         'Solar LED Street Light',
-         'Solar Pumps',
-         'Solar Roof Top'
-     ],
-     'Hybrid Lights': ['Hybrid Solar Street Light'],
-     'Indoor Lighting': ['Surface', 'Panel', 'Downlight', 'Tube Light'],
-     Solutions: []
- }
+    'AC Lighting': [
+        'Street Light',
+        'Flood Light',
+        'Highway Light',
+        'Well Glass Light',
+        'Fission LED Street Light',
+        'Fission Flood Light',
+        'AC High Mast'
+    ],
+    Electronics: ['Drivers', 'Solar Charge Controllers'],
+    Solar: [
+        'Semi Integrated Solar',
+        'LED Street Light (Two in One)',
+        'Integrated Solar',
+        'LED Street Light (All in One)',
+        'Solar LED Street Light',
+        'Solar Pumps',
+        'Solar Roof Top'
+    ],
+    'Hybrid Lights': ['Hybrid Solar Street Light'],
+    'Indoor Lighting': ['Surface', 'Panel', 'Downlight', 'Tube Light'],
+    Solutions: []
+}
 
 const ITEMS_PER_PAGE = 12
 
 export default function ShowProducts() {
-    
     const navigate = useNavigate()
 
     const [products, setProducts] = useState([])
@@ -48,8 +46,6 @@ export default function ShowProducts() {
     const [selectedFilters, setSelectedFilters] = useState([])
     const [loadingProduct, setLoadingProduct] = useState(null)
     const [totalCount, setTotalCount] = useState(0)
- 
-
 
     useEffect(() => {
         const fetchFilteredProducts = async () => {
@@ -58,7 +54,7 @@ export default function ShowProducts() {
                 const params = {
                     limit: ITEMS_PER_PAGE,
                     offset: (currentPage - 1) * ITEMS_PER_PAGE,
-                    query:'required',
+                    query: 'required',
                     subcategories: selectedFilters.length > 0 ? selectedFilters : undefined
                 }
 
@@ -142,9 +138,9 @@ export default function ShowProducts() {
                                             exit={{ height: 0, opacity: 0 }}
                                             transition={{ duration: 0.2 }}
                                             className="space-y-2 ml-2 overflow-hidden">
-                                            {subcategories.map((subcategory) => (
+                                            {subcategories.map((subcategory, index) => (
                                                 <label
-                                                    key={subcategory}
+                                                    key={index}
                                                     className="flex items-center space-x-2 cursor-pointer">
                                                     <input
                                                         type="checkbox"
@@ -164,81 +160,89 @@ export default function ShowProducts() {
                 </div>
 
                 {/* Product Grid */}
-                <div className="flex-1">
-                    <p className="text-lg text-gray-600 mb-4">
-                        Showing {(currentPage - 1) * ITEMS_PER_PAGE + 1}-{Math.min(currentPage * ITEMS_PER_PAGE, totalCount)} Results from total{' '}
-                        {totalCount}
-                    </p>
 
-                    {loading ? (
-                        <div className="flex justify-center items-center h-64">
-                            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500" />
+                {products.length > 0 ? (
+                    <div className="flex-1">
+                        <p className="text-lg text-gray-600 mb-4">
+                            Showing {(currentPage - 1) * ITEMS_PER_PAGE + 1}-{Math.min(currentPage * ITEMS_PER_PAGE, totalCount)} Results from total{' '}
+                            {totalCount}
+                        </p>
+
+                        {loading ? (
+                            <div className="flex justify-center items-center h-64">
+                                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500" />
+                            </div>
+                        ) : (
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                {products.map((product) => (
+                                    <motion.div
+                                        key={product.id}
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        transition={{ duration: 0.2 }}
+                                        onClick={() => navigate(`/product/${product._id}`)}
+                                        className="bg-gray-100 rounded-lg p-4 flex flex-col justify-between">
+                                        <img
+                                            src={product.image}
+                                            alt={product.name}
+                                            className="w-full h-48 object-contain rounded-lg mb-4"
+                                        />
+                                        <div className="text-sm text-gray-600 mb-1">
+                                            {product.categories} - {product.subcategories}
+                                        </div>
+                                        <h3 className="text-lg font-medium mb-2">{product.name}</h3>
+                                        <button
+                                            onClick={() => enquireAdd(product._id)}
+                                            className={`w-full bg-white border border-blue-500 text-blue-500 rounded-[50px] py-2 transition-colors ${
+                                                loadingProduct === product._id ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-50'
+                                            }`}
+                                            disabled={loadingProduct === product._id}>
+                                            {loadingProduct === product._id ? 'Loading...' : 'Enquire Now'}
+                                        </button>
+                                    </motion.div>
+                                ))}
+                            </div>
+                        )}
+
+                        {/* Pagination */}
+
+                        <div className="flex justify-center  items-center space-x-2 mt-8">
+                            <button
+                                onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+                                disabled={currentPage === 1}
+                                className="  w-8 h-8 flex  items-center justify-center  rounded-full disabled:opacity-50 hover:bg-gray-300">
+                                <IoIosArrowBack />
+                            </button>
+
+                            {Array.from({ length: totalPages }, (_, i) => i + 1)
+                                .filter((page) => page === 1 || page === totalPages || Math.abs(currentPage - page) <= 2)
+                                .map((page, index, array) => (
+                                    <React.Fragment key={page}>
+                                        {index > 0 && array[index - 1] !== page - 1 && <span className="px-2">...</span>}
+                                        <button
+                                            onClick={() => setCurrentPage(page)}
+                                            className={`w-8 h-8  rounded-full ${currentPage === page ? 'bg-blue-500 text-white' : ' hover:bg-gray-300'}`}>
+                                            {page}
+                                        </button>
+                                    </React.Fragment>
+                                ))}
+
+                            <button
+                                onClick={() => {
+                                    setCurrentPage((p) => Math.min(totalPages, p + 1))
+                                }}
+                                disabled={currentPage === totalPages}
+                                className="  w-8 h-8  flex items-center justify-center  rounded-full disabled:opacity-50 hover:bg-gray-300">
+                                <IoIosArrowForward />
+                            </button>
                         </div>
-                    ) : (
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {products.map((product) => (
-                                <motion.div
-                                    key={product.id}
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    transition={{ duration: 0.2 }}
-                                    onClick={()=>navigate(`/product/${product._id}`)}
-                                    className="bg-gray-100 rounded-lg p-4 flex flex-col justify-between">
-                                    <img
-                                        src={product.image}
-                                        alt={product.name}
-                                        className="w-full h-48 object-contain rounded-lg mb-4"
-                                    />
-                                    <div className="text-sm text-gray-600 mb-1">
-                                        {product.categories} - {product.subcategories}
-                                    </div>
-                                    <h3 className="text-lg font-medium mb-2">{product.name}</h3>
-                                    <button
-                                        onClick={() => enquireAdd(product._id)}
-                                        className={`w-full bg-white border border-blue-500 text-blue-500 rounded-[50px] py-2 transition-colors ${
-                                            loadingProduct === product._id ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-50'
-                                        }`}
-                                        disabled={loadingProduct === product._id}>
-                                        {loadingProduct === product._id ? 'Loading...' : 'Enquire Now'}
-                                    </button>
-                                </motion.div>
-                                
-                            ))}
-                            
-                        </div>
-                        
-                    )}
-
-                    {/* Pagination */}
-                    <div className="flex justify-center items-center space-x-2 mt-8">
-                        <button
-                            onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
-                            disabled={currentPage === 1}
-                            className="px-3 py-1 border rounded disabled:opacity-50 hover:bg-gray-50">
-                            Previous
-                        </button>
-
-                        {Array.from({ length: totalPages }, (_, i) => i + 1)
-                            .filter((page) => page === 1 || page === totalPages || Math.abs(currentPage - page) <= 2)
-                            .map((page, index, array) => (
-                                <React.Fragment key={page}>
-                                    {index > 0 && array[index - 1] !== page - 1 && <span className="px-2">...</span>}
-                                    <button
-                                        onClick={() => setCurrentPage(page)}
-                                        className={`w-8 h-8 rounded ${currentPage === page ? 'bg-blue-500 text-white' : 'border hover:bg-gray-50'}`}>
-                                        {page}
-                                    </button>
-                                </React.Fragment>
-                            ))}
-
-                        <button
-                            onClick={() => {setCurrentPage((p) => Math.min(totalPages, p + 1)); }}
-                            disabled={currentPage === totalPages}
-                            className="px-3 py-1 border rounded disabled:opacity-50 hover:bg-gray-50">
-                            Next
-                        </button>
                     </div>
-                </div>
+                ) : (
+                    <div className="w-full h-[100px] text-center flex items-center text-gray-500 font-semibold  justify-center">
+                        {' '}
+                        No Product Available{' '}
+                    </div>
+                )}
             </div>
         </div>
     )
