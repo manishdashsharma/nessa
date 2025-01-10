@@ -168,6 +168,15 @@ export const ValidateUpdateSolution = Joi.object({
         })
     ).optional()
 });
+
+export const ValidateTestimonial = Joi.object({
+    name: Joi.string().required(),
+    company: Joi.string().required(),
+    description: Joi.string().required(),
+    image: Joi.string().uri().required(),
+    isPublished: Joi.boolean().optional()
+})
+
 export const validateJoiSchema = (schema, value) => {
     const result = schema.validate(value);
     return {

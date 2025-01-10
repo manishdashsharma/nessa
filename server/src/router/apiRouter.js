@@ -34,6 +34,9 @@ router.route('/save-solution').post(authentication,authorization(),apiController
 router.route('/query-solutions').get(apiController.querySolutions)
 router.route('/query-solution/:id').get(apiController.querySolution)
 router.route('/update-solution/:id').post(apiController.updateSolutions)
+router.route('/add-testimonial').post(authentication,authorization(),apiController.saveTestimonial)
+router.route('/query-testimonials').get(apiController.queryTestimonials)
+router.route('/update-testimonial/:id').get(apiController.updateTestimonials)
 
 
 

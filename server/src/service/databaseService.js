@@ -6,6 +6,7 @@ import utilsModel from '../model/utilsModel.js'
 import contactUsModel from '../model/contactUsModel.js'
 import supportModel from '../model/supportEnquiryModel.js'
 import solutionModel from '../model/solutionModel.js'
+import testimonialModel from '../model/testimonialModel.js'
 
 export default {
     connect: async () => {
@@ -97,6 +98,22 @@ export default {
     },
     updateSolutionData: (id,data) => {
         return solutionModel.findByIdAndUpdate(id, data, { new: true });
+    },
+    saveTestimonialData: (payload) => {
+        return testimonialModel.create(payload)
+    },
+    queryAllTestimonials:() => {
+        return testimonialModel.find()
+    },
+    updateTestimonialData: async (id) => {
+        const testimonial = await testimonialModel.findById(id);
+        
+        if (testimonial) {
+            testimonial.isPublished = !testimonial.isPublished;
+            return await testimonial.save();
+        }
+        
+        return null;
     }
 }
 

@@ -4,7 +4,7 @@ import httpError from '../util/httpError.js'
 import quicker from '../util/quicker.js'
 import databaseService from '../service/databaseService.js'
 import { uploadOnCloudinary } from '../service/cloudinaryService.js'
-import { ValidateAddProduct, ValidateAddUtilsData, ValidateContactUs, validateJoiSchema, ValidateLogin, ValidateSoulution, ValidateSupportEnquiry, ValidateUpdateContactUs, ValidateUpdateProduct, ValidateUpdateSolution, ValidateUpdateSupportEnquiry, ValidateUpdateUtilsData } from '../service/validationService.js'
+import { ValidateAddProduct, ValidateAddUtilsData, ValidateContactUs, validateJoiSchema, ValidateLogin, ValidateSoulution, ValidateSupportEnquiry, ValidateTestimonial, ValidateUpdateContactUs, ValidateUpdateProduct, ValidateUpdateSolution, ValidateUpdateSupportEnquiry, ValidateUpdateUtilsData } from '../service/validationService.js'
 import { allowedUsers, EApplicationEnvironment } from '../constant/application.js'
 import config from '../config/config.js'
 
@@ -652,6 +652,58 @@ export default {
         } catch (err) {
             httpError(next, err, req, 500);
         }
-    }
+    },
+    saveTestimonial: async (req, res, next) => {
+        try {
+            const { body } = req
+
+            const { error, value } = validateJoiSchema(ValidateTestimonial, body)
+
+            if (error) {
+                return httpError(next, error, req, 422)
+            }
+
+            const newTestimonial = await databaseService.saveTestimonialData(value)
+
+            if(!newTestimonial){
+                return httpError(next, new Error(responseMessage.FAILED_TO_SAVE), req, 500)
+            }
+
+            httpResponse(req, res, 200, responseMessage.SUCCESS)
+        } catch (err) {
+            httpError(next, err, req, 500)
+        }
+    },
+    queryTestimonials: async (req, res, next) => {
+        try {
+            const testimonialsList = await databaseService.queryAllTestimonials();
+
+            console.log(testimonialsList);
+            
+
+            if(!testimonialsList){
+                return httpError(next, new Error(responseMessage.NOT_FOUND("Data")), req, 404)
+            }
+            httpResponse(req, res, 200, responseMessage.SUCCESS, testimonialsList)
+        } catch (err) {
+            console.error('Error:', err);
+            httpError(next, err, req, 500);
+        }
+    },
+    updateTestimonials: async (req, res, next) => {
+        try {
+            const { id } = req.params;
+            
+            const updatedTestimonial = await databaseService.updateTestimonialData(id);
+        
+            if (!updatedTestimonial) {
+                return httpError(next, new Error(responseMessage.NOT_FOUND("Data")), req, 404)
+            }
+
+            httpResponse(req, res, 200, responseMessage.SUCCESS)
+        } catch (err) {
+            httpError(next, err, req, 500)
+        }
+    },
 }
 
