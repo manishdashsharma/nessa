@@ -20,6 +20,7 @@ router.route('/update-product/:id').post(authentication,authorization(),apiContr
 router.route('/increase-enquired/:id').get(apiController.increaseIsEnquired)
 router.route('/save-utils-data').post(apiController.addUtilsData)
 router.route('/fetch-utils-data/:id').get(apiController.fetchUtilsData)
+router.route('/fetch-all-utils').get(apiController.fetchUtilsAllData)
 router.route('/update-utils-data/:id').post(apiController.updateUtilsData)
 router.route('/remove-utils-data/:id').delete(apiController.removeUtilsData)
 router.route('/save-contact-us-data').post(apiController.saveContactUs)

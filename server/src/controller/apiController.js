@@ -339,6 +339,19 @@ export default {
             httpError(next, err, req, 500);
         }
     },
+    fetchUtilsAllData: async (req, res, next) => {
+        try {
+            const utilsData = await databaseService.fetchAllUtils();
+            
+            if (!utilsData) {
+                return httpError(next, new Error(responseMessage.NOT_FOUND("Data")), req, 404)
+            }
+
+            httpResponse(req, res, 200, responseMessage.SUCCESS,utilsData)
+        } catch (err) {
+            httpError(next, err, req, 500)
+        }
+    },
     saveContactUs: async (req, res, next) => {
         try {
             const { body } = req

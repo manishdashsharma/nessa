@@ -57,6 +57,9 @@ export default {
     removeUtilsData: (id) =>{
         return utilsModel.findByIdAndDelete(id);
     },
+    fetchAllUtils: () =>{
+        return utilsModel.find()
+    },
     saveContactUs: (payload) => {
         return contactUsModel.create(payload)
     },
