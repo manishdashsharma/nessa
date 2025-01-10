@@ -13,7 +13,7 @@ import OfficeImage from '../../assets/images/products/office.png';
 import bankImage from '../../assets/images/products/bank.png';
 import industriesImage from '../../assets/images/products/industry.png';
 import ShareButton from '../../Components/ShareButton';
-import Footer from '../Welcome/Footer';
+import Footer from '../../Components/Footer';
 
 const Product = () => {
 
@@ -227,7 +227,7 @@ const Product = () => {
               )}
           </div>
 
-          <div className="">
+          <div className=" mb-10">
               {/* related products */}
               <div className="px-[5vw] flex flex-col items-center  gap-2 my-[50px]">
                   <div className=" text-4xl font-semibold leading-snug text-center text-black z-[2] relative">

@@ -68,3 +68,9 @@ export const queryTestimonial = async () => {
     const response = await servicesAxiosInstance.get('/v1/query-testimonials')
     return response.data
 }
+
+export const fetchUtilsData = async (id) => {
+    const response = await servicesAxiosInstance.get(`/v1/fetch-utils-data/${id}`)
+    return response.data
+
+}

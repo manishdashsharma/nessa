@@ -6,10 +6,11 @@ import experties2 from '../../assets/images/solutionsImages/experties2.png'
 import Navbar from '../../Components/Header/Navbar'
 import SideComponent from '../../Components/sideComponent/SideComponent'
 import { useEffect, useState } from 'react'
-import { allSolutions } from '../../services/api.services'
+import { allSolutions, fetchUtilsData } from '../../services/api.services'
 import TrendingProductsSwipe from '../../Components/trendingProducts/TrendingProductsSwiper'
 import toast from 'react-hot-toast'
 import Footer from '../../Components/Footer'
+import { solutionDetailPage } from '../../Utils/Utils'
 
 const Solutions = () => {
     const [loading, setloading] = useState(true)
@@ -24,8 +25,8 @@ const Solutions = () => {
                     setsolutions(response.data)
                 }
             } catch (error) {
-                console.error('Error fetching product data:', error)
-                toast.error('Failed to load products')
+                console.error('Error fetching solutions data:', error)
+                toast.error('Failed to load solutions')
             } finally {
                 setloading(false)
             }
@@ -34,6 +35,8 @@ const Solutions = () => {
         fetchSolutions()
     }, [])
 
+
+  
     if (loading) {
         return (
             <div className="flex justify-center items-center h-64">
@@ -158,3 +161,5 @@ const Solutions = () => {
 }
 
 export default Solutions
+
+
