@@ -5,6 +5,7 @@ import Media from './Media';
 import hero from '../../assets/images/allProductsimages/hero.png';
 import Navbar from '../../Components/Header/Navbar';
 import SideComponent from '../../Components/sideComponent/SideComponent';
+import Footer from '../../Components/Footer';
 
 export const Resources = () => {
   return (
@@ -127,6 +128,8 @@ export const Resources = () => {
 
       {/* Media */} 
       <Media />
+
+      <Footer/>
     </div>
   );
 };

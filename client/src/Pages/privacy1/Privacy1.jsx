@@ -2,12 +2,13 @@
 import { privacyConfig } from './Privacy1Config'
 import Navbar from '../../Components/Header/Navbar';
 import SideComponent from '../../Components/sideComponent/SideComponent';
+import Footer from '../../Components/Footer';
 
 
 const Privacy1 = () => {
     
   return (
-    <div className="min-h-screen bg-white">
+    <div className="overflow-hidden bg-white">
     {/* Header */}
     <Navbar />
     <SideComponent />
@@ -28,6 +29,7 @@ const Privacy1 = () => {
         </section>
       ))}
     </div>
+    <Footer/>
   </div>
   )
 }

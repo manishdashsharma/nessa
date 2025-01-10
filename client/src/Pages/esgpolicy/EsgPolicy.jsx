@@ -1,3 +1,4 @@
+import Footer from '../../Components/Footer'
 import Navbar from '../../Components/Header/Navbar'
 import SideComponent from '../../Components/sideComponent/SideComponent'
 import { EsgPolicyConfig } from './EsgPolicyConfig'
@@ -6,7 +7,7 @@ const EsgPolicy = () => {
     
     
   return (
-    <div className="min-h-screen bg-white">
+    <div className="overflow-hidden bg-white">
     {/* Header */}
     <Navbar />
     <SideComponent />
@@ -27,6 +28,8 @@ const EsgPolicy = () => {
         </section>
       ))}
     </div>
+
+    <Footer/>
   </div>
   )
 }

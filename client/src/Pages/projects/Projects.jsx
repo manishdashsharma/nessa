@@ -5,6 +5,7 @@ import { projects } from './ProjectConfig';
 import hero from '../../assets/images/allProductsimages/hero.png';
 import Navbar from '../../Components/Header/Navbar';
 import SideComponent from '../../Components/sideComponent/SideComponent';
+import Footer from '../../Components/Footer';
 
 export const Projects = () => {
 
@@ -144,6 +145,7 @@ export const Projects = () => {
           ))}
         </div>
 
+          <Footer/>
         </div>
     
   );

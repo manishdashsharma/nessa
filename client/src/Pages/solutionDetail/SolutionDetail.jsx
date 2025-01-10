@@ -9,6 +9,7 @@ import PartnersReviewsSwiper from '../../Components/partnerreviews/PartnersRevie
 import { solutionData } from '../../services/api.services'
 import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
+import Footer from '../../Components/Footer'
 
 const SolutionDetail = () => {
     const { id  } = useParams() 
@@ -182,6 +183,8 @@ const SolutionDetail = () => {
 
             {/* partners review */}
             <PartnersReviewsSwiper />
+
+            <Footer/>
         </div>
     )
 }

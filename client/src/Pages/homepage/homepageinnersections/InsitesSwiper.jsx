@@ -101,7 +101,7 @@ export default function InsitesSwiper() {
       }}
       modules={[Pagination, Autoplay , Navigation]}
       className="mySwiper "
-      style={{paddingLeft:'50px', paddingRight:'50px'}}
+      style={{paddingLeft:'50px', paddingRight:'50px' ,height:'100%'}}
     >
       {slideData.map((slide, index) => (
         <SwiperSlide key={index} className='mb-[50px]'>

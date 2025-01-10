@@ -13,6 +13,7 @@ import OfficeImage from '../../assets/images/products/office.png';
 import bankImage from '../../assets/images/products/bank.png';
 import industriesImage from '../../assets/images/products/industry.png';
 import ShareButton from '../../Components/ShareButton';
+import Footer from '../Welcome/Footer';
 
 const Product = () => {
 
@@ -239,6 +240,8 @@ const Product = () => {
                   <RelatedProductsSwipe product={product} />
               </div>
           </div>
+
+          <Footer/>
       </div>
   )
 };

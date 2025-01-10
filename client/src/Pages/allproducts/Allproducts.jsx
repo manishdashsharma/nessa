@@ -3,6 +3,7 @@ import ShowProducts from './ShowProducts'
 import hero from '../../assets/images/allProductsimages/hero.png'
 import Navbar from '../../Components/Header/Navbar';
 import SideComponent from '../../Components/sideComponent/SideComponent';
+import Footer from '../../Components/Footer';
 
 const Allproducts = () => {
   return (
@@ -22,7 +23,9 @@ const Allproducts = () => {
           </h1>
         </div>
 
-        <ShowProducts/>
+        <ShowProducts />
+        <br />
+        <Footer/>
     </div>
   )
 }

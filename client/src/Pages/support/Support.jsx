@@ -9,6 +9,7 @@ import manual from '../../assets/images/supportImages/manual.png'
 import Navbar from '../../Components/Header/Navbar';
 import SideComponent from '../../Components/sideComponent/SideComponent';
 import { saveSupportEnquiry, uploadFile } from '../../services/api.services';
+import Footer from '../../Components/Footer';
 
 const StyleWrapper = styled.div`
   input[type="file"]::file-selector-button {
@@ -383,7 +384,7 @@ const Support = () => {
                     </div>
                 </div>
 
-                <div className="w-full h-[400px]">
+                <div className="w-full h-[400px] mb-10">
                     <iframe
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7348.649409568016!2d72.54749124151411!3d22.938265850794643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e859f9e9ee219%3A0x4762594d909ba9f2!2sNessa%20Illumination%20Technologies%20Pvt%20Ltd!5e0!3m2!1sen!2sin!4v1734817362201!5m2!1sen!2sin"
                         width="100%"
@@ -392,6 +393,8 @@ const Support = () => {
                         referrerPolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
+
+            <Footer/>
         </StyleWrapper>
     )
 }

@@ -19,6 +19,7 @@ import solarBasedLight from '../../assets/images/valueAddedServicesImages/solarB
 import villageStadiumLight from '../../assets/images/valueAddedServicesImages/villageStadiumLight.png';
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import Footer from '../../Components/Footer';
 
 export const ValueAddedServices = () => {
 
@@ -281,6 +282,7 @@ export const ValueAddedServices = () => {
                   ))}
               </div>
           </div>
+          <Footer/>
       </div>
   )
 };

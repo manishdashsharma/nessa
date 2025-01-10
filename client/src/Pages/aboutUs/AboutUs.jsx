@@ -20,6 +20,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
 import PartnersReviewsSwiper from '../../Components/partnerreviews/PartnersReviewsSwiper';
 import demoVideo from '../../assets/images/demoVideo.mp4';
+import Footer from '../../Components/Footer';
 
 
 
@@ -353,6 +354,8 @@ const AboutUs = () => {
 
       {/* partners review */}
       <PartnersReviewsSwiper/>
+
+      <Footer/>
     </div>
   );
 };

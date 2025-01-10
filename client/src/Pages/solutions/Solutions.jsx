@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react'
 import { allSolutions } from '../../services/api.services'
 import TrendingProductsSwipe from '../../Components/trendingProducts/TrendingProductsSwiper'
 import toast from 'react-hot-toast'
+import Footer from '../../Components/Footer'
 
 const Solutions = () => {
     const [loading, setloading] = useState(true)
@@ -147,9 +148,11 @@ const Solutions = () => {
                 </div>
             </div>
 
-            <div className="px-[4vw] ">
+            <div className="px-[4vw] mb-10 ">
                 <TrendingProductsSwipe />
             </div>
+
+            <Footer/>
         </div>
     )
 }

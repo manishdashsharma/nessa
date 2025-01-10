@@ -1,4 +1,5 @@
 
+import Footer from '../../Components/Footer'
 import Navbar from '../../Components/Header/Navbar'
 import SideComponent from '../../Components/sideComponent/SideComponent'
 import { termsConfig } from './TermsConfig'
@@ -6,7 +7,7 @@ import { termsConfig } from './TermsConfig'
 const Terms = () => {
     
   return (
-    <div className="min-h-screen bg-white">
+    <div className="w-full overflow-hidden bg-white">
     {/* Header */}
     <Navbar />
     <SideComponent />
@@ -27,6 +28,7 @@ const Terms = () => {
         </section>
       ))}
     </div>
+    <Footer/>
   </div>
   )
 }
