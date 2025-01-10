@@ -24,9 +24,9 @@ export const fetchSupportTickets = async ({ limit, offset, subject, isRead, isSp
     if (limit !== undefined) params.append('limit', limit);
     if (offset !== undefined) params.append('offset', offset);
     if (subject !== undefined) params.append('subject', subject);
-    if (isRead !== undefined) params.append('isread', isRead);
-    if (isSpam !== undefined) params.append('isspam', isSpam);
-    if (isSolved !== undefined) params.append('issolved', isSolved);
+    if (isRead !== undefined) params.append('isRead', isRead);
+    if (isSpam !== undefined) params.append('isSpam', isSpam);
+    if (isSolved !== undefined) params.append('isSolved', isSolved);
 
     const response = await servicesAxiosInstance.get(`/v1/query-support-enquiry-data/?${params.toString()}`,{
         headers
@@ -50,9 +50,9 @@ export const fetchContactUs = async ({ limit, offset, subject, isRead, isSpam, i
     if (limit !== undefined) params.append('limit', limit);
     if (offset !== undefined) params.append('offset', offset);
     if (subject !== undefined) params.append('subject', subject);
-    if (isRead !== undefined) params.append('isread', isRead);
-    if (isSpam !== undefined) params.append('isspam', isSpam);
-    if (isSolved !== undefined) params.append('issolved', isSolved);
+    if (isRead !== undefined) params.append('isRead', isRead);
+    if (isSpam !== undefined) params.append('isSpam', isSpam);
+    if (isSolved !== undefined) params.append('isSolved', isSolved);
 
     const headers= {
         Authorization: `Bearer ${token}`
@@ -111,4 +111,30 @@ export const addProduct = async (token,data) => {
     });
 
     return response.data;   
+}
+
+export const queryTestimonials = async() => {
+    const response = await servicesAxiosInstance.get('/v1/query-testimonials')
+    return response.data
+}
+
+export const updateTestimonialStatus = async (id,token) => {
+    const headers= {
+        Authorization: `Bearer ${token}`
+    }
+    const response = await servicesAxiosInstance.get(`/v1/update-testimonial/${id}`,{
+        headers
+    })
+    return response.data
+}
+
+export const saveTestimonials = async (token,data) => {
+    const headers= {
+        Authorization: `Bearer ${token}`
+    }
+    const response = await servicesAxiosInstance.post('/v1/add-testimonial', data, {
+        headers
+    });
+
+    return response.data;
 }

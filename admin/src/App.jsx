@@ -7,6 +7,7 @@ import ProductPage from './Pages/Product/ProductPage'
 import SupportPage from './Pages/Support/SupportPage'
 import ContactUsPage from './Pages/ContactUS/ContactUsPage'
 import SolutionPage from './Pages/Solutions/SolutionPage'
+import TestimonialPage from './Pages/Testomonials/TestinomialPage'
 
 const App = () => {
     return (
@@ -20,6 +21,7 @@ const App = () => {
                     <Route path="support" element={<SupportPage />} />
                     <Route path="contactus" element={<ContactUsPage />} />
                     <Route path="solutions" element={<SolutionPage />} />
+                    <Route path="testimonial" element={<TestimonialPage />} />
                 </Route>
             </Routes>
         </>
