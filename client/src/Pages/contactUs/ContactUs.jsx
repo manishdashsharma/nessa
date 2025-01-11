@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FaLocationDot, FaSquareFacebook } from 'react-icons/fa6'
 import { MdCall } from 'react-icons/md'
 import { MdEmail } from 'react-icons/md'
@@ -10,8 +10,10 @@ import airportpageposter from '../../assets/images/solutionsImages/airportpagepo
 import toast from 'react-hot-toast'
 import Navbar from '../../Components/Header/Navbar'
 import SideComponent from '../../Components/sideComponent/SideComponent'
-import { saveContactUs, uploadFile } from '../../services/api.services'
+import { fetchUtilsData, saveContactUs, uploadFile } from '../../services/api.services'
 import Footer from '../../Components/Footer'
+import { headQuarterAddressApi } from '../../Utils/Utils'
+import { Link } from 'react-router-dom'
 
 const StyleWrapper = styled.div`
     input[type='file']::file-selector-button {
@@ -173,6 +175,36 @@ const ContactUs = () => {
         }
     }
 
+    const [loading, setloading] = useState(false)
+    const [headQuarterData, setheadQuarterData] = useState([])
+    useEffect(() => {
+        const fetchAboutUsData = async () => {
+            try {
+                setloading(true)
+
+                const response = await fetchUtilsData(headQuarterAddressApi)
+                if (response?.data) {
+                    setheadQuarterData(response.data.utilsData)
+                }
+            } catch (error) {
+                console.error('Error fetching product data:', error)
+                toast.error('Failed to load products')
+            } finally {
+                setloading(false)
+            }
+        }
+
+        fetchAboutUsData()
+    }, [])
+
+    if (loading) {
+        return (
+            <div className="flex justify-center items-center h-64">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500" />
+            </div>
+        )
+    }
+
     return (
         <StyleWrapper>
             <div className="w-full overflow-hidden">
@@ -197,30 +229,30 @@ const ContactUs = () => {
                             <h1 className="text-4xl font-semibold">Headquater Address</h1>
                             <div className="flex items-center justify-center mt-5  gap-10">
                                 <FaLocationDot className="w-6 h-6" />
-                                <h1>36-A, Devraj Industrial Park, Pipalaj-Pirana Road, Ahmedabad-382405, Gujarat, India.</h1>
+                                <h1>{headQuarterData?.address || 'Address not available'}</h1>
                             </div>
                         </div>
                         <div className="flex justify-between mt-5 text-black  gap-5">
                             <div className="w-1/2 min-h-[100px] p-[20px] bg-blue-300 rounded-lg">
-                                <h1 className="font-semibold text-lg mb-2">Domestic inquiry</h1>
+                                <h1 className="font-semibold text-lg mb-2">Domestic Inquirey</h1>
                                 <div className="flex items-center gap-2">
                                     <MdCall />
-                                    <h1>+91-9375279778 / 8690779778</h1>
+                                    <h1>{headQuarterData?.domesticInquiry?.phoneNumber || 'N/A'}</h1>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <MdEmail />
-                                    <h1>sales@nessa.in</h1>
+                                    <h1>{headQuarterData?.domesticInquiry?.email || 'N/A'}</h1>
                                 </div>
                             </div>
                             <div className="w-1/2 min-h-[100px] p-[20px] bg-blue-300 rounded-lg">
                                 <h1 className="font-semibold text-lg mb-2">International inquiry</h1>
                                 <div className="flex items-center gap-2">
                                     <MdCall />
-                                    <h1>+91-9375279778</h1>
+                                    <h1>{headQuarterData?.internationalInquiry?.phoneNumber || 'N/A'}</h1>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <MdEmail />
-                                    <h1>sales@nessa.in</h1>
+                                    <h1>{headQuarterData?.internationalInquiry?.email || 'N/A'}</h1>
                                 </div>
                             </div>
                         </div>
@@ -229,22 +261,22 @@ const ContactUs = () => {
                                 <h1 className="font-semibold text-lg mb-2">Service inquiry</h1>
                                 <div className="flex items-center gap-2">
                                     <MdCall />
-                                    <h1>+91-9375279778</h1>
+                                    <h1>{headQuarterData?.serviceInquiry?.phoneNumber || 'N/A'}</h1>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <MdEmail />
-                                    <h1>sales@nessa.in</h1>
+                                    <h1>{headQuarterData?.serviceInquiry?.email || 'N/A'}</h1>
                                 </div>
                             </div>
                             <div className="w-1/2 min-h-[100px] p-[20px] bg-blue-300 rounded-lg">
                                 <h1 className="font-semibold text-lg mb-2">Career inquiry</h1>
                                 <div className="flex items-center gap-2">
                                     <MdCall />
-                                    <h1>+91-9375279778</h1>
+                                    <h1>{headQuarterData?.careerInquiry?.phoneNumber || 'N/A'}</h1>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <MdEmail />
-                                    <h1>sales@nessa.in</h1>
+                                    <h1>{headQuarterData?.careerInquiry?.email || 'N/A'}</h1>
                                 </div>
                             </div>
                         </div>
@@ -252,21 +284,76 @@ const ContactUs = () => {
                             <h1 className="font-semibold text-lg mb-2">CSR inquiry</h1>
                             <div className="flex items-center gap-2">
                                 <MdCall />
-                                <h1>+91-9375279778</h1>
+                                <h1>{headQuarterData?.csrInquiry?.phoneNumber || 'N/A'}</h1>
                             </div>
                             <div className="flex items-center gap-2">
                                 <MdEmail />
-                                <h1>sales@nessa.in</h1>
+                                <h1>{headQuarterData?.csrInquiry?.email || 'N/A'}</h1>
                             </div>
                         </div>
                         <div className=" w-[200px] h-[200px] z-[-1] rounded-full bg-yellow-400 absolute left-[-20px] bottom-[-80px] "></div>
                         <div className="w-[100px] z-[-2] h-[100px] bg-yellow-200 opacity-80 absolute left-[100px] bottom-[50px]  rounded-full"></div>
+                        <div className="w-full text-black min-h-[100px] mt-5 flex items-end justify-end gap-5 p-[20px] text-3xl rounded-lg">
+                            {Object.entries(headQuarterData?.socialMedia || {}).map(([key, value]) => {
+                                if (!value) return null // Skip if the value is empty or null
 
-                        <div className="w-full  text-black min-h-[100px]  mt-5 flex items-end justify-end gap-5 p-[20px] text-3xl  rounded-lg">
-                            <AiFillInstagram />
-                            <FaSquareXTwitter />
-                            <FaDiscord />
-                            <FaSquareFacebook />
+                                if (key === 'instagramLink') {
+                                    return (
+                                        <Link
+                                            key={key}
+                                            to={value}>
+                                            <AiFillInstagram />
+                                        </Link>
+                                    )
+                                }
+
+                                if (key === 'twitterLink') {
+                                    return (
+                                        <Link
+                                            key={key}
+                                            to={value}>
+                                            <FaSquareXTwitter />
+                                        </Link>
+                                    )
+                                }
+
+                                if (key === 'facebookLink') {
+                                    return (
+                                        <Link
+                                            key={key}
+                                            to={value}>
+                                            <FaSquareFacebook />
+                                        </Link>
+                                    )
+                                }
+
+                                if (key === 'discordLink') {
+                                    return (
+                                        <Link
+                                            key={key}
+                                            to={value}>
+                                            <FaDiscord />
+                                        </Link>
+                                    )
+                                }
+
+                                // For objects like "inkedinLink"
+                                if (typeof value === 'object' && value?.link) {
+                                    return (
+                                        <Link
+                                            key={key}
+                                            to={value.link}>
+                                            <img
+                                                className='w-8 h-8 object-contain'
+                                                src={value.icon}
+                                                alt={key}
+                                            />
+                                        </Link>
+                                    )
+                                }
+
+                                return null // Default case
+                            })}
                         </div>
                     </div>
 
@@ -392,7 +479,7 @@ const ContactUs = () => {
                         referrerPolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
-            <Footer/>
+            <Footer />
         </StyleWrapper>
     )
 }

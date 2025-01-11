@@ -1,4 +1,4 @@
-import  { useState } from 'react';
+import  { useEffect, useState } from 'react';
 import { MdCall, MdEmail } from 'react-icons/md';
 import { nessaServices } from './SupportConfig';
 import styled from 'styled-components';
@@ -8,8 +8,9 @@ import light from '../../assets/images/supportImages/light.png'
 import manual from '../../assets/images/supportImages/manual.png'
 import Navbar from '../../Components/Header/Navbar';
 import SideComponent from '../../Components/sideComponent/SideComponent';
-import { saveSupportEnquiry, uploadFile } from '../../services/api.services';
+import { fetchUtilsData, saveSupportEnquiry, uploadFile } from '../../services/api.services';
 import Footer from '../../Components/Footer';
+import { supportPageUtilsApi } from '../../Utils/Utils';
 
 const StyleWrapper = styled.div`
   input[type="file"]::file-selector-button {
@@ -172,6 +173,40 @@ const Support = () => {
            setIsSubmitting(false)
        }
    }
+
+
+   
+    const [loading, setloading] = useState(false)
+    const [supportData, setsupportData] = useState([])
+    useEffect(() => {
+        const fetchSupportData = async () => {
+            try {
+                setloading(true)
+
+                const response = await fetchUtilsData(supportPageUtilsApi)
+                if (response?.data) {
+                    setsupportData(response.data.utilsData)
+                }
+            } catch (error) {
+                console.error('Error fetching product data:', error)
+                toast.error('Failed to load products')
+            } finally {
+                setloading(false)
+            }
+        }
+
+        fetchSupportData()
+    }, [])
+
+    if (loading) {
+        return (
+            <div className="flex justify-center items-center h-64">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500" />
+            </div>
+        )
+    }
+
+
     return (
         <StyleWrapper>
             <div className="w-full overflow-hidden">
@@ -317,7 +352,7 @@ const Support = () => {
                             </div>
                             <div className="flex items-center gap-2">
                                 <MdCall />
-                                <h1>+91-9375279778</h1>
+                                <h1>{supportData?.phone}</h1>
                             </div>
                         </div>
                         <div className="w-full min-h-[100px] p-[20px] rounded-lg">
@@ -326,7 +361,7 @@ const Support = () => {
                             </div>
                             <div className="flex items-center gap-2">
                                 <MdEmail />
-                                <h1>services@nessa.in</h1>
+                                <h1>{supportData?.email}</h1>
                             </div>
                         </div>
                         <div className="w-full absolute z-[0] left-0 bottom-0 flex items-end justify-end">

@@ -1,17 +1,12 @@
-
-// Import Swiper React Components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
-// import required modules
 import { Pagination , Navigation } from 'swiper/modules';
-import { productAndTesting } from './AboutUsConfig';
 
-export default function ProductAndTestingSwiper() {
+export default function ProductAndTestingSwiper( {data}) {
   return (
     <>
       <Swiper
@@ -45,14 +40,14 @@ export default function ProductAndTestingSwiper() {
         className="mySwiper  mt-[50px] px-[40px]"
       >
         {
-          productAndTesting.map((product, index) => (
+          data.map((product, index) => (
 
             <SwiperSlide key={index} className='mb-[50px]  '>
               <div className='flex w-full justify-center items-center'>
 
                 <div className='relative h-[30vw] min-h-[400px]  flex justify-center items-center'>
-                  <img className=' w-full h-full  object-cover' src={product.img} alt="" />
-                  <h1 className="absolute bottom-0 rounded-md w-[95%] bg-white text-xl py-[10px] mb-[10px] flex items-center justify-center  z-[2]">{product.title}</h1>
+                  <img className=' w-full h-full  object-cover' src={product.poster} alt="" />
+                  <h1 className="absolute bottom-0 rounded-md w-[95%] bg-white text-xl py-[10px] mb-[10px] flex items-center justify-center  z-[2]">{product.name}</h1>
                 </div>
 
               </div>

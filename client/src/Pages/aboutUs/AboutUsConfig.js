@@ -15,18 +15,6 @@ import item2Image from '../../assets/images/aboutUs/item2.png';
 import item3Image from '../../assets/images/aboutUs/item3.png';
 import item4Image from '../../assets/images/aboutUs/item4.png';
 
-import dhavalImage from '../../assets/images/aboutUs/dhaval.png';
-import sanjayImage from '../../assets/images/aboutUs/sanjay.png';
-import shoebImage from '../../assets/images/aboutUs/shoeb.png';
-
-import tejasImage from '../../assets/images/aboutUs/tejas.png';
-
-import ucDepartmentImage from '../../assets/images/aboutUs/ucdepartment.png';
-import burnImage from '../../assets/images/aboutUs/burn.png';
-import interactionSphereImage from '../../assets/images/aboutUs/interactionsphere.png';
-
-import certificateImage from '../../assets/images/aboutUs/certificate1.png';
-
 // Updated exports
 export const nessaEdgeItems = [
   { title: 'Innovation & Design', img: item1Image },
@@ -39,35 +27,4 @@ export const nessaEdgeItems = [
   { title: 'Global Presence', img: item4Image },
 ];
 
-export const team = [
-  { img: dhavalImage, member: 'Dhaval Shah', position: 'Managing Director' },
-  { img: sanjayImage, member: 'Sanjay Mehta', position: 'Director' },
-  { img: shoebImage, member: 'Shoeb Noorani', position: 'Operation in charge' },
-];
 
-export const investor = [
-  {
-    img: tejasImage,
-    member: 'Tejas Shah',
-    detail:
-      'He served NETGEAR- USA as CIO for about 10 Years. He is currently working as Senior Vice President of Products and CIO in Arlo Technologies, Inc. California.',
-  },
-];
-
-export const productAndTesting = [
-  { img: ucDepartmentImage, title: 'UC Department' },
-  { img: burnImage, title: 'Burn Testing' },
-  { img: interactionSphereImage, title: 'Interacting Sphere' },
-  { img: ucDepartmentImage, title: 'UC Department' },
-  { img: burnImage, title: 'Burn Testing' },
-  { img: interactionSphereImage, title: 'Interacting Sphere' },
-];
-
-export const certificate = [
-  certificateImage,
-  certificateImage,
-  certificateImage,
-  certificateImage,
-  certificateImage,
-  certificateImage,
-];
