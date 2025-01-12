@@ -2,11 +2,13 @@ import { useEffect, useState } from 'react'
 import { Modal } from '@mui/material'
 import { motion } from 'framer-motion'
 import CloudUploadIcon from '@mui/icons-material/CloudUpload'
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import PropTypes from 'prop-types'
 import { getProduct, saveSolution, uploadFile } from '../../service/apiService'
 import { toast } from 'react-hot-toast'
 
-const SolutionsModel = ({ open, onClose,token }) => {
+const SolutionsModel = ({ open, onClose, token }) => {
     const [formData, setFormData] = useState({
         title: '',
         subTitle: '',
@@ -41,47 +43,81 @@ const SolutionsModel = ({ open, onClose,token }) => {
         'Thermal Power Plants',
         'Solar Parks'
     ])
-
     const [availableProducts, setAvailableProducts] = useState([])
     const [uploadsComplete, setUploadsComplete] = useState({ thumbnail: false, solutionImageUrl: false })
 
-    useEffect(() => {
-        const fetchProducts = async () => {
-            try {
-                const response = await getProduct('all', 0, 0)
-                const data = response.data.products
-                console.log('this is data', data)
-
-                const productDatas = data.map((element) => ({
-                    productId: element._id,
-                    name: element.name,
-                    description: element.description
-                }))
-                setAvailableProducts(productDatas)
-            } catch (error) {
-                console.error('Error fetching products:', error)
-            }
+    const fetchProducts = async () => {
+        try {
+            const response = await getProduct('all', 0, 0)
+            const data = response.data.products
+            const productDatas = data.map((element) => ({
+                productId: element._id,
+                name: element.name,
+                description: element.description
+            }))
+            setAvailableProducts(productDatas)
+        } catch (error) {
+            console.error('Error fetching products:', error)
         }
-
+    }
+    
+    useEffect(() => {
         fetchProducts()
     }, [])
 
-    const handleInputChange = (e) => {
+    const handleInputChange = (e, index) => {
         const { name, value } = e.target
         if (name.startsWith('relatedProduct.')) {
             const field = name.split('.')[1]
-            setFormData((prev) => ({
-                ...prev,
-                relatedProduct: [
-                    {
-                        ...prev.relatedProduct[0],
-                        [field]: value
-                    }
-                ]
-            }))
+            setFormData((prev) => {
+                const updatedRelatedProducts = [...prev.relatedProduct]
+                updatedRelatedProducts[index] = {
+                    ...updatedRelatedProducts[index],
+                    [field]: value
+                }
+                return { ...prev, relatedProduct: updatedRelatedProducts }
+            })
         } else {
             setFormData((prev) => ({ ...prev, [name]: value }))
         }
+    }
+
+    const handleProductSelect = (e, index) => {
+        const selectedProductIds = Array.from(e.target.selectedOptions, (option) => option.value)
+        const selectedProducts = selectedProductIds.map((productId) => {
+            const product = availableProducts.find((p) => p.productId === productId)
+            return { productId: product.productId, name: product.name, description: product.description }
+        })
+
+        setFormData((prev) => {
+            const updatedRelatedProducts = [...prev.relatedProduct]
+            updatedRelatedProducts[index] = {
+                ...updatedRelatedProducts[index],
+                products: selectedProducts
+            }
+            return { ...prev, relatedProduct: updatedRelatedProducts }
+        })
+    }
+
+    const addRelatedProduct = () => {
+        setFormData((prev) => ({
+            ...prev,
+            relatedProduct: [
+                ...prev.relatedProduct,
+                {
+                    title: '',
+                    application: '',
+                    products: []
+                }
+            ]
+        }))
+    }
+
+    const removeRelatedProduct = (index) => {
+        setFormData((prev) => ({
+            ...prev,
+            relatedProduct: prev.relatedProduct.filter((_, i) => i !== index)
+        }))
     }
 
     const handleFileUpload = async (e, type) => {
@@ -112,7 +148,7 @@ const SolutionsModel = ({ open, onClose,token }) => {
             if (response.success) {
                 setFormData((prev) => ({
                     ...prev,
-                    [type]: response.data.fileUrl
+                    [type]: response.data
                 }))
                 setUploadsComplete((prev) => ({ ...prev, [type]: true }))
                 toast.success('File uploaded successfully')
@@ -127,15 +163,6 @@ const SolutionsModel = ({ open, onClose,token }) => {
         }
     }
 
-    const handleProductSelect = (e) => {
-        const selectedProductIds = Array.from(e.target.selectedOptions, (option) => option.value)
-        const selectedProducts = selectedProductIds.map((productId) => {
-            const product = availableProducts.find((p) => p.productId === productId)
-            return { productId: product.productId, name: product.name, description: product.description }
-        })
-        setFormData((prev) => ({ ...prev, relatedProduct: [{ ...prev.relatedProduct[0], products: selectedProducts }] }))
-    }
-
     const handleSubmit = async (e) => {
         e.preventDefault()
 
@@ -146,14 +173,14 @@ const SolutionsModel = ({ open, onClose,token }) => {
 
         setLoading(true)
         try {
-            const response = await saveSolution(token,formData)
+            const response = await saveSolution(token, formData)
             if (response.success) {
                 toast.success('Solution saved successfully')
                 onClose()
+                fetchProducts()
             } else {
                 toast.error('Solution save failed')
             }
-            
         } catch (error) {
             console.error('Submission failed:', error)
             toast.error('An error occurred during submission')
@@ -178,117 +205,133 @@ const SolutionsModel = ({ open, onClose,token }) => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ type: 'spring', damping: 25, stiffness: 500 }}>
                 <h2 className="text-3xl font-semibold text-gray-800 mb-6">Add New Solution</h2>
-                <form
-                    onSubmit={handleSubmit}
-                    className="space-y-5">
-                    {/* Title */}
+                <form onSubmit={handleSubmit} className="space-y-5">
+                    {/* Basic fields remain the same */}
                     <div>
                         <label className="block text-sm font-medium text-gray-700">Title</label>
                         <input
                             type="text"
                             name="title"
                             value={formData.title}
-                            onChange={handleInputChange}
+                            onChange={(e) => handleInputChange(e)}
                             className="mt-2 block w-full rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-700 shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-transparent"
                             required
                         />
                     </div>
 
-                    {/* Subtitle */}
                     <div>
                         <label className="block text-sm font-medium text-gray-700">Subtitle</label>
                         <input
                             type="text"
                             name="subTitle"
                             value={formData.subTitle}
-                            onChange={handleInputChange}
+                            onChange={(e) => handleInputChange(e)}
                             className="mt-2 block w-full rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-700 shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-transparent"
                             required
                         />
                     </div>
 
-                    {/* Description */}
                     <div>
                         <label className="block text-sm font-medium text-gray-700">Description</label>
                         <textarea
                             name="description"
                             value={formData.description}
-                            onChange={handleInputChange}
+                            onChange={(e) => handleInputChange(e)}
                             rows="4"
                             className="mt-2 block w-full rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-700 shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-transparent"
                             required
                         />
                     </div>
 
-                    {/* Subcategory */}
                     <div>
                         <label className="block text-sm font-medium text-gray-700">Subcategory</label>
                         <select
                             name="subcategories"
                             value={formData.subcategories}
-                            onChange={handleInputChange}
+                            onChange={(e) => handleInputChange(e)}
                             className="mt-2 block w-full rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-700 shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-transparent"
                             required>
                             <option value="">Select a subcategory</option>
                             {subcategoriesList.map((category) => (
-                                <option
-                                    key={category}
-                                    value={category}>
+                                <option key={category} value={category}>
                                     {category}
                                 </option>
                             ))}
                         </select>
                     </div>
 
-                    {/* Related Product Details */}
-                    <div className="p-4 rounded-lg border border-gray-200">
-                        <h3 className="text-lg font-medium text-gray-800 mb-4">Related Product Details</h3>
-                        {/* Product Title */}
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700">Related Product Title</label>
-                            <input
-                                type="text"
-                                name="relatedProduct.title"
-                                value={formData.relatedProduct[0].title}
-                                onChange={handleInputChange}
-                                className="mt-2 block w-full rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-700 shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-transparent"
-                                required
-                            />
-                        </div>
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700">Related Product Application</label>
-                            <input
-                                type="text"
-                                name="relatedProduct.application"
-                                value={formData.relatedProduct[0].application}
-                                onChange={handleInputChange}
-                                className="mt-2 block w-full rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-700 shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-transparent"
-                                required
-                            />
+                    {/* Related Products Section */}
+                    <div className="space-y-4">
+                        <div className="flex justify-between items-center">
+                            <h3 className="text-lg font-medium text-gray-800">Related Products</h3>
+                            <button
+                                type="button"
+                                onClick={addRelatedProduct}
+                                className="flex items-center px-3 py-2 text-sm text-blue-600 hover:text-blue-700">
+                                <AddCircleOutlineIcon className="mr-1" />
+                                Add Product
+                            </button>
                         </div>
 
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700">Select Products</label>
-                            <select
-                                multiple
-                                value={formData.relatedProduct[0].products.map((p) => p.productId)}
-                                onChange={handleProductSelect}
-                                className="mt-2 block w-full rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-700 shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-transparent"
-                                required>
-                                {availableProducts.map((product) => (
-                                    <option
-                                        key={product.productId}
-                                        value={product.productId}>
-                                        {product.name}
-                                    </option>
-                                ))}
-                            </select>
-                            <p className="text-sm text-gray-500 mt-1">Hold Ctrl/Cmd to select multiple products</p>
-                        </div>
+                        {formData.relatedProduct.map((product, index) => (
+                            <div key={index} className="p-4 rounded-lg border border-gray-200 relative">
+                                {index > 0 && (
+                                    <button
+                                        type="button"
+                                        onClick={() => removeRelatedProduct(index)}
+                                        className="absolute top-2 right-2 text-red-500 hover:text-red-700">
+                                        <DeleteOutlineIcon />
+                                    </button>
+                                )}
+
+                                <div className="space-y-4">
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-700">Related Product Title</label>
+                                        <input
+                                            type="text"
+                                            name="relatedProduct.title"
+                                            value={product.title}
+                                            onChange={(e) => handleInputChange(e, index)}
+                                            className="mt-2 block w-full rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-700 shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-transparent"
+                                            required
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-700">Application</label>
+                                        <input
+                                            type="text"
+                                            name="relatedProduct.application"
+                                            value={product.application}
+                                            onChange={(e) => handleInputChange(e, index)}
+                                            className="mt-2 block w-full rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-700 shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-transparent"
+                                            required
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-700">Select Products</label>
+                                        <select
+                                            multiple
+                                            value={product.products.map((p) => p.productId)}
+                                            onChange={(e) => handleProductSelect(e, index)}
+                                            className="mt-2 block w-full rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-700 shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-transparent"
+                                            required>
+                                            {availableProducts.map((availableProduct) => (
+                                                <option key={availableProduct.productId} value={availableProduct.productId}>
+                                                    {availableProduct.name}
+                                                </option>
+                                            ))}
+                                        </select>
+                                        <p className="text-sm text-gray-500 mt-1">Hold Ctrl/Cmd to select multiple products</p>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
                     </div>
 
+                    {/* File Upload Section */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        {/* Upload Thumbnail */}
                         <FileUpload
                             label="Upload Thumbnail"
                             file={formData.thumbnail}
@@ -302,6 +345,7 @@ const SolutionsModel = ({ open, onClose,token }) => {
                         />
                     </div>
 
+                    {/* Form Actions */}
                     <div className="flex justify-end space-x-3 mt-6">
                         <button
                             type="button"
@@ -351,12 +395,14 @@ const FileUpload = ({ label, file, onUpload }) => (
 
 SolutionsModel.propTypes = {
     open: PropTypes.bool.isRequired,
-    onClose: PropTypes.func,
-    token: PropTypes.string
+    onClose: PropTypes.func.isRequired,
+    token: PropTypes.string.isRequired
 }
+
 FileUpload.propTypes = {
     label: PropTypes.string.isRequired,
-    file: PropTypes.object,
+    file: PropTypes.string,
     onUpload: PropTypes.func.isRequired
 }
+
 export default SolutionsModel
