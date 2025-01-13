@@ -33,7 +33,8 @@ export default function PartnersReviewsSwiper() {
       try {
         const response = await queryTestimonial();
         if (response.success) {
-          setTestimonials(response.data);
+          const publishedTestimonials = response.data.filter((testimonial) => testimonial.isPublished);
+          setTestimonials(publishedTestimonials);
         } else {
           toast.error('Failed to fetch testimonials');
         }

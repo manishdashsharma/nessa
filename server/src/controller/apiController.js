@@ -288,7 +288,7 @@ export default {
             const utilsData = await databaseService.fetchUtilsData(id);
             
             if (!utilsData) {
-                return httpError(next, new Error(responseMessage.NOT_FOUND), req, 404);
+                return httpError(next, new Error(responseMessage.NOT_FOUND("Data")), req, 404);
             }
     
             httpResponse(req, res, 200, responseMessage.SUCCESS,utilsData);
