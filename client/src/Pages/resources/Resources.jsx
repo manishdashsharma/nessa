@@ -35,8 +35,8 @@ export const Resources = () => {
                     setnessaManual(resourcesUtilsConfigHardCodedData.utilsData.nessaManualUtilsData)
                 }
             } catch (error) {
-                console.error('Error fetching product data:', error)
-                toast.error('Failed to load products')
+                console.error('Error fetching  data:', error)
+                toast.error('error fetching data')
                 // Fallback to hardcoded data
                 setnessaCatalogs(resourcesUtilsConfigHardCodedData.utilsData.nessaCatalogUtilsData)
                 setproductManual(resourcesUtilsConfigHardCodedData.utilsData.productManualUtilsData)

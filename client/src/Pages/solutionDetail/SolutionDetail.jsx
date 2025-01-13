@@ -10,6 +10,7 @@ import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import Footer from '../../Components/Footer'
 import { solutionDetailPage } from '../../Utils/Utils'
+import { caseStudiesHardCodedData } from './SolutionDetailConfing'
 
 const SolutionDetail = () => {
     const { id  } = useParams() 
@@ -48,13 +49,14 @@ const SolutionDetail = () => {
                 const response = await fetchUtilsData(solutionDetailPage.caseStudiesUtilsId)
                 if (response?.data) {
                     setcaseStudiesData(response.data.utilsData.caseStudiesUtils)
-                    console.log(response.data.utilsData.caseStudiesUtils)
                 }
             } catch (error) {
                 console.error('Error fetching product data:', error)
                 toast.error('Failed to load products')
+                setcaseStudiesData(caseStudiesHardCodedData.utilsData.caseStudiesUtils)
             } finally {
                 // setloading(false)
+                
             }
         };
 

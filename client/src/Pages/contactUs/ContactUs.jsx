@@ -14,7 +14,7 @@ import { fetchUtilsData, saveContactUs, uploadFile } from '../../services/api.se
 import Footer from '../../Components/Footer'
 import { headQuarterAddressApi } from '../../Utils/Utils'
 import { Link } from 'react-router-dom'
-import { headQuarterHardCodedData } from './ContactUsConfig'
+import { headQuarterHardCodedData } from './ContactUsConfig' // remove later
 
 const StyleWrapper = styled.div`
     input[type='file']::file-selector-button {
@@ -186,10 +186,14 @@ const ContactUs = () => {
                 const response = await fetchUtilsData(headQuarterAddressApi)
                 if (response?.data) {
                     setheadQuarterData(response.data.utilsData || headQuarterHardCodedData.utilsData)
+                }else{
+                  setheadQuarterData(headQuarterHardCodedData.utilsData) //remove later
+
                 }
             } catch (error) {
                 console.error('Error fetching product data:', error)
                 toast.error('Failed to load products')
+                setheadQuarterData(headQuarterHardCodedData.utilsData) //  remove later
             } finally {
                 setloading(false)
             }
