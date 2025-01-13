@@ -8,11 +8,13 @@ import Footer from '../../Components/Footer'
 import { fetchUtilsData } from '../../services/api.services'
 import { resourcesPageUtilsApi } from '../../Utils/Utils'
 import { useEffect, useState } from 'react'
+import { resourcesUtilsConfigHardCodedData } from './ResourcesConfig'
+import toast from 'react-hot-toast'
 
 export const Resources = () => {
     const [loading, setloading] = useState(true)
 
-    const [nessaCatalogs, setnessaCatalogs] = useState([])
+    const [nessaCatalogs, setnessaCatalogs] = useState([] )
     const [productManual, setproductManual] = useState([])
     const [nessaManual, setnessaManual] = useState([])
     useEffect(() => {
@@ -22,15 +24,23 @@ export const Resources = () => {
 
                 const response = await fetchUtilsData(resourcesPageUtilsApi)
                 if (response?.data) {
-                    setnessaCatalogs(response.data.utilsData.nessaCatalogUtilsData)
-                    setproductManual(response.data.utilsData.productManualUtilsData)
-                    setnessaManual(response.data.utilsData.nessaManualUtilsData)
+                    setnessaCatalogs(response.data.utilsData.nessaCatalogUtilsData || resourcesUtilsConfigHardCodedData.utilsData.nessaCatalogUtilsData)
+                    setproductManual(response.data.utilsData.productManualUtilsData || resourcesUtilsConfigHardCodedData.utilsData.productManualUtilsData)
+                    setnessaManual(response.data.utilsData.nessaManualUtilsData || resourcesUtilsConfigHardCodedData.utilsData.nessaManualUtilsData)
 
-                    console.log(response.data)
-                } 
+                }  else {
+                    // Fallback to hardcoded data
+                    setnessaCatalogs(resourcesUtilsConfigHardCodedData.utilsData.nessaCatalogUtilsData)
+                    setproductManual(resourcesUtilsConfigHardCodedData.utilsData.productManualUtilsData)
+                    setnessaManual(resourcesUtilsConfigHardCodedData.utilsData.nessaManualUtilsData)
+                }
             } catch (error) {
                 console.error('Error fetching product data:', error)
                 toast.error('Failed to load products')
+                // Fallback to hardcoded data
+                setnessaCatalogs(resourcesUtilsConfigHardCodedData.utilsData.nessaCatalogUtilsData)
+                setproductManual(resourcesUtilsConfigHardCodedData.utilsData.productManualUtilsData)
+                setnessaManual(resourcesUtilsConfigHardCodedData.utilsData.nessaManualUtilsData)
             } finally {
                 setloading(false)
             }
@@ -79,7 +89,7 @@ export const Resources = () => {
             </div>
 
             <div className="grid grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 w-full justify-items-center mt-[50px] ">
-                {nessaCatalogs.map((item, index) => (
+                { nessaCatalogs.map((item, index) => (
                     <div
                         key={index}
                         className=" w-[20vw] max-md:w-[40vw] max-sm:w-[90%] max-sm:mb-10 h-[30vw] max-md:h-fit  flex flex-col items-center ">
