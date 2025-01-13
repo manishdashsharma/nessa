@@ -19,32 +19,32 @@ import { fetchUtilsData } from '../../services/api.services'
 const AboutUs = () => {
     const [loading, setloading] = useState(false)
 
-    const [certification, setcertification] = useState([])
-    const [productAndTesting, setproductAndTesting] = useState([])
-    const [team, setteam] = useState([])
-    const [investor, setinvestor] = useState([])
-    useEffect(() => {
-        const fetchAboutUsData = async () => {
-            try {
-                setloading(true)
-
-                const response = await fetchUtilsData(aboutUsPageUtilsApi)
-                if (response?.data) {
-                    setcertification(response.data.utilsData.certification)
-                    setproductAndTesting(response.data.utilsData.productAndTestingFacilities)
-                    setteam(response.data.utilsData.team)
-                    setinvestor(response.data.utilsData.investor)
-                }
-            } catch (error) {
-                console.error('Error fetching product data:', error)
-                toast.error('Failed to load products')
-            } finally {
-                setloading(false)
+const [team, setteam] = useState([])
+const [investor, setinvestor] = useState([])
+const [productAndTesting, setproductAndTesting] = useState([])
+const [certification, setcertification] = useState([])
+useEffect(() => {
+    const fetchAboutUsData = async () => {
+        try {
+            setloading(true)
+            const response = await fetchUtilsData(aboutUsPageUtilsApi)
+            if (response?.data?.utilsData) {
+                setcertification(response.data.utilsData.certification || [])
+                setproductAndTesting(response.data.utilsData.productAndTestingFacilities || [])
+                setteam(response.data.utilsData.team || [])
+                setinvestor(response.data.utilsData.investor || [])
+            } else {
+                console.warn('Invalid data structure', response.data)
             }
+        } catch (error) {
+            console.error('Error fetching data:', error)
+        } finally {
+            setloading(false)
         }
+    }
 
-        fetchAboutUsData()
-    }, [])
+    fetchAboutUsData()
+}, [])
 
     const whyChooseNessaBoxData = [
         {
@@ -261,7 +261,7 @@ const AboutUs = () => {
                 </div>
 
                 <div className="grid grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 justify-items-center px-[5vw]">
-                    {team.map((item, index) => (
+                    {team ?( team.map((item, index) => (
                         <div
                             key={index}
                             className="flex flex-col  items-center text-center">
@@ -273,11 +273,13 @@ const AboutUs = () => {
                             <h1 className="font-semibold text-xl mt-5">{item.name}</h1>
                             <h1 className="opacity-70 mt-1"> {item.position}</h1>
                         </div>
-                    ))}
+                    ))):(
+                        <div className='text-center'><h1>No Data </h1></div>
+                    )}
                 </div>
 
                 <div className="w-full px-[10vw] mt-[50px]  ">
-                    {investor.map((investor, i) => (
+                    {investor ? investor.map((investor, i) => (
                         <div className="w-[100%]  mb-[50px]  border border-orange-400 flex max-md:flex-col max-md:items-center rounded-xl  overflow-hidden">
                             <div
                                 key={i}
@@ -294,7 +296,9 @@ const AboutUs = () => {
                                 <h1 className="text-lg">{investor.description}</h1>
                             </div>
                         </div>
-                    ))}
+                    )):(
+                        <div className='text-center'><h1>No Data </h1></div>
+                    )}
                 </div>
             </div>
 

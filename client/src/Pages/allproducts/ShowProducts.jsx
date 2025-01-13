@@ -29,7 +29,6 @@ const categories = {
     ],
     'Hybrid Lights': ['Hybrid Solar Street Light'],
     'Indoor Lighting': ['Surface', 'Panel', 'Downlight', 'Tube Light'],
-    Solutions: []
 }
 
 const ITEMS_PER_PAGE = 12

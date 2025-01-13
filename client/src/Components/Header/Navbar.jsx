@@ -442,10 +442,11 @@ const Navbar = () => {
                                                 animate="visible">
                                                 <Link
                                                     to={item.link}
+                                                    onClick={(e) => handleSolutionClick(e, item.link)}
                                                     className="w-[300px]">
                                                     <div className="flex w-full gap-[10px] mb-2 items-center hover:bg-gray-50 p-2 rounded-lg transition-colors duration-200">
                                                         <div className="flex items-center justify-center text-3xl">{item.logo}</div>
-                                                        <h1>{item.title}</h1>
+                                                        <h1>{item.subcategories}</h1>
                                                     </div>
                                                 </Link>
                                             </motion.div>

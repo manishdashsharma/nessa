@@ -20,6 +20,7 @@ import villageStadiumLight from '../../assets/images/valueAddedServicesImages/vi
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Footer from '../../Components/Footer';
+import Mp from '../../Components/Mp';
 
 export const ValueAddedServices = () => {
 
@@ -108,7 +109,19 @@ export const ValueAddedServices = () => {
                   src={hero}
                   alt=""
               />
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white  relative z-[2]">Value Added Services</h1>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white  relative z-[2] px-[5vw]">Value Added Services</h1>
+          </div>
+
+          {/* map Section */}
+          <div className='py-[50px]'>
+              <div className=" text-4xl font-semibold leading-snug text-center text-black z-[2] relative">
+                  <span className="text-blue-500"> Empowering Communities</span> <br /> Delivering Impactful Solution
+              </div>
+              <div className="w-full flex justify-center">
+                  <div className="flex relative shrink-0 mt-9 h-2.5 bg-[#b3d6f6] rounded-[50px] w-[51px]" />
+              </div>
+
+              <Mp />
           </div>
 
           {/* our value preposition */}
@@ -254,7 +267,7 @@ export const ValueAddedServices = () => {
           </div>
 
           {/* Our Distinguished Customers */}
-          <div className="px-[5vw]">
+          <div className="px-[5vw] mb-8">
               <div className=" text-4xl font-semibold leading-snug text-center text-black z-[2] relative">
                   <span className="text-blue-500"> Our Distinguished </span> Customers
               </div>
@@ -282,7 +295,7 @@ export const ValueAddedServices = () => {
                   ))}
               </div>
           </div>
-          <Footer/>
+          <Footer />
       </div>
   )
 };
