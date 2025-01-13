@@ -113,21 +113,22 @@ export const ValidateSoulution = Joi.object({
     categories: Joi.string()
         .valid(...Object.values(EProductCategories))
         .required(),
-    subcategories: Joi.string()
-        .custom((value, helpers) => {
-            const { categories } = helpers.state.ancestors[0];
-            if (!categories) {
-                return helpers.message('`categories` is required before `subcategories`.');
-            }
+    // subcategories: Joi.string()
+    //     .custom((value, helpers) => {
+    //         const { categories } = helpers.state.ancestors[0];
+    //         if (!categories) {
+    //             return helpers.message('`categories` is required before `subcategories`.');
+    //         }
 
-            const validSubCategories = quicker.subCategoriesMap[categories];
-            if (!validSubCategories || !validSubCategories.includes(value)) {
-                return helpers.message(`Invalid subcategory '${value}' for category: '${categories}'.`);
-            }
+    //         const validSubCategories = quicker.subCategoriesMap[categories];
+    //         if (!validSubCategories || !validSubCategories.includes(value)) {
+    //             return helpers.message(`Invalid subcategory '${value}' for category: '${categories}'.`);
+    //         }
 
-            return value;
-        })
-        .required(),
+    //         return value;
+    //     })
+    //     .required(),
+    subcategories: Joi.string().required(),
     thumbnail:Joi.string().uri().required(),
     solutionImageUrl: Joi.string().uri().required(),
     relatedProduct: Joi.array().items(

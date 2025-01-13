@@ -27,22 +27,22 @@ const SolutionsModel = ({ open, onClose, token }) => {
     })
 
     const [loading, setLoading] = useState(false)
-    const [subcategoriesList] = useState([
-        'Mines',
-        'Factory',
-        'Labs',
-        'Airports',
-        'Stadium',
-        'Petrol Pump',
-        'Refinery',
-        'Highways',
-        'Tunnels',
-        'Rural, Hilly & Forest Areas',
-        'Ports & Logistic Parks',
-        'Hazardous Areas',
-        'Thermal Power Plants',
-        'Solar Parks'
-    ])
+    // const [subcategoriesList] = useState([
+    //     'Mines',
+    //     'Factory',
+    //     'Labs',
+    //     'Airports',
+    //     'Stadium',
+    //     'Petrol Pump',
+    //     'Refinery',
+    //     'Highways',
+    //     'Tunnels',
+    //     'Rural, Hilly & Forest Areas',
+    //     'Ports & Logistic Parks',
+    //     'Hazardous Areas',
+    //     'Thermal Power Plants',
+    //     'Solar Parks'
+    // ])
     const [availableProducts, setAvailableProducts] = useState([])
     const [uploadsComplete, setUploadsComplete] = useState({ thumbnail: false, solutionImageUrl: false })
 
@@ -67,6 +67,8 @@ const SolutionsModel = ({ open, onClose, token }) => {
 
     const handleInputChange = (e, index) => {
         const { name, value } = e.target
+        const formattedValue = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
+
         if (name.startsWith('relatedProduct.')) {
             const field = name.split('.')[1]
             setFormData((prev) => {
@@ -78,7 +80,7 @@ const SolutionsModel = ({ open, onClose, token }) => {
                 return { ...prev, relatedProduct: updatedRelatedProducts }
             })
         } else {
-            setFormData((prev) => ({ ...prev, [name]: value }))
+            setFormData((prev) => ({ ...prev, [name]: formattedValue }))
         }
     }
 
@@ -204,7 +206,8 @@ const SolutionsModel = ({ open, onClose, token }) => {
                 initial={{ opacity: 0, y: -50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ type: 'spring', damping: 25, stiffness: 500 }}>
-                <h2 className="text-3xl font-semibold text-gray-800 mb-6">Add New Solution</h2>
+                    <h2 className="text-3xl font-semibold text-gray-800 mb-6">Add New Solution</h2>
+                    <p className="text-sm text-gray-500">Note: Sentence case is allowed for input fields</p>
                 <form onSubmit={handleSubmit} className="space-y-5">
                     {/* Basic fields remain the same */}
                     <div>
@@ -243,7 +246,7 @@ const SolutionsModel = ({ open, onClose, token }) => {
                         />
                     </div>
 
-                    <div>
+                    {/* <div>
                         <label className="block text-sm font-medium text-gray-700">Subcategory</label>
                         <select
                             name="subcategories"
@@ -258,6 +261,17 @@ const SolutionsModel = ({ open, onClose, token }) => {
                                 </option>
                             ))}
                         </select>
+                    </div> */}
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700">Sub Categories</label>
+                        <input
+                            type="text"
+                            name="subcategories"
+                            value={formData.subcategories}
+                            onChange={(e) => handleInputChange(e)}
+                            className="mt-2 block w-full rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-700 shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-transparent"
+                            required
+                        />
                     </div>
 
                     {/* Related Products Section */}
