@@ -7,6 +7,7 @@ import contactUsModel from '../model/contactUsModel.js'
 import supportModel from '../model/supportEnquiryModel.js'
 import solutionModel from '../model/solutionModel.js'
 import testimonialModel from '../model/testimonialModel.js'
+import projectModel from '../model/projectModel.js'
 
 export default {
     connect: async () => {
@@ -117,6 +118,12 @@ export default {
         }
         
         return null;
+    },
+    saveProjectData:(payload) => {
+        return projectModel.create(payload)
+    },
+    queryAllProjects:() => {
+        return projectModel.find()
     }
 }
 

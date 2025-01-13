@@ -4,7 +4,7 @@ import httpError from '../util/httpError.js'
 import quicker from '../util/quicker.js'
 import databaseService from '../service/databaseService.js'
 import { uploadOnCloudinary } from '../service/cloudinaryService.js'
-import { ValidateAddProduct, ValidateAddUtilsData, ValidateContactUs, validateJoiSchema, ValidateLogin, ValidateSoulution, ValidateSupportEnquiry, ValidateTestimonial, ValidateUpdateContactUs, ValidateUpdateProduct, ValidateUpdateSolution, ValidateUpdateSupportEnquiry, ValidateUpdateUtilsData } from '../service/validationService.js'
+import { ValidateAddProduct, ValidateAddUtilsData, ValidateContactUs, validateJoiSchema, ValidateLogin, ValidateProjects, ValidateSoulution, ValidateSupportEnquiry, ValidateTestimonial, ValidateUpdateContactUs, ValidateUpdateProduct, ValidateUpdateSolution, ValidateUpdateSupportEnquiry, ValidateUpdateUtilsData } from '../service/validationService.js'
 import { allowedUsers, EApplicationEnvironment } from '../constant/application.js'
 import config from '../config/config.js'
 
@@ -718,5 +718,39 @@ export default {
             httpError(next, err, req, 500)
         }
     },
+    saveProjects: async (req, res, next) => {
+        try {
+            const { body } = req
+
+            const { error, value } = validateJoiSchema(ValidateProjects, body)
+
+            if (error) {
+                return httpError(next, error, req, 422)
+            }
+
+            const newProject = await databaseService.saveProjectData(value)
+
+            if(!newProject){
+                return httpError(next, new Error(responseMessage.FAILED_TO_SAVE), req, 500)
+            }
+
+            httpResponse(req, res, 200, responseMessage.SUCCESS)
+        } catch (err) {
+            httpError(next, err, req, 500)
+        }
+    },
+    queryProjects: async (req, res, next) => {
+        try {
+            const projectsList = await databaseService.queryAllProjects();
+
+            if(!projectsList){
+                return httpError(next, new Error(responseMessage.NOT_FOUND("Data")), req, 404)
+            }
+            httpResponse(req, res, 200, responseMessage.SUCCESS, projectsList)
+        } catch (err) {
+            console.error('Error:', err);
+            httpError(next, err, req, 500);
+        }
+    }
 }
 

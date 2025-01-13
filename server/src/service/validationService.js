@@ -178,6 +178,19 @@ export const ValidateTestimonial = Joi.object({
     isPublished: Joi.boolean().optional()
 })
 
+
+export const ValidateProjects = Joi.object({
+    categories: Joi.string().required(),
+    projects: Joi.array().items(
+        Joi.object({
+            title: Joi.string().required(),
+            place: Joi.string().required(),
+            imageUrl: Joi.string().uri().required(),
+            isPublished: Joi.boolean().optional()
+        })
+    )
+})
+
 export const validateJoiSchema = (schema, value) => {
     const result = schema.validate(value);
     return {

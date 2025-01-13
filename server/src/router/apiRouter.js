@@ -38,7 +38,8 @@ router.route('/update-solution/:id').post(apiController.updateSolutions)
 router.route('/add-testimonial').post(authentication,authorization(),apiController.saveTestimonial)
 router.route('/query-testimonials').get(apiController.queryTestimonials)
 router.route('/update-testimonial/:id').get(authentication,authorization(),apiController.updateTestimonials)
-
+router.route('/save-projects').post(apiController.saveProjects)
+router.route('/query-projects').get(apiController.queryProjects)
 
 
 export default router
