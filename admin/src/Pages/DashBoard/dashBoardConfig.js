@@ -4,7 +4,8 @@ import {
   FaEnvelope, 
   FaLifeRing, 
   FaPuzzlePiece,
-  FaQuoteRight
+  FaQuoteRight,
+  FaProjectDiagram
 } from "react-icons/fa";
 import logo from '../../assets/logo.svg';
 
@@ -21,6 +22,7 @@ export const dashboardConfig = {
     { label: "Support", icon: FaLifeRing, path: "/dashboard/support", sublabels: [] },
     { label: "Solution", icon: FaPuzzlePiece, path: "/dashboard/solutions", sublabels: [] },
     { label: "Testimonial", icon: FaQuoteRight, path: "/dashboard/testimonial", sublabels: [] },
+    { label: "Projects", icon: FaProjectDiagram, path: "/dashboard/projects",}
   ],
   settingItems: [
     // { label: "Account Setting", icon: FaCog, path: "/account-settings" },

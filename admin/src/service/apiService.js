@@ -138,3 +138,21 @@ export const saveTestimonials = async (token,data) => {
 
     return response.data;
 }
+
+
+export const saveProject = async (token,data) => {
+    const headers= {
+        Authorization: `Bearer ${token}`
+    }
+    const response = await servicesAxiosInstance.post('/v1/save-projects', data, {
+        headers
+    });
+
+    return response.data;
+}
+
+
+export const queryProjects = async () => {
+    const response = await servicesAxiosInstance.get('/v1/query-projects')
+    return response.data
+}

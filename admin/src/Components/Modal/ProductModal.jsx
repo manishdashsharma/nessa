@@ -107,7 +107,7 @@ const ProductModal = ({ open, onClose, token }) => {
         const files = e.target.files
         if (!files.length) return
 
-        const maxFileSize = 1000000 // 1MB
+        const maxFileSize = 1000000 
         const newUrls = []
 
         setLoading(true)

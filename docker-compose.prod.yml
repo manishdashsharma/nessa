@@ -1,17 +1,17 @@
 version: '3.9'
 
 services:
-  mongo:
-    container_name: mongo_container
-    image: 'mongo'
-    volumes:
-      - mongo-data:/data/db
-    networks:
-      - queue-net
-    env_file: 
-      - ./.env.production
-    command: mongod --bind_ip_all
-    restart: always
+  # mongo:
+  #   container_name: mongo_container
+  #   image: 'mongo'
+  #   volumes:
+  #     - mongo-data:/data/db
+  #   networks:
+  #     - queue-net
+  #   env_file: 
+  #     - ./.env.production
+  #   command: mongod --bind_ip_all
+  #   restart: always
 
   client:
     container_name: client
@@ -38,8 +38,6 @@ services:
       dockerfile: docker/production/Dockerfile
     ports:
       - '5000:5000'
-    depends_on:
-      - mongo
     env_file: 
       - ./.env.production
     volumes:
