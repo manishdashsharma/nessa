@@ -44,6 +44,7 @@ export const ValidateAddProduct = Joi.object({
 });
 
 
+
 export const ValidateUpdateProduct = Joi.object({
     name: Joi.string().optional(),
     description: Joi.string().optional(),
