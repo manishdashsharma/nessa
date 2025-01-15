@@ -44,6 +44,7 @@ export default function RelatedProductsSwipe({product}) {
 
     fetchFilteredProducts()
   }, [product])
+  
 
   return (
       <>
@@ -93,7 +94,7 @@ export default function RelatedProductsSwipe({product}) {
                               className={` h-[400px] w-full max-sm:flex max-sm:flex-col max-sm:items-center  mb-[40px]  p-[10px]  border-[2px] bg-white border-[#d6d0d0]  `}>
                               <img
                                   className=" mb-[10px] h-[70%] object-cover"
-                                  src={product.productImageurl}
+                                  src={product.productImageUrl}
                                   alt={product.name + ' Image'}
                               />
                               <h1 className="text-sm">

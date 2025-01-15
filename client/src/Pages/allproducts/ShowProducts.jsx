@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { FaChevronUp, FaChevronDown } from 'react-icons/fa'
+import { FaChevronDown } from 'react-icons/fa'
 import { fetchProducts, increaseIsEnquired } from '../../services/api.services'
 import { motion, AnimatePresence } from 'framer-motion'
 import toast from 'react-hot-toast'
@@ -182,7 +182,7 @@ export default function ShowProducts() {
                                         onClick={() => navigate(`/product/${product._id}`)}
                                         className="bg-gray-100 rounded-lg p-4 flex flex-col justify-between">
                                         <img
-                                            src={product.producImageUrl}
+                                            src={product.productImageUrl}
                                             alt={product.name}
                                             className="w-full h-48 object-contain rounded-lg mb-4"
                                         />

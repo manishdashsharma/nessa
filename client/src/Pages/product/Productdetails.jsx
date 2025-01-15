@@ -13,7 +13,7 @@ const ProductTabs = ({ product }) => {
         { id: 'applications', label: 'Applications' }
     ]
 
-    const specification = product.specification
+    const specification = product.specification || {}
 
     return (
         <div className="w-full mx-auto p-8">
