@@ -150,7 +150,7 @@ export const ValueAddedServices = () => {
               <div className="flex max-lg:flex-col   px-[5vw]">
                   <div className=" max-lg:w-full  grid grid-cols-2 max-md:grid-cols-1 gap-y-8 mt-[50px] w-[70%] ">
                       {ourRulerUpliftmentsSolution.map((item, index) => (
-                          <div className="flex w-full justify-center items-center">
+                          <div key={index} className="flex w-full justify-center items-center">
                               <div className="relative h-[400px] flex justify-center items-center">
                                   <img
                                       className=" w-full h-full  object-cover"
@@ -167,7 +167,7 @@ export const ValueAddedServices = () => {
 
                   <div className="w-[30%] max-lg:w-full  mt-[50px] grid grid-cols-1 max-lg:grid-cols-4 max-md:grid-cols-2    ">
                       {ourRulerUpliftmentsSolutionRightSection.map((item, index) => (
-                          <div className="w-full  h-[200px] flex flex-col items-center ">
+                          <div key={index} className="w-full  h-[200px] flex flex-col items-center ">
                               <div className="w-[100px] h-[100px] rounded-full text-3xl font-semibold bg-orange-400  flex items-center justify-center">
                                   {item.inCircleNumbers}
                               </div>
@@ -278,6 +278,7 @@ export const ValueAddedServices = () => {
               <div className="justify-items-center grid grid-cols-5  max-[800px]:grid-cols-4 max-sm:grid-cols-3 max-[400px]:grid-cols-2 gap-[20px] ">
                   {corporateCusomters.map((item, index) => (
                       <img
+                          key={index}
                           className="h-[100px] w-[200px] p-[20px] rounded-xl border border-black object-contain"
                           src={item}
                           alt=""
@@ -288,6 +289,7 @@ export const ValueAddedServices = () => {
               <div className="justify-items-center grid grid-cols-5  max-[800px]:grid-cols-4 max-sm:grid-cols-3 max-[400px]:grid-cols-2 gap-[20px] ">
                   {ngologos.map((item, index) => (
                       <img
+                          key={index}
                           className="h-[100px] w-[200px]  p-[20px] rounded-xl border border-black object-contain"
                           src={item}
                           alt=""

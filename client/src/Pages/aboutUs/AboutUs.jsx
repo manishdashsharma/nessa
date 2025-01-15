@@ -266,43 +266,51 @@ useEffect(() => {
                 </div>
 
                 <div className="grid grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 justify-items-center px-[5vw]">
-                    {team ?( team.map((item, index) => (
-                        <div
-                            key={index}
-                            className="flex flex-col  items-center text-center">
-                            <img
-                                className="rounded-xl h-[300px]  w-[300px] object-contain border pt-[50px] bg-[#e7f2fd] border-orange-400 overflow-hidden "
-                                src={item.image}
-                                alt=""
-                            />
-                            <h1 className="font-semibold text-xl mt-5">{item.name}</h1>
-                            <h1 className="opacity-70 mt-1"> {item.position}</h1>
+                    {team ? (
+                        team.map((item, index) => (
+                            <div
+                                key={index}
+                                className="flex flex-col  items-center text-center">
+                                <img
+                                    className="rounded-xl h-[300px]  w-[300px] object-contain border pt-[50px] bg-[#e7f2fd] border-orange-400 overflow-hidden "
+                                    src={item.image}
+                                    alt=""
+                                />
+                                <h1 className="font-semibold text-xl mt-5">{item.name}</h1>
+                                <h1 className="opacity-70 mt-1"> {item.position}</h1>
+                            </div>
+                        ))
+                    ) : (
+                        <div className="text-center">
+                            <h1>No Data </h1>
                         </div>
-                    ))):(
-                        <div className='text-center'><h1>No Data </h1></div>
                     )}
                 </div>
 
                 <div className="w-full px-[10vw] mt-[50px]  ">
-                    {investor ? investor.map((investor, i) => (
-                        <div className="w-[100%]  mb-[50px]  border border-orange-400 flex max-md:flex-col max-md:items-center rounded-xl  overflow-hidden">
+                    {investor ? (
+                        investor.map((investor, i) => (
                             <div
                                 key={i}
-                                className="w-[30%] max-md:w-full ">
-                                <img
-                                    className="h-[300px] max-md:h-[300px] max-md:w-full object-contain"
-                                    src={investor.image}
-                                    alt=""
-                                />
+                                className="w-[100%]  mb-[50px]  border border-orange-400 flex max-md:flex-col max-md:items-center rounded-xl  overflow-hidden">
+                                <div className="w-[30%] max-md:w-full ">
+                                    <img
+                                        className="h-[300px] max-md:h-[300px] max-md:w-full object-contain"
+                                        src={investor.image}
+                                        alt=""
+                                    />
+                                </div>
+                                <div className="w-[70%] max-md:w-full p-[30px] flex flex-col justify-center gap-5">
+                                    <h1 className="font-semibold text-orange-400 text-4xl ">Investor</h1>
+                                    <h1 className="font-semibold  text-xl ">{investor.name}</h1>
+                                    <h1 className="text-lg">{investor.description}</h1>
+                                </div>
                             </div>
-                            <div className="w-[70%] max-md:w-full p-[30px] flex flex-col justify-center gap-5">
-                                <h1 className="font-semibold text-orange-400 text-4xl ">Investor</h1>
-                                <h1 className="font-semibold  text-xl ">{investor.name}</h1>
-                                <h1 className="text-lg">{investor.description}</h1>
-                            </div>
+                        ))
+                    ) : (
+                        <div className="text-center">
+                            <h1>No Data </h1>
                         </div>
-                    )):(
-                        <div className='text-center'><h1>No Data </h1></div>
                     )}
                 </div>
             </div>
@@ -339,7 +347,7 @@ useEffect(() => {
                     <div className="flex relative shrink-0 mt-9 h-2.5 bg-[#b3d6f6] rounded-[50px] w-[51px]" />
                 </div>
                 <div className=" px-[5vw] ">
-                    <ProductAndTestingSwiper  data={productAndTesting} />
+                    <ProductAndTestingSwiper data={productAndTesting} />
                 </div>
             </div>
             {/*  certificates */}

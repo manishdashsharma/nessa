@@ -188,8 +188,8 @@ const Support = () => {
                     setsupportData(response.data.utilsData)
                 }
             } catch (error) {
-                console.error('Error fetching product data:', error)
-                toast.error('Failed to load products')
+                console.error('Error fetching support data:', error)
+                toast.error('Failed to load support data')
             } finally {
                 setloading(false)
             }
