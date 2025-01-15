@@ -114,9 +114,9 @@ export default function ShowProducts() {
                 <div className="w-64 max-md:w-[90%] flex-shrink-0">
                     <div className="border rounded-lg p-4">
                         <h2 className="text-lg font-semibold mb-4">Filters</h2>
-                        {Object.entries(categories).map(([category, subcategories]) => (
+                        {Object.entries(categories).map(([category, subcategories] , index) => (
                             <div
-                                key={category}
+                                key={index}
                                 className="mb-4">
                                 <button
                                     onClick={() => toggleCategory(category)}
@@ -173,16 +173,16 @@ export default function ShowProducts() {
                             </div>
                         ) : (
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                {products.map((product) => (
+                                {products.map((product , index) => (
                                     <motion.div
-                                        key={product.id}
+                                        key={index}
                                         initial={{ opacity: 0 }}
                                         animate={{ opacity: 1 }}
                                         transition={{ duration: 0.2 }}
                                         onClick={() => navigate(`/product/${product._id}`)}
                                         className="bg-gray-100 rounded-lg p-4 flex flex-col justify-between">
                                         <img
-                                            src={product.image}
+                                            src={product.producImageUrl}
                                             alt={product.name}
                                             className="w-full h-48 object-contain rounded-lg mb-4"
                                         />
@@ -219,6 +219,7 @@ export default function ShowProducts() {
                                     <React.Fragment key={page}>
                                         {index > 0 && array[index - 1] !== page - 1 && <span className="px-2">...</span>}
                                         <button
+                                            key={index}
                                             onClick={() => setCurrentPage(page)}
                                             className={`w-8 h-8  rounded-full ${currentPage === page ? 'bg-blue-500 text-white' : ' hover:bg-gray-300'}`}>
                                             {page}

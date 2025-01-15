@@ -13,32 +13,7 @@ const ProductTabs = ({ product }) => {
         { id: 'applications', label: 'Applications' }
     ]
 
-    const features = [
-        {
-            id: 1,
-            icon: <FaPowerOff />,
-            title: 'Auto Shutdown & Auto Restart',
-            bgColor: 'bg-blue-100'
-        },
-        {
-            id: 2,
-            icon: <GiSwordsPower />,
-            title: 'Open & Short Circuit Protection',
-            bgColor: 'bg-orange-100'
-        },
-        {
-            id: 3,
-            icon: <ImPower />,
-            title: 'Over Voltage Protection',
-            bgColor: 'bg-blue-50'
-        }
-    ]
     const specification = product.specification
-    const applications = [
-        'https://res.cloudinary.com/dvtfhco4j/image/upload/v1734735158/ac_lighting/image5.jpg',
-        'https://res.cloudinary.com/dvtfhco4j/image/upload/v1734735158/ac_lighting/image5.jpg',
-        'https://res.cloudinary.com/dvtfhco4j/image/upload/v1734735158/ac_lighting/image5.jpg'
-    ]
 
     return (
         <div className="w-full mx-auto p-8">
@@ -74,7 +49,7 @@ const ProductTabs = ({ product }) => {
                     transition={{ duration: 0.5, ease: 'easeInOut' }}>
                     {activeTab === 'features' && (
                         <div className="grid grid-cols-3  max-sm:grid-cols-1 gap-12 gap-x-28  px-[5vw]  ">
-                            {product.feature.highlighted.map((feature, index) => (
+                            {product.feature.highlighted.length >0 ?( product.feature.highlighted.map((feature, index) => (
                                 <motion.div
                                     key={index}
                                     initial={{ y: 20, opacity: 0 }}
@@ -83,13 +58,17 @@ const ProductTabs = ({ product }) => {
                                     className="h-[100px]  max-sm:h-fit  flex flex-col items-center justify-center rounded-xl border-2 border-blue-200 text-center">
                                     <h3 className="text-xl font-semibold">{feature}</h3>
                                 </motion.div>
-                            ))}
+                            ))):(
+                                <div className="text-center text-gray-600 ">
+                                    No highlighted features found.
+                                </div>
+                            )}
                         </div>
                     )}
 
                     {activeTab === 'specification' && (
                         <div className="grid grid-cols-2 gap-4 gap-x-10 p-4 px-[5vw] max-md:grid-cols-1 ">
-                            {Object.entries(specification).map(([key, value], index) => (
+                            { Object.keys(specification).length > 0 ?( Object.entries(specification).map(([key, value], index) => (
                                 <motion.div
                                     initial={{ x: -20, opacity: 0 }}
                                     animate={{ x: 0, opacity: 1 }}
@@ -99,14 +78,18 @@ const ProductTabs = ({ product }) => {
                                     <div className="font-semibold w-fit text-2xl text-gray-700">{key}</div>
                                     <div className="text-blue-500 w-fit">{value}</div>
                                 </motion.div>
-                            ))}
+                            ))):(
+                                <div className="text-center text-gray-600 ">
+                                    No specification found.
+                                </div>
+                            )}
                         </div>
                     )}
 
                     {activeTab === 'applications' && (
                         <div className="text-center text-gray-600 ">
                             <div className="grid grid-cols-4 max-sm:grid-cols-1 gap-8  ">
-                                {product.applicationImageUrls.map((image, index) => (
+                                {product.applicationImageUrls.length > 0 ? (  product.applicationImageUrls.map((image, index) => (
                                     <motion.div
                                         key={index}
                                         initial={{ y: 20, opacity: 0 }}
@@ -119,7 +102,11 @@ const ProductTabs = ({ product }) => {
                                             alt="Application Image"
                                         />
                                     </motion.div>
-                                ))}
+                                ))):(
+                                    <div className="text-center text-gray-600 ">
+                                        No applications found.
+                                    </div>
+                                )}
                             </div>
                         </div>
                     )}

@@ -14,6 +14,8 @@ import bankImage from '../../assets/images/products/bank.png';
 import industriesImage from '../../assets/images/products/industry.png';
 import ShareButton from '../../Components/ShareButton';
 import Footer from '../../Components/Footer';
+import { Link } from 'react-router-dom'
+
 
 const Product = () => {
 
@@ -129,12 +131,7 @@ const Product = () => {
                           <h1 className="text-3xl font-bold">{product.name}</h1>
 
                           <div className="flex gap-4">
-                              <button className="p-2  hover:bg-blue-100 rounded-xl bg-blue-50  l">
-                                  <MdOutlineBookmarkAdd className="w-6 h-6 text-gray-600" />
-                              </button>
-                              <ShareButton
-                                  title={product.name}
-                              />
+                              <ShareButton title={product.name} />
                           </div>
                       </div>
 
@@ -171,13 +168,13 @@ const Product = () => {
                           disabled={loadingEnquire === product._id}>
                           {loadingEnquire === product._id ? 'Loading...' : 'Enquire Now'}
                       </button>
-                      <a
-                          href={product.brochureUrl}
+                      <Link
+                          to={product.brochureUrl}
                           target="_blank"
                           download
                           className="border border-blue-500 text-blue-500 px-6 py-3 rounded-lg hover:bg-blue-50">
                           Download Datasheet
-                      </a>
+                      </Link>
                   </div>
               </div>
           </div>
@@ -241,7 +238,7 @@ const Product = () => {
               </div>
           </div>
 
-          <Footer/>
+          <Footer />
       </div>
   )
 };
