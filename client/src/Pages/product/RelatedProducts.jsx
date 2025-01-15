@@ -44,6 +44,7 @@ export default function RelatedProductsSwipe({product}) {
 
     fetchFilteredProducts()
   }, [product])
+  
 
   return (
       <>

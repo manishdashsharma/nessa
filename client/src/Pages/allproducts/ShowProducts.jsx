@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { FaChevronUp, FaChevronDown } from 'react-icons/fa'
+import { FaChevronDown } from 'react-icons/fa'
 import { fetchProducts, increaseIsEnquired } from '../../services/api.services'
 import { motion, AnimatePresence } from 'framer-motion'
 import toast from 'react-hot-toast'
