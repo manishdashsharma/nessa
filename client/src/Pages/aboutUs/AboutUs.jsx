@@ -1,4 +1,4 @@
-import { aboutUsPara1, aboutUsPara2, nessaEdgeItems, whoWeAre } from './AboutUsConfig'
+import { aboutUsHardCodedData, aboutUsPara1, aboutUsPara2, nessaEdgeItems, whoWeAre } from './AboutUsConfig'
 import { RiLightbulbFlashLine } from 'react-icons/ri'
 import ProductAndTestingSwiper from './ProductAndTestingSwiper'
 import CertificatesSwiper from './CertificatesSwiper'
@@ -35,9 +35,14 @@ useEffect(() => {
                 setinvestor(response.data.utilsData.investor || [])
             } else {
                 console.warn('Invalid data structure', response.data)
+               
             }
         } catch (error) {
             console.error('Error fetching data:', error)
+             setcertification(aboutUsHardCodedData.utilsData.certification)
+             setproductAndTesting(aboutUsHardCodedData.utilsData.productAndTestingFacilities)
+             setteam(aboutUsHardCodedData.utilsData.team)
+             setinvestor(aboutUsHardCodedData.utilsData.investor)
         } finally {
             setloading(false)
         }

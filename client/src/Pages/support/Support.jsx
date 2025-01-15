@@ -352,7 +352,7 @@ const Support = () => {
                             </div>
                             <div className="flex items-center gap-2">
                                 <MdCall />
-                                <h1>{supportData?.phone}</h1>
+                                <h1>{supportData?.phone || '+91-9375279778'}</h1>
                             </div>
                         </div>
                         <div className="w-full min-h-[100px] p-[20px] rounded-lg">
@@ -361,7 +361,7 @@ const Support = () => {
                             </div>
                             <div className="flex items-center gap-2">
                                 <MdEmail />
-                                <h1>{supportData?.email}</h1>
+                                <h1>{supportData?.email || 'services@email.com'}</h1>
                             </div>
                         </div>
                         <div className="w-full absolute z-[0] left-0 bottom-0 flex items-end justify-end">
@@ -429,7 +429,7 @@ const Support = () => {
                 </div>
             </div>
 
-            <Footer/>
+            <Footer />
         </StyleWrapper>
     )
 }
