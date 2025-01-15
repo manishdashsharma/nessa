@@ -35,7 +35,7 @@ export const ValidateAddProduct = Joi.object({
         ).required()
     }).required(),
     productImageUrl: Joi.string().uri().required(),
-    brochureUrl: Joi.string().uri().required(),
+    brochureUrl: Joi.string().uri().optional(),
     applicationImageUrls: Joi.array().items(Joi.string().uri()).required(),
     bestSuitedFor: Joi.array()
     .items(Joi.string().valid(...Object.values(EBestSuitedFor)))

@@ -10,7 +10,7 @@ import { toast } from 'react-hot-toast'
 
 const ProjectModel = ({ open, onClose, token }) => {
     const [formData, setFormData] = useState({
-        categories: 'Commercial Lighting',
+        categories: '',
         projects: [
             {
                 title: '',
@@ -26,7 +26,7 @@ const ProjectModel = ({ open, onClose, token }) => {
 
     const handleInputChange = (e, index) => {
         const { name, value } = e.target
-        const formattedValue = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
+        const formattedValue = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase()
 
         setFormData((prev) => {
             const updatedProjects = [...prev.projects]
@@ -148,7 +148,21 @@ const ProjectModel = ({ open, onClose, token }) => {
                 <h2 className="text-3xl font-semibold text-gray-800 mb-6">Add New Projects</h2>
                 <p className="text-sm text-gray-500 mb-4">Note: Sentence case is allowed for input fields</p>
 
-                <form onSubmit={handleSubmit} className="space-y-5">
+                <form
+                    onSubmit={handleSubmit}
+                    className="space-y-5">
+                    <div className="mb-6">
+                        <label className="block text-sm font-medium text-gray-700">Category</label>
+                        <input
+                            type="text"
+                            name="categories"
+                            value={formData.categories}
+                            onChange={(e) => setFormData((prev) => ({ ...prev, categories: e.target.value }))}
+                            placeholder="Enter category"
+                            className="mt-2 block w-full rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-700 shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-transparent"
+                            required
+                        />
+                    </div>
                     <div className="space-y-4">
                         <div className="flex justify-between items-center">
                             <h3 className="text-lg font-medium text-gray-800">Projects</h3>
@@ -162,7 +176,9 @@ const ProjectModel = ({ open, onClose, token }) => {
                         </div>
 
                         {formData.projects.map((project, index) => (
-                            <div key={index} className="p-4 rounded-lg border border-gray-200 relative">
+                            <div
+                                key={index}
+                                className="p-4 rounded-lg border border-gray-200 relative">
                                 {index > 0 && (
                                     <button
                                         type="button"

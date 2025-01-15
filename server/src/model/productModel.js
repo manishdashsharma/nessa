@@ -55,8 +55,7 @@ const productSchema = new mongoose.Schema(
             required: true 
         },
         brochureUrl: { 
-            type: String, 
-            required: true 
+            type: String
         },
         applicationImageUrls: { 
             type: [String],
