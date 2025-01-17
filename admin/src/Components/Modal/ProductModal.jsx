@@ -7,14 +7,15 @@ import AddIcon from '@mui/icons-material/Add'
 import PropTypes from 'prop-types'
 import { addProduct, uploadFile } from '../../service/apiService'
 import { toast } from 'react-hot-toast'
+import { CategoryToSubcategories, EProductCategories } from '../../utils/utils'
 
 const ProductModal = ({ open, onClose, token }) => {
 
     const [formData, setFormData] = useState({
         name: '',
         description: '',
-        categories: 'AC Lighting',
-        subcategories: 'Street Light',
+        categories: Object.values(EProductCategories)[0],
+        subcategories: CategoryToSubcategories[Object.values(EProductCategories)[0]][0],
         specification: {},
         feature: {
             highlighted: [''],
@@ -41,7 +42,15 @@ const ProductModal = ({ open, onClose, token }) => {
 
     const handleInputChange = (e) => {
         const { name, value } = e.target
-        setFormData((prev) => ({ ...prev, [name]: value }))
+        if (name === 'categories') {
+            setFormData((prev) => ({
+                ...prev,
+                categories: value,
+                subcategories: CategoryToSubcategories[value][0] 
+            }))
+        } else {
+            setFormData((prev) => ({ ...prev, [name]: value }))
+        }
     }
 
     // Handle specification additions
@@ -191,6 +200,38 @@ const ProductModal = ({ open, onClose, token }) => {
                     className="space-y-5">
                     {/* Basic Info */}
                     <div className="space-y-4">
+                    <div className="grid grid-cols-2 gap-4">
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700">Category</label>
+                                <select
+                                    name="categories"
+                                    value={formData.categories}
+                                    onChange={handleInputChange}
+                                    className="mt-2 block w-full rounded-lg border border-gray-300 bg-white px-4 py-2"
+                                >
+                                    {Object.values(EProductCategories).map((category) => (
+                                        <option key={category} value={category}>
+                                            {category}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700">Subcategory</label>
+                                <select
+                                    name="subcategories"
+                                    value={formData.subcategories}
+                                    onChange={handleInputChange}
+                                    className="mt-2 block w-full rounded-lg border border-gray-300 bg-white px-4 py-2"
+                                >
+                                    {CategoryToSubcategories[formData.categories].map((subcategory) => (
+                                        <option key={subcategory} value={subcategory}>
+                                            {subcategory}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                        </div>
                         <div>
                             <label className="block text-sm font-medium text-gray-700">Name</label>
                             <input

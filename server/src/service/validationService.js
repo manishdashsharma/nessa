@@ -22,25 +22,25 @@ export const ValidateAddProduct = Joi.object({
 
             return value;
         })
-        .required(),
-    specification: Joi.object().required(),
+        .optional(),
+    specification: Joi.object().optional(),
     feature: Joi.object({
-        highlighted: Joi.array().items(Joi.string()).required(),
+        highlighted: Joi.array().items(Joi.string()).optional(),
         useCases: Joi.array().items(
             Joi.object({
                 title: Joi.string().required(),
                 description: Joi.string().allow(''),
                 imageUrl: Joi.string().uri().allow('') 
             })
-        ).required()
-    }).required(),
+        ).optional()
+    }).optional(),
     productImageUrl: Joi.string().uri().required(),
     brochureUrl: Joi.string().uri().optional(),
-    applicationImageUrls: Joi.array().items(Joi.string().uri()).required(),
+    applicationImageUrls: Joi.array().items(Joi.string().uri()).optional(),
     bestSuitedFor: Joi.array()
     .items(Joi.string().valid(...Object.values(EBestSuitedFor)))
-    .required(),
-    SKUId: Joi.string().required()
+    .optional(),
+    SKUId: Joi.string().optional()
 });
 
 
