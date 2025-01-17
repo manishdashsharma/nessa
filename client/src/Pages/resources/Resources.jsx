@@ -100,7 +100,7 @@ export const Resources = () => {
                         />
 
                         <Link
-                            to={item.downloadLink ? item.downloadLink : '#'}
+                            to={item.downloadLink ? item.downloadLink : null}
                             download
                             target="_blank"
                             className="bg-blue-500 w-full text-center py-[10px] mt-[20px] rounded-md text-white">
@@ -139,7 +139,7 @@ export const Resources = () => {
                             <p className="text-md text-zinc-900 mt-4 mb-4 text-center">{item.description}</p>
 
                             <Link
-                                to={item.downloadLink ? item.downloadLink : '#'}
+                                to={item.downloadLink ? item.downloadLink : null}
                                 download
                                 target="_blank"
                                 className="bg-blue-500 w-[70%] text-center py-[10px] mt-[20px] rounded-md text-white">
@@ -169,7 +169,7 @@ export const Resources = () => {
                         <h1 className="text-base font-semibold mt-4">{item.description}</h1>
 
                         <Link
-                            to={item.downloadLink ? item.downloadLink : '#'}
+                            to={item.downloadLink ? item.downloadLink : null}
                             download
                             target="_blank"
                             className="bg-blue-500 w-[70%] text-center py-[10px] mt-[20px] rounded-md text-white">

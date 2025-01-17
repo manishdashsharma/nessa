@@ -85,7 +85,7 @@ export const Projects = () => {
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white ml-[5vw] relative z-[2]">Projects</h1>
             </div>
 
-            <div className="w-full max-w-6xl mx-auto  my-[50px] space-y-4  ">
+            <div className="w-full max-w-6xl mx-auto px-[2vw] my-[50px] space-y-4  ">
                 {apiProjectsData.map((section) => (
                     <motion.div
                         key={section.categories}
