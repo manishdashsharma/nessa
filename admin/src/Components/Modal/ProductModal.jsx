@@ -53,7 +53,6 @@ const ProductModal = ({ open, onClose, token }) => {
         }
     }
 
-    // Handle specification additions
     const addSpecification = () => {
         if (newSpecKey && newSpecValue) {
             setFormData((prev) => ({
