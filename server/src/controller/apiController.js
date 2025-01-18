@@ -228,7 +228,6 @@ export default {
             httpError(next, err, req, 500);
         }
     },
-    
     increaseIsEnquired: async (req, res, next) => {
         try {
             const { id } = req.params

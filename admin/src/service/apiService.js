@@ -10,6 +10,11 @@ export const getProduct = async (query,limit,offset) => {
     return response.data
 }
 
+export const updateProduct = async (id,data) =>{
+    const response = await servicesAxiosInstance.put(`v1/update-product/${id}`,data)
+    return response.data
+}
+
 export const fetchVisitorLocation = async () => {
     const response = await servicesAxiosInstance.get('/v1/fetch-location-stats')
     return response.data

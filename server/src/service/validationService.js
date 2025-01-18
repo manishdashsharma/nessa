@@ -51,7 +51,7 @@ export const ValidateUpdateProduct = Joi.object({
     bestSuitedFor: Joi.string().optional(),
     categories: Joi.array().items(Joi.string()).optional(),
     subcategories: Joi.array().items(Joi.string()).optional(),
-    specification: Joi.object().pattern(Joi.string(), Joi.any()).optional(), // Allows any key-value structure in the object
+    specification: Joi.object().pattern(Joi.string(), Joi.any()).optional(), 
     feature: Joi.array().items(Joi.string()).optional(),
     productImageUrl: Joi.string().uri().optional(),
     applicationImageUrls: Joi.array().items(Joi.string().uri()).optional(),

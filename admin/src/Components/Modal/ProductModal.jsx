@@ -1,17 +1,20 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Modal } from '@mui/material'
 import { motion } from 'framer-motion'
 import CloudUploadIcon from '@mui/icons-material/CloudUpload'
 import DeleteIcon from '@mui/icons-material/Delete'
 import AddIcon from '@mui/icons-material/Add'
 import PropTypes from 'prop-types'
-import { addProduct, uploadFile } from '../../service/apiService'
+import { addProduct, updateProduct, uploadFile } from '../../service/apiService'
 import { toast } from 'react-hot-toast'
 import { CategoryToSubcategories, EProductCategories } from '../../utils/utils'
 
-const ProductModal = ({ open, onClose, token }) => {
+const ProductModal = ({ open, onClose, token, product }) => {
 
-    const [formData, setFormData] = useState({
+    console.log(product);
+    
+
+    const initialFormState ={
         name: '',
         description: '',
         categories: Object.values(EProductCategories)[0],
@@ -32,13 +35,50 @@ const ProductModal = ({ open, onClose, token }) => {
         applicationImageUrls: [],
         bestSuitedFor: [],
         SKUId: ''
-    })
+    }
 
+    const [formData, setFormData] = useState(initialFormState)
     const [loading, setLoading] = useState(false)
     const [newSpecKey, setNewSpecKey] = useState('')
     const [newSpecValue, setNewSpecValue] = useState('')
 
     const bestSuitedOptions = ['Bank', 'Offices', 'Industries']
+
+    useEffect(() => {
+        if (product) {
+            setFormData({
+                name: product.name || '',
+                description: product.description || '',
+                categories: product.categories || Object.values(EProductCategories)[0],
+                subcategories: product.subcategories || CategoryToSubcategories[Object.values(EProductCategories)[0]][0],
+                specification: product.specification || {},
+                feature: {
+                    highlighted: product.feature?.highlighted || [''],
+                    useCases: product.feature?.useCases || [
+                        {
+                            title: '',
+                            description: '',
+                            imageUrl: null
+                        }
+                    ]
+                },
+                productImageUrl: product.productImageUrl || null,
+                brochureUrl: product.brochureUrl || null,
+                applicationImageUrls: product.applicationImageUrls || [],
+                bestSuitedFor: product.bestSuitedFor || [],
+                SKUId: product.SKUId || ''
+            })
+        } else {
+            setFormData(initialFormState)
+        }
+    }, [product])
+
+    useEffect(() => {
+        if (!open) {
+            setFormData(initialFormState)
+        }
+    }, [open])
+
 
     const handleInputChange = (e) => {
         const { name, value } = e.target
@@ -163,12 +203,15 @@ const ProductModal = ({ open, onClose, token }) => {
         e.preventDefault()
         setLoading(true)
         try {
-            const response = await addProduct(token, formData)
+            const response = product
+                ? await updateProduct(product._id, formData) 
+                : await addProduct(token, formData)
+
             if (response.success) {
-                toast.success('Product added successfully')
+                toast.success(product ? 'Product updated successfully' : 'Product added successfully')
                 onClose()
             } else {
-                toast.error('Failed to add product')
+                toast.error('Operation failed')
             }
         } catch (error) {
             console.error('Submission failed:', error)
@@ -177,6 +220,7 @@ const ProductModal = ({ open, onClose, token }) => {
             setLoading(false)
         }
     }
+
 
     return (
         <Modal
@@ -193,7 +237,9 @@ const ProductModal = ({ open, onClose, token }) => {
                 initial={{ opacity: 0, y: -50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ type: 'spring', damping: 25, stiffness: 500 }}>
-                <h2 className="text-3xl font-semibold text-gray-800 mb-6">Add New Product</h2>
+                <h2 className="text-3xl font-semibold text-gray-800 mb-6">
+                    {product ? 'Edit Product' : 'Add New Product'}
+                </h2>
                 <form
                     onSubmit={handleSubmit}
                     className="space-y-5">
@@ -511,7 +557,8 @@ const FileUpload = ({ label, file, onUpload, multiple = false }) => (
 ProductModal.propTypes = {
     open: PropTypes.bool.isRequired,
     onClose: PropTypes.func.isRequired,
-    token: PropTypes.string.isRequired
+    token: PropTypes.string.isRequired,
+    product: PropTypes.object
 }
 
 FileUpload.propTypes = {
