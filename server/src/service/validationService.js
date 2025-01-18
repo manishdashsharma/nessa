@@ -23,19 +23,19 @@ export const ValidateAddProduct = Joi.object({
             return value;
         })
         .optional(),
-    specification: Joi.object().optional(),
+    specification: Joi.object().optional().allow(''),
     feature: Joi.object({
         highlighted: Joi.array().items(Joi.string()).optional(),
         useCases: Joi.array().items(
             Joi.object({
-                title: Joi.string().required(),
+                title: Joi.string().required().allow(''),
                 description: Joi.string().allow(''),
                 imageUrl: Joi.string().uri().allow('') 
             })
         ).optional()
     }).optional(),
     productImageUrl: Joi.string().uri().required(),
-    brochureUrl: Joi.string().uri().optional(),
+    brochureUrl: Joi.string().uri().optional().allow(""),
     applicationImageUrls: Joi.array().items(Joi.string().uri()).optional(),
     bestSuitedFor: Joi.array()
     .items(Joi.string().valid(...Object.values(EBestSuitedFor)))

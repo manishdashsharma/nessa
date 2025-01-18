@@ -53,7 +53,8 @@ const productSchema = new mongoose.Schema(
             required: true 
         },
         brochureUrl: { 
-            type: String
+            type: String,
+            default: ""
         },
         applicationImageUrls: { 
             type: [String],
