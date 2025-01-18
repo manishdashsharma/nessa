@@ -9,12 +9,9 @@ import thunder from '../../assets/images/homepageimages/thunder.svg';
 import image1 from '../../assets/images/homepageimages/image1.png';
 import colorcircle from '../../assets/images/homepageimages/colorcircle.png';
 import lightintensity from '../../assets/images/homepageimages/lightintensity.png';
-import adanilogo from '../../assets/images/homepageimages/adanilogo.png';
-import essarlogo from '../../assets/images/homepageimages/essarlogo.png';
-import ltlogo from '../../assets/images/homepageimages/l&tlogo.png';
-import jindallogo from '../../assets/images/homepageimages/jindallogo.png';
-import torrentlogo from '../../assets/images/homepageimages/torrentlogo.png';
-import nirmalogo from '../../assets/images/homepageimages/nirmalogo.png';
+
+
+
 import lamp from '../../assets/images/homepageimages/lamp.png';
 import indiaMap from '../../assets/images/homepageimages/indiaMap.png';
 import indiaFlag from '../../assets/images/homepageimages/india.png';
@@ -27,6 +24,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { allSolutions } from '../../services/api.services';
 import Footer from '../../Components/Footer';
+import Marque from './homepageinnersections/Marque';
 
 
 const Homepage = () => {
@@ -201,9 +199,9 @@ const Homepage = () => {
           </div>
 
           {/* trusted partners */}
-          <div>
+          {/* <div>
               <h1 className="text-center mb-2 text-lg">Our Trusted Partners</h1>
-              <div className="w-full h-[7vw] py-[0px] flex items-center justify-evenly gap-5 bg-[#005ab322]">
+              <div className="w-full h-[7vw] py-[0px] flex items-center justify-evenly gap-5">
                   <img
                       className="h-[4vw] "
                       src={adanilogo}
@@ -235,7 +233,8 @@ const Homepage = () => {
                       alt=""
                   />
               </div>
-          </div>
+          </div> */}
+          <Marque/>
 
           {/* Lighting Solutions According to Your Needs & Conditions  data is dynamic in homepageConfig.js  */}
           <div className="w-full py-16 max-md:pb-2 px-[5vw] bg-white text-center">

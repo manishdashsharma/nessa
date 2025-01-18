@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { FaPowerOff } from 'react-icons/fa'
 import { GiSwordsPower } from 'react-icons/gi'
 import { ImPower } from 'react-icons/im'
+import Applicationswiper from './Applicationswiper'
 
 const ProductTabs = ({ product }) => {
     const [activeTab, setActiveTab] = useState('features')
@@ -88,26 +89,7 @@ const ProductTabs = ({ product }) => {
 
                     {activeTab === 'applications' && (
                         <div className="text-center text-gray-600 ">
-                            <div className="grid grid-cols-4 max-sm:grid-cols-1 gap-8  ">
-                                {product.applicationImageUrls.length > 0 ? (  product.applicationImageUrls.map((image, index) => (
-                                    <motion.div
-                                        key={index}
-                                        initial={{ y: 20, opacity: 0 }}
-                                        animate={{ y: 0, opacity: 1 }}
-                                        transition={{ delay: index * 0.2 }}
-                                        className="h-[200px] max-sm:h-fit  flex flex-col items-center justify-center text-center">
-                                        <img
-                                            className="w-[200px] h-[200px] object-cover bg-gray-300"
-                                            src={image}
-                                            alt="Application Image"
-                                        />
-                                    </motion.div>
-                                ))):(
-                                    <div className="text-center text-gray-600 ">
-                                        No applications found.
-                                    </div>
-                                )}
-                            </div>
+                            <Applicationswiper product={product}/>
                         </div>
                     )}
                 </motion.div>

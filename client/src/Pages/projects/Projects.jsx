@@ -21,10 +21,11 @@ export const Projects = () => {
                 if (response?.dta) {
                     setapiProjectsData(response.data)
                 }else {
-                setapiProjectsData(projectsHardcodedData)
+                 setapiProjectsData(projectsHardcodedData)
 
                 }
             } catch (error) {
+                
                 toast.error('falid to load project')
                 setapiProjectsData(projectsHardcodedData)
             } finally {

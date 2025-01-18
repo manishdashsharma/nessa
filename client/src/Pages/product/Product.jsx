@@ -182,7 +182,7 @@ const Product = () => {
           <ProductTabs product={product} />
 
           <div className=" bg-blue-100">
-              {product.feature.useCases.map((useCase, index) =>
+              {product.feature.useCases.length >0 ?( product.feature.useCases.map((useCase, index) =>
                   index % 2 === 0 ? (
                       <div
                           key={index}
@@ -198,7 +198,7 @@ const Product = () => {
                                   <p className="mb-4 ">{useCase.description}</p>
                               </div>
                               <img
-                                  className="w-full md:w-1/2 h-auto max-md:hidden  shadow-lg"
+                                  className="w-full md:w-1/2 h-[400px] max-md:hidden  shadow-lg"
                                   src={useCase.imageUrl}
                                   alt={useCase.title + ' Image'}
                               />
@@ -210,7 +210,7 @@ const Product = () => {
                           className="w-full min-h-[300px] pt-16  max-md:pb-2 px-[5vw]  text-center  relative ">
                           <div className="flex flex-col md:flex-row items-center justify-center gap-8 z-[2] relative">
                               <img
-                                  className="w-full md:w-1/2 h-auto shadow-lg z-[2]"
+                                  className="w-full md:w-1/2 h-[400px] shadow-lg z-[2]"
                                   src={useCase.imageUrl}
                                   alt={useCase.title + ' Image'}
                               />
@@ -221,7 +221,7 @@ const Product = () => {
                           </div>
                       </div>
                   )
-              )}
+              )):null}
           </div>
 
           <div className=" mb-10">
