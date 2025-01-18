@@ -35,7 +35,7 @@ export const ValidateAddProduct = Joi.object({
         ).optional()
     }).optional(),
     productImageUrl: Joi.string().uri().required(),
-    brochureUrl: Joi.string().uri().optional().allow(""),
+    brochureUrl: Joi.string().uri().optional().allow(null, ''),
     applicationImageUrls: Joi.array().items(Joi.string().uri()).optional(),
     bestSuitedFor: Joi.array()
     .items(Joi.string().valid(...Object.values(EBestSuitedFor)))
@@ -48,13 +48,19 @@ export const ValidateAddProduct = Joi.object({
 export const ValidateUpdateProduct = Joi.object({
     name: Joi.string().optional(),
     description: Joi.string().optional(),
-    categories: Joi.string().optional(),
-    subcategories: Joi.string().optional(),
-    specification: Joi.object().optional(), 
-    feature: Joi.array().items(Joi.string()).optional(), 
+    bestSuitedFor: Joi.string().optional(),
+    categories: Joi.array().items(Joi.string()).optional(),
+    subcategories: Joi.array().items(Joi.string()).optional(),
+    specification: Joi.object().pattern(Joi.string(), Joi.any()).optional(), // Allows any key-value structure in the object
+    feature: Joi.array().items(Joi.string()).optional(),
+    productImageUrl: Joi.string().uri().optional(),
+    applicationImageUrls: Joi.array().items(Joi.string().uri()).optional(),
+    brochureUrl: Joi.string().uri().optional(),
+    SKUId: Joi.string().optional(),
     isActive: Joi.boolean().optional(),
-    isEnquired: Joi.number().integer().optional(),
+    isEnquired: Joi.number().integer().optional()
 });
+
 
 export const ValidateAddUtilsData = Joi.object({
     title: Joi.string().required(),

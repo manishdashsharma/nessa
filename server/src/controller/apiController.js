@@ -206,39 +206,29 @@ export default {
     },
     updateProduct: async (req, res, next) => {
         try {
-            const { body } = req
-            const { id } = req.params
-
-            const { value, error } = validateJoiSchema(ValidateUpdateProduct, body)
-
+            const { body } = req;
+            const { id } = req.params;
+    
+            const { value, error } = validateJoiSchema(ValidateUpdateProduct, body);
+    
             if (error) {
-                return httpError(next, error, req, 422)
+                return httpError(next, error, req, 422);
             }
-
-            const { name, description, categories, subcategories, specification, feature, isActive, isEnquired } = value
-
-            const updatedProductData = {
-                ...(name && { name }),
-                ...(description && { description }),
-                ...(categories && { categories }),
-                ...(subcategories && { subcategories }),
-                ...(specification && { specification }),
-                ...(feature && { feature }),
-                ...(isActive !== undefined && { isActive }),
-                ...(isEnquired !== undefined && { isEnquired })
-            }
-
-            const updatedProduct = await databaseService.updateProductById(id, updatedProductData)
-
+    
+            const updatedProductData = { ...value };
+    
+            const updatedProduct = await databaseService.updateProductById(id, updatedProductData);
+    
             if (!updatedProduct) {
-                return httpError(next, new Error(responseMessage.NOT_FOUND), req, 404)
+                return httpError(next, new Error(responseMessage.NOT_FOUND), req, 404);
             }
-
-            httpResponse(req, res, 200, responseMessage.SUCCESS, updatedProduct)
+    
+            httpResponse(req, res, 200, responseMessage.SUCCESS, updatedProduct);
         } catch (err) {
-            httpError(next, err, req, 500)
+            httpError(next, err, req, 500);
         }
     },
+    
     increaseIsEnquired: async (req, res, next) => {
         try {
             const { id } = req.params
