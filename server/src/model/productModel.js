@@ -49,7 +49,7 @@ const productSchema = new mongoose.Schema(
             }
         },
         productImageUrl: { 
-            type: String, 
+            type: [String], 
             required: true 
         },
         brochureUrl: { 

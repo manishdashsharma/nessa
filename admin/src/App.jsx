@@ -9,6 +9,7 @@ import ContactUsPage from './Pages/ContactUS/ContactUsPage'
 import SolutionPage from './Pages/Solutions/SolutionPage'
 import TestimonialPage from './Pages/Testomonials/TestinomialPage'
 import ProjectsPage from './Pages/Projects/ProjectsPage'
+import BlogPage from './Pages/Blogs/BlogsPages'
 
 const App = () => {
     return (
@@ -24,6 +25,7 @@ const App = () => {
                     <Route path="solutions" element={<SolutionPage />} />
                     <Route path="testimonial" element={<TestimonialPage />} />
                     <Route path="projects" element={<ProjectsPage />} />
+                    <Route path="blogs" element={<BlogPage />} />
                 </Route>
             </Routes>
         </>

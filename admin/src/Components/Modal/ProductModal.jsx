@@ -11,10 +11,7 @@ import { CategoryToSubcategories, EProductCategories } from '../../utils/utils'
 
 const ProductModal = ({ open, onClose, token, product }) => {
 
-    console.log(product);
-    
-
-    const initialFormState ={
+    const initialFormState = {
         name: '',
         description: '',
         categories: Object.values(EProductCategories)[0],
@@ -30,7 +27,7 @@ const ProductModal = ({ open, onClose, token, product }) => {
                 }
             ]
         },
-        productImageUrl: null,
+        productImageUrl: [],
         brochureUrl: null,
         applicationImageUrls: [],
         bestSuitedFor: [],
@@ -62,7 +59,7 @@ const ProductModal = ({ open, onClose, token, product }) => {
                         }
                     ]
                 },
-                productImageUrl: product.productImageUrl || null,
+                productImageUrl: product.productImageUrl || [],
                 brochureUrl: product.brochureUrl || null,
                 applicationImageUrls: product.applicationImageUrls || [],
                 bestSuitedFor: product.bestSuitedFor || [],
@@ -79,14 +76,13 @@ const ProductModal = ({ open, onClose, token, product }) => {
         }
     }, [open])
 
-
     const handleInputChange = (e) => {
         const { name, value } = e.target
         if (name === 'categories') {
             setFormData((prev) => ({
                 ...prev,
                 categories: value,
-                subcategories: CategoryToSubcategories[value][0] 
+                subcategories: CategoryToSubcategories[value][0]
             }))
         } else {
             setFormData((prev) => ({ ...prev, [name]: value }))
@@ -155,7 +151,7 @@ const ProductModal = ({ open, onClose, token, product }) => {
         const files = e.target.files
         if (!files.length) return
 
-        const maxFileSize = 1000000 
+        const maxFileSize = 1000000
         const newUrls = []
 
         setLoading(true)
@@ -186,6 +182,11 @@ const ProductModal = ({ open, onClose, token, product }) => {
                     }))
                 } else if (type === 'useCase') {
                     updateUseCase(index, 'imageUrl', newUrls[0])
+                } else if (type === 'productImageUrl') {
+                    setFormData((prev) => ({
+                        ...prev,
+                        productImageUrl: [...prev.productImageUrl, ...newUrls]
+                    }))
                 } else {
                     setFormData((prev) => ({ ...prev, [type]: newUrls[0] }))
                 }
@@ -203,9 +204,7 @@ const ProductModal = ({ open, onClose, token, product }) => {
         e.preventDefault()
         setLoading(true)
         try {
-            const response = product
-                ? await updateProduct(product._id, formData) 
-                : await addProduct(token, formData)
+            const response = product ? await updateProduct(product._id, formData) : await addProduct(token, formData)
 
             if (response.success) {
                 toast.success(product ? 'Product updated successfully' : 'Product added successfully')
@@ -220,7 +219,6 @@ const ProductModal = ({ open, onClose, token, product }) => {
             setLoading(false)
         }
     }
-
 
     return (
         <Modal
@@ -237,25 +235,24 @@ const ProductModal = ({ open, onClose, token, product }) => {
                 initial={{ opacity: 0, y: -50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ type: 'spring', damping: 25, stiffness: 500 }}>
-                <h2 className="text-3xl font-semibold text-gray-800 mb-6">
-                    {product ? 'Edit Product' : 'Add New Product'}
-                </h2>
+                <h2 className="text-3xl font-semibold text-gray-800 mb-6">{product ? 'Edit Product' : 'Add New Product'}</h2>
                 <form
                     onSubmit={handleSubmit}
                     className="space-y-5">
                     {/* Basic Info */}
                     <div className="space-y-4">
-                    <div className="grid grid-cols-2 gap-4">
+                        <div className="grid grid-cols-2 gap-4">
                             <div>
                                 <label className="block text-sm font-medium text-gray-700">Category</label>
                                 <select
                                     name="categories"
                                     value={formData.categories}
                                     onChange={handleInputChange}
-                                    className="mt-2 block w-full rounded-lg border border-gray-300 bg-white px-4 py-2"
-                                >
+                                    className="mt-2 block w-full rounded-lg border border-gray-300 bg-white px-4 py-2">
                                     {Object.values(EProductCategories).map((category) => (
-                                        <option key={category} value={category}>
+                                        <option
+                                            key={category}
+                                            value={category}>
                                             {category}
                                         </option>
                                     ))}
@@ -267,10 +264,11 @@ const ProductModal = ({ open, onClose, token, product }) => {
                                     name="subcategories"
                                     value={formData.subcategories}
                                     onChange={handleInputChange}
-                                    className="mt-2 block w-full rounded-lg border border-gray-300 bg-white px-4 py-2"
-                                >
+                                    className="mt-2 block w-full rounded-lg border border-gray-300 bg-white px-4 py-2">
                                     {CategoryToSubcategories[formData.categories].map((subcategory) => (
-                                        <option key={subcategory} value={subcategory}>
+                                        <option
+                                            key={subcategory}
+                                            value={subcategory}>
                                             {subcategory}
                                         </option>
                                     ))}
@@ -434,13 +432,39 @@ const ProductModal = ({ open, onClose, token, product }) => {
                         </button>
                     </div>
 
+                    <div className="border p-4 rounded-lg">
+                        <h3 className="text-lg font-medium mb-4">Product Images</h3>
+                        <div className="grid grid-cols-2 gap-4">
+                            {formData.productImageUrl.map((url, index) => (
+                                <div
+                                    key={index}
+                                    className="relative">
+                                    <img
+                                        src={url}
+                                        alt={`Product ${index + 1}`}
+                                        className="w-full h-32 object-cover rounded"
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={() => {
+                                            const newUrls = formData.productImageUrl.filter((_, i) => i !== index)
+                                            setFormData((prev) => ({ ...prev, productImageUrl: newUrls }))
+                                        }}
+                                        className="absolute top-2 right-2 bg-red-500 text-white p-1 rounded">
+                                        <DeleteIcon />
+                                    </button>
+                                </div>
+                            ))}
+                            <FileUpload
+                                label="Add Product Image"
+                                onUpload={(e) => handleFileUpload(e, 'productImageUrl')}
+                                multiple={true}
+                            />
+                        </div>
+                    </div>
+
                     {/* File Uploads */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <FileUpload
-                            label="Upload Product Image"
-                            file={formData.productImageUrl}
-                            onUpload={(e) => handleFileUpload(e, 'productImageUrl')}
-                        />
                         <FileUpload
                             label="Upload Brochure"
                             file={formData.brochureUrl}

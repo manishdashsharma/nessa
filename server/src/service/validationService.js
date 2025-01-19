@@ -34,7 +34,7 @@ export const ValidateAddProduct = Joi.object({
             })
         ).optional()
     }).optional(),
-    productImageUrl: Joi.string().uri().required(),
+    productImageUrl: Joi.array().items(Joi.string().uri()).optional(),
     brochureUrl: Joi.string().uri().optional().allow(null, ''),
     applicationImageUrls: Joi.array().items(Joi.string().uri()).optional(),
     bestSuitedFor: Joi.array()
