@@ -19,6 +19,7 @@ import AboutUs from './Pages/aboutUs/AboutUs';
 import ScrollToTop from './Components/ScrollToTop';
 import { Projects } from './Pages/projects/Projects';
 import { ValueAddedServices } from './Pages/valueAddedServices/ValueAddedServices';
+import CookiesPolicy from './Pages/CookiesPolicy/CookiesPolicy';
 
 const App = () => {
     
@@ -39,6 +40,7 @@ const App = () => {
                 <Route path="/terms" element={<Terms />} />
                 <Route path="/privacy" element={<PrivacyPolicy />} />
                 <Route path="/esgpolicy" element={<EsgPolicy />} />
+                <Route path="/cookiespolicy" element={<CookiesPolicy />} />
                 <Route path="/contactus" element={<ContactUs />} />
                 <Route path="/aboutus" element={<AboutUs />} />
                 <Route path="/support" element={<Support />} />

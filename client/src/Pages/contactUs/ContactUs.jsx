@@ -40,10 +40,14 @@ const ContactUs = () => {
 
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [isUploading, setIsUploading] = useState(false)
+    const [acceptPolicy, setAcceptPolicy] = useState(false)
     const [errors, setErrors] = useState({})
     const validateForm = () => {
         const newErrors = {}
 
+        if (!acceptPolicy) {
+            newErrors.policy = 'You must accept the policy to continue.'
+        }
         // Name validation
         if (!formData.name.trim()) {
             newErrors.name = 'Full Name is required.'
@@ -165,6 +169,7 @@ const ContactUs = () => {
                     fileLink: '',
                     message: ''
                 })
+                setAcceptPolicy(false)
                 setErrors({})
             } else {
                 throw new Error(response.message || 'Failed to send message')
@@ -186,13 +191,11 @@ const ContactUs = () => {
                 const response = await fetchUtilsData(headQuarterAddressApi)
                 if (response?.data) {
                     setheadQuarterData(response.data.utilsData || headQuarterHardCodedData.utilsData)
-                }else{
-                  setheadQuarterData(headQuarterHardCodedData.utilsData) //remove later
-
+                } else {
+                    setheadQuarterData(headQuarterHardCodedData.utilsData) //remove later
                 }
             } catch (error) {
                 console.error('Error fetching  data:', error)
-                toast.error('Failed to load data')
                 setheadQuarterData(headQuarterHardCodedData.utilsData) //  remove later
             } finally {
                 setloading(false)
@@ -349,7 +352,7 @@ const ContactUs = () => {
                                             key={key}
                                             to={value.link}>
                                             <img
-                                                className='w-8 h-8 object-contain'
+                                                className="w-8 h-8 object-contain"
                                                 src={value.icon}
                                                 alt={key}
                                             />
@@ -460,13 +463,25 @@ const ContactUs = () => {
                                 } rounded`}></textarea>
                             {errors.message && <span className="text-red-500 text-sm">{errors.message}</span>}
                         </div>
+                        <div className="mt-6">
+                            <label className="flex items-center gap-2">
+                                <input
+                                    type="checkbox"
+                                    checked={acceptPolicy}
+                                    onChange={(e) => setAcceptPolicy(e.target.checked)}
+                                    className="w-4 h-4 text-blue-500 border-gray-300 rounded focus:ring-blue-500"
+                                />
+                                <span className="text-sm text-gray-700">I accept the terms and conditions and privacy policy</span>
+                            </label>
+                            {errors.policy && <span className="text-red-500 text-sm block mt-1">{errors.policy}</span>}
+                        </div>
 
                         <div className="w-full flex justify-end">
                             <button
                                 type="submit"
-                                disabled={isSubmitting || isUploading}
+                                disabled={isSubmitting || isUploading || !acceptPolicy}
                                 className={`mt-10 bg-blue-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-600 transition ${
-                                    isSubmitting || isUploading ? 'opacity-50 cursor-not-allowed' : ''
+                                    isSubmitting || isUploading || !acceptPolicy ? 'opacity-50 cursor-not-allowed' : ''
                                 }`}>
                                 {isSubmitting ? 'Sending...' : 'Send Message'}
                             </button>
@@ -490,3 +505,4 @@ const ContactUs = () => {
 }
 
 export default ContactUs
+

@@ -19,6 +19,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { GrResources } from 'react-icons/gr'
 import { allSolutions } from '../../services/api.services'
 import toast from 'react-hot-toast'
+import { MdInfoOutline } from 'react-icons/md';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -208,6 +209,11 @@ const Navbar = () => {
             logo: <MdSupportAgent className={`text-[#EF2D28]  bg-[#EF2D28] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
             link: '/support',
             title: 'Support'
+        },
+        {
+            logo: <MdInfoOutline className={`text-[#212121]  bg-[#212121] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
+            link: '/aboutus',
+            title: 'About Us'
         }
     ]
 
@@ -372,11 +378,10 @@ const Navbar = () => {
                                 )}
                             </AnimatePresence>
                         </div>
-                        <div className="text-black">Insights</div>
                         <Link
-                            to="/aboutus"
+                            to="/projects"
                             className="text-black">
-                            About Us
+                            Projects
                         </Link>
                     </div>
 
@@ -502,11 +507,10 @@ const Navbar = () => {
                                 )}
                             </AnimatePresence>
                         </div>
-                        <div className="py-2 text-black hover:bg-gray-100 px-4">Insights</div>
                         <Link
-                            to="/aboutus"
+                            to="/projects"
                             className="py-2 text-black hover:bg-gray-100 px-4">
-                            About Us
+                            Projects
                         </Link>
                         <Link
                             to="/contactus"

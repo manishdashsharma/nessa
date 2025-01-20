@@ -1,36 +1,40 @@
-
 import { privacyConfig } from './Privacy1Config'
-import Navbar from '../../Components/Header/Navbar';
-import SideComponent from '../../Components/sideComponent/SideComponent';
-import Footer from '../../Components/Footer';
-
+import Navbar from '../../Components/Header/Navbar'
+import SideComponent from '../../Components/sideComponent/SideComponent'
+import Footer from '../../Components/Footer'
 
 const Privacy1 = () => {
-    
   return (
     <div className="overflow-hidden bg-white">
-    {/* Header */}
-    <Navbar />
-    <SideComponent />
-    <div className="bg-blue-200 text-black  py-20"> 
-      <h1 className="text-2xl font-semibold text-center">{privacyConfig.title}</h1>
-    </div>
+      <Navbar />
+      <SideComponent />
+      
+      {/* Header - Keeping the approved blue background */}
+      <div className="bg-blue-200 text-black py-20"> 
+        <h1 className="text-2xl font-semibold text-center">{privacyConfig.title}</h1>
+      </div>
 
-    {/* Content */}
-    <div className="max-w-[1200px] mx-auto px-8 py-6 space-y-8">
-      {privacyConfig.sections.map((section) => (
-        <section key={section.id}>
-          <h2 className="text-lg font-semibold bg-gray-100 p-3">
-            {section.title}
-          </h2>
-          <p className="mt-4 text-gray-700 leading-relaxed">
-            {section.content}
-          </p>
-        </section>
-      ))}
+      {/* Content section with improved paragraph readability */}
+      <div className="max-w-[1200px] mx-auto px-8 py-12">
+        {privacyConfig.sections.map((section) => (
+          <section key={section.id} className="mb-10">
+            <h2 className="text-lg font-semibold bg-gray-100 p-3 mb-4">
+              {section.title}
+            </h2>
+            {/* Split content into paragraphs */}
+            {section.content.split('. ').map((paragraph, idx) => (
+              paragraph.trim() && (
+                <p key={idx} className="text-gray-700 leading-relaxed mb-3 pl-1">
+                  {paragraph.trim()}.
+                </p>
+              )
+            ))}
+          </section>
+        ))}
+      </div>
+
+      <Footer/>
     </div>
-    <Footer/>
-  </div>
   )
 }
 

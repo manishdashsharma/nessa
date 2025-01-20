@@ -61,6 +61,7 @@ function Footer() {
               <li><Link to="/terms" className="text-gray-400 hover:text-white">Terms & Conditions</Link></li>
               <li><Link to="/privacy" className="text-gray-400 hover:text-white">Privacy Policy</Link></li>
               <li><Link to="/esgpolicy" className="text-gray-400 hover:text-white">ESG Policy</Link></li>
+              <li><Link to="/cookiespolicy" className="text-gray-400 hover:text-white">Cookies Policy</Link></li>
             </ul>
           </div>
 

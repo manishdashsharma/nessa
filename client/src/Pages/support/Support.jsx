@@ -1,26 +1,26 @@
-import  { useEffect, useState } from 'react';
-import { MdCall, MdEmail } from 'react-icons/md';
-import { nessaServices } from './SupportConfig';
-import styled from 'styled-components';
-import toast from 'react-hot-toast';
+import { useEffect, useState } from 'react'
+import { MdCall, MdEmail } from 'react-icons/md'
+import { nessaServices } from './SupportConfig'
+import styled from 'styled-components'
+import toast from 'react-hot-toast'
 import airportpageposter from '../../assets/images/solutionsImages/airportpageposter.png'
 import light from '../../assets/images/supportImages/light.png'
 import manual from '../../assets/images/supportImages/manual.png'
-import Navbar from '../../Components/Header/Navbar';
-import SideComponent from '../../Components/sideComponent/SideComponent';
-import { fetchUtilsData, saveSupportEnquiry, uploadFile } from '../../services/api.services';
-import Footer from '../../Components/Footer';
-import { supportPageUtilsApi } from '../../Utils/Utils';
+import Navbar from '../../Components/Header/Navbar'
+import SideComponent from '../../Components/sideComponent/SideComponent'
+import { fetchUtilsData, saveSupportEnquiry, uploadFile } from '../../services/api.services'
+import Footer from '../../Components/Footer'
+import { supportPageUtilsApi } from '../../Utils/Utils'
 
 const StyleWrapper = styled.div`
-  input[type="file"]::file-selector-button {
-    height: 40px;
-    padding-right: 30px;
-    padding-left: 20px;
-    border: none;
-    cursor: pointer;
-  }
-`;
+    input[type='file']::file-selector-button {
+        height: 40px;
+        padding-right: 30px;
+        padding-left: 20px;
+        border: none;
+        cursor: pointer;
+    }
+`
 
 const Support = () => {
     const [formData, setFormData] = useState({
@@ -37,9 +37,14 @@ const Support = () => {
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [isUploading, setIsUploading] = useState(false)
     const [errors, setErrors] = useState({})
+    const [acceptPolicy, setAcceptPolicy] = useState(false)
 
     const validateForm = () => {
         const newErrors = {}
+
+        if (!acceptPolicy) {
+            newErrors.policy = 'You must accept the policy to continue.'
+        }
 
         if (!formData.name) {
             newErrors.name = 'Full Name is required.'
@@ -138,44 +143,43 @@ const Support = () => {
         }
     }
 
-   const handleSubmit = async (e) => {
-       e.preventDefault()
-       const newErrors = validateForm()
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        const newErrors = validateForm()
 
-       if (Object.keys(newErrors).length > 0) {
-           setErrors(newErrors)
-           toast.error('Please fix all errors before submitting')
-           return
-       }
+        if (Object.keys(newErrors).length > 0) {
+            setErrors(newErrors)
+            toast.error('Please fix all errors before submitting')
+            return
+        }
 
-       setIsSubmitting(true)
-       try {
-           const response = await saveSupportEnquiry(formData)
-           if (response.success) {
-               toast.success('Message sent successfully!')
-               setFormData({
-                   name: '',
-                   email: '',
-                   companyName: '',
-                   phoneNumber: '',
-                   productName: '',
-                   productSKUId: '',
-                   fileLink: '',
-                   message: ''
-               })
-               setErrors({})
-           } else {
-               throw new Error(response.message || 'Failed to send message')
-           }
-       } catch (error) {
-           toast.error(error.message || 'Failed to send message')
-       } finally {
-           setIsSubmitting(false)
-       }
-   }
+        setIsSubmitting(true)
+        try {
+            const response = await saveSupportEnquiry(formData)
+            if (response.success) {
+                toast.success('Message sent successfully!')
+                setFormData({
+                    name: '',
+                    email: '',
+                    companyName: '',
+                    phoneNumber: '',
+                    productName: '',
+                    productSKUId: '',
+                    fileLink: '',
+                    message: ''
+                })
+                setAcceptPolicy(false)
+                setErrors({})
+            } else {
+                throw new Error(response.message || 'Failed to send message')
+            }
+        } catch (error) {
+            toast.error(error.message || 'Failed to send message')
+        } finally {
+            setIsSubmitting(false)
+        }
+    }
 
-
-   
     const [loading, setloading] = useState(false)
     const [supportData, setsupportData] = useState([])
     useEffect(() => {
@@ -189,7 +193,6 @@ const Support = () => {
                 }
             } catch (error) {
                 console.error('Error fetching support data:', error)
-                toast.error('Failed to load support data')
             } finally {
                 setloading(false)
             }
@@ -205,7 +208,6 @@ const Support = () => {
             </div>
         )
     }
-
 
     return (
         <StyleWrapper>
@@ -327,13 +329,25 @@ const Support = () => {
                                 } rounded`}></textarea>
                             {errors.message && <span className="text-red-500 text-sm">{errors.message}</span>}
                         </div>
+                        <div className="mt-6">
+                            <label className="flex items-center gap-2">
+                                <input
+                                    type="checkbox"
+                                    checked={acceptPolicy}
+                                    onChange={(e) => setAcceptPolicy(e.target.checked)}
+                                    className="w-4 h-4 text-blue-500 border-gray-300 rounded focus:ring-blue-500"
+                                />
+                                <span className="text-sm text-gray-700">I accept the terms and conditions and privacy policy</span>
+                            </label>
+                            {errors.policy && <span className="text-red-500 text-sm block mt-1">{errors.policy}</span>}
+                        </div>
 
                         <div className="w-full flex justify-end">
                             <button
                                 type="submit"
-                                disabled={isSubmitting || isUploading}
+                                disabled={isSubmitting || isUploading || !acceptPolicy}
                                 className={`mt-10 bg-blue-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-600 transition ${
-                                    isSubmitting || isUploading ? 'opacity-50 cursor-not-allowed' : ''
+                                    isSubmitting || isUploading || !acceptPolicy ? 'opacity-50 cursor-not-allowed' : ''
                                 }`}>
                                 {isSubmitting ? 'Sending...' : 'Send Message'}
                             </button>
@@ -434,4 +448,4 @@ const Support = () => {
     )
 }
 
-export default Support;
+export default Support
