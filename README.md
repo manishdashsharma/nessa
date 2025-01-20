@@ -60,3 +60,10 @@ Nessa is licensed under the **[MIT License](https://github.com/manishdashsharma/
 This project is developed under **[FutureDesks](https://futuredesks.in/)**, a pioneer in delivering innovative technological solutions tailored for a brighter future.  
 
 ---
+
+
+## chmod +x nessa.sh
+## ./nessa.sh
+## 1
+## server and client -> 4
+## server and admin -> 6
