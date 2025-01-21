@@ -1,67 +1,106 @@
-
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination, Navigation, EffectFade, Autoplay } from 'swiper/modules';
+import { motion } from 'framer-motion';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-import { Pagination, Navigation } from 'swiper/modules';
-import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import toast from 'react-hot-toast';
+import 'swiper/css/effect-fade';
 
-export default function Applicationswiper({product}) {
-
+export default function ApplicationSwiper({ product }) {
   return (
-      <>
-          <Swiper
-              slidesPerView={1}
-              spaceBetween={5}
-              pagination={{
-                  dynamicBullets: true,
-                  dynamicMainBullets: 3,
-                  clickable: true
-              }}
-              navigation={{
-                  clickable: true
-              }}
-              breakpoints={{
-                  550: {
-                      slidesPerView: 2,
-                      spaceBetween: 20
-                  },
-                  640: {
-                      slidesPerView: 2,
-                      spaceBetween: 20
-                  },
-                  800: {
-                      slidesPerView: 3,
-                      spaceBetween: 20
-                  },
-                  1280: {
-                      slidesPerView: 4,
-                      spaceBetween: 20
-                  }
-              }}
-              modules={[Pagination, Navigation]}
-              className="mySwiper mt-[40px]   ">
-              {product.applicationImageUrls.length > 0 ? (
-                  product.applicationImageUrls.map((image, index) => (
-                      <SwiperSlide
-                          key={index}
-                          initial={{ y: 20, opacity: 0 }}
-                          animate={{ y: 0, opacity: 1 }}
-                          transition={{ delay: index * 0.2 }}
-                          className="h-[200px] max-sm:h-fit  flex flex-col items-center justify-center text-center">
-                          <img
-                              className="w-[200px] h-[200px] object-cover bg-gray-300"
-                              src={image}
-                              alt="Application Image"
-                          />
-                      </SwiperSlide>
-                  ))
-              ) : (
-                  <div className="text-center text-gray-600 ">No product found.</div>
-              )}
-          </Swiper>
-      </>
-  )
+    <div className="relative px-4 py-8">
+      {product.applicationImageUrls.length > 0 ? (
+        <Swiper
+          slidesPerView={1}
+          spaceBetween={24}
+          autoplay={{
+            delay: 3000,
+            disableOnInteraction: false,
+          }}
+          pagination={{
+            dynamicBullets: true,
+            dynamicMainBullets: 3,
+            clickable: true,
+          }}
+          navigation={{
+            clickable: true,
+          }}
+          breakpoints={{
+            550: {
+              slidesPerView: 2,
+            },
+            768: {
+              slidesPerView: 3,
+            },
+            1024: {
+              slidesPerView: 4,
+            }
+          }}
+          modules={[Pagination, Navigation, EffectFade, Autoplay]}
+          className="pb-12"
+        >
+          {product.applicationImageUrls.map((image, index) => (
+            <SwiperSlide key={index}>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="relative group cursor-pointer"
+              >
+                <div className="overflow-hidden rounded-lg">
+                  <img
+                    src={image}
+                    alt={`Application ${index + 1}`}
+                    className="w-full h-[250px] object-cover transform transition-transform duration-300 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
+              </motion.div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      ) : (
+        <div className="flex items-center justify-center h-48 text-gray-500">
+          No application images available
+        </div>
+      )}
+
+      <style jsx>{`
+        .swiper-pagination-bullet {
+          width: 6px;
+          height: 6px;
+          background: #e2e8f0;
+          opacity: 1;
+        }
+        
+        .swiper-pagination-bullet-active {
+          background: #3b82f6;
+          width: 20px;
+          border-radius: 4px;
+          transition: width 0.3s ease;
+        }
+        
+        .swiper-button-next,
+        .swiper-button-prev {
+          color: #3b82f6;
+          width: 40px;
+          height: 40px;
+          background: white;
+          border-radius: 50%;
+          box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .swiper-button-next:after,
+        .swiper-button-prev:after {
+          font-size: 16px;
+          font-weight: bold;
+        }
+        
+        .swiper-button-disabled {
+          opacity: 0;
+          cursor: default;
+        }
+      `}</style>
+    </div>
+  );
 }

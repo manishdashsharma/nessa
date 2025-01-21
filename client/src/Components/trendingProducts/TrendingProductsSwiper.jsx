@@ -95,7 +95,7 @@ export default function TrendingProductsSwipe() {
               <Link to={`/product/${product._id}`} className='w-full h-full '>
               <img
                 className=" mb-[10px] h-[70%] object-cover"
-                src={product.productImageUrl}
+                src={product.productImageUrl[0]}
                 alt={product.name + ' Image'}
               />
               <h1 className='text-sm'>{product.categories}- {product.subcategories}</h1>

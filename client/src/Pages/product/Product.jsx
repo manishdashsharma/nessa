@@ -77,36 +77,40 @@ const Product = () => {
     }
   }
 
-  const photoSection = () => (
-    <>
-      <div className="w-fit px-2  flex flex-col max-lg:flex-row gap-2">
-        {images.map((img, index) => (
-          <button
-            key={index}
-            onClick={() => setSelectedImage(index)}
-            className={`border-2 rounded-lg p-1 h-[100px] max-sm:h-[50px] w-[100px] max-sm:w-[50px] bg-blue-50 ${selectedImage === index ? 'border-blue-500' : 'border-gray-200'
+  const photoSection = () => {
+
+    if (!product?.productImageUrl?.length) return null;
+    
+    return (
+      <>
+        <div className="w-fit px-2 flex flex-col max-lg:flex-row gap-2">
+          {product.productImageUrl.map((imgUrl, index) => (
+            <button
+              key={index}
+              onClick={() => setSelectedImage(index)}
+              className={`border-2 rounded-lg p-1 h-[100px] max-sm:h-[50px] w-[100px] max-sm:w-[50px] bg-blue-50 ${
+                selectedImage === index ? 'border-blue-500' : 'border-gray-200'
               }`}
-          >
-            <img
-              src={product.productImageUrl}
-              alt={`Thumbnail ${index + 1}`}
-              className="w-full h-full"
-            />
-          </button>
-        ))}
-      </div>
-      <div className="w-[70%] max-lg:w-full h-[500px] max-lg:h-[300px] p-4 bg-blue-50 rounded-xl">
-        <img
-          src={product.productImageUrl}
-          alt={product.name}
-          className="w-full h-full object-contain "
-        />
-      </div>
-    </>
-  );
+            >
+              <img
+                src={imgUrl}
+                alt={`${product.name} - View ${index + 1}`}
+                className="w-full h-full object-contain"
+              />
+            </button>
+          ))}
+        </div>
+        <div className="w-[70%] max-lg:w-full h-[500px] max-lg:h-[300px] p-4 bg-blue-50 rounded-xl">
+          <img
+            src={product.productImageUrl[selectedImage]}
+            alt={`${product.name} - Main View`}
+            className="w-full h-full object-contain"
+          />
+        </div>
+      </>
+    );
+  };
 
-
-  // Show loading spinner
  if (loading) {
      return (
          <div className="flex justify-center items-center h-64">
