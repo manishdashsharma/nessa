@@ -161,3 +161,30 @@ export const queryProjects = async () => {
     const response = await servicesAxiosInstance.get('/v1/query-projects')
     return response.data
 }
+
+export const createBlog =  async (token,data) => {
+    const headers= {
+        Authorization: `Bearer ${token}`
+    }
+    const response = await servicesAxiosInstance.post('/v1/create-blog', data, {
+        headers
+    });
+
+    return response.data;   
+}
+
+export const updateBlog = async (token,id,data) =>{
+    const headers= {
+        Authorization: `Bearer ${token}`
+    }
+    const response = await servicesAxiosInstance.put(`v1/update-blog/${id}`,data,{
+        headers
+    })
+    return response.data
+}
+
+
+export const getBlog = async (query,limit,offset) => {
+    const response = await servicesAxiosInstance.get(`/v1/query-blog-data/?query=${query}&limit=${limit}&offset=${offset}`)
+    return response.data
+}
