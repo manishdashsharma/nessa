@@ -6,9 +6,6 @@ import RecognizeEx from './homepageinnersections/RecognizeEx';
 import InsitesSwiper from './homepageinnersections/InsitesSwiper'
 import herobg from '../../assets/images/homepageimages/herobg.png';
 import thunder from '../../assets/images/homepageimages/thunder.svg';
-import image1 from '../../assets/images/homepageimages/image1.png';
-import colorcircle from '../../assets/images/homepageimages/colorcircle.png';
-import lightintensity from '../../assets/images/homepageimages/lightintensity.png';
 
 
 
