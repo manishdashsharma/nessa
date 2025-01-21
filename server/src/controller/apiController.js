@@ -4,7 +4,7 @@ import httpError from '../util/httpError.js'
 import quicker from '../util/quicker.js'
 import databaseService from '../service/databaseService.js'
 import { uploadOnCloudinary } from '../service/cloudinaryService.js'
-import { ValidateAddProduct, ValidateAddUtilsData, ValidateContactUs, validateJoiSchema, ValidateLogin, ValidateProjects, ValidateSoulution, ValidateSupportEnquiry, ValidateTestimonial, ValidateUpdateContactUs, ValidateUpdateProduct, ValidateUpdateSolution, ValidateUpdateSupportEnquiry, ValidateUpdateUtilsData } from '../service/validationService.js'
+import { ValidateAddProduct, ValidateAddUtilsData, ValidateBlog, ValidateContactUs, validateJoiSchema, ValidateLogin, ValidateProjects, ValidateSoulution, ValidateSupportEnquiry, ValidateTestimonial, ValidateUpdateContactUs, ValidateUpdateProduct, ValidateUpdateSolution, ValidateUpdateSupportEnquiry, ValidateUpdateUtilsData } from '../service/validationService.js'
 import { allowedUsers, EApplicationEnvironment } from '../constant/application.js'
 import config from '../config/config.js'
 
@@ -19,7 +19,7 @@ export default {
     apiDetailsCheck: (req, res, next) => {
         try {
             const response = quicker.apiDetailsStatus
-            httpResponse(req, res, 200, responseMessage.SUCCESS,response)
+            httpResponse(req, res, 200, responseMessage.SUCCESS, response)
         } catch (err) {
             httpError(next, err, req, 500)
         }
@@ -41,21 +41,21 @@ export default {
         try {
             const { lat, long } = req.query;
             const locationDetails = await quicker.getLocationDetails();
-    
+
             if (!locationDetails) {
                 return httpError(next, new Error(responseMessage.NOT_FOUND('Location')), req, 400);
             }
-    
+
             if (lat && long) {
                 locationDetails.latitude = lat;
                 locationDetails.longitude = long;
             }
-    
+
             const newLocationStats = await databaseService.savelocationStats(locationDetails);
             if (!newLocationStats) {
                 return httpError(next, new Error(responseMessage.FAILED_TO_SAVE), req, 500);
             }
-    
+
             httpResponse(req, res, 200, responseMessage.SUCCESS, newLocationStats);
         } catch (err) {
             httpError(next, err, req, 500);
@@ -110,7 +110,7 @@ export default {
                 return httpError(next, error, req, 422)
             }
 
-            const { name, description,bestSuitedFor, categories, subcategories, specification, feature, productImageUrl, applicationImageUrls, brochureUrl, SKUId } = value
+            const { name, description, bestSuitedFor, categories, subcategories, specification, feature, productImageUrl, applicationImageUrls, brochureUrl, SKUId } = value
 
             const productData = {
                 name,
@@ -188,7 +188,7 @@ export default {
             httpError(next, err, req, 500)
         }
     },
-    querySingleProduct: async(req, res, next) => {
+    querySingleProduct: async (req, res, next) => {
         try {
             const { id } = req.params
             if (!id) {
@@ -208,21 +208,21 @@ export default {
         try {
             const { body } = req;
             const { id } = req.params;
-    
+
             const { value, error } = validateJoiSchema(ValidateUpdateProduct, body);
-    
+
             if (error) {
                 return httpError(next, error, req, 422);
             }
-    
+
             const updatedProductData = { ...value };
-    
+
             const updatedProduct = await databaseService.updateProductById(id, updatedProductData);
-    
+
             if (!updatedProduct) {
                 return httpError(next, new Error(responseMessage.NOT_FOUND), req, 404);
             }
-    
+
             httpResponse(req, res, 200, responseMessage.SUCCESS, updatedProduct);
         } catch (err) {
             httpError(next, err, req, 500);
@@ -250,19 +250,19 @@ export default {
     addUtilsData: async (req, res, next) => {
         try {
             const { body } = req
-            
+
             const { value, error } = validateJoiSchema(ValidateAddUtilsData, body)
 
             if (error) {
                 return httpError(next, error, req, 422)
             }
-            
+
             const { title, utilsData } = value
             const newUtilsData = await databaseService.saveUtilsData({
                 title,
                 utilsData
             })
-            if(!newUtilsData){
+            if (!newUtilsData) {
                 return httpError(next, new Error(responseMessage.FAILED_TO_SAVE), req, 500)
             }
 
@@ -275,12 +275,12 @@ export default {
         try {
             const { id } = req.params;
             const utilsData = await databaseService.fetchUtilsData(id);
-            
+
             if (!utilsData) {
                 return httpError(next, new Error(responseMessage.NOT_FOUND("Data")), req, 404);
             }
-    
-            httpResponse(req, res, 200, responseMessage.SUCCESS,utilsData);
+
+            httpResponse(req, res, 200, responseMessage.SUCCESS, utilsData);
         } catch (err) {
             httpError(next, err, req, 500);
         }
@@ -289,21 +289,21 @@ export default {
         try {
             const { id } = req.params;
             const { body } = req;
-            
-            if(!id) {
+
+            if (!id) {
                 return httpError(next, new Error(responseMessage.CUSTOM_MESSAGE('Document ID is missing')), req, 400);
             }
             const { value, error } = validateJoiSchema(ValidateUpdateUtilsData, body);
             if (error) {
                 return httpError(next, error, req, 422);
             }
-    
+
             const updatedUtilsData = await databaseService.updateUtilsData(id, value);
-    
+
             if (!updatedUtilsData) {
                 return httpError(next, new Error(responseMessage.CUSTOM_MESSAGE('Failed to Update the data')), req, 500);
             }
-    
+
             httpResponse(req, res, 200, updatedUtilsData);
         } catch (err) {
             httpError(next, err, req, 500);
@@ -312,17 +312,17 @@ export default {
     removeUtilsData: async (req, res, next) => {
         try {
             const { id } = req.params;
-            
+
             if (!id) {
                 return httpError(next, new Error(responseMessage.CUSTOM_MESSAGE('Please provide an ID')), req, 400);
             }
-    
+
             const deletedUtilsData = await databaseService.removeUtilsData(id);
-    
+
             if (!deletedUtilsData) {
                 return httpError(next, new Error(responseMessage.CUSTOM_MESSAGE('Failed to delete the data')), req, 500);
             }
-    
+
             httpResponse(req, res, 200, responseMessage.SUCCESS);
         } catch (err) {
             httpError(next, err, req, 500);
@@ -331,12 +331,12 @@ export default {
     fetchUtilsAllData: async (req, res, next) => {
         try {
             const utilsData = await databaseService.fetchAllUtils();
-            
+
             if (!utilsData) {
                 return httpError(next, new Error(responseMessage.NOT_FOUND("Data")), req, 404)
             }
 
-            httpResponse(req, res, 200, responseMessage.SUCCESS,utilsData)
+            httpResponse(req, res, 200, responseMessage.SUCCESS, utilsData)
         } catch (err) {
             httpError(next, err, req, 500)
         }
@@ -362,7 +362,7 @@ export default {
                 companyName
             })
 
-            if(!newContactUs){
+            if (!newContactUs) {
                 return httpError(next, new Error(responseMessage.FAILED_TO_SAVE), req, 500)
             }
 
@@ -374,9 +374,9 @@ export default {
     queryContactUsData: async (req, res, next) => {
         try {
             const { limit = 10, offset = 0, subject, isRead, isSpam, isSolved } = req.query;
-    
+
             const query = {};
-            
+
             if (subject) {
                 query.subject = subject;
             }
@@ -389,19 +389,19 @@ export default {
             if (isSolved !== undefined) {
                 query.isSolved = isSolved === 'true';
             }
-            
-            
+
+
             const contactUsList = await databaseService.queryContactUsData(query, limit, offset);
-                 
+
             const total = await databaseService.countContactUsDocuments(query);
-    
+
             const response = {
                 total,
                 limit: Number(limit),
                 offset: Number(offset),
                 contactUsList
             }
-    
+
             httpResponse(req, res, 200, responseMessage.SUCCESS, response)
         } catch (err) {
             console.error('Error:', err);
@@ -412,8 +412,8 @@ export default {
         try {
             const { id } = req.params;
             const { body } = req;
-    
-            if(!id) {
+
+            if (!id) {
                 return httpError(next, new Error(responseMessage.CUSTOM_MESSAGE('Document ID is missing')), req, 400);
             }
 
@@ -422,13 +422,13 @@ export default {
             if (error) {
                 return httpError(next, error, req, 422);
             }
-    
-            const updatedContactUs = await databaseService.updateContactUsById(id,value)
-    
+
+            const updatedContactUs = await databaseService.updateContactUsById(id, value)
+
             if (!updatedContactUs) {
                 return httpError(next, new Error(responseMessage.NOT_FOUND("Required Data")), req, 404);
             }
-    
+
             httpResponse(req, res, 200, responseMessage.SUCCESS, updatedContactUs)
         } catch (err) {
             httpError(next, err, req, 500);
@@ -457,7 +457,7 @@ export default {
                 productSKUId
             })
 
-            if(!newContactUs){
+            if (!newContactUs) {
                 return httpError(next, new Error(responseMessage.FAILED_TO_SAVE), req, 500)
             }
 
@@ -469,9 +469,9 @@ export default {
     querySupportEnquiryData: async (req, res, next) => {
         try {
             const { limit = 10, offset = 0, subject, isRead, isSpam, isSolved } = req.query;
-    
+
             const query = {};
-            
+
             if (isRead !== undefined) {
                 query.isRead = isRead === 'true';
             }
@@ -481,19 +481,19 @@ export default {
             if (isSolved !== undefined) {
                 query.isSolved = isSolved === 'true';
             }
-            
-            
+
+
             const contactUsList = await databaseService.querySupportEnquiry(query, limit, offset);
-                 
+
             const total = await databaseService.countSupportEnquiryDocuments(query);
-    
+
             const response = {
                 total,
                 limit: Number(limit),
                 offset: Number(offset),
                 contactUsList
             }
-    
+
             httpResponse(req, res, 200, responseMessage.SUCCESS, response)
         } catch (err) {
             console.error('Error:', err);
@@ -504,8 +504,8 @@ export default {
         try {
             const { id } = req.params;
             const { body } = req;
-    
-            if(!id) {
+
+            if (!id) {
                 return httpError(next, new Error(responseMessage.CUSTOM_MESSAGE('Document ID is missing')), req, 400);
             }
 
@@ -514,13 +514,13 @@ export default {
             if (error) {
                 return httpError(next, error, req, 422);
             }
-    
-            const updatedContactUs = await databaseService.updateSupportEnquiryById(id,value)
-    
+
+            const updatedContactUs = await databaseService.updateSupportEnquiryById(id, value)
+
             if (!updatedContactUs) {
                 return httpError(next, new Error(responseMessage.NOT_FOUND("Required Data")), req, 404);
             }
-    
+
             httpResponse(req, res, 200, responseMessage.SUCCESS, updatedContactUs)
         } catch (err) {
             httpError(next, err, req, 500);
@@ -540,7 +540,7 @@ export default {
             const user = allowedUsers.find(
                 (user) => user.email === emailAddress && user.password === password
             );
-            
+
             if (!user) {
                 return httpError(next, new Error(responseMessage.INVALID_CREDENTIALS), req, 401);
             }
@@ -564,7 +564,7 @@ export default {
                 secure: !(config.ENV === EApplicationEnvironment.DEVELOPMENT)
             })
 
-            httpResponse(req, res, 200, responseMessage.SUCCESS,{accessToken})
+            httpResponse(req, res, 200, responseMessage.SUCCESS, { accessToken })
         } catch (err) {
             httpError(next, err, req, 500)
         }
@@ -572,16 +572,16 @@ export default {
     selfIdentification: (req, res, next) => {
         try {
             const { authenticatedUser } = req
-            httpResponse(req, res, 200, responseMessage.SUCCESS,authenticatedUser)
+            httpResponse(req, res, 200, responseMessage.SUCCESS, authenticatedUser)
         } catch (err) {
             httpError(next, err, req, 500)
         }
     },
-    saveSolutions: async(req, res, next) => {
+    saveSolutions: async (req, res, next) => {
         try {
             const { body } = req
 
-            const {error, value} = validateJoiSchema(ValidateSoulution, body)
+            const { error, value } = validateJoiSchema(ValidateSoulution, body)
 
             if (error) {
                 return httpError(next, error, req, 422)
@@ -589,7 +589,7 @@ export default {
 
             const newSolution = await databaseService.saveSolutionData(value)
 
-            if(!newSolution){
+            if (!newSolution) {
                 return httpError(next, new Error(responseMessage.FAILED_TO_SAVE), req, 500)
             }
             httpResponse(req, res, 200, responseMessage.SUCCESS)
@@ -601,7 +601,7 @@ export default {
         try {
             const solutionsList = await databaseService.queryAllSolutions();
 
-            if(!solutionsList){
+            if (!solutionsList) {
                 return httpError(next, new Error(responseMessage.NOT_FOUND("Data")), req, 404)
             }
             const response = []
@@ -624,7 +624,7 @@ export default {
 
             const solutionsList = await databaseService.querySolutionById(id);
 
-            if(!solutionsList){
+            if (!solutionsList) {
                 return httpError(next, new Error(responseMessage.NOT_FOUND("Data")), req, 404)
             }
             httpResponse(req, res, 200, responseMessage.SUCCESS, solutionsList)
@@ -633,23 +633,23 @@ export default {
             httpError(next, err, req, 500);
         }
     },
-    updateSolutions : async (req, res, next) => {
+    updateSolutions: async (req, res, next) => {
         try {
             const { id } = req.params;
             const { body } = req;
-    
+
             const { error, value } = validateJoiSchema(ValidateUpdateSolution, body)
-    
+
             if (error) {
                 return httpError(next, error, req, 422);
             }
-    
+
             const updatedSolution = await databaseService.updateSolutionData(id, value);
-    
+
             if (!updatedSolution) {
                 return httpError(next, new Error(responseMessage.FAILED_TO_UPDATE), req, 500);
             }
-    
+
             httpResponse(req, res, 200, responseMessage.SUCCESS);
         } catch (err) {
             httpError(next, err, req, 500);
@@ -667,7 +667,7 @@ export default {
 
             const newTestimonial = await databaseService.saveTestimonialData(value)
 
-            if(!newTestimonial){
+            if (!newTestimonial) {
                 return httpError(next, new Error(responseMessage.FAILED_TO_SAVE), req, 500)
             }
 
@@ -681,9 +681,9 @@ export default {
             const testimonialsList = await databaseService.queryAllTestimonials();
 
             console.log(testimonialsList);
-            
 
-            if(!testimonialsList){
+
+            if (!testimonialsList) {
                 return httpError(next, new Error(responseMessage.NOT_FOUND("Data")), req, 404)
             }
             httpResponse(req, res, 200, responseMessage.SUCCESS, testimonialsList)
@@ -695,9 +695,9 @@ export default {
     updateTestimonials: async (req, res, next) => {
         try {
             const { id } = req.params;
-            
+
             const updatedTestimonial = await databaseService.updateTestimonialData(id);
-        
+
             if (!updatedTestimonial) {
                 return httpError(next, new Error(responseMessage.NOT_FOUND("Data")), req, 404)
             }
@@ -719,7 +719,7 @@ export default {
 
             const newProject = await databaseService.saveProjectData(value)
 
-            if(!newProject){
+            if (!newProject) {
                 return httpError(next, new Error(responseMessage.FAILED_TO_SAVE), req, 500)
             }
 
@@ -732,7 +732,7 @@ export default {
         try {
             const projectsList = await databaseService.queryAllProjects();
 
-            if(!projectsList){
+            if (!projectsList) {
                 return httpError(next, new Error(responseMessage.NOT_FOUND("Data")), req, 404)
             }
             httpResponse(req, res, 200, responseMessage.SUCCESS, projectsList)
@@ -740,6 +740,91 @@ export default {
             console.error('Error:', err);
             httpError(next, err, req, 500);
         }
-    }
+    },
+    createBlog: async (req, res, next) => {
+        try {
+            const { body } = req
+
+            const { value, error } = validateJoiSchema(ValidateBlog, body)
+
+            if (error) {
+                return httpError(next, error, req, 422)
+            }
+
+            const { title, description, tag, thumbnailImage, userImage, userName, content } = value
+
+            const blogData = {
+                title, description, tag, thumbnailImage, userImage, userName, content
+            }
+
+            const saveBlogData = await databaseService.saveBlog(blogData)
+
+            if (!saveBlogData) {
+                return httpError(next, new Error(responseMessage.FAILED_TO_SAVE), req, 500)
+            }
+
+            console.log("Blog Data Is ",blogData);
+            
+
+            httpResponse(req, res, 201, responseMessage.SUCCESS, blogData)
+        } catch (err) {
+            httpError(next, err, req, 500)
+        }
+    },
+    updateBlog: async (req, res, next) => {
+        try {
+            const { body } = req;
+            const { id } = req.params;
+
+            const { value, error } = validateJoiSchema(ValidateBlog, body);
+
+            if (error) {
+                return httpError(next, error, req, 422);
+            }
+
+            const updatedBlogData = { ...value };
+
+            const updatedBlog = await databaseService.updateBlogById(id, updatedBlogData);
+
+            if (!updatedBlog) {
+                return httpError(next, new Error(responseMessage.NOT_FOUND), req, 404);
+            }
+
+            httpResponse(req, res, 200, responseMessage.SUCCESS, updatedBlog);
+        } catch (err) {
+            httpError(next, err, req, 500);
+        }
+    },
+    fetchBlog:  async (req, res, next) => {
+        try {
+            const { query = 'all', limit = 100, offset = 0 } = req.query
+
+            let findQuery = {}
+
+            switch (query.toLowerCase()) {
+                case 'all':
+                    break          
+                default:
+                    break
+            }
+
+            // const blogs = await databaseService.queryBlogData(findQuery, limit, offset)
+            const blogs = await databaseService.fetchAllBlogData()
+
+
+            const total = await databaseService.countBlogDocuments(findQuery)
+
+            const response = {
+                total,
+                limit: Number(limit),
+                offset: Number(offset),
+                blogs
+            }
+
+            httpResponse(req, res, 200, responseMessage.SUCCESS, response)
+        } catch (err) {
+            httpError(next, err, req, 500)
+        }
+    },
 }
 

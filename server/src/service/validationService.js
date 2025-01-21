@@ -198,6 +198,17 @@ export const ValidateProjects = Joi.object({
     )
 })
 
+
+export const ValidateBlog  = Joi.object({
+    title: Joi.string().required(),
+    description: Joi.string().required(),
+    tag: Joi.string().required(),
+    thumbnailImage: Joi.string().required(),
+    userImage: Joi.string().required(),
+    userName: Joi.string().required(),
+    content: Joi.string().required(),
+})
+
 export const validateJoiSchema = (schema, value) => {
     const result = schema.validate(value);
     return {

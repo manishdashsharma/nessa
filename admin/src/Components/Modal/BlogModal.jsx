@@ -2,10 +2,19 @@ import { useEffect, useState } from 'react'
 import { Modal } from '@mui/material'
 import { motion } from 'framer-motion'
 import PropTypes from 'prop-types'
-import ReactQuill from 'react-quill'
-import 'react-quill/dist/quill.snow.css'
 import { toast } from 'react-hot-toast'
-import { uploadFile } from '../../service/apiService'
+import { createBlog, updateBlog, uploadFile } from '../../service/apiService'
+import JoditEditor from "jodit-react";
+
+const editorConfig = {
+    editorClass: "light",
+    // style: {
+    //     backgroundColor: "#1e1e2f",
+    //     color: "#f5f5f5",
+    // },
+    statusbar: false,
+};
+
 const BlogModal = ({ open, onClose, token, blog }) => {
     const initialFormState = {
         title: '',
@@ -60,10 +69,10 @@ const BlogModal = ({ open, onClose, token, blog }) => {
     const handleFileUpload = async (e, type) => {
         const files = e.target.files
         if (!files.length) return
-    
+
         const maxFileSize = 1000000 // 1MB
         const newUrls = []
-    
+
         setLoading(true)
         try {
             for (let file of files) {
@@ -71,11 +80,11 @@ const BlogModal = ({ open, onClose, token, blog }) => {
                     toast.error('File size must be less than 1MB')
                     continue
                 }
-    
+
                 const uploadData = new FormData()
                 uploadData.append('file', file)
                 uploadData.append('category', type.toUpperCase())
-    
+
                 const response = await uploadFile(uploadData)
                 if (response.success) {
                     newUrls.push(response.data)
@@ -83,11 +92,11 @@ const BlogModal = ({ open, onClose, token, blog }) => {
                     toast.error('File upload failed')
                 }
             }
-    
+
             if (newUrls.length) {
-                setFormData(prev => ({ 
-                    ...prev, 
-                    [type]: newUrls[0] 
+                setFormData(prev => ({
+                    ...prev,
+                    [type]: newUrls[0]
                 }))
                 toast.success('File uploaded successfully')
             }
@@ -99,13 +108,61 @@ const BlogModal = ({ open, onClose, token, blog }) => {
         }
     }
 
+
+    const validateForm = () => {
+        if (!formData.title.trim()) {
+            toast.error("Blog title Required.");
+            return false;
+        }
+
+        if (!formData.description.trim()) {
+            toast.error("Description is required.");
+            return false;
+        }
+
+        if (!formData.tag.trim()) {
+            toast.error("tag is required.");
+            return false;
+        }
+        if(!formData.userName.trim()){
+            toast.error("User Name is required.");
+            return false;
+        }
+
+        if (formData.thumbnailImage === null) {
+            toast.error("ThumbnailImage is required.");
+            return false;
+        }
+        if (formData.userImage === null) {
+            toast.error("UserImage is required.");
+            return false;
+        }
+
+        if (!formData.content.trim()) {
+            toast.error("Blog content is required.");
+            return false;
+        }
+
+        return true;
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault()
+       
+        if (!validateForm()) {
+            return;
+        }
+
         setLoading(true)
         try {
-            // Mock API call for now
+            const response = blog ? await updateBlog(token,blog?._id, formData) : await createBlog(token, formData)
+            
             console.log('Submitting blog data:', formData)
+            if (response.success) {
             toast.success(blog ? 'Blog updated successfully' : 'Blog created successfully')
+            } else {
+                toast.error('Operation failed')
+            }
             onClose()
         } catch (error) {
             console.error('Submission failed:', error)
@@ -202,11 +259,12 @@ const BlogModal = ({ open, onClose, token, blog }) => {
                     {/* Blog Content */}
                     <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">Content</label>
-                        <ReactQuill
+                        <JoditEditor
                             value={formData.content}
-                            onChange={handleEditorChange}
-                            className="bg-white rounded-lg border border-gray-300"
-                            theme="snow"
+                            tabIndex={1}
+                            config={editorConfig}
+                            onChange={(newContent) => handleEditorChange(newContent)}
+                            required
                         />
                     </div>
 
@@ -220,9 +278,8 @@ const BlogModal = ({ open, onClose, token, blog }) => {
                         </button>
                         <button
                             type="submit"
-                            className={`px-5 py-2 text-white bg-gradient-to-r from-blue-500 to-indigo-600 rounded-lg hover:opacity-90 transition-opacity ${
-                                loading ? 'opacity-50 cursor-not-allowed' : ''
-                            }`}
+                            className={`px-5 py-2 text-white bg-gradient-to-r from-blue-500 to-indigo-600 rounded-lg hover:opacity-90 transition-opacity ${loading ? 'opacity-50 cursor-not-allowed' : ''
+                                }`}
                             disabled={loading}>
                             {loading ? 'Saving...' : blog ? 'Update Blog' : 'Create Blog'}
                         </button>
@@ -236,7 +293,7 @@ const BlogModal = ({ open, onClose, token, blog }) => {
 const FileUpload = ({ label, file, onUpload, multiple = false }) => (
     <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer hover:border-blue-500 transition-colors">
         <label className="cursor-pointer block">
-            
+
             <span className="block text-sm font-medium text-gray-700">{label}</span>
             <input
                 type="file"

@@ -8,6 +8,7 @@ import supportModel from '../model/supportEnquiryModel.js'
 import solutionModel from '../model/solutionModel.js'
 import testimonialModel from '../model/testimonialModel.js'
 import projectModel from '../model/projectModel.js'
+import blogModel from '../model/blogModel.js'
 
 export default {
     connect: async () => {
@@ -124,6 +125,21 @@ export default {
     },
     queryAllProjects:() => {
         return projectModel.find()
-    }
+    },
+    saveBlog: (payload) => {
+        return blogModel.create(payload)
+    },
+    updateBlogById : (id, data) => {
+        return blogModel.findByIdAndUpdate(id, data, { new: true });
+    },
+    fetchAllBlogData: () => {
+        return blogModel.find().sort({ createdAt: -1 })
+    },
+    queryBlogData: (findQuery, limit, offset) => {
+        return blogModel.find(findQuery).limit(Number(limit)).skip(Number(offset)).sort({ createdAt: -1 })
+    },
+    countBlogDocuments: (findQuery) =>{
+        return blogModel.countDocuments(findQuery)
+    },
 }
 

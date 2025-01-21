@@ -65,8 +65,7 @@ const BlogDetailsModal = ({ open, onClose, blog }) => {
                     {/* Content */}
                     <div>
                         <h3 className="font-semibold mb-2">Content</h3>
-                        <div className="prose max-w-none">
-                            {blog.content}
+                        <div className="prose max-w-none"  dangerouslySetInnerHTML={{ __html: blog?.content }}>
                         </div>
                     </div>
                 </div>

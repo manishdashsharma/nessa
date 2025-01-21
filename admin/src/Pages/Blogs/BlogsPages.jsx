@@ -7,6 +7,7 @@ import BlogDetailsModal from '../../Components/Modal/BlogDetailsModal'
 import { useNavigate } from 'react-router-dom'
 import { isTokenExpired } from '../../utils/utils'
 import { MOCK_BLOGS } from './config'
+import { getBlog } from '../../service/apiService'
 
 const BlogPage = () => {
     const [blogs, setBlogs] = useState([])
@@ -31,34 +32,37 @@ const BlogPage = () => {
         }
     }, [navigate])
 
-    // useEffect(() => {
-    //     const fetchBlogs = async () => {
-    //         setLoading(true)
-    //         try {
-    //             const response = await getBlog('all', itemsPerPage, (page - 1) * itemsPerPage)
-    //             setBlogs(response.data.blogs)
-    //             setTotalPages(Math.ceil(response.data.total / itemsPerPage))
-    //         } catch (error) {
-    //             console.error('Failed to fetch blogs:', error)
-    //         } finally {
-    //             setLoading(false)
-    //         }
-    //     }
-    //     fetchBlogs()
-    // }, [page])
 
     useEffect(() => {
-        setLoading(true);
-        // Simulate API delay
-        setTimeout(() => {
-            const startIndex = (page - 1) * itemsPerPage;
-            const endIndex = startIndex + itemsPerPage;
-            setBlogs(MOCK_BLOGS);
-            setFilteredBlogs(MOCK_BLOGS);
-            setTotalPages(Math.ceil(MOCK_BLOGS.length / itemsPerPage));
-            setLoading(false);
-        }, 500); // 500ms delay to simulate network request
-    }, [page]);
+
+        const fetchBlogs = async () => {
+            setLoading(true)
+            try {
+                const response = await getBlog('all', itemsPerPage, (page - 1) * itemsPerPage)
+                
+                setBlogs(response.data.blogs)
+                setTotalPages(Math.ceil(response.data.total / itemsPerPage))
+            } catch (error) {
+                console.error('Failed to fetch blogs:', error)
+            } finally {
+                setLoading(false)
+            }
+        }
+        fetchBlogs()
+    }, [page])
+
+    // useEffect(() => {
+    //     setLoading(true);
+    //     // Simulate API delay
+    //     setTimeout(() => {
+    //         const startIndex = (page - 1) * itemsPerPage;
+    //         const endIndex = startIndex + itemsPerPage;
+    //         setBlogs(MOCK_BLOGS);
+    //         setFilteredBlogs(MOCK_BLOGS);
+    //         setTotalPages(Math.ceil(MOCK_BLOGS.length / itemsPerPage));
+    //         setLoading(false);
+    //     }, 500); // 500ms delay to simulate network request
+    // }, [page]);
 
     useEffect(() => {
         let filtered = blogs
@@ -71,12 +75,12 @@ const BlogPage = () => {
             filtered = filtered.filter((blog) => blog.tag.toLowerCase().includes(searchTag.toLowerCase()))
         }
 
-        setFilteredBlogs(filtered)
+        setFilteredBlogs(blogs)
         setTotalPages(Math.ceil(filtered.length / itemsPerPage))
     }, [searchTitle, searchTag, blogs])
 
-    const handlePageChange = (event, value) => {
-        setPage(value)
+    const handlePageChange =  (event, value) => {
+        setPage(value); 
     }
 
     const handleOpenModal = (blog = null) => {
@@ -103,6 +107,7 @@ const BlogPage = () => {
         if (text.length <= maxLength) return text
         return text.slice(0, maxLength) + '...'
     }
+    
 
     return (
         <div className="max-w-6xl mx-auto p-4">
