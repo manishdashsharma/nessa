@@ -260,7 +260,7 @@ const Homepage = () => {
             ))}
 
 
-            <div className="w-full flex items-center justify-center">
+            <div className="w-full mt-5 flex items-center justify-center">
                 <Link
                     to="solutions"
                     className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-lg font-medium transition-colors">

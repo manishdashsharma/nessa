@@ -190,6 +190,16 @@ const Navbar = () => {
         }
     }
 
+    const [selectedLanguage, setSelectedLanguage] = useState('en')
+
+    const handleLanguageChange = (e) => {
+        setSelectedLanguage(e.target.value)
+        const url = `https://translate.google.com/translate?sl=auto&tl=${e.target.value}&u=${window.location.href}`
+        window.open(url, '_blank')
+        console.log('Language selected:', e.target.value)
+    }
+
+
     const CorporateDropdown = [
         {
             logo: <GrResources className={`text-[#0074E0]  bg-[#0074E0] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
@@ -249,10 +259,26 @@ const Navbar = () => {
                                 className="ml-2 max-sm:w-[120px] outline-none bg-[rgb(38,114,190)] text-white placeholder:text-[#ffffffe5]"
                             />
                         </div>
-                        <div className="flex items-center ml-4">
+                        {/* <div className="flex items-center ml-4">
                             <IoEarthOutline className="w-5 h-5 text-white" />
                             <span className="text-white ml-2">IN(ENG)</span>
                             <FaCaretDown className="w-5 h-5 text-white" />
+
+
+                        </div> */}
+
+                        <div className="flex items-center ml-4">
+                            <select
+                                value={selectedLanguage}
+                                onChange={handleLanguageChange}
+                                className="bg-transparent text-black  border-none outline-none">
+                                <option value="en">IN (ENG)</option>
+                                <option value="hi">हिंदी</option>
+                                <option value="es">Español</option>
+                                <option value="fr">Français</option>
+                                <option value="de">Deutsch</option>
+                                <option value="it">Italiano</option>
+                            </select>
                         </div>
                     </div>
                 </div>

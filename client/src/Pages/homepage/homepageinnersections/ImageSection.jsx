@@ -33,12 +33,12 @@ function LightIntensity({ setBrightness }) {
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-lg p-4 w-full max-w-sm">
+    <div className="bg-white rounded-2xl   shadow-lg p-4 w-full max-w-sm">
       <h2 className="text-lg md:text-2xl text-center text-gray-800 mb-4">
         Light Intensity
       </h2>
 
-      <div className="space-y-4">
+      <div className="space-y-4 mt-14 ">
         <div
           ref={barsRef}
           className="relative h-16 cursor-pointer"
@@ -208,7 +208,7 @@ function ColorChangeController({ setColor }) {
   ].join(', ');
 
   return (
-    <div className="w-full max-w-sm bg-white p-4 rounded-xl">
+    <div className="w-full max-w-sm shadow-xl  bg-white p-4 rounded-xl">
       <div className="text-center mb-4">
         <h2 className="text-lg md:text-2xl text-black flex items-center justify-center gap-3">
           Change Color
@@ -291,7 +291,7 @@ export default function ImageSection() {
           }}
         />
       </div>
-      <div className="w-full md:translate-y-[-5vw] flex gap-6 justify-center flex-wrap">
+      <div className="w-full md:translate-y-[-5vw] max-md:mb-10 px-[5vw] flex gap-6 justify-center flex-wrap">
         <ColorChangeController setColor={setColor} />
         <LightIntensity setBrightness={setBrightness} brightness={brightness} />
       </div>
