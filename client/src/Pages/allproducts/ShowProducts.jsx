@@ -3,7 +3,7 @@ import { FaChevronDown } from 'react-icons/fa'
 import { fetchProducts, increaseIsEnquired } from '../../services/api.services'
 import { motion, AnimatePresence } from 'framer-motion'
 import toast from 'react-hot-toast'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { IoIosArrowForward } from 'react-icons/io'
 import { IoIosArrowBack } from 'react-icons/io'
 
@@ -35,6 +35,8 @@ const ITEMS_PER_PAGE = 12
 
 export default function ShowProducts() {
     const navigate = useNavigate()
+    const location = useLocation()
+
 
     const [products, setProducts] = useState([])
     const [loading, setLoading] = useState(false)
@@ -46,32 +48,47 @@ export default function ShowProducts() {
     const [loadingProduct, setLoadingProduct] = useState(null)
     const [totalCount, setTotalCount] = useState(0)
 
-    useEffect(() => {
-        const fetchFilteredProducts = async () => {
-            try {
-                setLoading(true)
-                const params = {
-                    limit: ITEMS_PER_PAGE,
-                    offset: (currentPage - 1) * ITEMS_PER_PAGE,
-                    query: 'required',
-                    subcategories: selectedFilters.length > 0 ? selectedFilters : undefined
-                }
+       useEffect(() => {
+           if (location.state?.selectedCategory && location.state?.selectedSubcategory) {
+               // Expand the selected category
+               setExpandedCategories((prev) => ({
+                   [location.state.selectedCategory]: true
+               }))
 
-                const response = await fetchProducts(params)
-                if (response?.data) {
-                    setProducts(response.data.products)
-                    setTotalCount(response.data.total || 0)
-                }
-            } catch (error) {
-                console.error('Error fetching product data:', error)
-                toast.error('Failed to load products')
-            } finally {
-                setLoading(false)
-            }
-        }
+               // Set the selected subcategory filter
+               setSelectedFilters([location.state.selectedSubcategory])
 
-        fetchFilteredProducts()
-    }, [selectedFilters, currentPage])
+               // Clear the location state to prevent re-filtering on page refresh
+               navigate(location.pathname, { replace: true })
+           }
+       }, [location.state, navigate])
+
+   useEffect(() => {
+       const fetchFilteredProducts = async () => {
+           try {
+               setLoading(true)
+               const params = {
+                   limit: ITEMS_PER_PAGE,
+                   offset: (currentPage - 1) * ITEMS_PER_PAGE,
+                   query: 'required',
+                   subcategories: selectedFilters.length > 0 ? selectedFilters : undefined
+               }
+
+               const response = await fetchProducts(params)
+               if (response?.data) {
+                   setProducts(response.data.products)
+                   setTotalCount(response.data.total || 0)
+               }
+           } catch (error) {
+               console.error('Error fetching product data:', error)
+               toast.error('Failed to load products')
+           } finally {
+               setLoading(false)
+           }
+       }
+
+       fetchFilteredProducts()
+   }, [selectedFilters, currentPage, location.state])
 
     const toggleCategory = (category) => {
         setExpandedCategories((prev) => ({

@@ -241,7 +241,7 @@ const Homepage = () => {
                     <div
                         className={`flex flex-col  md:flex-row ${index % 2 === 0 ? '' : 'md:flex-row-reverse'} items-center justify-center gap-8 z-[2] relative`}>
                         <img
-                            className="w-full md:w-1/2 h-auto rounded-lg shadow-lg z-[2]"
+                            className="w-full md:w-1/2 h-[350px] object-cover rounded-lg shadow-lg z-[2]"
                             src={solution.thumbnail}
                             alt={solution.subcategories}
                         />

@@ -20,6 +20,7 @@ import { GrResources } from 'react-icons/gr'
 import { allSolutions } from '../../services/api.services'
 import toast from 'react-hot-toast'
 import { MdInfoOutline } from 'react-icons/md';
+import ProductDropdown from './ProductDropdown'
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -328,11 +329,13 @@ const Navbar = () => {
                                 )}
                             </AnimatePresence>
                         </div>
-                        <Link
+                        {/* <Link
                             to="/allproducts"
                             className="text-black flex items-center gap-1">
                             Products
-                        </Link>
+                        </Link> */}
+
+                        <ProductDropdown />
                         <div
                             onMouseEnter={() => {
                                 setcorporateOpen(true)
@@ -403,7 +406,7 @@ const Navbar = () => {
 
                 {/* Mobile Menu */}
                 <div
-                    className={`xl:hidden fixed top-[132px] left-0 w-full bg-white shadow-lg transition-all duration-300 ease-in-out transform ${
+                    className={`xl:hidden fixed top-[132px] left-0 w-full  max-xl:max-h-[80vh] overflow-y-auto bg-white shadow-lg transition-all duration-300 ease-in-out transform ${
                         isMenuOpen ? 'translate-y-0 opacity-100 visible' : 'translate-y-[-100%] opacity-0 invisible'
                     } z-40`}>
                     <div className="flex flex-col p-4">
@@ -460,11 +463,12 @@ const Navbar = () => {
                                 )}
                             </AnimatePresence>
                         </div>
-                        <Link
+                        {/* <Link
                             to="/allproducts"
                             className="py-2 text-black hover:bg-gray-100 px-4 flex items-center justify-between">
                             Products
-                        </Link>
+                        </Link> */}
+                        <ProductDropdown setIsMenuOpen={setIsMenuOpen} />
                         <div className="text-black relative">
                             <div
                                 onClick={() => {

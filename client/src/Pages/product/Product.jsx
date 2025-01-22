@@ -149,7 +149,7 @@ const Product = () => {
                   {/* product iamges section only visible bellow w-1024 */}
                   <div className="w-1/2 hidden max-lg:flex max-lg:w-full  max-lg:flex-col gap-5 h-[500px] max-lg:h-fit">{photoSection()}</div>
 
-                  <div>
+                  {/* <div>
                       <h2 className="text-lg font-semibold mb-4">Best Suited For</h2>
                       <div className="flex  gap-4">
                           {product.bestSuitedFor.map((item, index) => (
@@ -161,7 +161,7 @@ const Product = () => {
                               </div>
                           ))}
                       </div>
-                  </div>
+                  </div> */}
 
                   <div className="flex gap-4">
                       <button
@@ -202,7 +202,7 @@ const Product = () => {
                                   <p className="mb-4 ">{useCase.description}</p>
                               </div>
                               <img
-                                  className="w-full md:w-1/2 h-[400px] max-md:hidden  shadow-lg"
+                                  className="w-full md:w-1/2 h-[350px] max-md:hidden  shadow-lg"
                                   src={useCase.imageUrl}
                                   alt={useCase.title + ' Image'}
                               />
@@ -214,7 +214,7 @@ const Product = () => {
                           className="w-full min-h-[300px] pt-16  max-md:pb-2 px-[5vw]  text-center  relative ">
                           <div className="flex flex-col md:flex-row items-center justify-center gap-8 z-[2] relative">
                               <img
-                                  className="w-full md:w-1/2 h-[400px] shadow-lg z-[2]"
+                                  className="w-full md:w-1/2 h-[350px] shadow-lg z-[2]"
                                   src={useCase.imageUrl}
                                   alt={useCase.title + ' Image'}
                               />

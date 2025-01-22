@@ -76,7 +76,7 @@ export default function RelatedProductsSwipe({product}) {
                       },
                       850: {
                           slidesPerView: 3,
-                          spaceBetween: 0
+                          spaceBetween: 20,
                       },
                       1280: {
                           slidesPerView: 4,
