@@ -5,47 +5,39 @@ import blogExample from '../../assets/images/resourcesImages/blog-greatExample.p
 import mediaPost1 from '../../assets/images/resourcesImages/mediaPost1.png';
 
 
+import axios from 'axios'
+import { fetchBlogs } from '../../services/api.services';
+
+export const fetch = async () => {
+    try {
+        const response = await fetchBlogs()
+
+        // Modify the blogs section in insitesAndResources
+        const updatedResources = insitesAndResources.map((section) =>
+            section.title === 'Blogs' ? { ...section, items: response.data.blogs } : section
+        )
+        
+        console.log(response.data)
+        return {
+            updatedResources,
+            blogs: response.data.blogs
+            
+        }
+    } catch (error) {
+        console.error('Blog fetch error:', error)
+        return {
+            updatedResources: insitesAndResources,
+            blogs: []
+        }
+    }
+}
+
 export const insitesAndResources = [
   {
     title: 'Blogs',
 
     items: [
-      {
-        title: '5 Great Web Design Resources',
-        image: blogWebResources,
-        category: 'Analytics',
-        sorttitle: 'Est placeat perspicia',
-        profile: {
-          author: 'Orlando Diggs',
-          date: 'March 28, 2023',
-          readTime: '5 min read',
-          profilePicture: '',
-        },
-      },
-      {
-        title: '10 Great Examples of Websites',
-        image: blogPrinciple,
-        category: 'Marketing',
-        sorttitle: 'Et odit soluta sint temporibus quia dolorem',
-        profile: {
-          author: 'Mike Dean',
-          date: 'March 28, 2023',
-          readTime: '3 min read',
-          profilePicture: '',
-        },
-      },
-      {
-        title: '5 Principles Of Effective Web Design',
-        image: blogExample,
-        category: 'Business',
-        sorttitle: 'Sapiente amet molestias cum fugiat qui',
-        profile: {
-          author: 'Anna Provi',
-          date: 'March 28, 2023',
-          readTime: '8 min read',
-          profilePicture: '',
-        },
-      },
+    
     ],
   },
   {
