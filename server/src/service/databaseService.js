@@ -141,5 +141,8 @@ export default {
     countBlogDocuments: (findQuery) =>{
         return blogModel.countDocuments(findQuery)
     },
+    fetchBlog: (id) => {
+        return blogModel.findById(id)
+    }
 }
 

@@ -42,6 +42,7 @@ router.route('/save-projects').post(apiController.saveProjects)
 router.route('/query-projects').get(apiController.queryProjects)
 router.route('/create-blog').post(authentication,authorization() ,apiController.createBlog);
 router.route('/update-blog/:id').put(authentication,authorization(),apiController.updateBlog);
-router.route('/query-blog-data').get(apiController.fetchBlog)
+router.route('/query-blog-data').get(apiController.fetchBlogs)
+router.route('/query-blog/:id').get(apiController.fetchSigleBlog)
 
 export default router

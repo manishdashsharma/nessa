@@ -787,7 +787,7 @@ export default {
             const updatedBlog = await databaseService.updateBlogById(id, updatedBlogData);
 
             if (!updatedBlog) {
-                return httpError(next, new Error(responseMessage.NOT_FOUND), req, 404);
+                return httpError(next, new Error(responseMessage.NOT_FOUND('Blog')), req, 404);
             }
 
             httpResponse(req, res, 200, responseMessage.SUCCESS, updatedBlog);
@@ -795,7 +795,7 @@ export default {
             httpError(next, err, req, 500);
         }
     },
-    fetchBlog:  async (req, res, next) => {
+    fetchBlogs:  async (req, res, next) => {
         try {
             const { query = 'all', limit = 100, offset = 0 } = req.query
 
@@ -807,8 +807,6 @@ export default {
                 default:
                     break
             }
-
-            // const blogs = await databaseService.queryBlogData(findQuery, limit, offset)
             const blogs = await databaseService.fetchAllBlogData()
 
 
@@ -826,5 +824,22 @@ export default {
             httpError(next, err, req, 500)
         }
     },
+    fetchSigleBlog:  async (req, res, next) => {
+        try {
+            const { id } = req.params
+            
+
+            const blogs = await databaseService.fetchBlog(id)
+
+            if (!blogs){
+                return httpError(next, new Error(responseMessage.NOT_FOUND('Blog')), req, 404)
+            }
+
+            httpResponse(req, res, 200, responseMessage.SUCCESS, blogs)
+        } catch (err) {
+            httpError(next, err, req, 500)
+        }
+    },
+
 }
 
