@@ -1,15 +1,15 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Modal } from '@mui/material'
 import { motion } from 'framer-motion'
 import CloudUploadIcon from '@mui/icons-material/CloudUpload'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import PropTypes from 'prop-types'
-import { uploadFile, saveProject } from '../../service/apiService'
+import { uploadFile, saveProject, updateProject } from '../../service/apiService'
 import { toast } from 'react-hot-toast'
 
-const ProjectModel = ({ open, onClose, token }) => {
-    const [formData, setFormData] = useState({
+const ProjectModel = ({ open, onClose, token, existingProject }) => {
+    const initialFormState = {
         categories: '',
         projects: [
             {
@@ -19,10 +19,35 @@ const ProjectModel = ({ open, onClose, token }) => {
                 isPublished: true
             }
         ]
-    })
+    }
 
+    const [formData, setFormData] = useState(initialFormState)
     const [loading, setLoading] = useState(false)
     const [uploadsComplete, setUploadsComplete] = useState({})
+
+    // Update form data when existing project changes
+    useEffect(() => {
+        if (existingProject && open) {
+            setFormData({
+                categories: existingProject.categories,
+                projects: existingProject.projects.map(project => ({
+                    ...project,
+                    // Ensure _id is preserved
+                    _id: project._id || undefined
+                }))
+            })
+            // Reset upload tracking
+            const uploadStatus = existingProject.projects.reduce((acc, _, index) => {
+                acc[`project${index}`] = true
+                return acc
+            }, {})
+            setUploadsComplete(uploadStatus)
+        } else if (!open) {
+            // Reset form when modal closes
+            setFormData(initialFormState)
+            setUploadsComplete({})
+        }
+    }, [existingProject, open])
 
     const handleInputChange = (e, index) => {
         const { name, value } = e.target
@@ -106,18 +131,31 @@ const ProjectModel = ({ open, onClose, token }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-
+    
         const allUploadsComplete = formData.projects.every((_, index) => uploadsComplete[`project${index}`])
         if (!allUploadsComplete) {
             toast.error('Please upload images for all projects before submitting')
             return
         }
-
+    
         setLoading(true)
         try {
-            const response = await saveProject(token, formData)
+            let response
+            if (existingProject) {
+                // Modify the payload to handle new projects
+                const updatedPayload = {
+                    ...formData,
+                    projects: formData.projects.map(project => 
+                        project._id ? project : { ...project, _id: undefined }
+                    )
+                }
+                response = await updateProject(existingProject._id, updatedPayload)
+            } else {
+                response = await saveProject(token, formData)
+            }
+    
             if (response.success) {
-                toast.success('Projects saved successfully')
+                toast.success(existingProject ? 'Project updated successfully' : 'Projects saved successfully')
                 onClose()
             } else {
                 toast.error('Projects save failed')
@@ -145,19 +183,22 @@ const ProjectModel = ({ open, onClose, token }) => {
                 initial={{ opacity: 0, y: -50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ type: 'spring', damping: 25, stiffness: 500 }}>
-                <h2 className="text-3xl font-semibold text-gray-800 mb-6">Add New Projects</h2>
+                <h2 className="text-3xl font-semibold text-gray-800 mb-6">
+                    {existingProject ? 'Edit Projects' : 'Add New Projects'}
+                </h2>
                 <p className="text-sm text-gray-500 mb-4">Note: Sentence case is allowed for input fields</p>
 
-                <form
-                    onSubmit={handleSubmit}
-                    className="space-y-5">
+                <form onSubmit={handleSubmit} className="space-y-5">
                     <div className="mb-6">
                         <label className="block text-sm font-medium text-gray-700">Category</label>
                         <input
                             type="text"
                             name="categories"
                             value={formData.categories}
-                            onChange={(e) => setFormData((prev) => ({ ...prev, categories: e.target.value }))}
+                            onChange={(e) => setFormData((prev) => ({ 
+                                ...prev, 
+                                categories: e.target.value 
+                            }))}
                             placeholder="Enter category"
                             className="mt-2 block w-full rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-700 shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-transparent"
                             required
@@ -177,9 +218,9 @@ const ProjectModel = ({ open, onClose, token }) => {
 
                         {formData.projects.map((project, index) => (
                             <div
-                                key={index}
+                                key={project._id || index}
                                 className="p-4 rounded-lg border border-gray-200 relative">
-                                {index > 0 && (
+                                {formData.projects.length > 1 && (
                                     <button
                                         type="button"
                                         onClick={() => removeProject(index)}
@@ -213,6 +254,29 @@ const ProjectModel = ({ open, onClose, token }) => {
                                         />
                                     </div>
 
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-700">Publish Status</label>
+                                        <select
+                                            name="isPublished"
+                                            value={project.isPublished}
+                                            onChange={(e) => {
+                                                const value = e.target.value === 'true'
+                                                setFormData((prev) => {
+                                                    const updatedProjects = [...prev.projects]
+                                                    updatedProjects[index] = {
+                                                        ...updatedProjects[index],
+                                                        isPublished: value
+                                                    }
+                                                    return { ...prev, projects: updatedProjects }
+                                                })
+                                            }}
+                                            className="mt-2 block w-full rounded-lg border border-gray-300 bg-white px-4 py-2"
+                                        >
+                                            <option value="true">Published</option>
+                                            <option value="false">Unpublished</option>
+                                        </select>
+                                    </div>
+
                                     <FileUpload
                                         label="Upload Project Image"
                                         file={project.imageUrl}
@@ -223,7 +287,6 @@ const ProjectModel = ({ open, onClose, token }) => {
                         ))}
                     </div>
 
-                    {/* Form Actions */}
                     <div className="flex justify-end space-x-3 mt-6">
                         <button
                             type="button"
@@ -237,7 +300,7 @@ const ProjectModel = ({ open, onClose, token }) => {
                                 loading ? 'opacity-50 cursor-not-allowed' : ''
                             }`}
                             disabled={loading}>
-                            {loading ? 'Saving...' : 'Save Projects'}
+                            {loading ? 'Saving...' : (existingProject ? 'Update Projects' : 'Save Projects')}
                         </button>
                     </div>
                 </form>
@@ -274,7 +337,8 @@ const FileUpload = ({ label, file, onUpload }) => (
 ProjectModel.propTypes = {
     open: PropTypes.bool.isRequired,
     onClose: PropTypes.func.isRequired,
-    token: PropTypes.string.isRequired
+    token: PropTypes.string.isRequired,
+    existingProject: PropTypes.object
 }
 
 FileUpload.propTypes = {

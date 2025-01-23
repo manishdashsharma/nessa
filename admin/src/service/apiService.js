@@ -188,3 +188,9 @@ export const getBlog = async (query,limit,offset) => {
     const response = await servicesAxiosInstance.get(`/v1/query-blog-data/?query=${query}&limit=${limit}&offset=${offset}`)
     return response.data
 }
+
+
+export const updateProject = async (id,data) => {
+    const response = await servicesAxiosInstance.post(`/v1/update-project/${id}`, data)
+    return response.data
+}

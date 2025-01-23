@@ -143,6 +143,52 @@ export default {
     },
     fetchBlog: (id) => {
         return blogModel.findById(id)
+    },
+    updateProjectData: async (id, updateData) => {
+        const { projects, categories } = updateData;
+    
+        // Find the existing project document
+        const existingProject = await projectModel.findById(id);
+    
+        if (!existingProject) {
+            throw new Error('Project not found');
+        }
+    
+        // Update categories if provided
+        if (categories) {
+            existingProject.categories = categories;
+        }
+    
+        // Handle existing and new projects
+        if (projects) {
+            for (const updatedProject of projects) {
+                if (updatedProject._id) {
+                    // Update existing project
+                    const existingProjectIndex = existingProject.projects.findIndex(
+                        p => p._id.toString() === updatedProject._id.toString()
+                    );
+                    
+                    if (existingProjectIndex !== -1) {
+                        existingProject.projects[existingProjectIndex] = {
+                            ...existingProject.projects[existingProjectIndex],
+                            ...updatedProject
+                        };
+                    }
+                } else {
+                    // Add new project
+                    existingProject.projects.push({
+                        title: updatedProject.title,
+                        place: updatedProject.place,
+                        imageUrl: updatedProject.imageUrl,
+                        isPublished: updatedProject.isPublished
+                    });
+                }
+            }
+        }
+    
+        // Save and return the updated project
+        return await existingProject.save();
     }
+    
 }
 

@@ -4,7 +4,7 @@ import httpError from '../util/httpError.js'
 import quicker from '../util/quicker.js'
 import databaseService from '../service/databaseService.js'
 import { uploadOnCloudinary } from '../service/cloudinaryService.js'
-import { ValidateAddProduct, ValidateAddUtilsData, ValidateBlog, ValidateContactUs, validateJoiSchema, ValidateLogin, ValidateProjects, ValidateSoulution, ValidateSupportEnquiry, ValidateTestimonial, ValidateUpdateContactUs, ValidateUpdateProduct, ValidateUpdateSolution, ValidateUpdateSupportEnquiry, ValidateUpdateUtilsData } from '../service/validationService.js'
+import { ValidateAddProduct, ValidateAddUtilsData, ValidateBlog, ValidateContactUs, validateJoiSchema, ValidateLogin, ValidateProjects, ValidateSoulution, ValidateSupportEnquiry, ValidateTestimonial, ValidateUpdateContactUs, ValidateUpdateProduct, ValidateUpdateProjects, ValidateUpdateSolution, ValidateUpdateSupportEnquiry, ValidateUpdateUtilsData } from '../service/validationService.js'
 import { allowedUsers, EApplicationEnvironment } from '../constant/application.js'
 import config from '../config/config.js'
 
@@ -710,7 +710,8 @@ export default {
     saveProjects: async (req, res, next) => {
         try {
             const { body } = req
-
+            console.log(body);
+            
             const { error, value } = validateJoiSchema(ValidateProjects, body)
 
             if (error) {
@@ -738,6 +739,28 @@ export default {
             httpResponse(req, res, 200, responseMessage.SUCCESS, projectsList)
         } catch (err) {
             console.error('Error:', err);
+            httpError(next, err, req, 500);
+        }
+    },
+    updateProject: async (req, res, next) => {
+        try {
+            const { id } = req.params; 
+            const { body } = req;
+    
+            const { error, value } = validateJoiSchema(ValidateUpdateProjects, body);
+    
+            if (error) {
+                return httpError(next, error, req, 422);
+            }
+    
+            const updatedProject = await databaseService.updateProjectData(id, value);
+    
+            if (!updatedProject) {
+                return httpError(next, new Error(responseMessage.SOMETHING_WENT_WRONG), req, 500);
+            }
+    
+            httpResponse(req, res, 200, responseMessage.SUCCESS, updatedProject);
+        } catch (err) {
             httpError(next, err, req, 500);
         }
     },
