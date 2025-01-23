@@ -18,7 +18,7 @@ export const Projects = () => {
                 setloading(true)
                 const response = await fetchProjectsData()
 
-                if (response?.dta) {
+                if (response?.data) {
                     setapiProjectsData(response.data)
                 }else {
                  setapiProjectsData(projectsHardcodedData)
