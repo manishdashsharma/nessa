@@ -23,8 +23,7 @@ const projectSchema = new mongoose.Schema(
                 },
                 isPublished: {
                     type: Boolean,
-                    default: false,
-                    required: true
+                    default: false
                 }
             }
         ]

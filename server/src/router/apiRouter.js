@@ -40,6 +40,7 @@ router.route('/query-testimonials').get(apiController.queryTestimonials)
 router.route('/update-testimonial/:id').get(authentication,authorization(),apiController.updateTestimonials)
 router.route('/save-projects').post(apiController.saveProjects)
 router.route('/query-projects').get(apiController.queryProjects)
+router.route('/update-project/:id').post(apiController.updateProject)
 router.route('/create-blog').post(authentication,authorization() ,apiController.createBlog);
 router.route('/update-blog/:id').put(authentication,authorization(),apiController.updateBlog);
 router.route('/query-blog-data').get(apiController.fetchBlogs)

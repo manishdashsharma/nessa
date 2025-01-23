@@ -209,6 +209,22 @@ export const ValidateBlog  = Joi.object({
     content: Joi.string().required(),
 })
 
+export const ValidateUpdateProjects = Joi.object({
+    categories: Joi.string().optional(), 
+    projects: Joi.array()
+        .items(
+            Joi.object({
+                _id: Joi.string().optional(),
+                title: Joi.string().optional(),
+                place: Joi.string().optional(),
+                imageUrl: Joi.string().uri().optional(),
+                isPublished: Joi.boolean().optional(),
+            })
+        )
+        .optional(),
+});
+
+
 export const validateJoiSchema = (schema, value) => {
     const result = schema.validate(value);
     return {
