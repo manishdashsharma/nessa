@@ -79,7 +79,7 @@ const SolutionDetail = () => {
             <div className="w-full h-[300px] max-sm:h-[200px] relative flex items-center  justify-start ">
                 <img
                     className="w-full h-full object-cover absolute "
-                    src={solution.tumbnail} // dynamic poster
+                    src={solution.thumbnail} // dynamic poster
                     alt=""
                 />
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white ml-[5vw] relative z-[2]">
