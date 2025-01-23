@@ -265,7 +265,7 @@ function ColorChangeController({ setColor }) {
 
 export default function ImageSection() {
   const [color, setColor] = useState('yellow');
-  const [brightness, setBrightness] = useState(100);
+  const [brightness, setBrightness] = useState(50);
 
   const getHueRotation = (color) => {
     switch (color) {

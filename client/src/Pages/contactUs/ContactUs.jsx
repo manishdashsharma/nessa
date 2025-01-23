@@ -471,7 +471,7 @@ const ContactUs = () => {
                                     onChange={(e) => setAcceptPolicy(e.target.checked)}
                                     className="w-4 h-4 text-blue-500 border-gray-300 rounded focus:ring-blue-500"
                                 />
-                                <span className="text-sm text-gray-700">I accept the terms and conditions and privacy policy</span>
+                                <span className="text-sm text-gray-700">I accept the terms and conditions and privacy policy </span>
                             </label>
                             {errors.policy && <span className="text-red-500 text-sm block mt-1">{errors.policy}</span>}
                         </div>

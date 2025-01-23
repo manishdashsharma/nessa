@@ -31,7 +31,6 @@ const App = () => {
             <Toaster reverseOrder={false} />
 
             <ScrollToTop />
-
             <Routes>
                 <Route path="/welcome" element={<WelcomePage />} />
                 <Route path="/" element={<Homepage />} />
