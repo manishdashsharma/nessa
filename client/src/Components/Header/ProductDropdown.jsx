@@ -82,7 +82,7 @@ const ProductDropdown = ({ setIsMenuOpen }) => {
                 <div
                     onMouseEnter={() => setIsOpen(true)}
                     className="flex items-center gap-1 cursor-pointer justify-between w-[100%] px-4">
-                    <span>Products</span>
+                    <Link to="/allproducts">Products</Link>
                     <motion.div
                         animate={{ rotate: isOpen ? 180 : 0 }}
                         transition={{ duration: 0.2 }}>

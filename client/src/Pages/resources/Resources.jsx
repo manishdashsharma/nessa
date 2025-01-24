@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import ResourcesInsites from './ResourcesInsites'
 import Media from './Media'
 import hero from '../../assets/images/allProductsimages/hero.png'
 import Navbar from '../../Components/Header/Navbar'
@@ -10,6 +9,8 @@ import { resourcesPageUtilsApi } from '../../Utils/Utils'
 import { useEffect, useState } from 'react'
 import { resourcesUtilsConfigHardCodedData } from './ResourcesConfig'
 import toast from 'react-hot-toast'
+import ResourcesInsights from './ResourcesInsights'
+
 
 export const Resources = () => {
     const [loading, setloading] = useState(true)
@@ -179,8 +180,8 @@ export const Resources = () => {
                 ))}
             </div>
 
-            {/* Insites & Resources */}
-            <ResourcesInsites />
+            {/* Insightes & Resources */}
+            <ResourcesInsights />
 
             {/* Media */}
             <Media />

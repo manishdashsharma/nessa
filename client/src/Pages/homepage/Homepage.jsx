@@ -250,7 +250,7 @@ const Homepage = () => {
                             <p className="mb-4">{solution.description}</p>
 
                             <Link
-                                to={`/soltions/${solution._id}`}
+                                to={`/solutions/${solution._id}`}
                                 className="border border-blue-500 text-blue-500 px-6 py-2 rounded-lg hover:bg-blue-500 hover:text-white transition-colors">
                                 Discover Solution
                             </Link>

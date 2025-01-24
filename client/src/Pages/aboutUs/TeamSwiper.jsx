@@ -36,7 +36,7 @@ export default function TeamSwiper({ team }) {
                         spaceBetween: 20
                     },
                     1424: {
-                        slidesPerView: 4,
+                        slidesPerView: 3,
                         spaceBetween: 20
                     }
                 }}
@@ -44,12 +44,12 @@ export default function TeamSwiper({ team }) {
                     clickable: true
                 }}
                 modules={[Pagination, Navigation ,Autoplay]}
-                className="mySwiper  mt-[50px]">
+                className="mySwiper  mt-[50px] select-none">
                 {team.length > 0 ? (
                     team.map((item, index) => (
                         <SwiperSlide
                             key={index}
-                            className="mb-[50px]">
+                            className="mb-[50px] select-none">
                             <div className="flex flex-col  items-center text-center">
                                 <img
                                     className="rounded-xl h-[300px]  w-[300px] object-contain border pt-[50px] bg-[#e7f2fd] border-orange-400 overflow-hidden "

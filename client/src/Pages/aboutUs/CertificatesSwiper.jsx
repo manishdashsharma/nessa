@@ -43,15 +43,15 @@ export default function CertificatesSwiper( ) {
                   clickable: true
               }}
               modules={[Pagination, Navigation]}
-              className="mySwiper  mt-[50px]">
+              className="mySwiper  mt-[50px]  select-none">
               {certificates.map((img, index) => (
                   <SwiperSlide
                       key={index}
-                      className="mb-[50px]  ">
+                      className="mb-[50px] select-none ">
                       {
                           <img
-                              className='h-[400px] object-contain border-4 w-full '
-                              loading='lazy'
+                              className="h-[400px] object-contain border-4 w-full  "
+                              loading="lazy"
                               src={img}
                               alt={`certificate ${index}`}
                           />

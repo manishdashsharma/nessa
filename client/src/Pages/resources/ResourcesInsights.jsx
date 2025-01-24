@@ -4,7 +4,7 @@ import { insitesAndResources } from './ResourcesConfig'
 import { motion, AnimatePresence } from 'framer-motion'
 import { fetchBlogs } from '../../services/api.services'
 
-const ResourcesInsites = () => {
+const ResourcesInsights = () => {
  const [resources, setResources] = useState(insitesAndResources)
  const [loading, setLoading] = useState(true)
 
@@ -132,7 +132,7 @@ const ResourcesInsites = () => {
         <div className="w-screen   p-6 bg-blue-50">
             <div className="w-full  relative py-[50px] px-[5vw]">
                 <div className=" text-4xl font-semibold leading-snug text-center text-black z-[2] relative">
-                    Insites & <span className="text-blue-500"> Resources </span>
+                    Insights & <span className="text-blue-500"> Resources </span>
                 </div>
                 <div className="w-full flex justify-center">
                     <div className="flex relative shrink-0 mt-9 h-2.5 bg-[#b3d6f6] rounded-[50px] w-[51px]" />
@@ -221,4 +221,4 @@ const ResourcesInsites = () => {
     )
 }
 
-export default ResourcesInsites
+export default ResourcesInsights

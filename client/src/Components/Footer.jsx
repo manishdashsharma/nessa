@@ -2,6 +2,8 @@ import { RiFacebookBoxLine } from 'react-icons/ri'
 import logo from '../assets/images/navbar/logo.svg'
 import { FiYoutube } from 'react-icons/fi'
 import { IoLogoWhatsapp } from 'react-icons/io5'
+import { CiLinkedin } from 'react-icons/ci'
+import { RiTwitterXFill } from 'react-icons/ri'
 import { Link } from 'react-router-dom'
 
 
@@ -25,6 +27,12 @@ function Footer() {
               </Link>
               <Link to="#" className="text-white text-2xl hover:text-gray-400">
                  <IoLogoWhatsapp />
+              </Link>
+              <Link to="#" className="text-white text-2xl hover:text-gray-400">
+                <CiLinkedin />
+              </Link>
+              <Link to="#" className="text-white text-2xl hover:text-gray-400">
+                <RiTwitterXFill />
               </Link>
             </div>
           </div>

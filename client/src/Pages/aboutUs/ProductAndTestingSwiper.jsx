@@ -35,12 +35,12 @@ export default function ProductAndTestingSwiper( {data}) {
                   clickable: true
               }}
               modules={[Pagination, Navigation]}
-              className="mySwiper  mt-[50px] px-[40px]">
+              className="mySwiper  mt-[50px] px-[40px] select-none">
               {data ? (
                   data.map((product, index) => (
                       <SwiperSlide
                           key={index}
-                          className="mb-[50px]  ">
+                          className="mb-[50px]  select-none">
                           <div className="flex w-full justify-center items-center">
                               <div className="relative h-[30vw] min-h-[400px]  flex justify-center items-center">
                                   <img

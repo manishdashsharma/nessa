@@ -1,7 +1,4 @@
 import { Link, useParams } from 'react-router-dom'
-import partner1 from '../../assets/images/homepageimages/partner1.png'
-import partner2 from '../../assets/images/homepageimages/partner2.png'
-import partner3 from '../../assets/images/homepageimages/partner3.png'
 import Navbar from '../../Components/Header/Navbar'
 import SideComponent from '../../Components/sideComponent/SideComponent'
 import PartnersReviewsSwiper from '../../Components/partnerreviews/PartnersReviewsSwiper'
