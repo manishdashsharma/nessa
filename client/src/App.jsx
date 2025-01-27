@@ -20,6 +20,7 @@ import ScrollToTop from './Components/ScrollToTop';
 import { Projects } from './Pages/projects/Projects';
 import { ValueAddedServices } from './Pages/valueAddedServices/ValueAddedServices';
 import CookiesPolicy from './Pages/CookiesPolicy/CookiesPolicy';
+import BlogDetailPage from './Pages/blogDetail/BlogDetailPage';
 
 const App = () => {
     
@@ -48,6 +49,7 @@ const App = () => {
                 <Route path="/product/:id" element={<Product />} />
                 <Route path="/projects" element={<Projects />} />
                 <Route path="/valueAddedServices" element={<ValueAddedServices />} />
+                <Route path="/blog/:id" element={<BlogDetailPage />} />
                 
                 
             </Routes>

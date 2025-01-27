@@ -3,6 +3,7 @@ import { IoChevronDown } from 'react-icons/io5'
 import { insitesAndResources } from './ResourcesConfig'
 import { motion, AnimatePresence } from 'framer-motion'
 import { fetchBlogs } from '../../services/api.services'
+import { useNavigate } from 'react-router-dom'
 
 const ResourcesInsights = () => {
  const [resources, setResources] = useState(insitesAndResources)
@@ -28,6 +29,7 @@ const ResourcesInsights = () => {
      loadBlogs()
  }, [])
 
+
     const [openSections, setOpenSections] = useState(['Blogs'])
     const toggleSection = (title) => {
         setOpenSections((prev) => (prev.includes(title) ? prev.filter((section) => section !== title) : [...prev, title]))
@@ -44,7 +46,7 @@ const ResourcesInsights = () => {
                     <img
                         src={item.image}
                         alt={item.title}
-                        className="w-full h-full object-cover"
+                        className="w-full h-[200px] object-cover"
                     />
                 ) : (
                     <div className="w-full h-full flex items-center justify-center text-gray-400">No image available</div>
@@ -76,11 +78,19 @@ const ResourcesInsights = () => {
             </div>
         </motion.div>
     )
+
+     const navigate = useNavigate()
+
+     const handleBlogClick = (item) => {
+         // Navigate to blog detail page with blog ID
+         navigate(`/blog/${item._id}`)
+     }
     const renderBlogCard = (item, index) => (
         <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
+            onClick={() => handleBlogClick(item)}
             transition={{ duration: 0.3, delay: index * 0.1 }}
             className="flex flex-col gap-4 p-4 rounded-lg border bg-white  hover:shadow-lg transition-all duration-300 ease-in-out cursor-pointer">
             <div className="w-full h-50 rounded-lg overflow-hidden">
@@ -88,7 +98,7 @@ const ResourcesInsights = () => {
                     <img
                         src={item.thumbnailImage}
                         alt={item.title}
-                        className="w-full h-full object-cover"
+                        className="w-full h-[200px] object-cover"
                     />
                 ) : (
                     <div className="w-full h-full flex items-center justify-center text-gray-400">No image available</div>
@@ -113,7 +123,11 @@ const ResourcesInsights = () => {
                     <div className="text-sm">
                         <div className="font-medium">{item.userName}</div>
                         <div className="text-gray-500">
-                            {item.profile.date} · {item.profile.readTime}
+                            {new Date(item.updatedAt).toLocaleDateString('en-US', {
+                                year: 'numeric',
+                                month: 'short',
+                                day: 'numeric'
+                            })}
                         </div>
                     </div>
                 </div>
