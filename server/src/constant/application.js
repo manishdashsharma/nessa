@@ -88,3 +88,11 @@ export const allowedUsers = Object.freeze([
     { email: 'project@quicker.in', password: 'admin789' },
     { email: 'sales@quicker.in', password: 'sales@2023' },
 ]);
+
+export const DELETE_BY_TYPE = Object.freeze({
+    'PRODUCT':"PRODUCT",
+    "SOLUTION":"SOLUTION",
+    "TESTIMONIAL":"TESTIMONIAL",
+    "PROJECT":"PROJECT",
+    "BLOG":"BLOG"
+})

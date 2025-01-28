@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import AddIcon from '@mui/icons-material/Add'
 import VisibilityIcon from '@mui/icons-material/Visibility'
+import DeleteIcon from '@mui/icons-material/Delete';
 import { motion } from 'framer-motion'
 import ProjectModel from '../../Components/Modal/ProjectModel'
 import { useNavigate } from 'react-router-dom'
@@ -11,6 +12,7 @@ import Pagination from '@mui/material/Pagination'
 import EditIcon from '@mui/icons-material/Edit'
 import { CircularProgress } from '@mui/material'
 import ProjectDetailsModal from '../../Components/Modal/ProjectDetailsModal'
+import DeleteModal, { DELETEMODELBYTYPE } from '../../Components/DeleteModal';
 
 const ProjectsPage = () => {
     const [openModal, setOpenModal] = useState(false)
@@ -22,6 +24,10 @@ const ProjectsPage = () => {
     const navigate = useNavigate()
     const [selectedProject, setSelectedProject] = useState(null)
     const [selectedCategory, setSelectedCategory] = useState(null)
+
+    const [deletemodalOpen, setDeleteModalOpen] = useState(false);
+    const [deletedData, setDeletedData] = useState(null)
+
 
     const handleOpenModal = () => setOpenModal(true)
     const handleCloseModal = () => setOpenModal(false)
@@ -44,26 +50,37 @@ const ProjectsPage = () => {
         }
     }, [navigate])
 
-    useEffect(() => {
-        const fetchProjects = async () => {
-            setLoading(true)
-            try {
-                const response = await queryProjects()
-                if (response.data) {
-                    setProjects(response.data)
-                } else {
-                    toast.error('Failed to fetch projects')
-                }
-            } catch (error) {
-                console.error('Error fetching projects:', error)
-                toast.error('An error occurred while fetching projects')
-            } finally {
-                setLoading(false)
+    const fetchProjects = async () => {
+        setLoading(true)
+        try {
+            const response = await queryProjects()
+            if (response.data) {
+                setProjects(response.data)
+            } else {
+                toast.error('Failed to fetch projects')
             }
+        } catch (error) {
+            console.error('Error fetching projects:', error)
+            toast.error('An error occurred while fetching projects')
+        } finally {
+            setLoading(false)
         }
+    }
+    useEffect(() => {
 
         fetchProjects()
-    }, [openModal]) 
+    }, [openModal])
+
+    const openDeleteModal = (data) => {
+        setDeletedData(data)
+        setDeleteModalOpen(true);
+    };
+
+    const closeDeleteModal = () => {
+        setDeleteModalOpen(false);
+        setDeletedData(null)
+        fetchProjects()
+    };
 
     const indexOfLastItem = currentPage * itemsPerPage
     const indexOfFirstItem = indexOfLastItem - itemsPerPage
@@ -72,6 +89,9 @@ const ProjectsPage = () => {
     const handlePageChange = (event, value) => {
         setCurrentPage(value)
     }
+
+    
+
 
     return (
         <div className="max-w-6xl mx-auto p-4">
@@ -108,6 +128,11 @@ const ProjectsPage = () => {
                                                 onClick={() => handleOpenDetailsModal(project, category.categories)}
                                                 className="bg-green-500 text-white p-2 rounded-full">
                                                 <VisibilityIcon />
+                                            </button>
+                                            <button
+                                                onClick={() => openDeleteModal(category)}
+                                                className="bg-red-500 text-white p-2 rounded-full">
+                                                <DeleteIcon />
                                             </button>
                                         </div>
                                         <img
@@ -156,6 +181,14 @@ const ProjectsPage = () => {
                 onClose={handleCloseDetailsModal}
                 project={selectedProject}
                 category={selectedCategory}
+            />
+
+
+            <DeleteModal
+                open={deletemodalOpen}
+                onClose={closeDeleteModal}
+                id={deletedData?._id}
+                type={DELETEMODELBYTYPE.PROJECT}
             />
         </div>
     )

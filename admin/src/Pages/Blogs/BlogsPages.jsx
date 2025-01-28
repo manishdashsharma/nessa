@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom'
 import { isTokenExpired } from '../../utils/utils'
 import { MOCK_BLOGS } from './config'
 import { getBlog } from '../../service/apiService'
+import { DeleteModalButton, DELETEMODELBYTYPE } from '../../Components/DeleteModal'
 
 const BlogPage = () => {
     const [blogs, setBlogs] = useState([])
@@ -32,22 +33,22 @@ const BlogPage = () => {
         }
     }, [navigate])
 
+    const fetchBlogs = async () => {
+        setLoading(true)
+        try {
+            const response = await getBlog('all', itemsPerPage, (page - 1) * itemsPerPage)
+            
+            setBlogs(response.data.blogs)
+            setTotalPages(Math.ceil(response.data.total / itemsPerPage))
+        } catch (error) {
+            console.error('Failed to fetch blogs:', error)
+        } finally {
+            setLoading(false)
+        }
+    }
 
     useEffect(() => {
-
-        const fetchBlogs = async () => {
-            setLoading(true)
-            try {
-                const response = await getBlog('all', itemsPerPage, (page - 1) * itemsPerPage)
-                
-                setBlogs(response.data.blogs)
-                setTotalPages(Math.ceil(response.data.total / itemsPerPage))
-            } catch (error) {
-                console.error('Failed to fetch blogs:', error)
-            } finally {
-                setLoading(false)
-            }
-        }
+   
         fetchBlogs()
     }, [page])
 
@@ -173,6 +174,9 @@ const BlogPage = () => {
                                     onClick={() => handleOpenModal(blog)}>
                                     Edit
                                 </button>
+                                <DeleteModalButton id={blog?._id} type={DELETEMODELBYTYPE.BLOG} fetchData={fetchBlogs}>
+
+                                </DeleteModalButton>
                             </div>
                         </div>
                     ))}

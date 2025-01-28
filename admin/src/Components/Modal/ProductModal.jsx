@@ -204,7 +204,7 @@ const ProductModal = ({ open, onClose, token, product }) => {
         e.preventDefault()
         setLoading(true)
         try {
-            const response = product ? await updateProduct(product._id, formData) : await addProduct(token, formData)
+            const response = product ? await updateProduct(token,product._id, formData) : await addProduct(token, formData)
 
             if (response.success) {
                 toast.success(product ? 'Product updated successfully' : 'Product added successfully')

@@ -7,19 +7,49 @@ import { isTokenExpired } from '../../utils/utils';
 import toast from 'react-hot-toast';
 import Pagination from '@mui/material/Pagination';
 import { CircularProgress, Switch } from '@mui/material';
-import { queryTestimonials, saveTestimonials, updateTestimonialStatus } from '../../service/apiService';
+import { queryTestimonials, saveTestimonials, updateTestimonialData, updateTestimonialStatus } from '../../service/apiService';
+import TestimonialDetailsModal from '../../Components/Modal/TestimonialDetailsModal';
+import { DeleteModalButton, DELETEMODELBYTYPE } from '../../Components/DeleteModal';
 
 const TestimonialPage = () => {
     const [openModal, setOpenModal] = useState(false);
+    const [openDetailsModal, setOpenDetailsModal] = useState(false);
     const [testimonials, setTestimonials] = useState([]);
     const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage] = useState(6);
     const [toggleLoading, setToggleLoading] = useState('');
+    const [selectedTestimonial, setSelectedTestimonial] = useState(null);
     const navigate = useNavigate();
+    const [isEditMode, setIsEditMode] = useState(false);
 
-    const handleOpenModal = () => setOpenModal(true);
-    const handleCloseModal = () => setOpenModal(false);
+
+    const handleOpenModal = (testimonial = null) => {
+        if (testimonial) {
+            setSelectedTestimonial(testimonial);
+            setIsEditMode(true); // Set to edit mode
+        } else {
+            setIsEditMode(false); 
+            setSelectedTestimonial(null);
+        }
+        setOpenModal(true);
+    };
+
+    const handleCloseModal = () => {
+        setOpenModal(false);
+        setSelectedTestimonial(null);
+        setIsEditMode(false)
+    };
+
+    const handleOpenDetailsModal = (testimonial) => {
+        setSelectedTestimonial(testimonial);
+        setOpenDetailsModal(true);
+    };
+
+    const handleCloseDetailsModal = () => {
+        setSelectedTestimonial(null);
+        setOpenDetailsModal(false);
+    };
 
     useEffect(() => {
         const token = localStorage.getItem('accessToken');
@@ -53,12 +83,11 @@ const TestimonialPage = () => {
         setToggleLoading(id);
         try {
             const token = localStorage.getItem('accessToken');
-            const response = await updateTestimonialStatus(id,token);
-            
+            const response = await updateTestimonialStatus(id, token);
             if (response.success) {
-                setTestimonials(prev => 
-                    prev.map(testimonial => 
-                        testimonial._id === id 
+                setTestimonials(prev =>
+                    prev.map(testimonial =>
+                        testimonial._id === id
                             ? { ...testimonial, isPublished: !currentStatus }
                             : testimonial
                     )
@@ -85,13 +114,19 @@ const TestimonialPage = () => {
 
     const handleTestimonialSubmit = async (data, token) => {
         try {
-            const response = await saveTestimonials(token,data);
+            let response;
+            if (isEditMode) {
+                response = await updateTestimonialData(selectedTestimonial._id, data, token);
+            } else {
+                response = await saveTestimonials(token, data);
+            }
+
             if (response.success) {
-                toast.success('Testimonial submitted successfully');
+                toast.success('Testimonial ' + (isEditMode ? 'updated' : 'submitted') + ' successfully');
                 handleCloseModal();
                 await fetchTestimonials();
-            }else{
-                toast.error('Failed to submit testimonial');
+            } else {
+                toast.error('Failed to ' + (isEditMode ? 'update' : 'submit') + ' testimonial');
             }
         } catch (error) {
             console.error('Error submitting testimonial:', error);
@@ -106,7 +141,7 @@ const TestimonialPage = () => {
                     <h1 className="text-2xl sm:text-3xl font-semibold text-gray-800 mb-4 sm:mb-6">Testimonials</h1>
                 </div>
             </div>
-            
+
             {loading ? (
                 <div className="flex justify-center items-center h-64">
                     <CircularProgress />
@@ -117,6 +152,7 @@ const TestimonialPage = () => {
                         <div
                             key={item._id}
                             className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300"
+
                         >
                             <img
                                 src={item.image}
@@ -136,6 +172,19 @@ const TestimonialPage = () => {
                                 <p className="text-sm text-gray-600 mb-2">{item.company}</p>
                                 <p className="text-sm text-gray-500">{item.description}</p>
                             </div>
+                            <div className="mt-4 flex gap-2 flex-wrap my-2 mx-2">
+                                <button
+                                    className="bg-blue-500 text-white px-4 py-2 rounded"
+                                    onClick={() => handleOpenDetailsModal(item)}>
+                                    View Details
+                                </button>
+                                <button
+                                    className="bg-green-500 text-white px-4 py-2 rounded"
+                                    onClick={() => handleOpenModal(item)}                                    >
+                                    Edit
+                                </button>
+                                <DeleteModalButton id={item?._id} type={DELETEMODELBYTYPE.TESTIMONIAL} fetchData={fetchTestimonials}></DeleteModalButton>
+                            </div>
                         </div>
                     ))}
                 </div>
@@ -152,7 +201,9 @@ const TestimonialPage = () => {
 
             <motion.button
                 className="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 bg-blue-600 text-white rounded-full p-3 sm:p-4 shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                onClick={handleOpenModal}
+                onClick={()=>{
+                    handleOpenModal()
+                }}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
             >
@@ -164,6 +215,15 @@ const TestimonialPage = () => {
                 onClose={handleCloseModal}
                 token={localStorage.getItem('accessToken')}
                 onSubmit={handleTestimonialSubmit}
+                isEditMode={isEditMode}
+                testimonialData={selectedTestimonial}
+            />
+
+            {/* TestimonialDetailsModal */}
+            <TestimonialDetailsModal
+                open={openDetailsModal}
+                onClose={handleCloseDetailsModal}
+                testimonial={selectedTestimonial}
             />
         </div>
     );
