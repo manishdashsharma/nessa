@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Modal } from '@mui/material'
 import { motion } from 'framer-motion'
 import CloudUploadIcon from '@mui/icons-material/CloudUpload'
@@ -6,7 +6,9 @@ import PropTypes from 'prop-types'
 import { uploadFile } from '../../service/apiService'
 import { toast } from 'react-hot-toast'
 
-const TestimonialModel = ({ open, onClose, token, onSubmit }) => {
+const TestimonialModel = ({ open, onClose, token, onSubmit ,isEditMode, testimonialData}) => {
+    console.log(isEditMode,testimonialData);
+    
     const [formData, setFormData] = useState({
         name: '',
         company: '',
@@ -17,6 +19,26 @@ const TestimonialModel = ({ open, onClose, token, onSubmit }) => {
 
     const [loading, setLoading] = useState(false)
     const [uploadComplete, setUploadComplete] = useState(false)
+
+    useEffect(() => {
+        if (isEditMode && testimonialData) {
+            setFormData({
+                name: testimonialData.name,
+                company: testimonialData.company,
+                description: testimonialData.description,
+                image: testimonialData.image,
+                isPublished: testimonialData.isPublished
+            });
+        }else{
+            setFormData({
+                name: '',
+                company: '',
+                description: '',
+                image: null,
+                isPublished: false
+            })
+        }
+    }, [isEditMode, testimonialData]);
 
     const handleInputChange = (e) => {
         const { name, value, type, checked } = e.target
@@ -64,7 +86,7 @@ const TestimonialModel = ({ open, onClose, token, onSubmit }) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        if (!uploadComplete) {
+        if (!uploadComplete&&!formData.image) {
             toast.error('Please upload an image before submitting')
             return
         }
@@ -106,7 +128,7 @@ const TestimonialModel = ({ open, onClose, token, onSubmit }) => {
                 initial={{ opacity: 0, y: -50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ type: 'spring', damping: 25, stiffness: 500 }}>
-                <h2 className="text-3xl font-semibold text-gray-800 mb-6">Add New Testimonial</h2>
+                <h2 className="text-3xl font-semibold text-gray-800 mb-6">{isEditMode ? 'Edit Testimonial' : 'Add New Testimonial'}</h2>
                 <form onSubmit={handleSubmit} className="space-y-5">
                     {/* Name */}
                     <div>

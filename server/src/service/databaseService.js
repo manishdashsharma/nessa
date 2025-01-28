@@ -9,6 +9,7 @@ import solutionModel from '../model/solutionModel.js'
 import testimonialModel from '../model/testimonialModel.js'
 import projectModel from '../model/projectModel.js'
 import blogModel from '../model/blogModel.js'
+import { DELETE_BY_TYPE } from '../constant/application.js'
 
 export default {
     connect: async () => {
@@ -31,23 +32,23 @@ export default {
     queryProductData: (findQuery, limit, offset) => {
         return productModel.find(findQuery).limit(Number(limit)).skip(Number(offset)).sort({ isEnquired: -1 })
     },
-    queryProductDataById: (id) =>{
+    queryProductDataById: (id) => {
         return productModel.findById(id)
     },
-    countDocuments: (findQuery) =>{
+    countDocuments: (findQuery) => {
         return productModel.countDocuments(findQuery)
     },
-    updateProductById : (id, data) => {
+    updateProductById: (id, data) => {
         return productModel.findByIdAndUpdate(id, data, { new: true });
     },
     increaseIsEnquired: (id) => {
         return productModel.findByIdAndUpdate(
             id,
-            { $inc: { isEnquired: 1 } }, 
+            { $inc: { isEnquired: 1 } },
             { new: true }
         );
     },
-    saveUtilsData: (payload) =>{
+    saveUtilsData: (payload) => {
         return utilsModel.create(payload)
     },
     fetchUtilsData: (id) => {
@@ -56,10 +57,10 @@ export default {
     updateUtilsData: (id, data) => {
         return utilsModel.findByIdAndUpdate(id, data, { new: true });
     },
-    removeUtilsData: (id) =>{
+    removeUtilsData: (id) => {
         return utilsModel.findByIdAndDelete(id);
     },
-    fetchAllUtils: () =>{
+    fetchAllUtils: () => {
         return utilsModel.find()
     },
     saveContactUs: (payload) => {
@@ -74,8 +75,8 @@ export default {
     countContactUsDocuments: (findQuery) => {
         return contactUsModel.countDocuments(findQuery);
     },
-    updateContactUsById: (id,data) =>{
-        return contactUsModel.findByIdAndUpdate(id, data, { new: true ,runValidators: true});
+    updateContactUsById: (id, data) => {
+        return contactUsModel.findByIdAndUpdate(id, data, { new: true, runValidators: true });
     },
     saveSupportEnquiry: (payload) => {
         return supportModel.create(payload)
@@ -89,8 +90,8 @@ export default {
     countSupportEnquiryDocuments: (findQuery) => {
         return supportModel.countDocuments(findQuery);
     },
-    updateSupportEnquiryById: (id,data) =>{
-        return supportModel.findByIdAndUpdate(id, data, { new: true ,runValidators: true});
+    updateSupportEnquiryById: (id, data) => {
+        return supportModel.findByIdAndUpdate(id, data, { new: true, runValidators: true });
     },
     saveSolutionData: (payload) => {
         return solutionModel.create(payload)
@@ -101,35 +102,38 @@ export default {
     querySolutionById: (id) => {
         return solutionModel.findById(id)
     },
-    updateSolutionData: (id,data) => {
+    updateSolutionData: (id, data) => {
         return solutionModel.findByIdAndUpdate(id, data, { new: true });
     },
     saveTestimonialData: (payload) => {
         return testimonialModel.create(payload)
     },
-    queryAllTestimonials:() => {
+    queryAllTestimonials: () => {
         return testimonialModel.find()
     },
     updateTestimonialData: async (id) => {
         const testimonial = await testimonialModel.findById(id);
-        
+
         if (testimonial) {
             testimonial.isPublished = !testimonial.isPublished;
             return await testimonial.save();
         }
-        
+
         return null;
     },
-    saveProjectData:(payload) => {
+    updateSingleTestimonialData: async (id, updatedData) => {
+        return await testimonialModel.findByIdAndUpdate(id, updatedData, { new: true });
+    },
+    saveProjectData: (payload) => {
         return projectModel.create(payload)
     },
-    queryAllProjects:() => {
+    queryAllProjects: () => {
         return projectModel.find()
     },
     saveBlog: (payload) => {
         return blogModel.create(payload)
     },
-    updateBlogById : (id, data) => {
+    updateBlogById: (id, data) => {
         return blogModel.findByIdAndUpdate(id, data, { new: true });
     },
     fetchAllBlogData: () => {
@@ -138,7 +142,7 @@ export default {
     queryBlogData: (findQuery, limit, offset) => {
         return blogModel.find(findQuery).limit(Number(limit)).skip(Number(offset)).sort({ createdAt: -1 })
     },
-    countBlogDocuments: (findQuery) =>{
+    countBlogDocuments: (findQuery) => {
         return blogModel.countDocuments(findQuery)
     },
     fetchBlog: (id) => {
@@ -146,19 +150,19 @@ export default {
     },
     updateProjectData: async (id, updateData) => {
         const { projects, categories } = updateData;
-    
+
         // Find the existing project document
         const existingProject = await projectModel.findById(id);
-    
+
         if (!existingProject) {
             throw new Error('Project not found');
         }
-    
+
         // Update categories if provided
         if (categories) {
             existingProject.categories = categories;
         }
-    
+
         // Handle existing and new projects
         if (projects) {
             for (const updatedProject of projects) {
@@ -167,7 +171,7 @@ export default {
                     const existingProjectIndex = existingProject.projects.findIndex(
                         p => p._id.toString() === updatedProject._id.toString()
                     );
-                    
+
                     if (existingProjectIndex !== -1) {
                         existingProject.projects[existingProjectIndex] = {
                             ...existingProject.projects[existingProjectIndex],
@@ -185,10 +189,27 @@ export default {
                 }
             }
         }
-    
+
         // Save and return the updated project
         return await existingProject.save();
+    },
+    deleteByType: (id, type) => {
+        switch (type) {
+            case DELETE_BY_TYPE.PRODUCT:
+                return productModel.findByIdAndDelete(id)
+            case DELETE_BY_TYPE.SOLUTION:
+                return solutionModel.findByIdAndDelete(id)
+            case DELETE_BY_TYPE.TESTIMONIAL:
+                return testimonialModel.findByIdAndDelete(id)
+            case DELETE_BY_TYPE.PROJECT:
+                console.log("PROJECT");
+
+                return projectModel.findByIdAndDelete(id)
+            case DELETE_BY_TYPE.BLOG:
+                return blogModel.findByIdAndDelete(id)
+            default:
+                return null
+        }
     }
-    
 }
 
