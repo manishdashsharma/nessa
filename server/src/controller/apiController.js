@@ -898,8 +898,6 @@ export default {
             }
     
             const { _id, type } = value;
-    
-            console.log(_id,type);
             
             const deletedData = await databaseService.deleteByType(_id, type);
     
