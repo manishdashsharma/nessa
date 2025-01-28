@@ -4,7 +4,7 @@ import httpError from '../util/httpError.js'
 import quicker from '../util/quicker.js'
 import databaseService from '../service/databaseService.js'
 import { uploadOnCloudinary } from '../service/cloudinaryService.js'
-import { ValidateAddProduct, ValidateAddUtilsData, ValidateBlog, ValidateContactUs, validateJoiSchema, ValidateLogin, ValidateProjects, ValidateSoulution, ValidateSupportEnquiry, ValidateTestimonial, ValidateUpdateContactUs, ValidateUpdateProduct, ValidateUpdateProjects, ValidateUpdateSolution, ValidateUpdateSupportEnquiry, ValidateUpdateUtilsData } from '../service/validationService.js'
+import { ValidateAddProduct, ValidateAddUtilsData, ValidateBlog, ValidateContactUs, validateJoiSchema, ValidateLogin, ValidateProjects, ValidateSoulution, ValidateSupportEnquiry, ValidateTestimonial, ValidateUpdateContactUs, ValidateUpdateProduct, ValidateUpdateProjects, ValidateUpdateSolution, ValidateUpdateSupportEnquiry, ValidateUpdateUtilsData, VlidateDelete } from '../service/validationService.js'
 import { allowedUsers, EApplicationEnvironment } from '../constant/application.js'
 import config from '../config/config.js'
 
@@ -707,6 +707,29 @@ export default {
             httpError(next, err, req, 500)
         }
     },
+    updateTestiminialData: async (req, res, next) => {
+        try {
+            const { id } = req.params;
+    
+            const { body } = req;
+    
+            const { error, value } = validateJoiSchema(ValidateTestimonial, body);
+    
+            if (error) {
+                return httpError(next, error, req, 422); 
+            }
+                
+            const updatedTestimonial = await databaseService.updateSingleTestimonialData(id, value);
+            if (!updatedTestimonial) {
+                return httpError(next, new Error(responseMessage.NOT_FOUND("Data")), req, 500); 
+            }
+    
+            // Send a success response
+            httpResponse(req, res, 200, responseMessage.SUCCESS);
+        } catch (err) {
+            httpError(next, err, req, 500); 
+        }
+    },
     saveProjects: async (req, res, next) => {
         try {
             const { body } = req
@@ -863,6 +886,33 @@ export default {
             httpError(next, err, req, 500)
         }
     },
-
+     deleteDataByType : async (req, res, next) => {
+        try {
+            const { body } = req;
+    
+    
+            const { value, error } = validateJoiSchema(VlidateDelete, body);
+    
+            if (error) {
+                return httpError(next, error, req, 422); 
+            }
+    
+            const { _id, type } = value;
+    
+            console.log(_id,type);
+            
+            const deletedData = await databaseService.deleteByType(_id, type);
+    
+            if (!deletedData) {
+                return httpError(next, new Error(responseMessage.NOT_FOUND(type)), req, 404)
+            }
+    
+            
+            httpResponse(req, res, 200,  responseMessage.SUCCESS, deletedData);
+    
+        } catch (err) {
+            httpError(next, err, req, 500); 
+        }
+    }
 }
 

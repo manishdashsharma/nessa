@@ -7,6 +7,7 @@ import ProductModal from '../../Components/Modal/ProductModal'
 import { useNavigate } from 'react-router-dom'
 import { isTokenExpired } from '../../utils/utils'
 import ProductDetailsModal from '../../Components/Modal/ProductDetailsModal';
+import { DeleteModalButton, DELETEMODELBYTYPE } from '../../Components/DeleteModal'
 
 const ProductPage = () => {
     const [products, setProducts] = useState([])
@@ -31,19 +32,19 @@ const ProductPage = () => {
         }
     }, [navigate])
 
-    useEffect(() => {
-        const fetchProduct = async () => {
-            setLoading(true)
-            try {
-                const response = await getProduct('all', itemsPerPage, (page - 1) * itemsPerPage)
-                setProducts(response.data.products)
-                setTotalPages(Math.ceil(response.data.total / itemsPerPage))
-            } catch (error) {
-                console.error('Failed to fetch products:', error)
-            } finally {
-                setLoading(false)
-            }
+    const fetchProduct = async () => {
+        setLoading(true)
+        try {
+            const response = await getProduct('all', itemsPerPage, (page - 1) * itemsPerPage)
+            setProducts(response.data.products)
+            setTotalPages(Math.ceil(response.data.total / itemsPerPage))
+        } catch (error) {
+            console.error('Failed to fetch products:', error)
+        } finally {
+            setLoading(false)
         }
+    }
+    useEffect(() => {
         fetchProduct()
     }, [page])
 
@@ -145,6 +146,7 @@ const ProductPage = () => {
                                     onClick={() => handleOpenModal(product)}>
                                     Edit
                                 </button>
+                                <DeleteModalButton id={product?._id} type={DELETEMODELBYTYPE.PRODUCT} fetchData={fetchProduct}></DeleteModalButton>
                             </div>
                         </div>
                     ))}

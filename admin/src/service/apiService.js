@@ -10,8 +10,13 @@ export const getProduct = async (query,limit,offset) => {
     return response.data
 }
 
-export const updateProduct = async (id,data) =>{
-    const response = await servicesAxiosInstance.put(`v1/update-product/${id}`,data)
+export const updateProduct = async (token,id,data) =>{
+    const headers= {
+        Authorization: `Bearer ${token}`
+    }
+    const response = await servicesAxiosInstance.post(`v1/update-product/${id}`,data,{
+        headers
+    })
     return response.data
 }
 
@@ -107,6 +112,18 @@ export const querySolutions = async () => {
     return response.data
 }
 
+export const querySingleSolutions = async (id) => {
+    const response = await servicesAxiosInstance.get(`/v1/query-solution/${id}`)
+    return response.data
+}
+
+export const updateSolutionData = async (id,data) => {
+        
+    const response = await servicesAxiosInstance.post(`/v1/update-solution/${id}`,data)
+    return response.data
+}
+
+
 export const addProduct = async (token,data) => {
     const headers= {
         Authorization: `Bearer ${token}`
@@ -132,6 +149,18 @@ export const updateTestimonialStatus = async (id,token) => {
     })
     return response.data
 }
+
+export const updateTestimonialData = async (id,data,token) => {
+    const headers= {
+        Authorization: `Bearer ${token}`
+    }
+    const response = await servicesAxiosInstance.put(`/v1/update-testimonial-data/${id}`,data,{
+        headers
+    })
+    return response.data
+}
+
+
 
 export const saveTestimonials = async (token,data) => {
     const headers= {
@@ -192,5 +221,13 @@ export const getBlog = async (query,limit,offset) => {
 
 export const updateProject = async (id,data) => {
     const response = await servicesAxiosInstance.post(`/v1/update-project/${id}`, data)
+    return response.data
+}
+
+
+export const deleteByType = async (data)=>{
+    const response = await servicesAxiosInstance.delete('/v1/delete-by-type', {
+        data:data
+    })
     return response.data
 }

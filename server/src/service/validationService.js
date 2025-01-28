@@ -1,6 +1,6 @@
 import Joi from 'joi';
 import quicker from '../util/quicker.js';
-import { EBestSuitedFor, EProductCategories, ESubject } from '../constant/application.js';
+import { DELETE_BY_TYPE, EBestSuitedFor, EProductCategories, ESubject } from '../constant/application.js';
 
 export const ValidateAddProduct = Joi.object({
     name: Joi.string().required(),
@@ -157,6 +157,7 @@ export const ValidateUpdateSolution = Joi.object({
     title: Joi.string().optional(),
     subTitle: Joi.string().optional(),
     description: Joi.string().optional(),
+    categories: Joi.string().optional(),
     subcategories: Joi.string().optional(),
     thumbnail: Joi.string().uri().optional(),
     solutionImageUrl: Joi.string().uri().optional(),
@@ -222,6 +223,17 @@ export const ValidateUpdateProjects = Joi.object({
             })
         )
         .optional(),
+});
+
+export const VlidateDelete = Joi.object({
+    _id: Joi.string().required(),
+    type: Joi.string().valid(
+        DELETE_BY_TYPE.PRODUCT, 
+        DELETE_BY_TYPE.SOLUTION,
+        DELETE_BY_TYPE.TESTIMONIAL,
+        DELETE_BY_TYPE.PROJECT,
+        DELETE_BY_TYPE.BLOG
+    ).required()
 });
 
 
