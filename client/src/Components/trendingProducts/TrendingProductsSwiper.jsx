@@ -94,7 +94,7 @@ export default function TrendingProductsSwipe() {
             <div className=" h-[400px] w-full max-sm:flex max-sm:flex-col max-sm:items-center  mb-[40px]  p-[10px]  border-[2px] bg-white border-[#d6d0d0] ">
               <Link to={`/product/${product._id}`} className='w-full h-full '>
               <img
-                className=" mb-[10px] h-[70%] object-cover"
+                className=" mb-[10px] w-full h-[70%] object-contain"
                 src={product.productImageUrl[0]}
                 alt={product.name + ' Image'}
               />
