@@ -22,6 +22,7 @@ import toast from 'react-hot-toast'
 import { MdInfoOutline } from 'react-icons/md';
 import ProductDropdown from './ProductDropdown'
 import GoogleTranslate from '../../Utils/Google.Translate'
+import SearchBar from './SearchBar'
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -289,24 +290,22 @@ const Navbar = () => {
                         </div>
                     </div>
                     <div className="flex items-center gap-4">
-                        <div className="flex max-sm:w-[170px] items-center bg-[#2672BE] rounded-full px-3 py-1">
+                        {/* <div className="flex max-sm:w-[170px] items-center bg-[#2672BE] rounded-full px-3 py-1">
                             <CiSearch className="w-5 h-5 text-white" />
                             <input
                                 type="text"
                                 placeholder="Search Product"
                                 className="ml-2 max-sm:w-[120px] outline-none bg-[rgb(38,114,190)] text-white placeholder:text-[#ffffffe5]"
                             />
-                        </div>
+                        </div> */}
+                        <SearchBar />
+
                         {/* <GoogleTranslate/> */}
                         <div className="flex items-center ml-4">
                             <IoEarthOutline className="w-5 h-5 text-white" />
                             <span className="text-white ml-2">IN(ENG)</span>
                             <FaCaretDown className="w-5 h-5 text-white" />
-
-
                         </div>
-
-                      
                     </div>
                 </div>
             </div>

@@ -56,7 +56,7 @@ export default function RecoExSec1() {
                   {
                       image: news3,
                       link: 'https://www.business-standard.com/content/press-releases-ani/nessa-illumination-technologies-pvt-ltd-launched-smart-light-and-hybrid-solar-high-mast-at-rei-expo-2024-124101001393_1.html ',
-                      heading: 'Business Leaders of Tomorrow in Micro &amp; Small Enterprises Sector!'
+                      heading: ''
                   }
               ].map((slide, index) => (
                   <SwiperSlide
