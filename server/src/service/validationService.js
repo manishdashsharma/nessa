@@ -30,7 +30,7 @@ export const ValidateAddProduct = Joi.object({
             Joi.object({
                 title: Joi.string().required().allow(''),
                 description: Joi.string().allow(''),
-                imageUrl: Joi.string().uri().allow('') 
+                imageUrl: Joi.string().uri().allow(null) 
             })
         ).optional()
     }).optional(),
