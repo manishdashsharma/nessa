@@ -2,7 +2,11 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination, Autoplay } from 'swiper/modules';
-import award1 from '../../../assets/images/homepageimages/award1.png';
+import awards02 from '../../../assets/images/homepageimages/awards/awards-02.png';
+import awards03 from '../../../assets/images/homepageimages/awards/awards-03.png';
+import awards04 from '../../../assets/images/homepageimages/awards/awards-04.png';
+import { Link } from 'react-router-dom'
+
 
 export default function RecoExSec2() {
   return (
@@ -40,21 +44,18 @@ export default function RecoExSec2() {
         className="mySwiper"
       >
         {[
+         
           {
-            image: award1,
-            heading: 'Economic Times Young achiever Award 2018 by SIDBI',
+            image: awards02,
+            // heading: 'Economic Times Young achiever Award 2018 by SIDBI',
           },
           {
-            image: award1,
-            heading: 'Economic Times Young achiever Award 2018 by SIDBI',
+            image: awards03,
+            // heading: 'Economic Times Young achiever Award 2018 by SIDBI',
           },
           {
-            image: award1,
-            heading: 'Economic Times Young achiever Award 2018 by SIDBI',
-          },
-          {
-            image: award1,
-            heading: 'Economic Times Young achiever Award 2018 by SIDBI',
+            image: awards04,
+            // heading: 'Economic Times Young achiever Award 2018 by SIDBI',
           },
         ].map((slide, index) => (
           <SwiperSlide key={index}>
@@ -64,7 +65,7 @@ export default function RecoExSec2() {
                 src={slide.image}
                 alt=""
               />
-              <h1 className="w-[70%]">{slide.heading}</h1>
+              {/* <h1 className="w-[70%]">{slide.heading}</h1> */}
             </div>
           </SwiperSlide>
         ))}

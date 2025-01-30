@@ -5,8 +5,10 @@ import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 
 import { Pagination, Navigation, Autoplay } from 'swiper/modules'
+import { investor } from './AboutUsConfig'
 
-export default function InvestorSwiper({ investor }) {
+
+export default function InvestorSwiper() {
     return (
         <>
             <Swiper

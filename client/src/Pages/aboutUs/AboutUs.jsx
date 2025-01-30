@@ -1,4 +1,4 @@
-import { aboutUsHardCodedData, aboutUsPara1, aboutUsPara2, nessaEdgeItems, whoWeAre } from './AboutUsConfig'
+import { aboutUsPara1, aboutUsPara2, nessaEdgeItems, whoWeAre } from './AboutUsConfig'
 import { RiLightbulbFlashLine } from 'react-icons/ri'
 import ProductAndTestingSwiper from './ProductAndTestingSwiper'
 import CertificatesSwiper from './CertificatesSwiper'
@@ -13,42 +13,10 @@ import { useEffect, useState } from 'react'
 import PartnersReviewsSwiper from '../../Components/partnerreviews/PartnersReviewsSwiper'
 import demoVideo from '../../assets/images/demoVideo.mp4'
 import Footer from '../../Components/Footer'
-import { aboutUsPageUtilsApi } from '../../Utils/Utils'
-import { fetchUtilsData } from '../../services/api.services'
 import TeamSwiper from './TeamSwiper'
 import InvestorSwiper from './InvestorSwiper'
 
 const AboutUs = () => {
-    const [loading, setloading] = useState(false)
-
-const [team, setteam] = useState([])
-const [investor, setinvestor] = useState([])
-const [productAndTesting, setproductAndTesting] = useState([])
-useEffect(() => {
-    const fetchAboutUsData = async () => {
-        try {
-            setloading(true)
-            const response = await fetchUtilsData(aboutUsPageUtilsApi)
-            if (response?.data?.utilsData) {
-                setproductAndTesting(response.data.utilsData.productAndTestingFacilities || [])
-                setteam(response.data.utilsData.team || [])
-                setinvestor(response.data.utilsData.investor || [])
-            } else {
-                console.warn('Invalid data structure', response.data)
-               
-            }
-        } catch (error) {
-            console.error('Error fetching data:', error)
-             setproductAndTesting(aboutUsHardCodedData.utilsData.productAndTestingFacilities)
-             setteam(aboutUsHardCodedData.utilsData.team)
-             setinvestor(aboutUsHardCodedData.utilsData.investor)
-        } finally {
-            setloading(false)
-        }
-    }
-
-    fetchAboutUsData()
-}, [])
 
     const whyChooseNessaBoxData = [
         {
@@ -106,13 +74,6 @@ useEffect(() => {
         )
     }
 
-    if (loading) {
-        return (
-            <div className="flex justify-center items-center h-64">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500" />
-            </div>
-        )
-    }
 
     return (
         <div className="w-full overflow-hidden">
@@ -266,9 +227,9 @@ useEffect(() => {
                     <div className="flex relative shrink-0 mt-9 h-2.5 bg-[#b3d6f6] rounded-[50px] w-[51px]" />
                 </div>
 
-                <TeamSwiper team={team} />
+                <TeamSwiper  />
 
-                <InvestorSwiper investor={investor} />
+                <InvestorSwiper />
             </div>
 
             {/* customer segment */}
@@ -303,7 +264,7 @@ useEffect(() => {
                     <div className="flex relative shrink-0 mt-9 h-2.5 bg-[#b3d6f6] rounded-[50px] w-[51px]" />
                 </div>
                 <div className=" px-[5vw] ">
-                    <ProductAndTestingSwiper data={productAndTesting} />
+                    <ProductAndTestingSwiper  />
                 </div>
             </div>
             {/*  certificates */}

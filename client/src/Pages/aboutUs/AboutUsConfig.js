@@ -77,83 +77,55 @@ export const certificates= [
 ]
 
 
+import dhaval from '../../assets/images/aboutUs/team/dhaval.png'
+import sanjay from '../../assets/images/aboutUs/team/sanjay.png'
+import shoeb from '../../assets/images/aboutUs/team/shoeb.png'
+import krunal from '../../assets/images/aboutUs/team/krunal.jpeg'
+import arpit from '../../assets/images/aboutUs/team/arpit.jpeg'
+import devgan from '../../assets/images/aboutUs/team/devgan.jpeg'
+import tejas from '../../assets/images/aboutUs/tejas.png'
 
-export const aboutUsHardCodedData = {
-    title: 'About Us Page',
-    utilsData: {
-     
-        productAndTestingFacilities: [
-            {
-                name: 'UC Department',
-                poster: 'https://res.cloudinary.com/dfx1sukqp/image/upload/v1736609890/aboutus/1736609877207-ucdepartment_bwdowr.png'
-            },
-            {
-                name: 'Burn And Testing',
-                poster: 'https://res.cloudinary.com/dfx1sukqp/image/upload/v1736609890/aboutus/1736609877207-ucdepartment_bwdowr.png'
-            },
-            {
-                name: 'Interactive Sphere',
-                poster: 'https://res.cloudinary.com/dfx1sukqp/image/upload/v1736609890/aboutus/1736609877207-ucdepartment_bwdowr.png'
-            },
-            {
-                name: 'UC Department',
-                poster: 'https://res.cloudinary.com/dfx1sukqp/image/upload/v1736609890/aboutus/1736609877207-ucdepartment_bwdowr.png'
-            },
-            {
-                name: 'UC Department',
-                poster: 'https://res.cloudinary.com/dfx1sukqp/image/upload/v1736609890/aboutus/1736609877207-ucdepartment_bwdowr.png'
-            },
-            {
-                name: 'UC Department',
-                poster: 'https://res.cloudinary.com/dfx1sukqp/image/upload/v1736609890/aboutus/1736609877207-ucdepartment_bwdowr.png'
-            }
-        ],
-        team: [
-            {
-                name: 'Dhaval Shah',
-                image: 'https://res.cloudinary.com/dfx1sukqp/image/upload/v1736610391/aboutus/1736610388562-dhaval_cjcsyi.png',
-                position: 'Managing Director'
-            },
-            {
-                name: 'Sanajy Mehta',
-                image: 'https://res.cloudinary.com/dfx1sukqp/image/upload/v1736793998/aboutus/1736793998263-sanjay_v0wcz6.png',
-                position: 'Director'
-            },
-            {
-                name: 'shoeb Noorani',
-                image: 'https://res.cloudinary.com/dfx1sukqp/image/upload/v1736794081/aboutus/1736794081411-shoeb_oeuzwg.png',
-                position: 'Operation In Charge'
-            },
-            {
-                name: 'shoeb Noorani',
-                image: 'https://res.cloudinary.com/dfx1sukqp/image/upload/v1736794081/aboutus/1736794081411-shoeb_oeuzwg.png',
-                position: 'Operation In Charge'
-            },
-            {
-                name: 'shoeb Noorani',
-                image: 'https://res.cloudinary.com/dfx1sukqp/image/upload/v1736794081/aboutus/1736794081411-shoeb_oeuzwg.png',
-                position: 'Operation In Charge'
-            }
-        ],
-        investor: [
-            {
-                name: 'Tejas Shah',
-                image: 'https://res.cloudinary.com/dfx1sukqp/image/upload/v1736794118/aboutus/1736794116907-tejas_rujj7x.png',
-                description:
-                    'He served NETGEAR- USA as CIO for about 10 Years. He is currently working as Senior Vice President of Products and CIO in Arlo Technologies, Inc. California.'
-            },
-            {
-                name: 'Tejas Shah',
-                image: 'https://res.cloudinary.com/dfx1sukqp/image/upload/v1736794118/aboutus/1736794116907-tejas_rujj7x.png',
-                description:
-                    'He served NETGEAR- USA as CIO for about 10 Years. He is currently working as Senior Vice President of Products and CIO in Arlo Technologies, Inc. California.'
-            },
-            {
-                name: 'Tejas Shah',
-                image: 'https://res.cloudinary.com/dfx1sukqp/image/upload/v1736794118/aboutus/1736794116907-tejas_rujj7x.png',
-                description:
-                    'He served NETGEAR- USA as CIO for about 10 Years. He is currently working as Senior Vice President of Products and CIO in Arlo Technologies, Inc. California.'
-            }
-        ]
+export const team = [
+    {
+        name: 'Dhaval Shah',
+        image: dhaval,
+        position: 'Managing Director'
+    },
+    {
+        name: ' Devang Shah ',
+        image: devgan,
+        position: 'Chief Technical Officer '
+    },
+    {
+        name: 'Sanajy Mehta',
+        image: sanjay,
+        position: 'Director'
+    },
+    {
+        name: 'Krunal Mehta',
+        image: krunal,
+        position: 'Technical Director '
+    },
+    {
+        name: 'Arpit Dubey',
+        image: arpit,
+        position: 'Chief Marketing Officer '
+    },
+    {
+        name: 'shoeb Noorani',
+        image: shoeb,
+        position: 'Operation In Charge'
     }
-}
+]
+
+
+
+export const  investor =  [
+    {
+        name: 'Tejas Shah',
+        image: tejas,
+        description:
+            'He served NETGEAR- USA as CIO for about 10 Years. He is currently working as Senior Vice President of Products and CIO in Arlo Technologies, Inc. California.'
+    },
+]
+

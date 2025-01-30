@@ -2,14 +2,18 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination, Autoplay } from 'swiper/modules';
-import news1 from '../../../assets/images/homepageimages/news1.png';
+import news1 from '../../../assets/images/homepageimages/news/news1.jpeg';
+import news2 from '../../../assets/images/homepageimages/news/news2.jpeg';
+import news3 from '../../../assets/images/homepageimages/news/news3.jpg';
+import { Link } from 'react-router-dom'
+
 
 export default function RecoExSec1() {
   return (
-    <div className="w-full">
-      {/* Add custom styles for Swiper using Tailwind's style */}
-      <style>
-        {`
+      <div className="w-full">
+          {/* Add custom styles for Swiper using Tailwind's style */}
+          <style>
+              {`
           .swiper {
             width: 100%;
             height: 500px;
@@ -22,53 +26,56 @@ export default function RecoExSec1() {
             align-items: center;
           }
         `}
-      </style>
+          </style>
 
-      <Swiper
-        pagination={{
-          dynamicBullets: true,
-        }}
-        modules={[Pagination, Autoplay]}
-        autoplay={{
-          delay: 2500,
-          disableOnInteraction: false,
-          pauseOnMouseEnter: true,
-        }}
-        watchSlidesProgress={true}
-        observer={true}
-        observeParents={true}
-        className="mySwiper"
-      >
-        {[
-          {
-            image: news1,
-            heading: 'SEWA, bizmen use LEDs to lead veg vendors out of darkness!',
-          },
-          {
-            image: news1,
-            heading: 'SEWA, bizmen use LEDs to lead veg vendors out of darkness!',
-          },
-          {
-            image: news1,
-            heading: 'SEWA, bizmen use LEDs to lead veg vendors out of darkness!',
-          },
-          {
-            image: news1,
-            heading: 'SEWA, bizmen use LEDs to lead veg vendors out of darkness!',
-          },
-        ].map((slide, index) => (
-          <SwiperSlide key={index} className="bg-[#EEF7FF]">
-            <div className="flex flex-col items-center justify-center gap-4">
-              <img
-                className="w-[80%] object-cover"
-                src={slide.image}
-                alt=""
-              />
-              <h1 className="w-[70%]">{slide.heading}</h1>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </div>
-  );
+          <Swiper
+              pagination={{
+                  dynamicBullets: true
+              }}
+              modules={[Pagination, Autoplay]}
+              autoplay={{
+                  delay: 2500,
+                  disableOnInteraction: false,
+                  pauseOnMouseEnter: true
+              }}
+              watchSlidesProgress={true}
+              observer={true}
+              observeParents={true}
+              className="mySwiper">
+              {[
+                  {
+                      image: news1,
+                      link: 'https://www.aninews.in/news/business/nessa-illumination-technologies-pvt-ltd-launched-smart-light-and-hybrid-solar-high-mast-at-rei-expo-202420241010181151/',
+                      heading: ''
+                  },
+                  {
+                      image: news2,
+                      link: 'https://www.business-standard.com/content/press-releases-ani/nessa-illumination-technologies-pvt-ltd-launched-smart-light-and-hybrid-solar-high-mast-at-rei-expo-2024-124101001393_1.html',
+                      heading: ''
+                  },
+                  {
+                      image: news3,
+                      link: 'https://www.business-standard.com/content/press-releases-ani/nessa-illumination-technologies-pvt-ltd-launched-smart-light-and-hybrid-solar-high-mast-at-rei-expo-2024-124101001393_1.html ',
+                      heading: 'Business Leaders of Tomorrow in Micro &amp; Small Enterprises Sector!'
+                  }
+              ].map((slide, index) => (
+                  <SwiperSlide
+                      key={index}
+                      className="bg-[#EEF7FF]">
+                      <Link
+                          to={slide.link}
+                          target="_blank"
+                          className="flex flex-col items-center justify-center gap-4">
+                          <img
+                              className="w-[80%] h-[300px] object-cover"
+                              src={slide.image}
+                              alt=""
+                          />
+                          <h1 className="w-[70%]">{slide.heading}</h1>
+                      </Link>
+                  </SwiperSlide>
+              ))}
+          </Swiper>
+      </div>
+  )
 }

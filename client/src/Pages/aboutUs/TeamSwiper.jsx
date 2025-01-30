@@ -5,9 +5,10 @@ import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 
 import { Pagination, Navigation ,Autoplay} from 'swiper/modules'
+import { team } from './AboutUsConfig'
 
 
-export default function TeamSwiper({ team }) {
+export default function TeamSwiper() {
     return (
         <>
             <Swiper
@@ -52,7 +53,7 @@ export default function TeamSwiper({ team }) {
                             className="mb-[50px] select-none">
                             <div className="flex flex-col  items-center text-center">
                                 <img
-                                    className="rounded-xl h-[300px]  w-[300px] object-contain border pt-[50px] bg-[#e7f2fd] border-orange-400 overflow-hidden "
+                                    className="rounded-xl h-[300px]  w-[300px] object-contain border  bg-[#e7f2fd] border-orange-400 overflow-hidden "
                                     src={item.image}
                                     alt=""
                                 />

@@ -1,10 +1,7 @@
 import { useEffect, useState } from 'react'
-import { FaLocationDot, FaSquareFacebook } from 'react-icons/fa6'
+import { FaLocationDot } from 'react-icons/fa6'
 import { MdCall } from 'react-icons/md'
 import { MdEmail } from 'react-icons/md'
-import { AiFillInstagram } from 'react-icons/ai'
-import { FaSquareXTwitter } from 'react-icons/fa6'
-import { FaDiscord } from 'react-icons/fa'
 import { RiFacebookBoxLine } from 'react-icons/ri'
 import { FaInstagram } from 'react-icons/fa'
 import { IoLogoWhatsapp } from 'react-icons/io5'
@@ -17,9 +14,7 @@ import Navbar from '../../Components/Header/Navbar'
 import SideComponent from '../../Components/sideComponent/SideComponent'
 import { fetchUtilsData, saveContactUs, uploadFile } from '../../services/api.services'
 import Footer from '../../Components/Footer'
-import { headQuarterAddressApi } from '../../Utils/Utils'
 import { Link } from 'react-router-dom'
-import { headQuarterHardCodedData } from './ContactUsConfig' // remove later
 
 const StyleWrapper = styled.div`
     input[type='file']::file-selector-button {
@@ -186,38 +181,7 @@ const ContactUs = () => {
         }
     }
 
-    const [loading, setloading] = useState(false)
-    const [headQuarterData, setheadQuarterData] = useState([])
-    useEffect(() => {
-        const fetchAboutUsData = async () => {
-            try {
-                setloading(true)
-
-                const response = await fetchUtilsData(headQuarterAddressApi)
-                if (response?.data) {
-                    setheadQuarterData(response.data.utilsData || headQuarterHardCodedData.utilsData)
-                } else {
-                    setheadQuarterData(headQuarterHardCodedData.utilsData) //remove later
-                }
-            } catch (error) {
-                console.error('Error fetching  data:', error)
-                setheadQuarterData(headQuarterHardCodedData.utilsData) //  remove later
-            } finally {
-                setloading(false)
-            }
-        }
-
-        fetchAboutUsData()
-    }, [])
-
-    if (loading) {
-        return (
-            <div className="flex justify-center items-center h-64">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500" />
-            </div>
-        )
-    }
-
+   
     return (
         <StyleWrapper>
             <div className="w-full overflow-hidden">

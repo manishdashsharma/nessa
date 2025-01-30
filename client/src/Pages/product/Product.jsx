@@ -1,9 +1,6 @@
 import { useEffect, useState } from 'react';
-import { MdOutlineBookmarkAdd } from 'react-icons/md';
-import { productConfig, solution } from './ProductConfig';
 import RelatedProductsSwipe from './RelatedProducts';
 import ProductTabs from './Productdetails';
-import { IoMdShare } from 'react-icons/io';
 import Navbar from '../../Components/Header/Navbar';
 import SideComponent from '../../Components/sideComponent/SideComponent';
 import { useParams } from 'react-router-dom';
@@ -15,12 +12,12 @@ import industriesImage from '../../assets/images/products/industry.png';
 import ShareButton from '../../Components/ShareButton';
 import Footer from '../../Components/Footer';
 import { Link } from 'react-router-dom'
+import ImageViewer from './ZoomableImage';
 
 
 const Product = () => {
 
   const { id } = useParams();
-  const [images, setimages] = useState(['', '', '', ''])
   const [selectedImage, setSelectedImage] = useState(0);
   // const images = productConfig.productImage;
 
@@ -82,33 +79,39 @@ const Product = () => {
     if (!product?.productImageUrl?.length) return null;
     
     return (
-      <>
-        <div className="w-fit px-2 flex flex-col max-lg:flex-row gap-2">
-          {product.productImageUrl.map((imgUrl, index) => (
-            <button
-              key={index}
-              onClick={() => setSelectedImage(index)}
-              className={`border-2 rounded-lg p-1 h-[100px] max-sm:h-[50px] w-[100px] max-sm:w-[50px] bg-blue-50 ${
-                selectedImage === index ? 'border-blue-500' : 'border-gray-200'
-              }`}
-            >
-              <img
-                src={imgUrl}
-                alt={`${product.name} - View ${index + 1}`}
-                className="w-full h-full object-contain"
-              />
-            </button>
-          ))}
-        </div>
-        <div className="w-[70%] max-lg:w-full h-[500px] max-lg:h-[300px] p-4 bg-blue-50 rounded-xl">
-          <img
-            src={product.productImageUrl[selectedImage]}
-            alt={`${product.name} - Main View`}
-            className="w-full h-full object-contain"
-          />
-        </div>
-      </>
-    );
+        <>
+            <div className="w-fit px-2 flex flex-col max-lg:flex-row gap-2">
+                {product.productImageUrl.map((imgUrl, index) => (
+                    <button
+                        key={index}
+                        onClick={() => setSelectedImage(index)}
+                        className={`border-2 rounded-lg p-1 h-[100px] max-sm:h-[50px] w-[100px] max-sm:w-[50px] bg-blue-50 ${
+                            selectedImage === index ? 'border-blue-500' : 'border-gray-200'
+                        }`}>
+                        <img
+                            src={imgUrl}
+                            alt={`${product.name} - View ${index + 1}`}
+                            className="w-full h-full object-contain"
+                        />
+                    </button>
+                ))}
+            </div>
+            {/* <div
+                id="selectedImage"
+                className="w-[70%] max-lg:w-full h-[500px] max-lg:h-[300px] p-4 bg-blue-50 rounded-xl">
+                <img
+                    src={product.productImageUrl[selectedImage]}
+                    alt={`${product.name} - Main View`}
+                    className="w-full h-full object-contain"
+                />
+            </div> */}
+            <ImageViewer
+                images={product.productImageUrl}
+                selectedIndex={selectedImage}
+                onSelectedIndexChange={setSelectedImage}
+            />
+        </>
+    )
   };
 
  if (loading) {
@@ -193,7 +196,7 @@ const Product = () => {
                           className="w-full min-h-[300px] py-16  max-md:pb-2 px-[5vw]  text-center">
                           <div className="flex flex-col md:flex-row items-center justify-center gap-8">
                               <img
-                                  className="w-full md:w-1/2 h-auto  hidden max-md:block  shadow-lg"
+                                  className="w-full md:w-1/2 h-auto object-contain  hidden max-md:block  shadow-lg"
                                   src={useCase.imageUrl}
                                   alt=""
                               />
@@ -202,7 +205,7 @@ const Product = () => {
                                   <p className="mb-4 ">{useCase.description}</p>
                               </div>
                               <img
-                                  className="w-full md:w-1/2 h-[350px] max-md:hidden  shadow-lg"
+                                  className="w-full md:w-1/2 h-[350px] object-contain max-md:hidden  shadow-lg"
                                   src={useCase.imageUrl}
                                   alt={useCase.title + ' Image'}
                               />
@@ -214,7 +217,7 @@ const Product = () => {
                           className="w-full min-h-[300px] pt-16  max-md:pb-2 px-[5vw]  text-center  relative ">
                           <div className="flex flex-col md:flex-row items-center justify-center gap-8 z-[2] relative">
                               <img
-                                  className="w-full md:w-1/2 h-[350px] shadow-lg z-[2]"
+                                  className="w-full md:w-1/2 h-[350px] object-contain shadow-lg z-[2]"
                                   src={useCase.imageUrl}
                                   alt={useCase.title + ' Image'}
                               />
