@@ -31,7 +31,7 @@ const Navbar = () => {
       {
           logo: <BiSolidPlaneAlt className={`text-[#1E90FF] bg-[#1E90FF] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
           link: '',
-          subcategories: 'Airport'
+          subcategories: 'Airports'
       },
       {
           logo: <GiMineWagon className={`text-[#FF8C00] bg-[#FF8C00] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
@@ -92,33 +92,52 @@ const Navbar = () => {
 
   const [loading, setloading] = useState(true)
 
-  useEffect(() => {
-      const fetchSolutions = async () => {
-          try {
-              setloading(true)
-              const response = await allSolutions()
-              if (response?.data) {
-                  // Update solutionsDropdown links based on API data
-                  setSolutionsDropdown((prevDropdown) => {
-                      return prevDropdown.map((item) => {
-                          const matchingSolution = response.data.find((solution) => solution.subcategories === item.subcategories)
-                          return {
-                              ...item,
-                              link: matchingSolution ? `/solutions/${matchingSolution._id}` : ''
-                          }
-                      })
-                  })
-              }
-          } catch (error) {
-              console.error('Error fetching product data:', error)
-              toast.error('Failed to load products')
-          } finally {
-              setloading(false)
-          }
-      }
+useEffect(() => {
+    const fetchSolutions = async () => {
+        try {
+            setloading(true)
+            const response = await allSolutions()
+            if (response?.data) {
+                // Create a set of existing subcategories
+                const existingSubcategories = new Set(solutionsDropdown.map((item) => item.subcategories))
 
-      fetchSolutions()
-  }, [])
+                // Get default logo component for new solutions
+                const defaultLogo = <GrResources className={`text-[#808080] bg-[#808080] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />
+
+                // Process existing solutions and add new ones
+                setSolutionsDropdown((prevDropdown) => {
+                    // First, update existing solutions with links
+                    const updatedExisting = prevDropdown.map((item) => {
+                        const matchingSolution = response.data.find((solution) => solution.subcategories === item.subcategories)
+                        return {
+                            ...item,
+                            link: matchingSolution ? `/solutions/${matchingSolution._id}` : ''
+                        }
+                    })
+
+                    // Find new solutions that aren't in the existing dropdown
+                    const newSolutions = response.data
+                        .filter((solution) => !existingSubcategories.has(solution.subcategories))
+                        .map((solution) => ({
+                            logo: defaultLogo,
+                            link: `/solutions/${solution._id}`,
+                            subcategories: solution.subcategories
+                        }))
+
+                    // Combine existing and new solutions
+                    return [...updatedExisting, ...newSolutions]
+                })
+            }
+        } catch (error) {
+            console.error('Error fetching product data:', error)
+            toast.error('Failed to load products')
+        } finally {
+            setloading(false)
+        }
+    }
+
+    fetchSolutions()
+}, [])
 
     useEffect(() => {
         const handleScroll = () => {
