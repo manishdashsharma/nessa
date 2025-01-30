@@ -27,22 +27,20 @@ const SolutionsModel = ({ open, onClose, token }) => {
     })
 
     const [loading, setLoading] = useState(false)
-    // const [subcategoriesList] = useState([
-    //     'Mines',
-    //     'Factory',
-    //     'Labs',
-    //     'Airports',
-    //     'Stadium',
-    //     'Petrol Pump',
-    //     'Refinery',
-    //     'Highways',
-    //     'Tunnels',
-    //     'Rural, Hilly & Forest Areas',
-    //     'Ports & Logistic Parks',
-    //     'Hazardous Areas',
-    //     'Thermal Power Plants',
-    //     'Solar Parks'
-    // ])
+    const title = [
+        'Airports',
+        'Mines',
+        'Stadium',
+        'Petrol Pump',
+        'Refinery',
+        'Highways',
+        'Tunnels',
+        'Rural, Hilly & Forest Areas',
+        'Ports & Logistic Parks',
+        'Hazardous Areas',
+        'Thermal Power Plants',
+        'Solar Parks'
+    ]
     const [availableProducts, setAvailableProducts] = useState([])
     const [uploadsComplete, setUploadsComplete] = useState({ thumbnail: false, solutionImageUrl: false })
 
@@ -60,14 +58,14 @@ const SolutionsModel = ({ open, onClose, token }) => {
             console.error('Error fetching products:', error)
         }
     }
-    
+
     useEffect(() => {
         fetchProducts()
     }, [])
 
     const handleInputChange = (e, index) => {
         const { name, value } = e.target
-        const formattedValue = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
+        const formattedValue = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase()
 
         if (name.startsWith('relatedProduct.')) {
             const field = name.split('.')[1]
@@ -206,20 +204,28 @@ const SolutionsModel = ({ open, onClose, token }) => {
                 initial={{ opacity: 0, y: -50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ type: 'spring', damping: 25, stiffness: 500 }}>
-                    <h2 className="text-3xl font-semibold text-gray-800 mb-6">Add New Solution</h2>
-                    <p className="text-sm text-gray-500">Note: Sentence case is allowed for input fields</p>
-                <form onSubmit={handleSubmit} className="space-y-5">
+                <h2 className="text-3xl font-semibold text-gray-800 mb-6">Add New Solution</h2>
+                <p className="text-sm text-gray-500">Note: Sentence case is allowed for input fields</p>
+                <form
+                    onSubmit={handleSubmit}
+                    className="space-y-5">
                     {/* Basic fields remain the same */}
                     <div>
                         <label className="block text-sm font-medium text-gray-700">Title</label>
-                        <input
-                            type="text"
+                        <select
                             name="title"
                             value={formData.title}
                             onChange={(e) => handleInputChange(e)}
                             className="mt-2 block w-full rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-700 shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-transparent"
-                            required
-                        />
+                            required>
+                            {title.map((titleOption, index) => (
+                                <option
+                                    key={index}
+                                    value={titleOption}>
+                                    {titleOption}
+                                </option>
+                            ))}
+                        </select>
                     </div>
 
                     <div>
@@ -288,7 +294,9 @@ const SolutionsModel = ({ open, onClose, token }) => {
                         </div>
 
                         {formData.relatedProduct.map((product, index) => (
-                            <div key={index} className="p-4 rounded-lg border border-gray-200 relative">
+                            <div
+                                key={index}
+                                className="p-4 rounded-lg border border-gray-200 relative">
                                 {index > 0 && (
                                     <button
                                         type="button"
@@ -332,7 +340,9 @@ const SolutionsModel = ({ open, onClose, token }) => {
                                             className="mt-2 block w-full rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-700 shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-transparent"
                                             required>
                                             {availableProducts.map((availableProduct) => (
-                                                <option key={availableProduct.productId} value={availableProduct.productId}>
+                                                <option
+                                                    key={availableProduct.productId}
+                                                    value={availableProduct.productId}>
                                                     {availableProduct.name}
                                                 </option>
                                             ))}
@@ -420,3 +430,4 @@ FileUpload.propTypes = {
 }
 
 export default SolutionsModel
+

@@ -1,0 +1,46 @@
+curl -X POST http://localhost:5000/v1/add-product \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Street Light 18 W",
+    "description": "Introducing the NES-SL-18 Street Light, a 20W powerhouse with an input range of 110-290V, delivering ≥120 Lm/W. Featuring a CRI >70, THD <10%, and driver efficiency >85%, this IP66-rated light ensures superior performance. Compact and lightweight, it’s built for durability without dimming features. Ideal for outdoor lighting solutions.",
+    "categories": "AC Lighting",
+    "subcategories": "Street Light",
+    "specification": {
+      "Input range": "110-290V",
+      "Output Lumens": "> 120 Lm/W",
+      "CRI": ">70",
+      "THD": "<10%"
+    },
+    "feature": {
+      "highlighted": [
+        "Wide Input Range & Low THD – Operates smoothly between 110-290V with <10% THD and >85% driver efficiency, ensuring stable performance and energy savings.",
+        "Rugged & Weatherproof Design – Built with an IP66 rating, making it highly resistant to dust, water, and harsh outdoor conditions.",
+        "High Efficiency & Performance – Delivers ≥120 Lm/W output with a CRI >70, ensuring bright and clear illumination for better visibility."
+      ],
+      "useCases": [
+        {
+          "title": "",
+          "description": "",
+          "imageUrl": null
+        }
+      ]
+    },
+    "productImageUrl": [
+      "https://res.cloudinary.com/dsrh93apm/image/upload/v1738221112/productimageurl/1738221111553-WhatsApp_Image_2025-01-30_at_12.28.19_1_v88hnc.jpg",
+      "https://res.cloudinary.com/dsrh93apm/image/upload/v1738221113/productimageurl/1738221113532-WhatsApp_Image_2025-01-30_at_12.28.19_samqot.jpg",
+      "https://res.cloudinary.com/dsrh93apm/image/upload/v1738221114/productimageurl/1738221114437-WhatsApp_Image_2025-01-30_at_12.28.20_1_vfveu7.jpg",
+      "https://res.cloudinary.com/dsrh93apm/image/upload/v1738221115/productimageurl/1738221115358-WhatsApp_Image_2025-01-30_at_12.28.20_v7noys.jpg",
+      "https://res.cloudinary.com/dsrh93apm/image/upload/v1738221116/productimageurl/1738221116383-WhatsApp_Image_2025-01-30_at_12.28.21_cni0rq.jpg"
+    ],
+    "brochureUrl": null,
+    "applicationImageUrls": [
+      "https://res.cloudinary.com/dsrh93apm/image/upload/v1738221323/applicationimageurls/1738221322760-WhatsApp_Image_2025-01-30_at_12.28.43_1_iplchb.jpg",
+      "https://res.cloudinary.com/dsrh93apm/image/upload/v1738221324/applicationimageurls/1738221324255-WhatsApp_Image_2025-01-30_at_12.28.43_mferuk.jpg",
+      "https://res.cloudinary.com/dsrh93apm/image/upload/v1738221325/applicationimageurls/1738221325089-WhatsApp_Image_2025-01-30_at_12.28.44_1_dxdyzd.jpg",
+      "https://res.cloudinary.com/dsrh93apm/image/upload/v1738221326/applicationimageurls/1738221325996-WhatsApp_Image_2025-01-30_at_12.28.44_vrxsld.jpg"
+    ],
+    "bestSuitedFor": [
+      "Offices"
+    ],
+    "SKUId": "NES-SL-18"
+  }'

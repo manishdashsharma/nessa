@@ -48,14 +48,42 @@ export const ValidateAddProduct = Joi.object({
 export const ValidateUpdateProduct = Joi.object({
     name: Joi.string().optional(),
     description: Joi.string().optional(),
-    bestSuitedFor: Joi.string().optional(),
-    categories: Joi.array().items(Joi.string()).optional(),
-    subcategories: Joi.array().items(Joi.string()).optional(),
+    categories: Joi.string()
+    .valid(...Object.values(EProductCategories))
+    .optional(),
+    subcategories: Joi.string()
+    .custom((value, helpers) => {
+        const { categories } = helpers.state.ancestors[0];
+        if (!categories) {
+            return helpers.message('`categories` is required before `subcategories`.');
+        }
+
+        const validSubCategories = quicker.subCategoriesMap[categories];
+        if (!validSubCategories || !validSubCategories.includes(value)) {
+            return helpers.message(`Invalid subcategory '${value}' for category: '${categories}'.`);
+        }
+
+        return value;
+    })
+    .optional(),
     specification: Joi.object().pattern(Joi.string(), Joi.any()).optional(), 
-    feature: Joi.array().items(Joi.string()).optional(),
-    productImageUrl: Joi.string().uri().optional(),
+    feature: Joi.object({
+        highlighted: Joi.array().items(Joi.string()).optional(),
+        useCases: Joi.array().items(
+            Joi.object({
+                _id: Joi.string().optional(),
+                title: Joi.string().required().allow(''),
+                description: Joi.string().allow(''),
+                imageUrl: Joi.string().uri().allow(null) 
+            })
+        ).optional()
+    }).optional(),
+    productImageUrl: Joi.array().items(Joi.string().uri()).optional(),
     applicationImageUrls: Joi.array().items(Joi.string().uri()).optional(),
-    brochureUrl: Joi.string().uri().optional(),
+    brochureUrl: Joi.string().uri().optional().allow(null, ''),
+    bestSuitedFor: Joi.array()
+    .items(Joi.string().valid(...Object.values(EBestSuitedFor)))
+    .optional(),
     SKUId: Joi.string().optional(),
     isActive: Joi.boolean().optional(),
     isEnquired: Joi.number().integer().optional()

@@ -30,6 +30,21 @@ const UpdateSolutionModel = ({ open, onClose, token, solutionId }) => {
     const [availableProducts, setAvailableProducts] = useState([])
     const [uploadsComplete, setUploadsComplete] = useState({ thumbnail: false, solutionImageUrl: false })
 
+    const title = [
+        'Airports',
+        'Mines',
+        'Stadium',
+        'Petrol Pump',
+        'Refinery',
+        'Highways',
+        'Tunnels',
+        'Rural, Hilly & Forest Areas',
+        'Ports & Logistic Parks',
+        'Hazardous Areas',
+        'Thermal Power Plants',
+        'Solar Parks'
+    ]
+
     // Fetch all available products
     const fetchProducts = async () => {
         try {
@@ -231,14 +246,20 @@ const UpdateSolutionModel = ({ open, onClose, token, solutionId }) => {
                     {/* Basic fields remain the same */}
                     <div>
                         <label className="block text-sm font-medium text-gray-700">Title</label>
-                        <input
-                            type="text"
+                        <select
                             name="title"
                             value={formData.title}
                             onChange={(e) => handleInputChange(e)}
                             className="mt-2 block w-full rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-700 shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-transparent"
-                            required
-                        />
+                            required>
+                            {title.map((titleOption, index) => (
+                                <option
+                                    key={index}
+                                    value={titleOption}>
+                                    {titleOption}
+                                </option>
+                            ))}
+                        </select>
                     </div>
 
                     <div>

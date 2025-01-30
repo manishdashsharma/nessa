@@ -11,6 +11,8 @@ export const getProduct = async (query,limit,offset) => {
 }
 
 export const updateProduct = async (token,id,data) =>{
+
+    console.log("helloo",data)
     const headers= {
         Authorization: `Bearer ${token}`
     }
