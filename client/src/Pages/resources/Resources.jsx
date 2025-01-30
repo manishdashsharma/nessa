@@ -69,7 +69,9 @@ export const Resources = () => {
                     src={hero}
                     alt=""
                 />
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white ml-[5vw] relative z-[2]">Resources</h1>
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white ml-[5vw] relative z-[2] drop-shadow-[0_0_10px_rgba(0,0,0,0.8)]">
+                    Resources
+                </h1>
             </div>
 
             {/* download nessa catalogus */}
@@ -90,7 +92,7 @@ export const Resources = () => {
             </div>
 
             <div className="grid grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 w-full justify-items-center mt-[50px] ">
-                { nessaCatalogs.map((item, index) => (
+                {nessaCatalogs.map((item, index) => (
                     <div
                         key={index}
                         className=" w-[20vw] max-md:w-[40vw] max-sm:w-[90%] max-sm:mb-10 h-[30vw] max-md:h-fit  flex flex-col items-center ">

@@ -109,11 +109,13 @@ export const ValueAddedServices = () => {
                   src={hero}
                   alt=""
               />
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white  relative z-[2] px-[5vw]">Value Added Services</h1>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white  relative z-[2] drop-shadow-[0_0_10px_rgba(0,0,0,0.8)] px-[5vw]">
+                  Value Added Services
+              </h1>
           </div>
 
           {/* map Section */}
-          <div className='py-[50px]'>
+          <div className="py-[50px]">
               <div className=" text-4xl font-semibold leading-snug text-center text-black z-[2] relative">
                   <span className="text-blue-500"> Empowering Communities</span> <br /> Delivering Impactful Solution
               </div>
@@ -150,7 +152,9 @@ export const ValueAddedServices = () => {
               <div className="flex max-lg:flex-col   px-[5vw]">
                   <div className=" max-lg:w-full  grid grid-cols-2 max-md:grid-cols-1 gap-y-8 mt-[50px] w-[70%] ">
                       {ourRulerUpliftmentsSolution.map((item, index) => (
-                          <div key={index} className="flex w-full justify-center items-center">
+                          <div
+                              key={index}
+                              className="flex w-full justify-center items-center">
                               <div className="relative h-[400px] flex justify-center items-center">
                                   <img
                                       className=" w-full h-full  object-cover"
@@ -167,7 +171,9 @@ export const ValueAddedServices = () => {
 
                   <div className="w-[30%] max-lg:w-full  mt-[50px] grid grid-cols-1 max-lg:grid-cols-4 max-md:grid-cols-2    ">
                       {ourRulerUpliftmentsSolutionRightSection.map((item, index) => (
-                          <div key={index} className="w-full  h-[200px] flex flex-col items-center ">
+                          <div
+                              key={index}
+                              className="w-full  h-[200px] flex flex-col items-center ">
                               <div className="w-[100px] h-[100px] rounded-full text-3xl font-semibold bg-orange-400  flex items-center justify-center">
                                   {item.inCircleNumbers}
                               </div>

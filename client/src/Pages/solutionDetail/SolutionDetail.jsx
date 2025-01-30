@@ -33,7 +33,7 @@ const SolutionDetail = () => {
         }
 
         fetchSolution()
-    }, [])
+    }, [id])
 
 
     
@@ -73,14 +73,13 @@ const SolutionDetail = () => {
         <div className="w-full overflow-hidden">
             <Navbar />
             <SideComponent />
-            <div className="w-full h-[300px] max-sm:h-[200px] relative flex items-center  justify-start ">
+            <div className="w-full h-[300px] max-sm:h-[200px] relative flex items-center  justify-start   ">
                 <img
-                    className="w-full h-full object-cover absolute "
+                    className="w-full h-full object-cover absolute  "
                     src={solution.thumbnail} // dynamic poster
                     alt=""
                 />
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white ml-[5vw] relative z-[2]">
-                    {/* dynamic heading */}
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white  drop-shadow-[0_0_10px_rgba(0,0,0,0.8)] ml-[5vw] relative z-[2] ">
                     {solution.title}
                 </h1>
             </div>
@@ -98,9 +97,9 @@ const SolutionDetail = () => {
                     <div className="relative mt-7 text-xl  mb-4 leading-8 text-zinc-900 max-md:max-w-full">{solution.description}</div>
                 </div>
 
-                <div className="w-1/2 max-md:w-full max-md:h-[300px] bg-gray-500">
+                <div className="w-1/2 max-md:w-full max-md:h-[300px] ">
                     <img
-                        className="w-full h-[400px] max-md:h-[300px] bg-gray-600"
+                        className="w-full h-[400px] max-md:h-[300px] object-cover bg-white"
                         src={solution.solutionImageUrl}
                         alt=""
                     />
@@ -148,7 +147,9 @@ const SolutionDetail = () => {
                         <strong>Products:</strong>
                         <div className="mt-2 space-y-4 ml-[40px] flex flex-col">
                             {item.products.map((productitem, i) => (
-                                <Link to={`/product/${productitem.productId}`} key={i}>
+                                <Link
+                                    to={`/product/${productitem.productId}`}
+                                    key={i}>
                                     <strong> • {productitem.name}</strong> :{productitem.description}
                                 </Link>
                             ))}
@@ -178,7 +179,13 @@ const SolutionDetail = () => {
                             alt=""
                         />
 
-                        <Link to={item.downloadLink? item.downloadLink :''} download target='_blank'  className="bg-blue-500 w-full text-center py-[10px] mt-[20px] rounded-md text-white">Download</Link>
+                        <Link
+                            to={item.downloadLink ? item.downloadLink : ''}
+                            download
+                            target="_blank"
+                            className="bg-blue-500 w-full text-center py-[10px] mt-[20px] rounded-md text-white">
+                            Download
+                        </Link>
                     </div>
                 ))}
             </div>
@@ -208,7 +215,7 @@ const SolutionDetail = () => {
             {/* partners review */}
             <PartnersReviewsSwiper />
 
-            <Footer/>
+            <Footer />
         </div>
     )
 }

@@ -38,7 +38,7 @@ const Homepage = () => {
 
                 const response = await allSolutions()
                 if (response?.data) {
-                    setsolutions(response.data.slice(0, 3))
+                    setsolutions(response.data.slice(0, 4))
                 }
             } catch (error) {
                 console.error('Error fetching product data:', error)

@@ -221,7 +221,9 @@ const Support = () => {
                         src={airportpageposter}
                         alt=""
                     />
-                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white relative z-[2]">Support</h1>
+                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white relative z-[2] drop-shadow-[0_0_10px_rgba(0,0,0,0.8)]">
+                        Support
+                    </h1>
                 </div>
 
                 <div className="flex max-md:flex-col relative p-[5vw] gap-6">

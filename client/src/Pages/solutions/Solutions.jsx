@@ -55,7 +55,9 @@ const Solutions = () => {
                     src={hero}
                     alt=""
                 />
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white ml-[5vw] relative z-[2]">Solutions</h1>
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white ml-[5vw] relative z-[2] drop-shadow-[0_0_10px_rgba(0,0,0,0.8)]">
+                    Solutions
+                </h1>
             </div>
 
             <div className="w-full min-h-[300px] relative py-[50px] px-[5vw]">
@@ -155,7 +157,7 @@ const Solutions = () => {
                 <TrendingProductsSwipe />
             </div>
 
-            <Footer/>
+            <Footer />
         </div>
     )
 }

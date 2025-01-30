@@ -5,6 +5,11 @@ import { MdEmail } from 'react-icons/md'
 import { AiFillInstagram } from 'react-icons/ai'
 import { FaSquareXTwitter } from 'react-icons/fa6'
 import { FaDiscord } from 'react-icons/fa'
+import { RiFacebookBoxLine } from 'react-icons/ri'
+import { FaInstagram } from 'react-icons/fa'
+import { IoLogoWhatsapp } from 'react-icons/io5'
+import { CiLinkedin } from 'react-icons/ci'
+import { RiTwitterXFill } from 'react-icons/ri'
 import styled from 'styled-components'
 import airportpageposter from '../../assets/images/solutionsImages/airportpageposter.png'
 import toast from 'react-hot-toast'
@@ -225,7 +230,9 @@ const ContactUs = () => {
                         src={airportpageposter}
                         alt=""
                     />
-                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white  relative z-[2]">Contact Us</h1>
+                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white  relative z-[2] drop-shadow-[0_0_10px_rgba(0,0,0,0.8)]">
+                        Contact Us
+                    </h1>
                 </div>
 
                 <div className="flex max-md:flex-col relative p-[5vw] gap-6 ">
@@ -237,72 +244,111 @@ const ContactUs = () => {
                             <h1 className="text-4xl font-semibold">Headquater Address</h1>
                             <div className="flex items-center justify-center mt-5  gap-10">
                                 <FaLocationDot className="w-6 h-6" />
-                                <h1>{headQuarterData?.address || 'Address not available'}</h1>
+                                {/* <h1>{headQuarterData?.address || 'Address not available'}</h1> */}
+                                <h1>36-A, Devraj Industrial Park, Near Pipalaj, Pirana Rd, Piplaj, Ahmedabad, Gujarat 382405 </h1>
                             </div>
                         </div>
                         <div className="flex justify-between mt-5 text-black  gap-5">
                             <div className="w-1/2 min-h-[100px] p-[20px] bg-blue-300 rounded-lg">
-                                <h1 className="font-semibold text-lg mb-2">Domestic Inquirey</h1>
+                                <h1 className="font-semibold text-lg mb-2">Domestic Inquiry</h1>
                                 <div className="flex items-center gap-2">
                                     <MdCall />
-                                    <h1>{headQuarterData?.domesticInquiry?.phoneNumber || 'N/A'}</h1>
+                                    {/* <h1>{headQuarterData?.domesticInquiry?.phoneNumber || 'N/A'}</h1> */}
+                                    <h1>+91 93752 79778</h1>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <MdEmail />
-                                    <h1>{headQuarterData?.domesticInquiry?.email || 'N/A'}</h1>
+                                    {/* <h1>{headQuarterData?.domesticInquiry?.email || 'N/A'}</h1> */}
+                                    <h1>sales@nessa.in</h1>
                                 </div>
                             </div>
                             <div className="w-1/2 min-h-[100px] p-[20px] bg-blue-300 rounded-lg">
-                                <h1 className="font-semibold text-lg mb-2">International inquiry</h1>
+                                <h1 className="font-semibold text-lg mb-2">International Inquiry</h1>
                                 <div className="flex items-center gap-2">
                                     <MdCall />
-                                    <h1>{headQuarterData?.internationalInquiry?.phoneNumber || 'N/A'}</h1>
+                                    {/* <h1>{headQuarterData?.internationalInquiry?.phoneNumber || 'N/A'}</h1> */}
+                                    <h1>+91 96363 79923</h1>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <MdEmail />
-                                    <h1>{headQuarterData?.internationalInquiry?.email || 'N/A'}</h1>
+                                    {/* <h1>{headQuarterData?.internationalInquiry?.email || 'N/A'}</h1> */}
+                                    <h1>exports@nessa.in</h1>
                                 </div>
                             </div>
                         </div>
                         <div className="flex justify-between mt-5 text-black  gap-5">
                             <div className="w-1/2 min-h-[100px] p-[20px] bg-blue-300 rounded-lg">
-                                <h1 className="font-semibold text-lg mb-2">Service inquiry</h1>
+                                <h1 className="font-semibold text-lg mb-2">Service Inquiry</h1>
                                 <div className="flex items-center gap-2">
                                     <MdCall />
-                                    <h1>{headQuarterData?.serviceInquiry?.phoneNumber || 'N/A'}</h1>
+                                    {/* <h1>{headQuarterData?.serviceInquiry?.phoneNumber || 'N/A'}</h1> */}
+                                    <h1>+91 909041228 </h1>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <MdEmail />
-                                    <h1>{headQuarterData?.serviceInquiry?.email || 'N/A'}</h1>
+                                    {/* <h1>{headQuarterData?.serviceInquiry?.email || 'N/A'}</h1> */}
+                                    <h1> exports@nessa.in</h1>
                                 </div>
                             </div>
                             <div className="w-1/2 min-h-[100px] p-[20px] bg-blue-300 rounded-lg">
-                                <h1 className="font-semibold text-lg mb-2">Career inquiry</h1>
+                                <h1 className="font-semibold text-lg mb-2">Career Inquiry</h1>
                                 <div className="flex items-center gap-2">
                                     <MdCall />
-                                    <h1>{headQuarterData?.careerInquiry?.phoneNumber || 'N/A'}</h1>
+                                    {/* <h1>{headQuarterData?.careerInquiry?.phoneNumber || 'N/A'}</h1> */}
+                                    <h1>+91 879100877 </h1>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <MdEmail />
-                                    <h1>{headQuarterData?.careerInquiry?.email || 'N/A'}</h1>
+                                    {/* <h1>{headQuarterData?.careerInquiry?.email || 'N/A'}</h1> */}
+                                    <h1> Careers@nessa.in</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="flex justify-between mt-5 text-black  gap-5">
+                            <div className="w-1/2 min-h-[100px] p-[20px] bg-blue-300 rounded-lg">
+                                <h1 className="font-semibold text-lg mb-2">Marketing Inquiry</h1>
+                                <div className="flex items-center gap-2">
+                                    <MdCall />
+                                    {/* <h1>{headQuarterData?.serviceInquiry?.phoneNumber || 'N/A'}</h1> */}
+                                    <h1>+91 86907 79778 </h1>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <MdEmail />
+                                    {/* <h1>{headQuarterData?.serviceInquiry?.email || 'N/A'}</h1> */}
+                                    <h1> Marketing@nessa.in</h1>
+                                </div>
+                            </div>
+                            <div className="w-1/2 min-h-[100px] p-[20px] bg-blue-300 rounded-lg">
+                                <h1 className="font-semibold text-lg mb-2">CSR Inquiry</h1>
+                                <div className="flex items-center gap-2">
+                                    <MdCall />
+                                    {/* <h1>{headQuarterData?.careerInquiry?.phoneNumber || 'N/A'}</h1> */}
+                                    <h1>9909041719</h1>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <MdEmail />
+                                    {/* <h1>{headQuarterData?.careerInquiry?.email || 'N/A'}</h1> */}
+                                    <h1> csr@nessa.in</h1>
                                 </div>
                             </div>
                         </div>
                         <div className="w-full mt-5 flex flex-col text-black items-center justify-center  min-h-[100px] p-[20px] bg-blue-300 rounded-lg">
-                            <h1 className="font-semibold text-lg mb-2">CSR inquiry</h1>
+                            <h1 className="font-semibold text-lg mb-2">Other Inquiry</h1>
                             <div className="flex items-center gap-2">
                                 <MdCall />
-                                <h1>{headQuarterData?.csrInquiry?.phoneNumber || 'N/A'}</h1>
+                                {/* <h1>{headQuarterData?.csrInquiry?.phoneNumber || 'N/A'}</h1> */}
+                                <h1>+91 80004 79780</h1>
                             </div>
                             <div className="flex items-center gap-2">
                                 <MdEmail />
-                                <h1>{headQuarterData?.csrInquiry?.email || 'N/A'}</h1>
+                                {/* <h1>{headQuarterData?.csrInquiry?.email || 'N/A'}</h1> */}
+                                <h1> info@nessa.in</h1>
                             </div>
                         </div>
                         <div className=" w-[200px] h-[200px] z-[-1] rounded-full bg-yellow-400 absolute left-[-20px] bottom-[-80px] "></div>
                         <div className="w-[100px] z-[-2] h-[100px] bg-yellow-200 opacity-80 absolute left-[100px] bottom-[50px]  rounded-full"></div>
                         <div className="w-full text-black min-h-[100px] mt-5 flex items-end justify-end gap-5 p-[20px] text-3xl rounded-lg">
-                            {Object.entries(headQuarterData?.socialMedia || {}).map(([key, value]) => {
+                            {/* {Object.entries(headQuarterData?.socialMedia || {}).map(([key, value]) => {
                                 if (!value) return null // Skip if the value is empty or null
 
                                 if (key === 'instagramLink') {
@@ -361,7 +407,44 @@ const ContactUs = () => {
                                 }
 
                                 return null // Default case
-                            })}
+                            })} */}
+                            <div className="flex gap-4">
+                                <Link
+                                    to="https://www.instagram.com/nessa.illumination?igsh=MWd2NWxxbXFrbjkyOQ=="
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-black text-2xl hover:text-gray-400">
+                                    <FaInstagram />
+                                </Link>
+                                <Link
+                                    to="https://www.facebook.com/share/15Z3mQLR5s/?mibextid=LQQJ4d"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-black text-2xl hover:text-gray-400">
+                                    <RiFacebookBoxLine />
+                                </Link>
+                                <Link
+                                    to="https://api.whatsapp.com/send?phone=918690779778"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-black text-2xl hover:text-gray-400">
+                                    <IoLogoWhatsapp />
+                                </Link>
+                                <Link
+                                    to="https://www.linkedin.com/company/nessa-illumination-technologies/ "
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-black text-2xl hover:text-gray-400">
+                                    <CiLinkedin />
+                                </Link>
+                                <Link
+                                    to="https://x.com/nessaledlights?s=21&t=SDO__KiQh-rlzCEB0xXW7g"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-black text-2xl hover:text-gray-400">
+                                    <RiTwitterXFill />
+                                </Link>
+                            </div>
                         </div>
                     </div>
 

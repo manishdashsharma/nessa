@@ -125,7 +125,9 @@ useEffect(() => {
                     src={hero}
                     alt=""
                 />
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold w-full text-center text-white ml-[5vw] relative z-[2]">About Us</h1>
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold w-full text-center text-white ml-[5vw] relative z-[2] drop-shadow-[0_0_10px_rgba(0,0,0,0.8)]">
+                    About Us
+                </h1>
             </div>
 
             <div className="w-full min-h-[300px] relative py-[50px] px-[5vw]">
@@ -264,11 +266,9 @@ useEffect(() => {
                     <div className="flex relative shrink-0 mt-9 h-2.5 bg-[#b3d6f6] rounded-[50px] w-[51px]" />
                 </div>
 
-              
-                   <TeamSwiper team={team} />
+                <TeamSwiper team={team} />
 
-                    <InvestorSwiper investor={investor}/>
-              
+                <InvestorSwiper investor={investor} />
             </div>
 
             {/* customer segment */}

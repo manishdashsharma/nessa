@@ -83,7 +83,9 @@ export const Projects = () => {
                     src={hero}
                     alt=""
                 />
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white ml-[5vw] relative z-[2]">Projects</h1>
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white ml-[5vw] relative z-[2] drop-shadow-[0_0_10px_rgba(0,0,0,0.8)]">
+                    Projects
+                </h1>
             </div>
 
             <div className="w-full max-w-6xl mx-auto px-[2vw] my-[50px] space-y-4  ">
