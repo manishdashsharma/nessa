@@ -75,6 +75,7 @@ const ProductPage = () => {
     const handleCloseModal = () => {
         setOpenModal(false)
         setProductToEdit(null)
+        fetchProduct()
     }
 
     const handleViewDetails = (product) => {

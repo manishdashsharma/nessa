@@ -14,6 +14,7 @@ const ProductModal = ({ open, onClose, token, product }) => {
     const initialFormState = {
         name: '',
         description: '',
+        slug:'',
         categories: Object.values(EProductCategories)[0],
         subcategories: CategoryToSubcategories[Object.values(EProductCategories)[0]][0],
         specification: {},
@@ -46,6 +47,7 @@ const ProductModal = ({ open, onClose, token, product }) => {
             setFormData({
                 name: product.name || '',
                 description: product.description || '',
+                slug:product.slug || '',
                 categories: product.categories || Object.values(EProductCategories)[0],
                 subcategories: product.subcategories || CategoryToSubcategories[Object.values(EProductCategories)[0]][0],
                 specification: product.specification || {},
@@ -295,6 +297,17 @@ const ProductModal = ({ open, onClose, token, product }) => {
                                 onChange={handleInputChange}
                                 className="mt-2 block w-full rounded-lg border border-gray-300 bg-white px-4 py-2"
                                 rows="4"
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700">Slug</label>
+                            <input
+                                type="text"
+                                name="slug"
+                                value={formData.slug}
+                                onChange={handleInputChange}
+                                className="mt-2 block w-full rounded-lg border border-gray-300 bg-white px-4 py-2"
                                 required
                             />
                         </div>
@@ -559,7 +572,7 @@ const FileUpload = ({ label, file, onUpload, multiple = false }) => (
             <input
                 type="file"
                 onChange={onUpload}
-                accept="image/*"
+                accept="image/*, .pdf, .doc, .docx, .txt, .zip, .rar"
                 className="hidden"
                 multiple={multiple}
             />

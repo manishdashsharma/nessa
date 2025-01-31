@@ -5,6 +5,7 @@ import { DELETE_BY_TYPE, EBestSuitedFor, EProductCategories, ESubject } from '..
 export const ValidateAddProduct = Joi.object({
     name: Joi.string().required(),
     description: Joi.string().required(),
+    slug: Joi.string().required(),
     categories: Joi.string()
         .valid(...Object.values(EProductCategories))
         .required(),
@@ -48,6 +49,7 @@ export const ValidateAddProduct = Joi.object({
 export const ValidateUpdateProduct = Joi.object({
     name: Joi.string().optional(),
     description: Joi.string().optional(),
+    slug: Joi.string().optional(),
     categories: Joi.string()
     .valid(...Object.values(EProductCategories))
     .optional(),

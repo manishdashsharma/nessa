@@ -22,6 +22,11 @@ const productSchema = new mongoose.Schema(
             type: Object,
             required: true
         },
+        slug:{
+            type: String,
+            required: true,
+            unique: true
+        },
         feature: {
             type: {
                 highlighted: { 

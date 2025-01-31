@@ -3,6 +3,7 @@ curl -X POST http://localhost:5000/v1/add-product \
   -d '{
     "name": "Street Light 18 W",
     "description": "Introducing the NES-SL-18 Street Light, a 20W powerhouse with an input range of 110-290V, delivering ≥120 Lm/W. Featuring a CRI >70, THD <10%, and driver efficiency >85%, this IP66-rated light ensures superior performance. Compact and lightweight, it’s built for durability without dimming features. Ideal for outdoor lighting solutions.",
+    "slug": "Street Light",
     "categories": "AC Lighting",
     "subcategories": "Street Light",
     "specification": {

@@ -7,6 +7,7 @@ import { uploadOnCloudinary } from '../service/cloudinaryService.js'
 import { ValidateAddProduct, ValidateAddUtilsData, ValidateBlog, ValidateContactUs, validateJoiSchema, ValidateLogin, ValidateProjects, ValidateSoulution, ValidateSupportEnquiry, ValidateTestimonial, ValidateUpdateContactUs, ValidateUpdateProduct, ValidateUpdateProjects, ValidateUpdateSolution, ValidateUpdateSupportEnquiry, ValidateUpdateUtilsData, VlidateDelete } from '../service/validationService.js'
 import { allowedUsers, EApplicationEnvironment } from '../constant/application.js'
 import config from '../config/config.js'
+import { uploadOnImageKit } from '../service/imageKitService.js'
 
 export default {
     self: (req, res, next) => {
@@ -89,13 +90,13 @@ export default {
                 return httpError(next, new Error(responseMessage.CUSTOM_MESSAGE('Category is required')), req, 400)
             }
 
-            const uploadedFile = await uploadOnCloudinary(req.file.path, body.category)
+            const uploadedFile = await uploadOnImageKit(req.file.path, body.category)
 
             if (!uploadedFile) {
                 return httpError(next, new Error(responseMessage.CUSTOM_MESSAGE('File upload failed')), req, 500)
             }
 
-            return httpResponse(req, res, 200, responseMessage.SUCCESS, uploadedFile.secure_url)
+            return httpResponse(req, res, 200, responseMessage.SUCCESS, uploadedFile.url)
         } catch (err) {
             return httpError(next, err, req, 500)
         }
@@ -110,11 +111,12 @@ export default {
                 return httpError(next, error, req, 422)
             }
 
-            const { name, description, bestSuitedFor, categories, subcategories, specification, feature, productImageUrl, applicationImageUrls, brochureUrl, SKUId } = value
+            const { name, description,slug, bestSuitedFor, categories, subcategories, specification, feature, productImageUrl, applicationImageUrls, brochureUrl, SKUId } = value
 
             const productData = {
                 name,
                 description,
+                slug,
                 bestSuitedFor,
                 categories,
                 subcategories,

@@ -46,6 +46,10 @@ const ProductDetailsModal = ({ open, onClose, product }) => {
                     {/* Basic Info */}
                     <div className="grid grid-cols-2 gap-4">
                         <div>
+                            <h3 className="font-semibold">Slug</h3>
+                            <p>{product.slug}</p>
+                        </div>
+                        <div>
                             <h3 className="font-semibold">Category</h3>
                             <p>{product.categories}</p>
                         </div>
