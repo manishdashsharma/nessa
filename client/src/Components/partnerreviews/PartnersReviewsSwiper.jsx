@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-
+import 'swiper/css'
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Pagination, Autoplay, Navigation } from 'swiper/modules';
@@ -71,7 +71,7 @@ export default function PartnersReviewsSwiper() {
               <div className="text-center text-gray-500 mt-10">No testimonials found</div>
           ) : (
               <Swiper
-                  slidesPerView={slidepre}
+                  slidesPerView= {slidepre}
                   spaceBetween={50}
                   pagination={{
                       dynamicBullets: true,
@@ -123,12 +123,11 @@ export default function PartnersReviewsSwiper() {
                       })
                   }}
                   modules={[Pagination, Autoplay, Navigation]}
-                  className="mySwiper w-full min-h-[550px] relative py-[50px] px-[5vw]"
-                  >
+                  className="mySwiper w-full min-h-[550px] relative pt-[50px]  px-[5vw]">
                   {testimonials.map((testimonial, index) => (
                       <SwiperSlide
                           key={index}
-                          className="cursor-pointer py-[50px]   flex items-center justify-center relative mb-[50px]">
+                          className="cursor-pointer   flex items-center justify-center relative mb-[50px]">
                           <div className="bg-blue-500 pb-[30px] rounded-3xl shadow-lg max-w-md transform transition-transform hover:scale-105">
                               <div className="bg-white  rounded-3xl shadow-lg p-8 max-w-md">
                                   <div className="flex flex-col items-center text-center space-y-4">

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 import { useNavigate } from 'react-router-dom'
 import { CiSearch } from 'react-icons/ci'
@@ -10,6 +10,22 @@ const SearchBar = () => {
     const [results, setResults] = useState([])
     const { searchProducts, loading, products, getProducts } = useProducts()
     const navigate = useNavigate()
+     const searchInputRef = useRef(null)
+
+     useEffect(() => {
+         // Add event listener for search focus
+         const handleFocusSearch = () => {
+             if (searchInputRef.current) {
+                 searchInputRef.current.focus()
+             }
+         }
+
+         window.addEventListener('focusSearchInput', handleFocusSearch)
+
+         return () => {
+             window.removeEventListener('focusSearchInput', handleFocusSearch)
+         }
+     }, [])
 
     // Fetch all products when component mounts
     useEffect(() => {
@@ -47,6 +63,7 @@ const SearchBar = () => {
             <div className="flex max-sm:w-[170px] items-center bg-[#2672BE] rounded-full px-3 py-1">
                 <CiSearch className="w-5 h-5 text-white" />
                 <input
+                    ref={searchInputRef}
                     type="text"
                     value={searchQuery}
                     onChange={handleInputChange}
@@ -56,7 +73,6 @@ const SearchBar = () => {
                 />
             </div>
 
-            {/* Results dropdown */}
             {(results.length > 0 || loading) && searchQuery && (
                 <div className="absolute top-full left-0 mt-1 w-[300px] bg-white rounded-lg shadow-lg z-[99999999]">
                     {loading ? (
@@ -92,5 +108,6 @@ const SearchBar = () => {
         </div>
     )
 }
+
 
 export default SearchBar

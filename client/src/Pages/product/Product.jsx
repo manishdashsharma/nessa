@@ -211,7 +211,7 @@ const Product = () => {
             <ProductTabs product={product} />
 
             <div className=" bg-blue-100">
-                {product.feature.useCases.length > 0
+                {product.feature.useCases[0].title 
                     ? product.feature.useCases.map((useCase, index) =>
                           index % 2 === 0 ? (
                               <div

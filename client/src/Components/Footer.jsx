@@ -20,8 +20,11 @@ function Footer() {
                           className="h-12"
                       />
                       <p className="text-gray-400 text-sm">
-                          With 15+ years of expertise and a global presence in 20+ countries, Nessa delivers sustainable, high-performance lighting
-                          tailored to your needs.
+                          In a world driven by innovation, Nessa leads the way in redefining lighting solutions with sustainability at its core. We
+                          illuminate the future with cutting-edge LED and solar technologies, seamlessly blending efficiency, performance, and
+                          environmental responsibility. <br /> <br /> Our vision extends beyond lighting—it’s about creating a brighter, greener world where every
+                          product reflects our commitment to energy efficiency and sustainable progress. At Nessa, innovation isn’t just about
+                          advancement; it’s about shaping a future that balances technological excellence with a deep respect for our planet.
                       </p>
                       <div className="flex gap-4">
                           <Link

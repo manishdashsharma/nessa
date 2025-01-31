@@ -16,13 +16,13 @@ import indiaFlag from '../../assets/images/homepageimages/india.png';
 import demoVideo from '../../assets/images/demoVideo.mp4';
 import Navbar from '../../Components/Header/Navbar';
 import SideComponent from '../../Components/sideComponent/SideComponent';
-import PartnersReviewsSwiper from '../../Components/partnerreviews/PartnersReviewsSwiper';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { allSolutions } from '../../services/api.services';
 import Footer from '../../Components/Footer';
 import Marque from './homepageinnersections/Marque';
 import ImageSection from './homepageinnersections/ImageSection';
+import PartnersReviewsSwiper from '../../Components/partnerreviews/PartnersReviewsSwiper';
 
 
 const Homepage = () => {
@@ -358,12 +358,8 @@ const Homepage = () => {
             </div>
 
             {/* Partners Reviews Swiper */}
-            <div
-                className=" h-fit "
-                style={{ background: 'linear-gradient(to bottom, #f7faff, #deeefc)' }}>
-                <PartnersReviewsSwiper />
-            </div>
-
+           
+            <PartnersReviewsSwiper/>
             {/* recognized excellence */}
             <RecognizeEx />
 
