@@ -28,6 +28,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [soluitonOpen, setsoluitonOpen] = useState(false)
   const [corporateOpen, setcorporateOpen] = useState(false)
+  const [productOpen, setproductOpen] = useState(false)
   const [solutionsDropdown, setSolutionsDropdown] = useState([
       {
           logo: <BiSolidPlaneAlt className={`text-[#1E90FF] bg-[#1E90FF] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
@@ -190,6 +191,10 @@ const Navbar = () => {
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen)
+        setsoluitonOpen(false)
+        setcorporateOpen(false)
+        setproductOpen(false)
+
     }
 
     const dropdownVariants = {
@@ -282,7 +287,11 @@ const Navbar = () => {
                     <div className="flex max-lg:hidden gap-4 items-center">
                         <div className="flex items-center">
                             <CiMail className="w-5 h-5 text-white" />
-                            <span className="text-white ml-2">info@nessa.in</span>
+                            <Link
+                                to="mailto:info@nessa.in"
+                                className="hover:underline text-white ml-2">
+                                info@nessa.in
+                            </Link>
                         </div>
                         <div className="flex items-center ml-4">
                             <IoCallOutline className="w-5 h-5 text-white" />
@@ -339,7 +348,7 @@ const Navbar = () => {
                                 setcorporateOpen(false)
                             }}
                             className="text-black flex items-center gap-1 relative">
-                            <div className=" w-full justify-between px-4 flex items-center gap-1 cursor-pointer">
+                            <div className=" w-full justify-between  flex items-center gap-1 cursor-pointer">
                                 <Link
                                     to="/solutions"
                                     className="">
@@ -472,7 +481,7 @@ const Navbar = () => {
                                 onClick={() => {
                                     setsoluitonOpen(!soluitonOpen)
                                 }}
-                                className=" w-full justify-between px-4 flex items-center gap-1 cursor-pointer">
+                                className=" w-full justify-between px-4 py-2 flex items-center gap-1 cursor-pointer">
                                 <Link
                                     to="/solutions"
                                     className="">
@@ -520,13 +529,13 @@ const Navbar = () => {
                             className="py-2 text-black hover:bg-gray-100 px-4 flex items-center justify-between">
                             Products
                         </Link> */}
-                        <ProductDropdown setIsMenuOpen={setIsMenuOpen} />
+                        <ProductDropdown setIsMenuOpen={setIsMenuOpen} productOpen={productOpen} setproductOpen={setproductOpen} />
                         <div className="text-black relative">
                             <div
                                 onClick={() => {
                                     setcorporateOpen(!corporateOpen)
                                 }}
-                                className=" w-full justify-between px-4 flex items-center gap-1 cursor-pointer">
+                                className=" w-full justify-between px-4 py-2 flex items-center gap-1 cursor-pointer">
                                 <div className="">Corporates</div>
                                 <motion.div
                                     animate={{ rotate: corporateOpen ? 180 : 0 }}

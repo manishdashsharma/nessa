@@ -99,7 +99,7 @@ const SolutionDetail = () => {
 
                 <div className="w-1/2 max-md:w-full max-md:h-[300px] ">
                     <img
-                        className="w-full h-[400px] max-md:h-[300px] object-contain bg-white"
+                        className="w-full h-[400px] max-md:h-[300px] object-contain "
                         src={solution.solutionImageUrl}
                         alt=""
                     />

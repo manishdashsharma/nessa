@@ -378,13 +378,13 @@ const Mp = () => {
                             )
                         ) : (
                             <div className="text-center  text-black">
-                                <h1>No Solar Projects Found for {selectedState}</h1>
+                                <h1>No  Projects Found for {selectedState}</h1>
                             </div>
                         )}
                     </div>
                 )) || (
                     <div className="text-center  text-black">
-                        <h1>No Solar Projects Found</h1>
+                        <h1>No  Projects Found</h1>
                     </div>
                 )}
             </div>

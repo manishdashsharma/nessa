@@ -129,13 +129,13 @@ function Footer() {
                                   Resources
                               </Link>
                           </li>
-                          <li>
+                          {/* <li>
                               <Link
                                   to="#"
                                   className="text-gray-400 hover:text-white">
                                   Blogs
                               </Link>
-                          </li>
+                          </li> */}
                           <li>
                               <Link
                                   to="/projects"

@@ -15,7 +15,7 @@ const ShareButton = ({ url = window.location.href, title }) => {
             name: 'WhatsApp',
             url: isMobile
                 ? `https://api.whatsapp.com/send?url=${encodeURIComponent(`${title} ${url}`)}`
-                : `https://web.whatsapp.com/send?text=${encodeURIComponent(`${title}`)}}`,
+                : `https://web.whatsapp.com/send?text=${encodeURIComponent(`${title} ${url}`)}}`,
             bgColor: 'bg-green-500',
             hoverColor: 'hover:bg-green-600',
             iconColor: 'text-green-100'

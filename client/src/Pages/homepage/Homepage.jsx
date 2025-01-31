@@ -178,42 +178,6 @@ const Homepage = () => {
             {/* images section  */}
             <ImageSection />
       
-            {/* trusted partners */}
-            {/* <div>
-              <h1 className="text-center mb-2 text-lg">Our Trusted Partners</h1>
-              <div className="w-full h-[7vw] py-[0px] flex items-center justify-evenly gap-5">
-                  <img
-                      className="h-[4vw] "
-                      src={adanilogo}
-                      alt=""
-                  />
-                  <img
-                      className="h-[4vw] "
-                      src={essarlogo}
-                      alt=""
-                  />
-                  <img
-                      className="h-[4vw] "
-                      src={ltlogo}
-                      alt=""
-                  />
-                  <img
-                      className="h-[4vw] "
-                      src={jindallogo}
-                      alt=""
-                  />
-                  <img
-                      className="h-[4vw] "
-                      src={torrentlogo}
-                      alt=""
-                  />
-                  <img
-                      className="h-[4vw] "
-                      src={nirmalogo}
-                      alt=""
-                  />
-              </div>
-          </div> */}
             <Marque />
 
             {/* Lighting Solutions According to Your Needs & Conditions  data is dynamic in homepageConfig.js  */}
@@ -395,7 +359,7 @@ const Homepage = () => {
 
             {/* Partners Reviews Swiper */}
             <div
-                className="  "
+                className=" h-fit "
                 style={{ background: 'linear-gradient(to bottom, #f7faff, #deeefc)' }}>
                 <PartnersReviewsSwiper />
             </div>

@@ -2,9 +2,8 @@ import React, { act, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { IoIosArrowDown } from 'react-icons/io'
 import { motion, AnimatePresence } from 'framer-motion'
-import { duration } from '@mui/material'
 
-const ProductDropdown = ({ setIsMenuOpen }) => {
+const ProductDropdown = ({ setIsMenuOpen, productOpen, setproductOpen }) => {
     const navigate = useNavigate()
     const [isOpen, setIsOpen] = useState(false)
     const [activeCategory, setActiveCategory] = useState(null)
@@ -41,7 +40,7 @@ const ProductDropdown = ({ setIsMenuOpen }) => {
                 selectedSubcategory: subcategory
             }
         })
-        setIsOpen(false)
+        setproductOpen(false)
     }
 
     const dropdownVariants = {
@@ -81,7 +80,7 @@ const ProductDropdown = ({ setIsMenuOpen }) => {
                 }}>
                 <div
                     onMouseEnter={() => setIsOpen(true)}
-                    className="flex items-center gap-1 cursor-pointer justify-between w-[100%] px-4">
+                    className="flex items-center gap-1 cursor-pointer justify-between w-[100%] ">
                     <Link to="/allproducts">Products</Link>
                     <motion.div
                         animate={{ rotate: isOpen ? 180 : 0 }}
@@ -141,18 +140,18 @@ const ProductDropdown = ({ setIsMenuOpen }) => {
             {/* mobile view */}
             <div className="relative my-2 hidden max-xl:block">
                 <div
-                    onClick={() => setIsOpen(!isOpen)}
+                    onClick={() => setproductOpen(!productOpen)}
                     className="flex items-center gap-1 cursor-pointer justify-between w-[100%] px-4">
-                    <span>Products</span>
+                    <Link to="/allproducts">Products</Link>
                     <motion.div
-                        animate={{ rotate: isOpen ? 180 : 0 }}
+                        animate={{ rotate: productOpen ? 180 : 0 }}
                         transition={{ duration: 0.2 }}>
                         <IoIosArrowDown className="w-5 h-5" />
                     </motion.div>
                 </div>
 
                 <AnimatePresence>
-                    {isOpen && (
+                    {productOpen && (
                         <motion.div
                             variants={dropdownVariants}
                             initial="hidden"

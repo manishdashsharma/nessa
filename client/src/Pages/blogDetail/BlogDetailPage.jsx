@@ -58,11 +58,11 @@ const BlogDetailPage = () => {
                         <img
                             src={blog.thumbnailImage}
                             alt={blog.title}
-                            className="w-full h-[350px] object-cover rounded-lg mb-6"
+                            className="w-full h-[400px] object-cover rounded-lg mb-6"
                         />
                     )}
 
-                    <h1 className="text-3xl font-bold text-gray-900 mb-4">{blog.title}</h1>
+                    <h1 className="text-4xl font-bold text-gray-900 mb-4">{blog.title}</h1>
 
                     {/* Tags */}
                     {blog.tag && (
