@@ -196,7 +196,7 @@ export default function ShowProducts() {
                                         initial={{ opacity: 0 }}
                                         animate={{ opacity: 1 }}
                                         transition={{ duration: 0.2 }}
-                                        onClick={() => navigate(`/product/${product._id}`)}
+                                        onClick={() => navigate(`/product/${product.slug}/${product._id}`)}
                                         className="bg-gray-100 rounded-lg p-4 flex flex-col justify-between">
                                         <img
                                             src={product.productImageUrl[0]}

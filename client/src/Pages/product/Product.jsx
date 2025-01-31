@@ -100,8 +100,7 @@ const Product = () => {
                     <style>
                         {`#mq::-webkit-scrollbar{
                            display: none;
-                          }`
-                        }
+                          }`}
                     </style>
                     {product.productImageUrl.map((imgUrl, index) => (
                         <button
@@ -210,50 +209,58 @@ const Product = () => {
 
             <ProductTabs product={product} />
 
-            <div className=" bg-blue-100">
-                {product.feature.useCases.length > 0
-                    ? product.feature.useCases.map((useCase, index) =>
-                          index % 2 === 0 ? (
-                              <div
-                                  key={index}
-                                  className="w-full min-h-[300px] py-16  max-md:pb-2 px-[5vw]  text-center">
-                                  <div className="flex flex-col md:flex-row items-center justify-center gap-8">
-                                      <img
-                                          className="w-full md:w-1/2 h-auto object-contain  hidden max-md:block  shadow-lg"
-                                          src={useCase.imageUrl}
-                                          alt=""
-                                      />
-                                      <div className="text-left md:w-1/2 ">
-                                          <h3 className="text-2xl font-bold mb-2">{useCase.title}</h3>
-                                          <p className="mb-4 ">{useCase.description}</p>
-                                      </div>
-                                      <img
-                                          className="w-full md:w-1/2 h-[350px] object-contain max-md:hidden  shadow-lg"
-                                          src={useCase.imageUrl}
-                                          alt={useCase.title + ' Image'}
-                                      />
-                                  </div>
-                              </div>
-                          ) : (
-                              <div
-                                  key={index}
-                                  className="w-full min-h-[300px] pt-16  max-md:pb-2 px-[5vw]  text-center  relative ">
-                                  <div className="flex flex-col md:flex-row items-center justify-center gap-8 z-[2] relative">
-                                      <img
-                                          className="w-full md:w-1/2 h-[350px] object-contain shadow-lg z-[2]"
-                                          src={useCase.imageUrl}
-                                          alt={useCase.title + ' Image'}
-                                      />
-                                      <div className="text-left md:w-1/2 ">
-                                          <h3 className="text-2xl font-bold mb-2">{useCase.title}</h3>
-                                          <p className="mb-4">{useCase.description}</p>
-                                      </div>
-                                  </div>
-                              </div>
-                          )
-                      )
-                    : null}
-            </div>
+            {product.feature.useCases.length > 0 && (
+                <div className="bg-blue-100">
+                    {product.feature.useCases.map((useCase, index) =>
+                        useCase.title || useCase.description || useCase.imageUrl ? (
+                            index % 2 === 0 ? (
+                                <div
+                                    key={index}
+                                    className="w-full min-h-[300px] py-16 max-md:pb-2 px-[5vw] text-center">
+                                    <div className="flex flex-col md:flex-row items-center justify-center gap-8">
+                                        {useCase.imageUrl && (
+                                            <img
+                                                className="w-full md:w-1/2 h-auto object-contain hidden max-md:block shadow-lg"
+                                                src={useCase.imageUrl}
+                                                alt=""
+                                            />
+                                        )}
+                                        <div className="text-left md:w-1/2">
+                                            {useCase.title && <h3 className="text-2xl font-bold mb-2">{useCase.title}</h3>}
+                                            {useCase.description && <p className="mb-4">{useCase.description}</p>}
+                                        </div>
+                                        {useCase.imageUrl && (
+                                            <img
+                                                className="w-full md:w-1/2 h-[350px] object-contain max-md:hidden shadow-lg"
+                                                src={useCase.imageUrl}
+                                                alt={useCase.title + ' Image'}
+                                            />
+                                        )}
+                                    </div>
+                                </div>
+                            ) : (
+                                <div
+                                    key={index}
+                                    className="w-full min-h-[300px] pt-16 max-md:pb-2 px-[5vw] text-center relative">
+                                    <div className="flex flex-col md:flex-row items-center justify-center gap-8 z-[2] relative">
+                                        {useCase.imageUrl && (
+                                            <img
+                                                className="w-full md:w-1/2 h-[350px] object-contain shadow-lg z-[2]"
+                                                src={useCase.imageUrl}
+                                                alt={useCase.title + ' Image'}
+                                            />
+                                        )}
+                                        <div className="text-left md:w-1/2">
+                                            {useCase.title && <h3 className="text-2xl font-bold mb-2">{useCase.title}</h3>}
+                                            {useCase.description && <p className="mb-4">{useCase.description}</p>}
+                                        </div>
+                                    </div>
+                                </div>
+                            )
+                        ) : null
+                    )}
+                </div>
+            )}
 
             <div className=" mb-10">
                 {/* related products */}
@@ -275,3 +282,4 @@ const Product = () => {
 }
 
 export default Product
+
