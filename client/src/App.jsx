@@ -21,6 +21,7 @@ import { Projects } from './Pages/projects/Projects';
 import { ValueAddedServices } from './Pages/valueAddedServices/ValueAddedServices';
 import CookiesPolicy from './Pages/CookiesPolicy/CookiesPolicy';
 import BlogDetailPage from './Pages/blogDetail/BlogDetailPage';
+import CookieConsent from './hooks/CookieConsent';
 
 const App = () => {
     
@@ -32,6 +33,7 @@ const App = () => {
             <Toaster reverseOrder={false} />
 
             <ScrollToTop />
+            <CookieConsent />
             <Routes>
                 <Route path="/welcome" element={<WelcomePage />} />
                 <Route path="/" element={<Homepage />} />
