@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from 'react'
-
 import { useNavigate } from 'react-router-dom'
 import { CiSearch } from 'react-icons/ci'
 import debounce from 'lodash/debounce'
@@ -10,33 +9,34 @@ const SearchBar = () => {
     const [results, setResults] = useState([])
     const { searchProducts, loading, products, getProducts } = useProducts()
     const navigate = useNavigate()
-     const searchInputRef = useRef(null)
+    const searchInputRef = useRef(null)
+    const [hasInitializedProducts, setHasInitializedProducts] = useState(false)
 
-     useEffect(() => {
-         // Add event listener for search focus
-         const handleFocusSearch = () => {
-             if (searchInputRef.current) {
-                 searchInputRef.current.focus()
-             }
-         }
-
-         window.addEventListener('focusSearchInput', handleFocusSearch)
-
-         return () => {
-             window.removeEventListener('focusSearchInput', handleFocusSearch)
-         }
-     }, [])
-
-    // Fetch all products when component mounts
     useEffect(() => {
-        if (!products.length) {
-            getProducts()
+        // Add event listener for search focus
+        const handleFocusSearch = () => {
+            if (searchInputRef.current) {
+                searchInputRef.current.focus()
+            }
+        }
+
+        window.addEventListener('focusSearchInput', handleFocusSearch)
+
+        return () => {
+            window.removeEventListener('focusSearchInput', handleFocusSearch)
         }
     }, [])
 
     useEffect(() => {
-        const debouncedSearch = debounce(() => {
-            if (searchQuery) {
+        const debouncedSearch = debounce(async () => {
+            // Only search if query is 2 or more characters
+            if (searchQuery.length >= 2) {
+                // If products haven't been fetched yet, fetch them first
+                if (!hasInitializedProducts && !products.length) {
+                    await getProducts()
+                    setHasInitializedProducts(true)
+                }
+
                 const searchResults = searchProducts(searchQuery)
                 setResults(searchResults)
             } else {
@@ -46,7 +46,7 @@ const SearchBar = () => {
 
         debouncedSearch()
         return () => debouncedSearch.cancel()
-    }, [searchQuery, searchProducts])
+    }, [searchQuery, searchProducts, products.length, hasInitializedProducts])
 
     const handleInputChange = (e) => {
         setSearchQuery(e.target.value)
@@ -69,16 +69,34 @@ const SearchBar = () => {
                     onChange={handleInputChange}
                     placeholder={loading ? 'Loading products...' : 'Search Product'}
                     className="ml-2 max-sm:w-[120px] outline-none bg-[rgb(38,114,190)] text-white placeholder:text-[#ffffffe5]"
-                    disabled={loading}
+                // disabled={loading}
                 />
             </div>
 
-            {(results.length > 0 || loading) && searchQuery && (
-                <div className="absolute top-full left-0 mt-1 w-[300px] bg-white rounded-lg shadow-lg z-[99999999]">
+            {(results.length > 0 || loading) && searchQuery.length >= 2 && (
+                <div
+                    id="mq"
+                    className=" absolute top-full left-0 mt-1 w-[300px] max-h-[500px] overflow-y-auto  bg-white rounded-lg shadow-lg z-[99999999]">
+                    <style>
+                        {`
+                            #mq {
+                                scrollbar-width: none; 
+                                -ms-overflow-style: none;  
+                                scroll-behavior: smooth;
+                            }
+                            #mq::-webkit-scrollbar {
+                                display: none;  
+                            }
+                            `}
+                    </style>
                     {loading ? (
-                        <div className="p-3 text-center text-gray-500">Loading...</div>
+                        <div className="flex justify-center items-center h-64">
+                            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500" />
+                        </div>
                     ) : (
-                        <div className="max-h-[400px] overflow-y-auto">
+                        <div
+                            id="mq"
+                            className="max-h-[500px] overflow-y-auto">
                             {results.map((product) => (
                                 <div
                                     key={product._id}
@@ -108,6 +126,5 @@ const SearchBar = () => {
         </div>
     )
 }
-
 
 export default SearchBar

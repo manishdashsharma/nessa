@@ -74,7 +74,6 @@ export const Resources = () => {
                 </h1>
             </div>
 
-            {/* download nessa catalogus */}
             <div className="w-full min-h-[300px] relative py-[50px] px-[5vw]">
                 <div className="absolute w-[250px] h-[250px] bg-[var(--light-blue)] opacity-30 left-[-7vw] top-[-3vw]   rounded-full z-[-1]"></div>
 
@@ -112,8 +111,6 @@ export const Resources = () => {
                     </div>
                 ))}
             </div>
-
-            {/* product manuals */}
 
             <div
                 style={{
@@ -153,7 +150,6 @@ export const Resources = () => {
                 </div>
             </div>
 
-            {/* nessa manual */}
             <div className="w-full  relative py-[50px] px-[5vw]">
                 <div className=" text-4xl font-semibold leading-snug text-center text-black z-[2] relative">
                     <span className="text-blue-500"> NESSA </span> MANUAL
@@ -182,10 +178,7 @@ export const Resources = () => {
                 ))}
             </div>
 
-            {/* Insightes & Resources */}
             <ResourcesInsights />
-
-            {/* Media */}
             <Media />
 
             <Footer />

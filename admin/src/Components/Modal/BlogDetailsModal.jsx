@@ -30,14 +30,12 @@ const BlogDetailsModal = ({ open, onClose, blog }) => {
                         </button>
                     </div>
 
-                    {/* Thumbnail Image */}
                     <img
                         src={blog.thumbnailImage}
                         alt={blog.title}
                         className="w-full h-64 object-cover rounded-lg"
                     />
 
-                    {/* Author Info */}
                     <div className="flex items-center gap-4">
                         <img
                             src={blog.userImage}
@@ -49,20 +47,17 @@ const BlogDetailsModal = ({ open, onClose, blog }) => {
                         </div>
                     </div>
 
-                    {/* Tag */}
                     <div>
                         <span className="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full">
                             {blog.tag}
                         </span>
                     </div>
 
-                    {/* Description */}
                     <div>
                         <h3 className="font-semibold mb-2">Description</h3>
                         <p className="text-gray-700">{blog.description}</p>
                     </div>
 
-                    {/* Content */}
                     <div>
                         <h3 className="font-semibold mb-2">Content</h3>
                         <div className="prose max-w-none"  dangerouslySetInnerHTML={{ __html: blog?.content }}>

@@ -11,12 +11,11 @@ import { Link } from 'react-router-dom'
 export default function RecoExSec1() {
   return (
       <div className="w-full">
-          {/* Add custom styles for Swiper using Tailwind's style */}
           <style>
               {`
           .swiper {
             width: 100%;
-            height: 500px;
+            
           }
           .swiper-slide {
             text-align: center;

@@ -15,7 +15,6 @@ const ProductTabs = ({ product }) => {
   return (
       <section className="bg-white py-12">
           <div className="max-w-7xl mx-auto px-6">
-              {/* Header with minimal styling */}
               <div className="text-center mb-10">
                   <h2 className="text-3xl font-semibold">
                       Product <span className="text-blue-500">Details</span>
@@ -23,7 +22,6 @@ const ProductTabs = ({ product }) => {
                   <div className="h-1 w-12 bg-blue-500 mx-auto mt-3 rounded-full" />
               </div>
 
-              {/* Clean tab navigation */}
               <div className="flex justify-center space-x-8 max-sm:space-x-2 mb-12 border-b">
                   {tabs.map((tab) => (
                       <button
@@ -43,7 +41,6 @@ const ProductTabs = ({ product }) => {
                   ))}
               </div>
 
-              {/* Content area */}
               <AnimatePresence mode="wait">
                   <motion.div
                       key={activeTab}

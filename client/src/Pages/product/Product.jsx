@@ -6,9 +6,6 @@ import SideComponent from '../../Components/sideComponent/SideComponent'
 import { useParams } from 'react-router-dom'
 import { fetchProduct, increaseIsEnquired } from '../../services/api.services'
 import toast from 'react-hot-toast'
-import OfficeImage from '../../assets/images/products/office.png'
-import bankImage from '../../assets/images/products/bank.png'
-import industriesImage from '../../assets/images/products/industry.png'
 import ShareButton from '../../Components/ShareButton'
 import Footer from '../../Components/Footer'
 import { Link } from 'react-router-dom'
@@ -17,11 +14,8 @@ import ImageViewer from './ZoomableImage'
 const Product = () => {
     const { id } = useParams()
     const [selectedImage, setSelectedImage] = useState(0)
-    // const images = productConfig.productImage;
-
     const [loading, setLoading] = useState(true)
     const [loadingEnquire, setLoadingEnquire] = useState(null)
-
     const [product, setproduct] = useState(null)
 
     useEffect(() => {
@@ -44,33 +38,6 @@ const Product = () => {
 
         fetchData()
     }, [id])
-
-    const chooseImage = (item) => {
-        if (item === 'Offices') {
-            return (
-                <img
-                    src={OfficeImage}
-                    alt=""
-                />
-            )
-        } else if (item === 'Bank') {
-            return (
-                <img
-                    src={bankImage}
-                    alt=""
-                />
-            )
-        } else if (item === 'Industries') {
-            return (
-                <img
-                    src={industriesImage}
-                    alt=""
-                />
-            )
-        } else {
-            return ''
-        }
-    }
 
     const enquireAdd = async (productId) => {
         try {
@@ -117,15 +84,6 @@ const Product = () => {
                         </button>
                     ))}
                 </div>
-                {/* <div
-                id="selectedImage"
-                className="w-[70%] max-lg:w-full h-[500px] max-lg:h-[300px] p-4 bg-blue-50 rounded-xl">
-                <img
-                    src={product.productImageUrl[selectedImage]}
-                    alt={`${product.name} - Main View`}
-                    className="w-full h-full object-contain"
-                />
-            </div> */}
                 <ImageViewer
                     images={product.productImageUrl}
                     selectedIndex={selectedImage}
@@ -149,10 +107,7 @@ const Product = () => {
             <SideComponent />
 
             <div className="w-full flex max-lg:flex-col max-lg:gap-10 px-[5vw] py-[50px]">
-                {/* product iamges section only visible after w-1024 */}
                 <div className="w-1/2 max-lg:hidden  max-lg:w-full flex max-lg:flex-col gap-5 h-[500px] max-lg:h-fit">{photoSection()}</div>
-
-                {/* product information section */}
                 <div className="w-1/2 max-lg:w-full  justify-between px-2 flex flex-col gap-6">
                     <div>
                         <div className="flex justify-between items-start ">
@@ -170,23 +125,7 @@ const Product = () => {
                     </p>
                     <p className="text-gray-700">{product.description}</p>
 
-                    {/* product iamges section only visible bellow w-1024 */}
                     <div className="w-1/2 hidden max-lg:flex max-lg:w-full  max-lg:flex-col gap-5 h-[500px] max-lg:h-fit">{photoSection()}</div>
-
-                    {/* <div>
-                      <h2 className="text-lg font-semibold mb-4">Best Suited For</h2>
-                      <div className="flex  gap-4">
-                          {product.bestSuitedFor.map((item, index) => (
-                              <div
-                                  key={index}
-                                  className="w-[100px] h-[100px] flex flex-col justify-center items-center">
-                                  {chooseImage(item)}
-                                  <h1 className="mt-2">{item}</h1>
-                              </div>
-                          ))}
-                      </div>
-                  </div> */}
-
                     <div className="flex gap-4 max-sm:text-sm">
                         <button
                             onClick={() => enquireAdd(product._id)}
@@ -263,7 +202,6 @@ const Product = () => {
             )}
 
             <div className=" mb-10">
-                {/* related products */}
                 <div className="px-[5vw] flex flex-col items-center  gap-2 my-[50px]">
                     <div className=" text-4xl font-semibold leading-snug text-center text-black z-[2] relative">
                         <span className="text-blue-500"> Related</span> Products

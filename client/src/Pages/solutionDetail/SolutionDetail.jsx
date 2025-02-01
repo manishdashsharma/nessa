@@ -11,7 +11,6 @@ import { caseStudiesHardCodedData } from './SolutionDetailConfing'
 
 const SolutionDetail = () => {
     const { id  } = useParams() 
-
     const [loading, setloading] = useState(true)
     const [solution, setsolution] = useState([])
 
@@ -35,8 +34,6 @@ const SolutionDetail = () => {
         fetchSolution()
     }, [id])
 
-
-    
     const [caseStudiesData, setcaseStudiesData] = useState([])
     useEffect(() => {
         const fetchCaseStudiesUtils = async () => {
@@ -49,7 +46,7 @@ const SolutionDetail = () => {
                 }
             } catch (error) {
                 console.error('Error fetching product data:', error)
-                toast.error('Failed to load products')
+                toast.error('Failed to load case sutdeis ')
                 setcaseStudiesData(caseStudiesHardCodedData.utilsData.caseStudiesUtils)
             } finally {
                 // setloading(false)
@@ -76,16 +73,13 @@ const SolutionDetail = () => {
             <div className="w-full h-[300px] max-sm:h-[200px] relative flex items-center  justify-start   ">
                 <img
                     className="w-full h-full object-cover absolute  "
-                    src={solution.thumbnail} // dynamic poster
+                    src={solution.thumbnail}
                     alt=""
                 />
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white  drop-shadow-[0_0_10px_rgba(0,0,0,0.8)] ml-[5vw] relative z-[2] ">
                     {solution.title}
                 </h1>
             </div>
-
-            {/* para for solution detail */}
-
             <div className="w-full h-fit flex gap-10 max-md:flex-col px-[5vw] py-[5vw] relative">
                 <div className="absolute w-[250px] h-[250px] bg-[var(--light-blue)] opacity-30 right-[-7vw] top-[-3vw]   rounded-full z-[-1]"></div>
 
@@ -105,9 +99,6 @@ const SolutionDetail = () => {
                     />
                 </div>
             </div>
-
-            {/* related products */}
-
             <div className="">
                 <div className=" text-4xl font-semibold leading-snug text-center text-black z-[2] relative">
                     Sub-Applications and <br />
@@ -118,26 +109,10 @@ const SolutionDetail = () => {
                 </div>
             </div>
 
-            {/* <div className="w-full  flex items-center justify-center gap-10 mt-[50px]">
-                {solution.relatedProduct.map((product, index) => (
-                    <img
-                        key={index}
-                        className="w-[80px] h-[80px] bg-gray-400 rounded-full mb-4"
-                        src={image}
-                        alt=""
-                    />
-                ))}
-            </div> */}
-
             {solution.relatedProduct.map((item, index) => (
                 <div
                     key={index}
                     className="w-full px-[5vw] mx-auto my-6 mt-[50px] font-sans text-lg text-gray-800 ">
-                    {/* <img
-                        className="w-[50px] h-[50px] bg-gray-400 rounded-full mb-4"
-                        src=""
-                        alt=""
-                    /> */}
                     <div className="text-2xl font-bold text-blue-500">{item.title}</div>
                     <div className="mt-4 text-lg">
                         <strong>Application : </strong>
@@ -158,7 +133,6 @@ const SolutionDetail = () => {
                 </div>
             ))}
 
-            {/* case studies */}
             <div className=" mt-[100px]">
                 <div className=" text-4xl font-semibold leading-snug text-center text-black z-[2] relative">
                     Case
@@ -189,32 +163,7 @@ const SolutionDetail = () => {
                     </div>
                 ))}
             </div>
-
-            {/* // our clients
-            <div className=" mt-[100px]">
-                <div className=" text-4xl font-semibold leading-snug text-center text-black z-[2] relative">
-                    Our
-                    <span className="text-blue-500"> Clients</span>
-                </div>
-                <div className="w-full flex justify-center">
-                    <div className="flex relative shrink-0 mt-9 h-2.5 bg-[#b3d6f6] rounded-[50px] w-[51px]" />
-                </div>
-            </div>
-            <div className="w-full flex-wrap flex items-center justify-center gap-20 mt-[50px]">
-                // clients images path 
-                {[partner1, partner2, partner3, partner1, partner3].map((image, index) => (
-                    <img
-                        key={index}
-                        className="w-[100px] h-[100px] bg-gray-400 rounded-full mb-4"
-                        src={image}
-                        alt=""
-                    />
-                ))}
-            </div> */}
-
-            {/* partners review */}
             <PartnersReviewsSwiper />
-
             <Footer />
         </div>
     )

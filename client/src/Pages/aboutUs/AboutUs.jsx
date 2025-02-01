@@ -1,4 +1,4 @@
-import { aboutUsPara1, aboutUsPara2, nessaEdgeItems, whoWeAre } from './AboutUsConfig'
+import { nessaEdgeItems, whoWeAre } from './AboutUsConfig'
 import { RiLightbulbFlashLine } from 'react-icons/ri'
 import ProductAndTestingSwiper from './ProductAndTestingSwiper'
 import CertificatesSwiper from './CertificatesSwiper'
@@ -118,7 +118,6 @@ const AboutUs = () => {
                 </video>
             </div>
 
-            {/* about us para */}
             <div
                 className=" w-full "
                 style={{ background: 'linear-gradient(to bottom, #f7faff, #deeefc)' }}>
@@ -130,12 +129,44 @@ const AboutUs = () => {
                     <div className="w-full flex justify-center">
                         <div className="flex relative shrink-0 mt-9 h-2.5 bg-[#b3d6f6] rounded-[50px] w-[51px]" />
                     </div>
-                    <div className="relative mt-7 text-xl px-[5vw] mb-4 leading-8 text-center text-zinc-900 max-md:max-w-full">{aboutUsPara1}</div>
-                    <div className="relative mt-7 text-xl px-[5vw] mb-4 leading-8 text-center text-zinc-900 max-md:max-w-full">{aboutUsPara2}</div>
+                    <div className="relative mt-7 text-xl px-[5vw] mb-4 leading-8 text-center text-zinc-900 max-md:max-w-full">
+                        Nessa Illumination Technologies Private Limited is a leader in the LED lighting industry, renowned for its expertise in
+                        delivering advanced technical lighting solutions. Our <strong>state-of-the-art technology</strong> is developed at the
+                        in-house <strong>NESSA Technology & Innovation Centre (R&D Centre)</strong> in Ahmedabad.
+                    </div>
+                    <div className="relative mt-7 text-xl px-[5vw] mb-4 leading-8 text-center text-zinc-900 max-md:max-w-full">
+                        Our products have received approvals from multiple <strong>Public Sector Units (PSUs) across India</strong>, underscoring our
+                        commitment to <strong>quality and innovation</strong>. Nessa’s luminaires are meticulously designed and manufactured in our{' '}
+                        <strong>ultra-modern production facilities</strong>, ensuring the highest standards of excellence.
+                    </div>
+                    <div className="relative mt-7 text-xl px-[5vw] mb-4 leading-8 text-center text-zinc-900 max-md:max-w-full">
+                        We are rapidly establishing our presence in the LED industry with our <strong>cutting-edge lighting solutions</strong>. Our
+                        professional lighting portfolio spans{' '}
+                        <strong>indoor, street, industrial, landscape, and architectural lighting applications</strong>. We also provide{' '}
+                        <strong>customized LED lighting solutions</strong> for various fixtures, tailored to meet diverse requirements.
+                    </div>
+                    <div className="relative mt-7 text-xl px-[5vw] mb-4 leading-8 text-center text-zinc-900 max-md:max-w-full">
+                        With <strong>strategic collaborations</strong> with intelligent system integrators, Nessa has the expertise to{' '}
+                        <strong>
+                            design advanced illumination systems, implement intelligent lighting installations, and enable remote monitoring and
+                            dimming functionalities
+                        </strong>
+                        .
+                    </div>
+                    <div className="relative mt-7 text-xl px-[5vw] mb-4 leading-8 text-center text-zinc-900 max-md:max-w-full">
+                        Our latest range of luminaires aligns with the principles of{' '}
+                        <strong>"energy conservation," "environmental sustainability," and "enhanced value for money."</strong> At Nessa Illumination
+                        Technologies, we believe that{' '}
+                        <strong>superior products with innovative technology can create a brighter, more sustainable world</strong>. Our commitment to{' '}
+                        <strong>innovation, quality, and sustainability</strong> drives us to continuously enhance our offerings, ensuring we meet the
+                        evolving needs of our customers.
+                    </div>
+                    <div className="relative mt-7 text-xl px-[5vw] mb-4 leading-8 text-center text-zinc-900 max-md:max-w-full">
+                        <strong>Explore our range and experience how Nessa’s smart lighting solutions can transform your environment.</strong>
+                    </div>
                 </div>
             </div>
 
-            {/* our vision and Mission */}
             <div className="w-full text-xl flex max-md:flex-col min-h-[200px] relative p-[5vw]">
                 <div className="w-1/2  max-md:w-full max-md:h-fit flex flex-col items-center gap-5 p-[30px] text-center ">
                     <img
@@ -173,7 +204,6 @@ const AboutUs = () => {
                 </div>
             </div>
 
-            {/* why we are */}
             <div className="py-[5vw]  ">
                 <div className=" text-4xl font-semibold leading-snug text-center text-black z-[2] relative">
                     Why we
@@ -189,7 +219,6 @@ const AboutUs = () => {
                 </div>
             </div>
 
-            {/* the nessa edge */}
             <div
                 className=" w-full py-[50px] "
                 style={{ background: 'linear-gradient(to bottom, #f7faff, #deeefc)' }}>
@@ -217,7 +246,6 @@ const AboutUs = () => {
                 </div>
             </div>
 
-            {/* our Team and Investor */}
             <div className="w-full py-[50px]">
                 <div className=" text-4xl font-semibold leading-snug text-center text-black z-[2] relative">
                     Our Team
@@ -227,12 +255,10 @@ const AboutUs = () => {
                     <div className="flex relative shrink-0 mt-9 h-2.5 bg-[#b3d6f6] rounded-[50px] w-[51px]" />
                 </div>
 
-                <TeamSwiper  />
+                <TeamSwiper />
 
                 <InvestorSwiper />
             </div>
-
-            {/* customer segment */}
 
             <div
                 className=" w-full py-[50px] "
@@ -254,7 +280,6 @@ const AboutUs = () => {
                 </div>
             </div>
 
-            {/* product and testing */}
             <div className="w-full py-[50px]">
                 <div className=" px-[5vw] text-4xl font-semibold leading-snug text-center text-black z-[2] relative">
                     Product
@@ -264,10 +289,9 @@ const AboutUs = () => {
                     <div className="flex relative shrink-0 mt-9 h-2.5 bg-[#b3d6f6] rounded-[50px] w-[51px]" />
                 </div>
                 <div className=" px-[5vw] ">
-                    <ProductAndTestingSwiper  />
+                    <ProductAndTestingSwiper />
                 </div>
             </div>
-            {/*  certificates */}
             <div className="w-full py-[50px] px-[5vw]">
                 <div className=" px-[5vw] text-4xl font-semibold leading-snug text-center text-black z-[2] relative">
                     <span className="text-blue-500"> Certification</span>
@@ -293,7 +317,6 @@ const AboutUs = () => {
                 </div>
             </div>
 
-            {/* partners review */}
             <PartnersReviewsSwiper />
 
             <Footer />

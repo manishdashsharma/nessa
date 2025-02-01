@@ -5,13 +5,11 @@ import { RiBookletLine } from 'react-icons/ri'
 import { FaWhatsapp } from 'react-icons/fa'
 import { ImCross } from 'react-icons/im'
 
-// Create a custom event for search focus
 export const focusSearchInput = () => {
     const event = new CustomEvent('focusSearchInput')
     window.dispatchEvent(event)
 }
 
-// Create mail action that opens in new tab
 const handleMailClick = () => {
     const mailtoLink = document.createElement('a')
     mailtoLink.href = 'mailto:info@nessa.in'
@@ -19,10 +17,8 @@ const handleMailClick = () => {
     mailtoLink.rel = 'noopener noreferrer'
     mailtoLink.click()
 
-    //  window.open('mailto:info@nessa.in', '_blank', 'noopener,noreferrer')
 }
 
-// Create WhatsApp action
 const handleWhatsAppClick = () => {
     window.open('https://api.whatsapp.com/send?phone=918690779778', '_blank', 'noopener,noreferrer')
 }
@@ -48,10 +44,9 @@ const SideComponent = () => {
           window.location.href = `tel:${phone.number.replace(/\s+/g, '')}`
           setShowCallModal(false)
       } else {
-          // Copy to clipboard for desktop users
           navigator.clipboard.writeText(phone.number).then(() => {
               setCopiedNumber(phone.number)
-              setTimeout(() => setCopiedNumber(null), 2000) // Reset after 2 seconds
+              setTimeout(() => setCopiedNumber(null), 2000) 
           })
       }
   }
@@ -70,10 +65,7 @@ const SideComponent = () => {
             action()
         }
         setExpandedIndex(true)
-        // if (expandedIndex === false) {
-        // } else {
-        //     setExpandedIndex(false)
-        // }
+
     }
     
     const handleItemClose = () => {
@@ -147,7 +139,6 @@ const SideComponent = () => {
                 </AnimatePresence>
             </div>
 
-            {/* Phone Numbers Modal */}
             <AnimatePresence>
                 {showCallModal && (
                     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[1000]">

@@ -8,14 +8,12 @@ const EsgPolicy = () => {
     
   return (
     <div className="overflow-hidden bg-white">
-    {/* Header */}
     <Navbar />
     <SideComponent />
     <div className="bg-blue-200 text-black  py-20"> 
       <h1 className="text-2xl font-semibold text-center">{EsgPolicyConfig.title}</h1>
     </div>
 
-    {/* Content */}
     <div className="max-w-[1200px] mx-auto px-8 py-6 space-y-8">
       {EsgPolicyConfig.sections.map((section) => (
         <section key={section.id}>

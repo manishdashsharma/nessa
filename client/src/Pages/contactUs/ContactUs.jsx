@@ -48,33 +48,28 @@ const ContactUs = () => {
         if (!acceptPolicy) {
             newErrors.policy = 'You must accept the policy to continue.'
         }
-        // Name validation
         if (!formData.name.trim()) {
             newErrors.name = 'Full Name is required.'
         } else if (formData.name.length < 2) {
             newErrors.name = 'Name must be at least 2 characters.'
         }
 
-        // Email validation
         if (!formData.email) {
             newErrors.email = 'Email is required.'
         } else if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(formData.email)) {
             newErrors.email = 'Please enter a valid email address.'
         }
 
-        // Company validation
         if (!formData.companyName.trim()) {
             newErrors.companyName = 'Company Name is required.'
         }
 
-        // Phone validation
         if (!formData.phoneNumber) {
             newErrors.phoneNumber = 'Phone Number is required.'
         } else if (!/^\+(?:[0-9] ?){6,14}[0-9]$/.test(formData.phoneNumber)) {
             newErrors.phoneNumber = 'Please enter a valid phone number with country code (e.g., +91XXXXXXXXXX)'
         }
 
-        // Message validation
         if (!formData.message.trim()) {
             newErrors.message = 'Message is required.'
         } else if (formData.message.length < 10) {
@@ -90,7 +85,6 @@ const ContactUs = () => {
             [name]: value
         }))
 
-        // Clear error when user starts typing
         if (errors[name]) {
             setErrors((prev) => ({
                 ...prev,
@@ -99,7 +93,6 @@ const ContactUs = () => {
         }
     }
 
-    // handle phone number
     const handlePhoneChange = (e) => {
         let value = e.target.value.replace(/[^\d+]/g, '')
         if (value && !value.startsWith('+')) {
@@ -111,7 +104,6 @@ const ContactUs = () => {
         }))
     }
 
-    // handle file upload
     const handleFileChange = async (e) => {
         const file = e.target.files[0]
         if (!file) return
@@ -144,7 +136,6 @@ const ContactUs = () => {
         }
     }
 
-    // handle submit form
     const handleSubmit = async (e) => {
         e.preventDefault()
         const newErrors = validateForm()
@@ -181,7 +172,6 @@ const ContactUs = () => {
         }
     }
 
-   
     return (
         <StyleWrapper>
             <div className="w-full overflow-hidden">
@@ -202,13 +192,11 @@ const ContactUs = () => {
                 <div className="flex max-md:flex-col relative p-[5vw] gap-6 ">
                     <div className="absolute w-[250px] h-[250px] bg-[var(--light-blue)] opacity-30 right-[-70px] top-[-30px]   rounded-full z-[-1]"></div>
 
-                    {/* Left Section */}
                     <div className="w-1/2 relative overflow-hidden max-md:w-full p-[10px]  text-white  rounded-lg shadow-lg">
                         <div className="w-full min-h-[150px] bg-blue-500 rounded-lg p-[30px]">
                             <h1 className="text-4xl font-semibold">Headquater Address</h1>
                             <div className="flex items-center justify-center mt-5  gap-10">
                                 <FaLocationDot className="w-6 h-6" />
-                                {/* <h1>{headQuarterData?.address || 'Address not available'}</h1> */}
                                 <h1>36-A, Devraj Industrial Park, Near Pipalaj, Pirana Rd, Piplaj, Ahmedabad, Gujarat 382405 </h1>
                             </div>
                         </div>
@@ -217,12 +205,10 @@ const ContactUs = () => {
                                 <h1 className="font-semibold text-lg mb-2">Domestic Inquiry</h1>
                                 <div className="flex items-center gap-2">
                                     <MdCall />
-                                    {/* <h1>{headQuarterData?.domesticInquiry?.phoneNumber || 'N/A'}</h1> */}
                                     <h1>+91 93752 79778</h1>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <MdEmail />
-                                    {/* <h1>{headQuarterData?.domesticInquiry?.email || 'N/A'}</h1> */}
                                     <h1>sales@nessa.in</h1>
                                 </div>
                             </div>
@@ -230,12 +216,10 @@ const ContactUs = () => {
                                 <h1 className="font-semibold text-lg mb-2">International Inquiry</h1>
                                 <div className="flex items-center gap-2">
                                     <MdCall />
-                                    {/* <h1>{headQuarterData?.internationalInquiry?.phoneNumber || 'N/A'}</h1> */}
                                     <h1>+91 96363 79923</h1>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <MdEmail />
-                                    {/* <h1>{headQuarterData?.internationalInquiry?.email || 'N/A'}</h1> */}
                                     <h1>exports@nessa.in</h1>
                                 </div>
                             </div>
@@ -245,12 +229,10 @@ const ContactUs = () => {
                                 <h1 className="font-semibold text-lg mb-2">Service Inquiry</h1>
                                 <div className="flex items-center gap-2">
                                     <MdCall />
-                                    {/* <h1>{headQuarterData?.serviceInquiry?.phoneNumber || 'N/A'}</h1> */}
                                     <h1>+91 909041228 </h1>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <MdEmail />
-                                    {/* <h1>{headQuarterData?.serviceInquiry?.email || 'N/A'}</h1> */}
                                     <h1> exports@nessa.in</h1>
                                 </div>
                             </div>
@@ -258,12 +240,10 @@ const ContactUs = () => {
                                 <h1 className="font-semibold text-lg mb-2">Career Inquiry</h1>
                                 <div className="flex items-center gap-2">
                                     <MdCall />
-                                    {/* <h1>{headQuarterData?.careerInquiry?.phoneNumber || 'N/A'}</h1> */}
                                     <h1>+91 879100877 </h1>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <MdEmail />
-                                    {/* <h1>{headQuarterData?.careerInquiry?.email || 'N/A'}</h1> */}
                                     <h1> Careers@nessa.in</h1>
                                 </div>
                             </div>
@@ -273,12 +253,10 @@ const ContactUs = () => {
                                 <h1 className="font-semibold text-lg mb-2">Marketing Inquiry</h1>
                                 <div className="flex items-center gap-2">
                                     <MdCall />
-                                    {/* <h1>{headQuarterData?.serviceInquiry?.phoneNumber || 'N/A'}</h1> */}
                                     <h1>+91 86907 79778 </h1>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <MdEmail />
-                                    {/* <h1>{headQuarterData?.serviceInquiry?.email || 'N/A'}</h1> */}
                                     <h1> Marketing@nessa.in</h1>
                                 </div>
                             </div>
@@ -286,12 +264,10 @@ const ContactUs = () => {
                                 <h1 className="font-semibold text-lg mb-2">CSR Inquiry</h1>
                                 <div className="flex items-center gap-2">
                                     <MdCall />
-                                    {/* <h1>{headQuarterData?.careerInquiry?.phoneNumber || 'N/A'}</h1> */}
                                     <h1>9909041719</h1>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <MdEmail />
-                                    {/* <h1>{headQuarterData?.careerInquiry?.email || 'N/A'}</h1> */}
                                     <h1> csr@nessa.in</h1>
                                 </div>
                             </div>
@@ -300,78 +276,16 @@ const ContactUs = () => {
                             <h1 className="font-semibold text-lg mb-2">Other Inquiry</h1>
                             <div className="flex items-center gap-2">
                                 <MdCall />
-                                {/* <h1>{headQuarterData?.csrInquiry?.phoneNumber || 'N/A'}</h1> */}
                                 <h1>+91 80004 79780</h1>
                             </div>
                             <div className="flex items-center gap-2">
                                 <MdEmail />
-                                {/* <h1>{headQuarterData?.csrInquiry?.email || 'N/A'}</h1> */}
                                 <h1> info@nessa.in</h1>
                             </div>
                         </div>
                         <div className=" w-[200px] h-[200px] z-[-1] rounded-full bg-yellow-400 absolute left-[-20px] bottom-[-80px] "></div>
                         <div className="w-[100px] z-[-2] h-[100px] bg-yellow-200 opacity-80 absolute left-[100px] bottom-[50px]  rounded-full"></div>
                         <div className="w-full text-black min-h-[100px] mt-5 flex items-end justify-end gap-5 p-[20px] text-3xl rounded-lg">
-                            {/* {Object.entries(headQuarterData?.socialMedia || {}).map(([key, value]) => {
-                                if (!value) return null // Skip if the value is empty or null
-
-                                if (key === 'instagramLink') {
-                                    return (
-                                        <Link
-                                            key={key}
-                                            to={value}>
-                                            <AiFillInstagram />
-                                        </Link>
-                                    )
-                                }
-
-                                if (key === 'twitterLink') {
-                                    return (
-                                        <Link
-                                            key={key}
-                                            to={value}>
-                                            <FaSquareXTwitter />
-                                        </Link>
-                                    )
-                                }
-
-                                if (key === 'facebookLink') {
-                                    return (
-                                        <Link
-                                            key={key}
-                                            to={value}>
-                                            <FaSquareFacebook />
-                                        </Link>
-                                    )
-                                }
-
-                                if (key === 'discordLink') {
-                                    return (
-                                        <Link
-                                            key={key}
-                                            to={value}>
-                                            <FaDiscord />
-                                        </Link>
-                                    )
-                                }
-
-                                // For objects like "inkedinLink"
-                                if (typeof value === 'object' && value?.link) {
-                                    return (
-                                        <Link
-                                            key={key}
-                                            to={value.link}>
-                                            <img
-                                                className="w-8 h-8 object-contain"
-                                                src={value.icon}
-                                                alt={key}
-                                            />
-                                        </Link>
-                                    )
-                                }
-
-                                return null // Default case
-                            })} */}
                             <div className="flex gap-4">
                                 <Link
                                     to="https://www.instagram.com/nessa.illumination?igsh=MWd2NWxxbXFrbjkyOQ=="
@@ -412,7 +326,6 @@ const ContactUs = () => {
                         </div>
                     </div>
 
-                    {/* Right Section */}
                     <form
                         className="w-1/2 max-md:w-full bg-white px-[20px] py-[40px]  rounded-lg shadow-lg"
                         onSubmit={handleSubmit}>
@@ -552,4 +465,3 @@ const ContactUs = () => {
 }
 
 export default ContactUs
-

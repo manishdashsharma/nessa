@@ -200,7 +200,6 @@ const Support = () => {
                 <div className="flex max-md:flex-col relative p-[5vw] gap-6">
                     <div className="absolute w-[250px] h-[250px] bg-[var(--light-blue)] opacity-30 right-[-70px] top-[-30px]   rounded-full z-[-1]"></div>
 
-                    {/* Form Section */}
                     <form
                         className="w-1/2 max-md:w-full bg-white px-[20px] py-[40px] rounded-lg shadow-lg"
                         onSubmit={handleSubmit}>
@@ -327,7 +326,6 @@ const Support = () => {
                         </div>
                     </form>
 
-                    {/* Right Section */}
                     <div className="w-1/2 max-md:w-full relative bg-white  rounded-lg shadow-lg p-6">
                         <div className=" text-4xl font-semibold leading-snug  text-black z-[2] relative">
                             Register
@@ -361,7 +359,6 @@ const Support = () => {
                     </div>
                 </div>
 
-                {/* Manuals download section */}
                 <div className="flex max-md:flex-col max-md: justify-between px-[5vw] py-[50px] mb-[50px] bg-[var(--light-blue)]">
                     <div className="w-[60%] max-md:w-full">
                         <div className="text-4xl font-semibold leading-snug text-black z-[2] relative">
@@ -382,7 +379,6 @@ const Support = () => {
                     </div>
                 </div>
 
-                {/* Nessa Services section */}
                 <div className="w-full py-[50px] my-[50px]">
                     <div className="text-4xl font-semibold leading-snug text-center text-black z-[2] relative">
                         Nessa <span className="text-blue-500">Services</span>

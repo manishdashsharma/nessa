@@ -26,7 +26,6 @@ export const ProductProvider = ({ children }) => {
                 setProducts(response.data.products)
             }
         } catch (error) {
-            console.error('Error fetching products:', error)
             setError('Failed to load products')
             toast.error('Failed to load products')
         } finally {

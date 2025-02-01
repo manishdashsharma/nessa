@@ -73,7 +73,6 @@ const ProductDropdown = ({ setIsMenuOpen, productOpen, setproductOpen }) => {
         <>
             <div
                 className="relative my-2  max-xl:hidden"
-                // onMouseEnter={() => setIsOpen(true)}
                 onMouseLeave={() => {
                     setIsOpen(false)
                     setActiveCategory(null)
@@ -137,7 +136,6 @@ const ProductDropdown = ({ setIsMenuOpen, productOpen, setproductOpen }) => {
                 </AnimatePresence>
             </div>
 
-            {/* mobile view */}
             <div className="relative my-2 hidden max-xl:block">
                 <div
                     onClick={() => setproductOpen(!productOpen)}

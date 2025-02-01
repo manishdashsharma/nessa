@@ -4,7 +4,6 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Pagination, Navigation } from 'swiper/modules';
-import { trendingProductData } from './TrendingProductConfig';
 import { fetchProducts } from '../../services/api.services';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';

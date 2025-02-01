@@ -1,9 +1,3 @@
-// Import images
-import airportImage from '../../assets/images/homepageimages/airport.png';
-import minesImage from '../../assets/images/homepageimages/mines.png';
-import stadiumsImage from '../../assets/images/homepageimages/stadiums.png';
-import petrolPumpImage from '../../assets/images/homepageimages/petrolpump.png';
-
 import southAfricaFlag from '../../assets/images/homepageimages/southafrica.png';
 import kenyaFlag from '../../assets/images/homepageimages/kenya.png';
 import nigeriaFlag from '../../assets/images/homepageimages/nigeria.png';
@@ -21,34 +15,6 @@ import franceFlag from '../../assets/images/homepageimages/france.png';
 import finlandFlag from '../../assets/images/homepageimages/finland.png';
 import americaFlag from '../../assets/images/homepageimages/america.png';
 
-
-// Updated exports
-export const lightingSolution = [
-  {
-    heading: 'Airports',
-    para: 'Nessa delivers advanced, reliable lighting solutions designed to meet the unique demands of airports. From runways and taxiways to terminal interiors and parking facilities, our energy-efficient and durable lighting ensures safety, visibility, and seamless operations. Tailored to withstand extreme conditions, Nessa\'s solutions illuminate airports around the clock with precision and sustainability.',
-    image: airportImage,
-    discoverlink: '',
-  },
-  {
-    heading: 'Mines',
-    para: 'Nessa delivers advanced, reliable lighting solutions designed to meet the unique demands of airports. From runways and taxiways to terminal interiors and parking facilities, our energy-efficient and durable lighting ensures safety, visibility, and seamless operations. Tailored to withstand extreme conditions, Nessa\'s solutions illuminate airports around the clock with precision and sustainability.',
-    image: minesImage,
-    discoverlink: '',
-  },
-  {
-    heading: 'Stadiums',
-    para: 'Nessa delivers advanced, reliable lighting solutions designed to meet the unique demands of airports. From runways and taxiways to terminal interiors and parking facilities, our energy-efficient and durable lighting ensures safety, visibility, and seamless operations. Tailored to withstand extreme conditions, Nessa\'s solutions illuminate airports around the clock with precision and sustainability.',
-    image: stadiumsImage,
-    discoverlink: '',
-  },
-  {
-    heading: 'Petrol Pumps',
-    para: 'Nessa delivers advanced, reliable lighting solutions designed to meet the unique demands of airports. From runways and taxiways to terminal interiors and parking facilities, our energy-efficient and durable lighting ensures safety, visibility, and seamless operations. Tailored to withstand extreme conditions, Nessa\'s solutions illuminate airports around the clock with precision and sustainability.',
-    image: petrolPumpImage,
-    discoverlink: '',
-  },
-];
 
 export const countries = [
   { country: 'South Africa', flag: southAfricaFlag },

@@ -78,55 +78,7 @@ export default function InsitesSwiper() {
                 waitForTransition: true,
                 enabled: true // Changed to true since we're managing it manually
             }}
-            onSwiper={(swiper) => {
-                if (!swiper) return
-
-                // Create the intersection observer
-                const observer = new IntersectionObserver(
-                    (entries) => {
-                        entries.forEach((entry) => {
-                            if (!swiper.autoplay) return
-
-                            if (entry.isIntersecting) {
-                                swiper.autoplay.start()
-                            } else {
-                                swiper.autoplay.stop()
-                            }
-                        })
-                    },
-                    { threshold: 0.5 }
-                )
-
-                // Observe the swiper element
-                if (swiper.el) {
-                    observer.observe(swiper.el)
-                }
-
-                // Add mouse enter and leave event listeners
-                const handleMouseEnter = () => {
-                    if (swiper.autoplay) {
-                        swiper.autoplay.stop()
-                    }
-                }
-
-                const handleMouseLeave = () => {
-                    if (swiper.autoplay) {
-                        swiper.autoplay.start()
-                    }
-                }
-
-                swiper.el.addEventListener('mouseenter', handleMouseEnter)
-                swiper.el.addEventListener('mouseleave', handleMouseLeave)
-
-                // Cleanup function
-                return () => {
-                    if (swiper.el) {
-                        observer.unobserve(swiper.el)
-                        swiper.el.removeEventListener('mouseenter', handleMouseEnter)
-                        swiper.el.removeEventListener('mouseleave', handleMouseLeave)
-                    }
-                }
-            }}
+           
             modules={[Pagination, Autoplay, Navigation]}
             className="mySwiper"
             style={{ paddingLeft: '50px', paddingRight: '50px', height: '100%' }}>

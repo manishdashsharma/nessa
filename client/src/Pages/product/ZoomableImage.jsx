@@ -53,7 +53,6 @@ const ZoomableImage = ({ images, selectedIndex, onClose, onIndexChange }) => {
             exit={{ opacity: 0 }}
             className="fixed inset-0 bg-black/80 z-[9999] flex items-center justify-center"
             onClick={() => onClose()}>
-            {/* Zoom controls */}
             <div className="absolute top-4 left-4 flex gap-2">
                 <button
                     onClick={zoomIn}
@@ -72,7 +71,6 @@ const ZoomableImage = ({ images, selectedIndex, onClose, onIndexChange }) => {
                 </button>
             </div>
 
-            {/* Close button */}
             <button
                 onClick={(e) => {
                     e.stopPropagation()
@@ -82,7 +80,6 @@ const ZoomableImage = ({ images, selectedIndex, onClose, onIndexChange }) => {
                 <X className="w-6 h-6 text-white" />
             </button>
 
-            {/* Previous button */}
             <button
                 onClick={(e) => {
                     e.stopPropagation()
@@ -93,7 +90,6 @@ const ZoomableImage = ({ images, selectedIndex, onClose, onIndexChange }) => {
                 <ChevronLeft className="w-6 h-6 text-white" />
             </button>
 
-            {/* Image container */}
             <motion.div
                 className="relative overflow-hidden w-[90vw] h-[90vh]"
                 onClick={(e) => e.stopPropagation()}>
@@ -116,7 +112,6 @@ const ZoomableImage = ({ images, selectedIndex, onClose, onIndexChange }) => {
                 />
             </motion.div>
 
-            {/* Next button */}
             <button
                 onClick={(e) => {
                     e.stopPropagation()
@@ -127,12 +122,10 @@ const ZoomableImage = ({ images, selectedIndex, onClose, onIndexChange }) => {
                 <ChevronRight className="w-6 h-6 text-white" />
             </button>
 
-            {/* Image counter */}
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/50 px-4 py-2 rounded-full text-white">
                 {selectedIndex + 1} / {images.length}
             </div>
 
-            {/* Zoom level indicator */}
             <div className="absolute bottom-4 right-4 bg-black/50 px-4 py-2 rounded-full text-white">{Math.round(scale * 100)}%</div>
         </motion.div>
     )

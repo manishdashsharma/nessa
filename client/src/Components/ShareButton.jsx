@@ -27,20 +27,7 @@ const ShareButton = ({ url = window.location.href, title }) => {
             hoverColor: 'hover:bg-gray-600',
             iconColor: 'text-gray-100'
         }
-        // {
-        //     name: 'Telegram',
-        //     url: `https://t.me/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`,
-        //     bgColor: 'bg-blue-500',
-        //     hoverColor: 'hover:bg-blue-600',
-        //     iconColor: 'text-blue-100'
-        // },
-        // {
-        //     name: 'Twitter',
-        //     url: `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`,
-        //     bgColor: 'bg-sky-500',
-        //     hoverColor: 'hover:bg-sky-600',
-        //     iconColor: 'text-sky-100'
-        // },
+   
     ]
 
     const copyToClipboard = async () => {
@@ -54,13 +41,11 @@ const ShareButton = ({ url = window.location.href, title }) => {
     }
 
     const openShareWindow = (url, platform) => {
-        // Calculate center position for the popup
         const width = 600
         const height = 600
         const left = window.innerWidth / 2 - width / 2 + window.screenX
         const top = window.innerHeight / 2 - height / 2 + window.screenY
 
-        // Open popup window with specified dimensions
         window.open(
             url,
             `share-${platform}`,
@@ -68,7 +53,6 @@ const ShareButton = ({ url = window.location.href, title }) => {
         )
     }
 
-    // Close dropdown when clicking outside
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -103,7 +87,6 @@ const ShareButton = ({ url = window.location.href, title }) => {
                         <div className="bg-blue-50 p-6">
                             <h2 className="text-xl font-bold mb-2 text-gray-800">Share this product</h2>
 
-                            {/* Copy URL button */}
                             <motion.button
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
@@ -132,7 +115,6 @@ const ShareButton = ({ url = window.location.href, title }) => {
                                 </AnimatePresence>
                             </motion.button>
 
-                            {/* Social share buttons */}
                             <div className="grid grid-cols-1 gap-3">
                                 {shareLinks.map((platform, index) => (
                                     <motion.a

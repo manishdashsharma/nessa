@@ -14,18 +14,15 @@ const BlogDetailPage = () => {
     const [error, setError] = useState(null)
     const [tableOfContents, setTableOfContents] = useState([])
 
-    // Function to extract headings and add IDs to HTML content
     const extractTableOfContents = (content) => {
         const parser = new DOMParser()
         const doc = parser.parseFromString(content, 'text/html')
         const headings = Array.from(doc.querySelectorAll('h1, h2, h3, h4, h5, h6'))
 
-        // Add IDs to the actual headings in content
         headings.forEach((heading, index) => {
             heading.id = `heading-${index}`
         })
 
-        // Convert modified content back to string
         const modifiedContent = doc.body.innerHTML
 
         return {
@@ -45,7 +42,7 @@ const BlogDetailPage = () => {
                 const { toc, modifiedContent } = extractTableOfContents(response.data.content)
                 setBlog({
                     ...response.data,
-                    content: modifiedContent // Use modified content with IDs
+                    content: modifiedContent 
                 })
                 setTableOfContents(toc)
                 setLoading(false)
@@ -58,12 +55,11 @@ const BlogDetailPage = () => {
         fetchBlogDetails()
     }, [id])
 
-    // Handle smooth scrolling
     const handleTocClick = (e, itemId) => {
         e.preventDefault()
         const element = document.getElementById(itemId)
         if (element) {
-            const offset = 100 // Adjust this value based on your navbar height
+            const offset = 100 
             const elementPosition = element.getBoundingClientRect().top
             const offsetPosition = elementPosition + window.pageYOffset - offset
 
@@ -82,7 +78,6 @@ const BlogDetailPage = () => {
             <Navbar />
             <SideComponent />
 
-            {/* Hero Banner */}
             <div className="w-full h-[300px] relative overflow-hidden">
                 <img
                     src={blog.thumbnailImage || '/default-banner.jpg'}
@@ -96,7 +91,6 @@ const BlogDetailPage = () => {
             </div>
 
             <div className="flex max-md:flex-col  px-[5vw] py-8 gap-8">
-                {/* Table of Contents Sidebar */}
                 <div className="w-64 max-md:w-full flex-shrink-0">
                     <div className="sticky top-8 bg-gray-50 rounded-lg p-6">
                         <h2 className="text-xl font-bold mb-4">TABLE OF CONTENTS</h2>
@@ -107,7 +101,6 @@ const BlogDetailPage = () => {
                                     href={`#${item.id}`}
                                     onClick={(e) => handleTocClick(e, item.id)}
                                     className="block text-gray-600 hover:text-blue-600 transition-colors"
-                                    // style={{ marginLeft: `${(item.level - 1) * 12}px` }}>
                                     >
                                     {item.title}
                                 </a>
@@ -116,13 +109,11 @@ const BlogDetailPage = () => {
                     </div>
                 </div>
 
-                {/* Main Content */}
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.5 }}
                     className="flex-grow max-w-3xl">
-                    {/* Tags */}
                     {blog.tag && (
                         <div className="flex flex-wrap gap-2 mb-6">
                             {blog.tag.split(',').map((tag, index) => (
@@ -135,13 +126,11 @@ const BlogDetailPage = () => {
                         </div>
                     )}
 
-                    {/* Blog Content */}
                     <div
                         className="prose max-w-full"
                         dangerouslySetInnerHTML={{ __html: blog.content }}
                     />
 
-                    {/* Author Info */}
                     <div className="mt-8 border-t pt-6">
                         <p className="font-semibold text-gray-800 mb-4">Posted by :</p>
                         <div className="flex items-center space-x-4">

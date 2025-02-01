@@ -93,7 +93,6 @@ const Mp = () => {
 
         setSelectedState(stateName)
 
-        // Reset other paths to white
         document.querySelectorAll('path').forEach((p) => {
             p.style.fill = '#F2F6F9'
         })
@@ -301,20 +300,7 @@ const Mp = () => {
                         onClick={handleClick}
                         name="Ladakh"></path>
 
-                    {/* {selectedState && (
-                        <text
-                            x={labelPosition.x}
-                            y={labelPosition.y}
-                            textAnchor="middle"
-                            stroke='none'
-                            
-                            fill="#000"
-                           
-                            fontSize="18"
-                            fontWeight="bold">
-                            {selectedState}
-                        </text>
-                    )} */}
+                    
                 </g>
             </svg>
 

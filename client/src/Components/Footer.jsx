@@ -12,7 +12,6 @@ function Footer() {
       <footer className="bg-black text-white py-12 px-[5vw]">
           <div className="container mx-auto">
               <div className=" flex justify-between max-md:flex-col gap-10">
-                  {/* Company Info Column */}
                   <div className="space-y-6 w-[30%] max-md:w-full">
                       <img
                           src={logo}
@@ -65,7 +64,6 @@ function Footer() {
                       </div>
                   </div>
 
-                  {/* Browse Column */}
                   <div className="w-fit max-md:w-full ">
                       <h3 className="text-lg font-semibold mb-4">Browse</h3>
                       <ul className="space-y-3">
@@ -114,7 +112,6 @@ function Footer() {
                       </ul>
                   </div>
 
-                  {/* Company Column */}
                   <div className="w-fit max-md:w-full">
                       <h3 className="text-lg font-semibold mb-4">Company</h3>
                       <ul className="space-y-3">
@@ -132,13 +129,7 @@ function Footer() {
                                   Resources
                               </Link>
                           </li>
-                          {/* <li>
-                              <Link
-                                  to="#"
-                                  className="text-gray-400 hover:text-white">
-                                  Blogs
-                              </Link>
-                          </li> */}
+                          
                           <li>
                               <Link
                                   to="/projects"
@@ -156,7 +147,6 @@ function Footer() {
                       </ul>
                   </div>
 
-                  {/* Legal Column */}
                   <div className="w-fit max-md:w-full">
                       <h3 className="text-lg font-semibold mb-4">Legal</h3>
                       <ul className="space-y-3">
@@ -191,7 +181,6 @@ function Footer() {
                       </ul>
                   </div>
 
-                  {/* Contact Column */}
                   <div className="w-[20%] max-md:w-full">
                       <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
                       <ul className="space-y-3">
@@ -206,7 +195,6 @@ function Footer() {
                   </div>
               </div>
 
-              {/* Copyright */}
               <div className="mt-12 pt-8 border-t border-gray-800 text-center text-gray-400 text-sm">
                   Copyright 2025. NESSA. All Right Reserved. Developed by Futuredesks Services
               </div>

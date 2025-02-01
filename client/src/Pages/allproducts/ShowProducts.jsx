@@ -28,7 +28,7 @@ const categories = {
         'Solar Roof Top'
     ],
     'Hybrid Lights': ['Hybrid Solar Street Light'],
-    'Indoor Lighting': ['Surface', 'Panel', 'Downlight', 'Tube Light'],
+    'Indoor Lighting': ['Surface', 'Panel', 'Downlight', 'Tube Light']
 }
 
 const ITEMS_PER_PAGE = 12
@@ -36,7 +36,6 @@ const ITEMS_PER_PAGE = 12
 export default function ShowProducts() {
     const navigate = useNavigate()
     const location = useLocation()
-
 
     const [products, setProducts] = useState([])
     const [loading, setLoading] = useState(false)
@@ -48,47 +47,44 @@ export default function ShowProducts() {
     const [loadingProduct, setLoadingProduct] = useState(null)
     const [totalCount, setTotalCount] = useState(0)
 
-       useEffect(() => {
-           if (location.state?.selectedCategory && location.state?.selectedSubcategory) {
-               // Expand the selected category
-               setExpandedCategories((prev) => ({
-                   [location.state.selectedCategory]: true
-               }))
+    useEffect(() => {
+        if (location.state?.selectedCategory && location.state?.selectedSubcategory) {
+            setExpandedCategories((prev) => ({
+                [location.state.selectedCategory]: true
+            }))
 
-               // Set the selected subcategory filter
-               setSelectedFilters([location.state.selectedSubcategory])
+            setSelectedFilters([location.state.selectedSubcategory])
 
-               // Clear the location state to prevent re-filtering on page refresh
-               navigate(location.pathname, { replace: true })
-           }
-       }, [location.state, navigate])
+            navigate(location.pathname, { replace: true })
+        }
+    }, [location.state, navigate])
 
-   useEffect(() => {
-       const fetchFilteredProducts = async () => {
-           try {
-               setLoading(true)
-               const params = {
-                   limit: ITEMS_PER_PAGE,
-                   offset: (currentPage - 1) * ITEMS_PER_PAGE,
-                   query: 'required',
-                   subcategories: selectedFilters.length > 0 ? selectedFilters : undefined
-               }
+    useEffect(() => {
+        const fetchFilteredProducts = async () => {
+            try {
+                setLoading(true)
+                const params = {
+                    limit: ITEMS_PER_PAGE,
+                    offset: (currentPage - 1) * ITEMS_PER_PAGE,
+                    query: 'required',
+                    subcategories: selectedFilters.length > 0 ? selectedFilters : undefined
+                }
 
-               const response = await fetchProducts(params)
-               if (response?.data) {
-                   setProducts(response.data.products)
-                   setTotalCount(response.data.total || 0)
-               }
-           } catch (error) {
-               console.error('Error fetching product data:', error)
-               toast.error('Failed to load products')
-           } finally {
-               setLoading(false)
-           }
-       }
+                const response = await fetchProducts(params)
+                if (response?.data) {
+                    setProducts(response.data.products)
+                    setTotalCount(response.data.total || 0)
+                }
+            } catch (error) {
+                console.error('Error fetching product data:', error)
+                toast.error('Failed to load products')
+            } finally {
+                setLoading(false)
+            }
+        }
 
-       fetchFilteredProducts()
-   }, [selectedFilters, currentPage, location.state])
+        fetchFilteredProducts()
+    }, [selectedFilters, currentPage, location.state])
 
     const toggleCategory = (category) => {
         setExpandedCategories((prev) => ({
@@ -127,11 +123,10 @@ export default function ShowProducts() {
     return (
         <div className="max-w-7xl mx-auto p-6">
             <div className="flex max-md:flex-col gap-6">
-                {/* Filters Sidebar */}
                 <div className="w-64 max-md:w-[90%] flex-shrink-0">
                     <div className="border rounded-lg p-4">
                         <h2 className="text-lg font-semibold mb-4">Filters</h2>
-                        {Object.entries(categories).map(([category, subcategories] , index) => (
+                        {Object.entries(categories).map(([category, subcategories], index) => (
                             <div
                                 key={index}
                                 className="mb-4">
@@ -175,8 +170,6 @@ export default function ShowProducts() {
                     </div>
                 </div>
 
-                {/* Product Grid */}
-
                 {products.length > 0 ? (
                     <div className="flex-1">
                         <p className="text-lg text-gray-600 mb-4">
@@ -190,7 +183,7 @@ export default function ShowProducts() {
                             </div>
                         ) : (
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                {products.map((product , index) => (
+                                {products.map((product, index) => (
                                     <motion.div
                                         key={index}
                                         initial={{ opacity: 0 }}
@@ -219,8 +212,6 @@ export default function ShowProducts() {
                                 ))}
                             </div>
                         )}
-
-                        {/* Pagination */}
 
                         <div className="flex justify-center  items-center space-x-2 mt-8">
                             <button

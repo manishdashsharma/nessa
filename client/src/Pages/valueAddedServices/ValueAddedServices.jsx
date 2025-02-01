@@ -24,8 +24,6 @@ import Mp from '../../Components/Mp';
 
 export const ValueAddedServices = () => {
 
-    
-
     const whyChooseNessaBoxData = [
         {
             title: 'Expert Team',
@@ -114,7 +112,6 @@ export const ValueAddedServices = () => {
               </h1>
           </div>
 
-          {/* map Section */}
           <div className="py-[50px]">
               <div className=" text-4xl font-semibold leading-snug text-center text-black z-[2] relative">
                   <span className="text-blue-500"> Empowering Communities</span> <br /> Delivering Impactful Solution
@@ -126,7 +123,6 @@ export const ValueAddedServices = () => {
               <Mp />
           </div>
 
-          {/* our value preposition */}
           <div className="py-[5vw]  ">
               <div className=" text-4xl font-semibold leading-snug text-center text-black z-[2] relative">
                   <span className="text-blue-500"> Our Value</span> Preposition
@@ -140,7 +136,6 @@ export const ValueAddedServices = () => {
               </div>
           </div>
 
-          {/* {Our ruler upliftments solution} */}
           <div className=" ">
               <div className=" text-4xl font-semibold leading-snug text-center text-black z-[2] relative">
                   Our <span className="text-blue-500"> ruler upliftments </span> solution
@@ -184,7 +179,6 @@ export const ValueAddedServices = () => {
               </div>
           </div>
 
-          {/* We support communities in creating lasting positive impact */}
           <h1
               className="px-[5vw] my-[50px] text-6xl font-bold text-white text-center "
               style={{ WebkitTextStroke: '1px   black' }}>
@@ -206,7 +200,6 @@ export const ValueAddedServices = () => {
               </div>
           </div>
 
-          {/* smart village solution */}
           <div className="w-full px-[5vw] grid grid-cols-2 max-md:grid-cols-1 gap-y-8  text-lg">
               <div className="">
                   <div className=" text-4xl font-semibold leading-snug text-center text-black z-[2] relative">
@@ -272,7 +265,6 @@ export const ValueAddedServices = () => {
               </div>
           </div>
 
-          {/* Our Distinguished Customers */}
           <div className="px-[5vw] mb-8">
               <div className=" text-4xl font-semibold leading-snug text-center text-black z-[2] relative">
                   <span className="text-blue-500"> Our Distinguished </span> Customers

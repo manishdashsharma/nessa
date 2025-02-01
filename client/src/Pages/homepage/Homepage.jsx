@@ -1,4 +1,4 @@
-import { countries, lightingSolution } from './homepageConfig';
+import { countries} from './homepageConfig';
 import { Link } from 'react-router-dom';
 import { ProductRange } from './homepageinnersections/ProductRange';
 import { RiLightbulbFlashLine } from 'react-icons/ri';
@@ -6,13 +6,9 @@ import RecognizeEx from './homepageinnersections/RecognizeEx';
 import InsitesSwiper from './homepageinnersections/InsitesSwiper'
 import herobg from '../../assets/images/homepageimages/herobg.png';
 import thunder from '../../assets/images/homepageimages/thunder.svg';
-
-
-
 import lamp from '../../assets/images/homepageimages/lamp.png';
 import indiaMap from '../../assets/images/homepageimages/indiaMap.png';
 import indiaFlag from '../../assets/images/homepageimages/india.png';
-// import rectangle69 from '../../assets/images/Rectangle69.png';
 import demoVideo from '../../assets/images/demoVideo.mp4';
 import Navbar from '../../Components/Header/Navbar';
 import SideComponent from '../../Components/sideComponent/SideComponent';
@@ -26,8 +22,6 @@ import PartnersReviewsSwiper from '../../Components/partnerreviews/PartnersRevie
 
 
 const Homepage = () => {
-
-
     const [loading, setloading] = useState(true)
     const [solutions, setsolutions] = useState([])
 
@@ -124,11 +118,10 @@ const Homepage = () => {
     }
 
     return (
-        <div className="w-full overflow-hidden">
+        <div className="w-full  overflow-hidden">
             <Navbar />
             <SideComponent />
 
-            {/* Hero Content  */}
             <div className="w-full h-[70vh] relative">
                 <div className="absolute top-0 left-0 w-full h-full">
                     <img
@@ -140,7 +133,6 @@ const Homepage = () => {
 
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-black px-4">
                     <div className="max-w-4xl mx-auto text-center ">
-                        {/* Top Label */}
                         <div className="w-full flex items-center justify-center">
                             <div className="flex w-fit  px-[30px] max-md:px-[10px] py-[5px] items-center justify-center gap-2  border border-[var(--primary-bg-color)] rounded-full">
                                 <img
@@ -152,20 +144,17 @@ const Homepage = () => {
                             </div>
                         </div>
 
-                        {/* Main Heading */}
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold mb-8 mt-8">
                             Innovative <span className="text-blue-500">Lighting Solution</span>
                             <br />
                             for every Industry
                         </h1>
 
-                        {/* Description */}
                         <p className="text-lg md:text-xl  mb-8 max-w-2xl mx-auto">
                             With 16+ years of expertise and a global presence in 20+ countries, Nessa delivers sustainable, high-performance lighting
                             tailored to your needs.
                         </p>
 
-                        {/* discover Button */}
                         <Link
                             to="solutions"
                             className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-lg font-medium transition-colors">
@@ -175,12 +164,10 @@ const Homepage = () => {
                 </div>
             </div>
 
-            {/* images section  */}
             <ImageSection />
-      
+
             <Marque />
 
-            {/* Lighting Solutions According to Your Needs & Conditions  data is dynamic in homepageConfig.js  */}
             <div className="w-full py-16 max-md:pb-2 px-[5vw] bg-white text-center">
                 <h2 className="text-4xl font-semibold ">
                     Lighting <span className="text-blue-500">Solutions</span> According to <br />
@@ -192,8 +179,8 @@ const Homepage = () => {
 
                 <p className="text-lg max-w-3xl mx-auto mb-8">
                     At Nessa, we don’t just offer off-the-shelf products; we design and manufacture lighting solutions that adapt precisely to your
-                    unique requirements. From extreme environments in mining and refineries to specific needs in airports and rural settings, our expert
-                    team customizes each solution to solve the exact challenges you face.
+                    unique requirements. From extreme environments in mining and refineries to specific needs in airports and rural settings, our
+                    expert team customizes each solution to solve the exact challenges you face.
                 </p>
             </div>
 
@@ -201,7 +188,6 @@ const Homepage = () => {
                 <div
                     key={index}
                     className={`w-full py-16  max-md:pb-2 px-[5vw] bg-white text-center  relative `}>
-                    {/* <div className="absolute w-[200px] h-[200px] bg-[#e9fdfb] right-[-7vw] top-[0vw]   rounded-full z-[1]"></div> */}
                     <div
                         className={`flex flex-col  md:flex-row ${index % 2 === 0 ? '' : 'md:flex-row-reverse'} items-center justify-center gap-8 z-[2] relative`}>
                         <img
@@ -223,7 +209,6 @@ const Homepage = () => {
                 </div>
             ))}
 
-
             <div className="w-full mt-5 flex items-center justify-center">
                 <Link
                     to="solutions"
@@ -232,10 +217,8 @@ const Homepage = () => {
                 </Link>
             </div>
 
-            {/* product range  */}
             <ProductRange />
 
-            {/* trusted by industries */}
             <div className="w-full h-fit px-[5vw] py-[5vw] flex flex-col items-center justify-center relative">
                 <div className=" text-4xl font-semibold leading-snug text-center text-black z-[2] relative">
                     Trusted by
@@ -243,9 +226,9 @@ const Homepage = () => {
                 </div>
                 <div className="flex relative shrink-0 mt-9 h-2.5 bg-[var(--light-blue)] rounded-[50px] w-[51px]" />
                 <div className="relative mt-7 text-xl px-[5vw] leading-8 text-center text-zinc-900 max-md:max-w-full">
-                    With a growing presence across 20+ countries, Nessa is internationally recognized for the reliability, integrity, and high standards
-                    of its products. From Africa and the Middle East to Europe, South Asia, and the USA, our lighting solutions serve a trusted customer
-                    base, expanding our reach every year and delivering excellence across major continents.
+                    With a growing presence across 20+ countries, Nessa is internationally recognized for the reliability, integrity, and high
+                    standards of its products. From Africa and the Middle East to Europe, South Asia, and the USA, our lighting solutions serve a
+                    trusted customer base, expanding our reach every year and delivering excellence across major continents.
                 </div>
                 <div className="absolute w-[15vw] min-w-[80px] object-cover top-0 right-10 max-sm:right-0">
                     {' '}
@@ -302,7 +285,6 @@ const Homepage = () => {
                 </div>
             </div>
 
-            {/* why choose nessa  */}
             <div
                 className="py-[50px] "
                 style={{ background: 'linear-gradient(to bottom, #f7faff, #deeefc)' }}>
@@ -324,7 +306,6 @@ const Homepage = () => {
                 </div>
             </div>
 
-            {/* inside nessa */}
             <div className="w-full h-fit px-[5vw] py-[5vw] flex flex-col items-center justify-center relative">
                 <div className=" text-4xl font-semibold leading-snug text-center text-black z-[2] relative">
                     Inside
@@ -332,8 +313,8 @@ const Homepage = () => {
                 </div>
                 <div className="flex relative shrink-0 mt-9 h-2.5 bg-[#b3d6f6] rounded-[50px] w-[51px]" />
                 <div className="relative mt-7 text-xl px-[5vw] leading-8 text-center text-zinc-900 max-md:max-w-full">
-                    With complete in-house manufacturing, R&D, and stringent testing, Nessa guarantees top-tier quality and innovation in every lighting
-                    solution. From design to delivery, we control every step for unmatched reliability.
+                    With complete in-house manufacturing, R&D, and stringent testing, Nessa guarantees top-tier quality and innovation in every
+                    lighting solution. From design to delivery, we control every step for unmatched reliability.
                 </div>
                 <div className="absolute w-[15vw] min-w-[80px]  object-cover top-0 left-10 max-sm:left-0">
                     {' '}
@@ -353,17 +334,16 @@ const Homepage = () => {
                     alt="">
                     {' '}
                 </video>
-
-                {/* <video src=""></video> */}
+            </div>
+            <div
+                className=""
+                style={{ background: 'linear-gradient(to bottom, #f7faff, #deeefc)' }}>
+            <PartnersReviewsSwiper/>
             </div>
 
-            {/* Partners Reviews Swiper */}
-           
-            <PartnersReviewsSwiper/>
-            {/* recognized excellence */}
+
             <RecognizeEx />
 
-            {/* insights and resources */}
             <div
                 className="py-[50px]  mt-[50px]"
                 style={{ background: 'linear-gradient(to bottom, #f7faff, #deeefc)' }}>

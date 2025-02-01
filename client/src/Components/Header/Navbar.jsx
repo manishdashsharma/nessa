@@ -19,155 +19,106 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { GrResources } from 'react-icons/gr'
 import { allSolutions } from '../../services/api.services'
 import toast from 'react-hot-toast'
-import { MdInfoOutline } from 'react-icons/md';
+import { MdInfoOutline } from 'react-icons/md'
 import ProductDropdown from './ProductDropdown'
 import GoogleTranslate from '../../Utils/Google.Translate'
 import SearchBar from './SearchBar'
 
 const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [soluitonOpen, setsoluitonOpen] = useState(false)
-  const [corporateOpen, setcorporateOpen] = useState(false)
-  const [productOpen, setproductOpen] = useState(false)
-  const [solutionsDropdown, setSolutionsDropdown] = useState([
-      {
-          logo: <BiSolidPlaneAlt className={`text-[#1E90FF] bg-[#1E90FF] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
-          link: '',
-          subcategories: 'Airport'
-      },
-      {
-          logo: <GiMineWagon className={`text-[#FF8C00] bg-[#FF8C00] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
-          link: '',
-          subcategories: 'Mines'
-      },
-      {
-          logo: <MdStadium className={`text-[#9370DB] bg-[#9370DB] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
-          link: '',
-          subcategories: 'Stadium'
-      },
-      {
-          logo: <FaGasPump className={`text-[#FF6347] bg-[#FF6347] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
-          link: '',
-          subcategories: 'Petrol Pump'
-      },
-      {
-          logo: <GiRefinery className={`text-[#32CD32] bg-[#32CD32] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
-          link: '',
-          subcategories: 'Refinery'
-      },
-      {
-          logo: <FaRoad className={`text-[#4169E1] bg-[#4169E1] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
-          link: '',
-          subcategories: 'Highways'
-      },
-      {
-          logo: <FaCarTunnel className={`text-[#FFB6C1] bg-[#FFB6C1] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
-          link: '',
-          subcategories: 'Tunnels'
-      },
-      {
-          logo: <GiForest className={`text-[#32CD32] bg-[#32CD32] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
-          link: '',
-          subcategories: 'Rural, Hilly & Forest Areas'
-      },
-      {
-          logo: <GiShipBow className={`text-[#98FB98] bg-[#98FB98] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
-          link: '',
-          subcategories: 'Ports & Logistic Parks'
-      },
-      {
-          logo: <GiHazardSign className={`text-[#FF4500] bg-[#FF4500] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
-          link: '',
-          subcategories: 'Hazardous Areas'
-      },
-      {
-          logo: <GiRefinery className={`text-[#FFD700] bg-[#FFD700] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
-          link: '',
-          subcategories: 'Thermal Power Plants'
-      },
-      {
-          logo: <PiSolarPanel className={`text-[#FFA07A] bg-[#FFA07A] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
-          link: '',
-          subcategories: 'Solar Parks'
-      }
-  ])
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const [soluitonOpen, setsoluitonOpen] = useState(false)
+    const [corporateOpen, setcorporateOpen] = useState(false)
+    const [productOpen, setproductOpen] = useState(false)
+    const [solutionsDropdown, setSolutionsDropdown] = useState([
+        {
+            logo: <BiSolidPlaneAlt className={`text-[#1E90FF] bg-[#1E90FF] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
+            link: '',
+            subcategories: 'Airport'
+        },
+        {
+            logo: <GiMineWagon className={`text-[#FF8C00] bg-[#FF8C00] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
+            link: '',
+            subcategories: 'Mines'
+        },
+        {
+            logo: <MdStadium className={`text-[#9370DB] bg-[#9370DB] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
+            link: '',
+            subcategories: 'Stadium'
+        },
+        {
+            logo: <FaGasPump className={`text-[#FF6347] bg-[#FF6347] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
+            link: '',
+            subcategories: 'Petrol Pump'
+        },
+        {
+            logo: <GiRefinery className={`text-[#32CD32] bg-[#32CD32] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
+            link: '',
+            subcategories: 'Refinery'
+        },
+        {
+            logo: <FaRoad className={`text-[#4169E1] bg-[#4169E1] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
+            link: '',
+            subcategories: 'Highways'
+        },
+        {
+            logo: <FaCarTunnel className={`text-[#FFB6C1] bg-[#FFB6C1] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
+            link: '',
+            subcategories: 'Tunnels'
+        },
+        {
+            logo: <GiForest className={`text-[#32CD32] bg-[#32CD32] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
+            link: '',
+            subcategories: 'Rural, Hilly & Forest Areas'
+        },
+        {
+            logo: <GiShipBow className={`text-[#98FB98] bg-[#98FB98] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
+            link: '',
+            subcategories: 'Ports & Logistic Parks'
+        },
+        {
+            logo: <GiHazardSign className={`text-[#FF4500] bg-[#FF4500] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
+            link: '',
+            subcategories: 'Hazardous Areas'
+        },
+        {
+            logo: <GiRefinery className={`text-[#FFD700] bg-[#FFD700] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
+            link: '',
+            subcategories: 'Thermal Power Plants'
+        },
+        {
+            logo: <PiSolarPanel className={`text-[#FFA07A] bg-[#FFA07A] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
+            link: '',
+            subcategories: 'Solar Parks'
+        }
+    ])
 
-  const [loading, setloading] = useState(true)
+    const [loading, setloading] = useState(true)
 
-//   useEffect(() => {
-//       const fetchSolutions = async () => {
-//           try {
-//               setloading(true)
-//               const response = await allSolutions()
-//               if (response?.data) {
-//                   // Create a set of existing subcategories
-//                   const existingSubcategories = new Set(solutionsDropdown.map((item) => item.subcategories))
+    useEffect(() => {
+        const fetchSolutions = async () => {
+            try {
+                setloading(true)
+                const response = await allSolutions()
+                if (response?.data) {
+                    setSolutionsDropdown((prevDropdown) => {
+                        return prevDropdown.map((item) => {
+                            const matchingSolution = response.data.find((solution) => solution.subcategories === item.subcategories)
+                            return {
+                                ...item,
+                                link: matchingSolution ? `/solutions/${matchingSolution._id}` : ''
+                            }
+                        })
+                    })
+                }
+            } catch (error) {
+                toast.error('Failed to load solutions')
+            } finally {
+                setloading(false)
+            }
+        }
 
-//                   // Get default logo component for new solutions
-//                   const defaultLogo = <GrResources className={`text-[#808080] bg-[#808080] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />
-
-//                   // Process existing solutions and add new ones
-//                   setSolutionsDropdown((prevDropdown) => {
-//                       // First, update existing solutions with links
-//                       const updatedExisting = prevDropdown.map((item) => {
-//                           const matchingSolution = response.data.find((solution) => solution.subcategories === item.subcategories)
-//                           return {
-//                               ...item,
-//                               link: matchingSolution ? `/solutions/${matchingSolution._id}` : ''
-//                           }
-//                       })
-
-//                       // Find new solutions that aren't in the existing dropdown
-//                       const newSolutions = response.data
-//                           .filter((solution) => !existingSubcategories.has(solution.subcategories))
-//                           .map((solution) => ({
-//                               logo: defaultLogo,
-//                               link: `/solutions/${solution._id}`,
-//                               subcategories: solution.subcategories
-//                           }))
-
-//                       // Combine existing and new solutions
-//                       return [...updatedExisting, ...newSolutions]
-//                   })
-//               }
-//           } catch (error) {
-//               console.error('Error fetching product data:', error)
-//               toast.error('Failed to load products')
-//           } finally {
-//               setloading(false)
-//           }
-//       }
-
-//       fetchSolutions()
-//   }, [])
-
-  useEffect(() => {
-      const fetchSolutions = async () => {
-          try {
-              setloading(true)
-              const response = await allSolutions()
-              if (response?.data) {
-                  // Update solutionsDropdown links based on API data
-                  setSolutionsDropdown((prevDropdown) => {
-                      return prevDropdown.map((item) => {
-                          const matchingSolution = response.data.find((solution) => solution.subcategories === item.subcategories)
-                          return {
-                              ...item,
-                              link: matchingSolution ? `/solutions/${matchingSolution._id}` : ''
-                          }
-                      })
-                  })
-              }
-          } catch (error) {
-              console.error('Error fetching product data:', error)
-              toast.error('Failed to load products')
-          } finally {
-              setloading(false)
-          }
-      }
-
-      fetchSolutions()
-  }, [])
+        fetchSolutions()
+    }, [])
 
     useEffect(() => {
         const handleScroll = () => {
@@ -194,7 +145,6 @@ const Navbar = () => {
         setsoluitonOpen(false)
         setcorporateOpen(false)
         setproductOpen(false)
-
     }
 
     const dropdownVariants = {
@@ -210,7 +160,6 @@ const Navbar = () => {
             transition: {
                 duration: 0.2,
                 ease: 'easeOut'
-            
             }
         },
         exit: {
@@ -236,7 +185,6 @@ const Navbar = () => {
         })
     }
 
-    
     const handleSolutionClick = (e, link) => {
         if (!link) {
             e.preventDefault()
@@ -299,17 +247,8 @@ const Navbar = () => {
                         </div>
                     </div>
                     <div className="flex items-center gap-4">
-                        {/* <div className="flex max-sm:w-[170px] items-center bg-[#2672BE] rounded-full px-3 py-1">
-                            <CiSearch className="w-5 h-5 text-white" />
-                            <input
-                                type="text"
-                                placeholder="Search Product"
-                                className="ml-2 max-sm:w-[120px] outline-none bg-[rgb(38,114,190)] text-white placeholder:text-[#ffffffe5]"
-                            />
-                        </div> */}
                         <SearchBar />
 
-                        {/* <GoogleTranslate/> */}
                         <div className="flex items-center ml-4">
                             <IoEarthOutline className="w-5 h-5 text-white" />
                             <span className="text-white ml-2">IN(ENG)</span>
@@ -331,7 +270,6 @@ const Navbar = () => {
                         />
                     </Link>
 
-                    {/* Desktop Menu */}
                     <div className="hidden xl:flex gap-[4vw] px-[30px] items-center">
                         <Link
                             to="/"
@@ -390,13 +328,12 @@ const Navbar = () => {
                                 )}
                             </AnimatePresence>
                         </div>
-                        {/* <Link
-                            to="/allproducts"
-                            className="text-black flex items-center gap-1">
-                            Products
-                        </Link> */}
 
-                        <ProductDropdown />
+                        <ProductDropdown
+                            setIsMenuOpen={setIsMenuOpen}
+                            productOpen={productOpen}
+                            setproductOpen={setproductOpen}
+                        />
                         <div
                             onMouseEnter={() => {
                                 setcorporateOpen(true)
@@ -449,7 +386,6 @@ const Navbar = () => {
                         </Link>
                     </div>
 
-                    {/* Hamburger Menu Button */}
                     <div className="xl:hidden flex items-center gap-4">
                         <button
                             onClick={toggleMenu}
@@ -465,7 +401,6 @@ const Navbar = () => {
                     </Link>
                 </div>
 
-                {/* Mobile Menu */}
                 <div
                     className={`xl:hidden fixed top-[132px] left-0 w-full  max-xl:max-h-[80vh] overflow-y-auto bg-white shadow-lg transition-all duration-300 ease-in-out transform ${
                         isMenuOpen ? 'translate-y-0 opacity-100 visible' : 'translate-y-[-100%] opacity-0 invisible'
@@ -524,12 +459,12 @@ const Navbar = () => {
                                 )}
                             </AnimatePresence>
                         </div>
-                        {/* <Link
-                            to="/allproducts"
-                            className="py-2 text-black hover:bg-gray-100 px-4 flex items-center justify-between">
-                            Products
-                        </Link> */}
-                        <ProductDropdown setIsMenuOpen={setIsMenuOpen} productOpen={productOpen} setproductOpen={setproductOpen} />
+
+                        <ProductDropdown
+                            setIsMenuOpen={setIsMenuOpen}
+                            productOpen={productOpen}
+                            setproductOpen={setproductOpen}
+                        />
                         <div className="text-black relative">
                             <div
                                 onClick={() => {

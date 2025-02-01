@@ -5,9 +5,7 @@ import { cookiePolicyConfig } from './cookieConfig'
 
 const CookiesPolicy = () => {
   const formatContent = (content) => {
-    // Split content by double newlines for major paragraph breaks
     return content.split('\n\n').map((paragraph, mainIndex) => {
-      // For paragraphs that should be part of a list (containing ': ')
       if (paragraph.includes(': ')) {
         const [title, description] = paragraph.split(': ')
         return (
@@ -17,7 +15,6 @@ const CookiesPolicy = () => {
           </div>
         )
       }
-      // For regular paragraphs
       return (
         <p key={mainIndex} className="text-gray-700 leading-relaxed mb-4">
           {paragraph}
@@ -31,12 +28,10 @@ const CookiesPolicy = () => {
       <Navbar />
       <SideComponent />
       
-      {/* Header - Keeping the approved blue background */}
       <div className="bg-blue-200 text-black py-20"> 
         <h1 className="text-2xl font-semibold text-center">{cookiePolicyConfig.title}</h1>
       </div>
 
-      {/* Content section with improved paragraph readability */}
       <div className="max-w-[1200px] mx-auto px-8 py-12">
         {cookiePolicyConfig.sections.map((section) => (
           <section key={section.id} className="mb-10">
