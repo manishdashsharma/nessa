@@ -10,20 +10,33 @@ const SearchBar = () => {
     const { searchProducts, loading, products, getProducts } = useProducts()
     const navigate = useNavigate()
     const searchInputRef = useRef(null)
+    const searchContainerRef = useRef(null)
     const [hasInitializedProducts, setHasInitializedProducts] = useState(false)
 
     useEffect(() => {
+
+         const handleFocusSearch = () => {
+             if (searchInputRef.current) {
+                 searchInputRef.current.focus()
+             }
+         }
         // Add event listener for search focus
-        const handleFocusSearch = () => {
-            if (searchInputRef.current) {
-                searchInputRef.current.focus()
+        const handleClickOutside = (event) => {
+            if (searchContainerRef.current && !searchContainerRef.current.contains(event.target)) {
+                setSearchQuery('')
+                setResults([])
+                if (searchInputRef.current) {
+                    searchInputRef.current.blur()
+                }
             }
         }
 
         window.addEventListener('focusSearchInput', handleFocusSearch)
+        document.addEventListener('mousedown', handleClickOutside)
 
         return () => {
             window.removeEventListener('focusSearchInput', handleFocusSearch)
+            document.removeEventListener('mousedown', handleClickOutside)
         }
     }, [])
 
@@ -52,14 +65,16 @@ const SearchBar = () => {
         setSearchQuery(e.target.value)
     }
 
-    const handleProductClick = (productId) => {
-        navigate(`/product/${productId}`)
+    const handleProductClick = (product) => {
+        navigate(`/product/${product.slug}/${product._id}`)
         setSearchQuery('')
         setResults([])
     }
 
     return (
-        <div className="relative">
+        <div
+            className="relative"
+            ref={searchContainerRef}>
             <div className="flex max-sm:w-[170px] items-center bg-[#2672BE] rounded-full px-3 py-1">
                 <CiSearch className="w-5 h-5 text-white" />
                 <input
@@ -69,7 +84,7 @@ const SearchBar = () => {
                     onChange={handleInputChange}
                     placeholder={loading ? 'Loading products...' : 'Search Product'}
                     className="ml-2 max-sm:w-[120px] outline-none bg-[rgb(38,114,190)] text-white placeholder:text-[#ffffffe5]"
-                // disabled={loading}
+                    // disabled={loading}
                 />
             </div>
 
@@ -100,7 +115,7 @@ const SearchBar = () => {
                             {results.map((product) => (
                                 <div
                                     key={product._id}
-                                    onClick={() => handleProductClick(product._id)}
+                                    onClick={() => handleProductClick(product)}
                                     className="p-3 hover:bg-gray-50 cursor-pointer border-b last:border-b-0">
                                     <div className="flex items-center gap-3">
                                         {product.productImageUrl && product.productImageUrl[0] && (

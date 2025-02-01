@@ -75,7 +75,7 @@ export default function RelatedProductsSwipe({product}) {
                       },
                       850: {
                           slidesPerView: 3,
-                          spaceBetween: 20,
+                          spaceBetween: 20
                       },
                       1280: {
                           slidesPerView: 4,
@@ -89,16 +89,14 @@ export default function RelatedProductsSwipe({product}) {
                           key={index}
                           className="   ">
                           <div
-                              onClick={() => navigate(`/product/${product._id}`)}
+                              onClick={() => navigate(`/product/${product.slug}/${product._id}`)}
                               className={` h-[400px] w-full max-sm:flex max-sm:flex-col max-sm:items-center  mb-[40px]  p-[10px]  border-[2px] bg-white border-[#d6d0d0]  `}>
-                                
-
                               <img
                                   className=" mb-[10px] w-full h-[70%]  object-contain"
                                   src={product.productImageUrl[0]}
                                   alt={product.name + ' Image'}
                               />
-                                
+
                               <h1 className="text-sm">
                                   {product.categories}- {product.subcategories}
                               </h1>

@@ -53,60 +53,60 @@ export default function TrendingProductsSwipe() {
     }
 
   return (
-    <>
-      <Swiper
-        slidesPerView={1}
-        spaceBetween={5}
-        pagination={{
-          dynamicBullets:true,
-          dynamicMainBullets:3,
-          clickable: true,
-        }}
-        navigation={{
-            clickable:true
-        }}
-        breakpoints={{
-          550:{
-                slidesPerView: 2,
-                spaceBetween: 20,
-            },
-          640: {
-            slidesPerView: 2,
-            spaceBetween: 20,
-          },
-          800: {
-            slidesPerView: 3,
-            spaceBetween: 20,
-          },
-          1280: {
-            slidesPerView: 4,
-            spaceBetween: 20,
-          },
-        }}
-        modules={[Pagination, Navigation]}
-        className="mySwiper mt-[40px]   "
-      >
-        {products.map((product, index) => (
-          
-          <SwiperSlide key={index} className="  ">
-      
-            <div className=" h-[400px] w-full max-sm:flex max-sm:flex-col max-sm:items-center  mb-[40px]  p-[10px]  border-[2px] bg-white border-[#d6d0d0] ">
-              <Link to={`/product/${product._id}`} className='w-full h-full '>
-              <img
-                className=" mb-[10px] w-full h-[70%] object-contain"
-                src={product.productImageUrl[0]}
-                alt={product.name + ' Image'}
-              />
-              <h1 className='text-sm'>{product.categories}- {product.subcategories}</h1>
-              <h1 className="mt-[10px] text-xl">{product.name}</h1>
-              
-              </Link>
-            </div>
-
-            
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </>
-  );
+      <>
+          <Swiper
+              slidesPerView={1}
+              spaceBetween={5}
+              pagination={{
+                  dynamicBullets: true,
+                  dynamicMainBullets: 3,
+                  clickable: true
+              }}
+              navigation={{
+                  clickable: true
+              }}
+              breakpoints={{
+                  550: {
+                      slidesPerView: 2,
+                      spaceBetween: 20
+                  },
+                  640: {
+                      slidesPerView: 2,
+                      spaceBetween: 20
+                  },
+                  800: {
+                      slidesPerView: 3,
+                      spaceBetween: 20
+                  },
+                  1280: {
+                      slidesPerView: 4,
+                      spaceBetween: 20
+                  }
+              }}
+              modules={[Pagination, Navigation]}
+              className="mySwiper mt-[40px]   ">
+              {products.map((product, index) => (
+                  <SwiperSlide
+                      key={index}
+                      className="  ">
+                      <div className=" h-[400px] w-full max-sm:flex max-sm:flex-col max-sm:items-center  mb-[40px]  p-[10px]  border-[2px] bg-white border-[#d6d0d0] ">
+                          <Link
+                              to={`/product/${product.slug}/${product._id}`}
+                              className="w-full h-full ">
+                              <img
+                                  className=" mb-[10px] w-full h-[70%] object-contain"
+                                  src={product.productImageUrl[0]}
+                                  alt={product.name + ' Image'}
+                              />
+                              <h1 className="text-sm">
+                                  {product.categories}- {product.subcategories}
+                              </h1>
+                              <h1 className="mt-[10px] text-xl">{product.name}</h1>
+                          </Link>
+                      </div>
+                  </SwiperSlide>
+              ))}
+          </Swiper>
+      </>
+  )
 }

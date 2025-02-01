@@ -123,7 +123,7 @@ const SolutionDetail = () => {
                         <div className="mt-2 space-y-4 ml-[40px] flex flex-col">
                             {item.products.map((productitem, i) => (
                                 <Link
-                                    to={`/product/${productitem.productId}`}
+                                    to={`/product/${productitem.slug}/${productitem._id}`}
                                     key={i}>
                                     <strong> • {productitem.name}</strong> :{productitem.description}
                                 </Link>

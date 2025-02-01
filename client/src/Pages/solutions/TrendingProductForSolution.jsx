@@ -87,7 +87,7 @@ export default function TrendingProductsForSolution() {
                         key={index}
                         className="  ">
                         <Link
-                            to={`/product/${product._id}`}
+                            to={`/product/${product.slug}/${product._id}`}
                             className="h-[400px]   xl:w-[22vw]  max-[850px]:w-[33vw] max-[640px]:w-[50vw] w-full max-sm:flex max-sm:flex-col max-sm:items-center  mb-[40px]  p-[10px]  border-[2px] bg-white border-[#d6d0d0] ">
                             <img
                                 className=" mb-[10px] h-[70%] object-cover"
