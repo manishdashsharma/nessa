@@ -9,6 +9,7 @@ import { CiLinkedin } from 'react-icons/ci'
 import { RiTwitterXFill } from 'react-icons/ri'
 import styled from 'styled-components'
 import airportpageposter from '../../assets/images/solutionsImages/airportpageposter.png'
+import contactushero from '../../assets/images/contactus/CONTACTUSHERO.jpg'
 import toast from 'react-hot-toast'
 import Navbar from '../../Components/Header/Navbar'
 import SideComponent from '../../Components/sideComponent/SideComponent'
@@ -181,12 +182,12 @@ const ContactUs = () => {
                 <div className="w-full h-[300px] max-sm:h-[200px] relative flex items-center  justify-center ">
                     <img
                         className="w-full h-full object-cover absolute  "
-                        src={airportpageposter}
+                        src={contactushero}
                         alt=""
                     />
-                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white  relative z-[2] drop-shadow-[0_0_10px_rgba(0,0,0,0.8)]">
+                    {/* <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white  relative z-[2] drop-shadow-[0_0_10px_rgba(0,0,0,0.8)]">
                         Contact Us
-                    </h1>
+                    </h1> */}
                 </div>
 
                 <div className="flex max-md:flex-col relative p-[5vw] gap-6 ">

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import Media from './Media'
-import hero from '../../assets/images/allProductsimages/hero.png'
+import resourceshero from '../../assets/images/resources/resourceshero.jpg'
 import Navbar from '../../Components/Header/Navbar'
 import SideComponent from '../../Components/sideComponent/SideComponent'
 import Footer from '../../Components/Footer'
@@ -66,12 +66,12 @@ export const Resources = () => {
             <div className="w-full h-[300px] max-sm:h-[200px] relative flex items-center  justify-start ">
                 <img
                     className="w-full h-full object-cover absolute "
-                    src={hero}
+                    src={resourceshero}
                     alt=""
                 />
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white ml-[5vw] relative z-[2] drop-shadow-[0_0_10px_rgba(0,0,0,0.8)]">
+                {/* <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white ml-[5vw] relative z-[2] drop-shadow-[0_0_10px_rgba(0,0,0,0.8)]">
                     Resources
-                </h1>
+                </h1> */}
             </div>
 
             <div className="w-full min-h-[300px] relative py-[50px] px-[5vw]">

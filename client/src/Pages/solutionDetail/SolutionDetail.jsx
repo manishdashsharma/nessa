@@ -8,6 +8,8 @@ import toast from 'react-hot-toast'
 import Footer from '../../Components/Footer'
 import { solutionDetailPage } from '../../Utils/Utils'
 import { caseStudiesHardCodedData } from './SolutionDetailConfing'
+import { SolutionHero } from './SolutionHero'
+
 
 const SolutionDetail = () => {
     const { id  } = useParams() 
@@ -70,7 +72,7 @@ const SolutionDetail = () => {
         <div className="w-full overflow-hidden">
             <Navbar />
             <SideComponent />
-            <div className="w-full h-[300px] max-sm:h-[200px] relative flex items-center  justify-start   ">
+            {/* <div className="w-full h-[300px] max-sm:h-[200px] relative flex items-center  justify-start   ">
                 <img
                     className="w-full h-full object-cover absolute  "
                     src={solution.thumbnail}
@@ -79,7 +81,8 @@ const SolutionDetail = () => {
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white  drop-shadow-[0_0_10px_rgba(0,0,0,0.8)] ml-[5vw] relative z-[2] ">
                     {solution.title}
                 </h1>
-            </div>
+            </div> */}
+            <SolutionHero solution={solution} />
             <div className="w-full h-fit flex gap-10 max-md:flex-col px-[5vw] py-[5vw] relative">
                 <div className="absolute w-[250px] h-[250px] bg-[var(--light-blue)] opacity-30 right-[-7vw] top-[-3vw]   rounded-full z-[-1]"></div>
 

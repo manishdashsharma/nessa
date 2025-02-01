@@ -2,7 +2,7 @@ import { nessaEdgeItems, whoWeAre } from './AboutUsConfig'
 import { RiLightbulbFlashLine } from 'react-icons/ri'
 import ProductAndTestingSwiper from './ProductAndTestingSwiper'
 import CertificatesSwiper from './CertificatesSwiper'
-import hero from '../../assets/images/solutionsImages/hero.png'
+import hero from '../../assets/images/aboutUs/Aboutushero.jpg'
 import ourVision from '../../assets/images/aboutUs/ourVision.png'
 import ourMission from '../../assets/images/aboutUs/ourMission.png'
 import customersegment from '../../assets/images/aboutUs/customersegment.svg'
@@ -86,9 +86,9 @@ const AboutUs = () => {
                     src={hero}
                     alt=""
                 />
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold w-full text-center text-white ml-[5vw] relative z-[2] drop-shadow-[0_0_10px_rgba(0,0,0,0.8)]">
+                {/* <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold w-full text-center text-white ml-[5vw] relative z-[2] drop-shadow-[0_0_10px_rgba(0,0,0,0.8)]">
                     About Us
-                </h1>
+                </h1> */}
             </div>
 
             <div className="w-full min-h-[300px] relative py-[50px] px-[5vw]">

@@ -32,7 +32,7 @@ router.route('/query-support-enquiry-data').get(authentication,authorization(),a
 router.route('/update-support-enquiry-data/:id').post(authentication,authorization(),apiController.updateSupportEnquiryData)
 router.route('/sign-in').post(apiController.signIn)
 router.route('/self-identification').get(authentication,apiController.selfIdentification)
-router.route('/save-solution').post(authentication,authorization(),apiController.saveSolutions)
+router.route('/save-solution').post(apiController.saveSolutions)
 router.route('/query-solutions').get(apiController.querySolutions)
 router.route('/query-solution/:id').get(apiController.querySolution)
 router.route('/update-solution/:id').post(apiController.updateSolutions)

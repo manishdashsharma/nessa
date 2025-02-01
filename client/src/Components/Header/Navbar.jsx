@@ -33,7 +33,7 @@ const Navbar = () => {
         {
             logo: <BiSolidPlaneAlt className={`text-[#1E90FF] bg-[#1E90FF] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
             link: '',
-            subcategories: 'Airport'
+            subcategories: 'Airports'
         },
         {
             logo: <GiMineWagon className={`text-[#FF8C00] bg-[#FF8C00] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,

@@ -1,5 +1,5 @@
 
-import hero from '../../assets/images/allProductsimages/hero.png';
+import hero from '../../assets/images/valueAddedServicesImages/hero.jpg'
 import Navbar from '../../Components/Header/Navbar';
 import SideComponent from '../../Components/sideComponent/SideComponent';
 import {
@@ -107,9 +107,9 @@ export const ValueAddedServices = () => {
                   src={hero}
                   alt=""
               />
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white  relative z-[2] drop-shadow-[0_0_10px_rgba(0,0,0,0.8)] px-[5vw]">
+              {/* <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white  relative z-[2] drop-shadow-[0_0_10px_rgba(0,0,0,0.8)] px-[5vw]">
                   Value Added Services
-              </h1>
+              </h1> */}
           </div>
 
           <div className="py-[50px]">
