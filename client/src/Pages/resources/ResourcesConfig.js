@@ -126,10 +126,7 @@ export const insitesAndResources = [
     title: 'Articles',
     items: [],
   },
-  {
-    title: 'Press Releases',
-    items: [],
-  },
+ 
   {
     title: 'Others',
     items: [],
@@ -185,12 +182,7 @@ export const media = [
      
     ],
   },
-  {
-    title: 'white Papers',
-    items: [
-     
-    ],
-  },
+ 
   {
     title: 'Events and exhibition',
     items: [],
@@ -206,25 +198,31 @@ export const media = [
 ];
 
 
+import ncdl1 from '../../assets/images/resources/nessaCatalog.pdf'
+import ncdl2 from '../../assets/images/resources/csr.pdf'
+import ncdl3 from '../../assets/images/resources/compony.pdf'
 
+import ncp1 from '../../assets/images/resources/nessacatalog.png'
+import ncp2 from '../../assets/images/resources/csrprofile.png'
+import ncp3 from '../../assets/images/resources/componyprofile.png'
 
  export const resourcesUtilsConfigHardCodedData ={
     'title': 'Resources Page Utils Data',
     'utilsData': {
         'nessaCatalogUtilsData': [
             {
-                'poster': 'https://res.cloudinary.com/dfx1sukqp/image/upload/v1736538474/case%20study/1736538472749-casestudy1_o1iyjz.png',
-                'downloadLink': '',
+                'poster': ncp1,
+                'downloadLink': ncdl1,
                 'name': 'Nessa  Catalog'
             },
             {
-                'poster': 'https://res.cloudinary.com/dfx1sukqp/image/upload/v1736538514/case%20study/1736538512164-casestudy2_l62hds.png',
-                'downloadLink': '',
+                'poster': ncp2,
+                'downloadLink': ncdl2,
                 'name': 'Nessa CSR Profile'
             },
             {
-                'poster': 'https://res.cloudinary.com/dfx1sukqp/image/upload/v1736538514/case%20study/1736538512164-casestudy2_l62hds.png',
-                'downloadLink': 'https://res.cloudinary.com/dfx1sukqp/image/upload/v1736538514/case%20study/1736538512164-casestudy2_l62hds.png',
+                'poster': ncp3,
+                'downloadLink': ncdl3,
                 'name': 'Nessa Profiie'
             }
         ],

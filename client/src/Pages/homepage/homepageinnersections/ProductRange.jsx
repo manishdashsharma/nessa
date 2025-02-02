@@ -75,7 +75,7 @@ export function ProductRange() {
             <div className="w-full flex justify-center">
                 <div className="flex relative shrink-0 mt-9 h-2.5 bg-[#b3d6f6] rounded-[50px] w-[51px]" />
             </div>
-            <div className="relative mt-7 text-xl px-[5vw] leading-8 text-center text-zinc-900 max-md:max-w-full">
+            <div className="relative text-xl mt-7  px-[10vw] leading-8 text-center text-zinc-900 max-md:max-w-full">
                 At Nessa, we don't just offer off-the-shelf products; we design and manufacture lighting solutions that adapt precisely to your unique
                 requirements.
             </div>

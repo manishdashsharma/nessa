@@ -1,4 +1,4 @@
-import logo from '../assets/images/navbar/logo.svg'
+import logo from '../assets/images/nessalogo.png'
 import { RiFacebookBoxLine } from 'react-icons/ri'
 import { FaInstagram } from 'react-icons/fa'
 import { IoLogoWhatsapp } from 'react-icons/io5'

@@ -138,7 +138,7 @@ export const ValueAddedServices = () => {
 
           <div className=" ">
               <div className=" text-4xl font-semibold leading-snug text-center text-black z-[2] relative">
-                  Our <span className="text-blue-500"> ruler upliftments </span> solution
+                  Our <span className="text-blue-500"> Rural Upliftment </span> Solutions
               </div>
               <div className="w-full flex justify-center">
                   <div className="flex relative shrink-0 mt-9 h-2.5 bg-[#b3d6f6] rounded-[50px] w-[51px]" />

@@ -60,13 +60,13 @@ export default function RecoExSec1() {
               ].map((slide, index) => (
                   <SwiperSlide
                       key={index}
-                      className="bg-[#EEF7FF]">
+                      className="bg-[#EEF7FF] my-[30px]">
                       <Link
                           to={slide.link}
                           target="_blank"
                           className="flex flex-col items-center justify-center gap-4">
                           <img
-                              className="w-[80%] h-[300px] object-cover"
+                              className=" h-[300px] object-cover"
                               src={slide.image}
                               alt=""
                           />

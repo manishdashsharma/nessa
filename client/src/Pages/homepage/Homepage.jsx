@@ -177,7 +177,7 @@ const Homepage = () => {
                     <div className="flex relative shrink-0 mt-9 h-2.5 bg-[#b3d6f6] rounded-[50px] w-[51px]" />
                 </div>
 
-                <p className="text-lg max-w-3xl mx-auto mb-8">
+                <p className="text-xl max-w-3xl mx-auto mb-8">
                     At Nessa, we don’t just offer off-the-shelf products; we design and manufacture lighting solutions that adapt precisely to your
                     unique requirements. From extreme environments in mining and refineries to specific needs in airports and rural settings, our
                     expert team customizes each solution to solve the exact challenges you face.
@@ -239,7 +239,7 @@ const Homepage = () => {
                 </div>
             </div>
             <div className="flex max-md:block px-[5vw] text-lg relative">
-                <div className="w-[60%] max-md:w-full h-[500px] max-md:h-fit ">
+                <div className="w-[60%] max-md:w-full h-[500px] max-md:h-fit max-md:mb-[50px] ">
                     <h1 className="text-center mb-8">Nationwide presence</h1>
                     <div className="flex max-md:flex-col">
                         <img

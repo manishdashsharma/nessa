@@ -39,7 +39,7 @@ export default function RecoExSec2() {
         watchSlidesProgress={true}
         observer={true}
         observeParents={true}
-        className="mySwiper">
+        className="mySwiper my-[30px]">
         {[
           {
             image: awards02
@@ -52,9 +52,9 @@ export default function RecoExSec2() {
           }
         ].map((slide, index) => (
           <SwiperSlide key={index}>
-            <div className="flex flex-col items-center justify-center gap-4">
+            <div className="flex mb-[50px] flex-col items-center justify-center gap-4">
               <img
-                className="h-[300px] object-cover"
+                className="h-[300px]  object-cover"
                 src={slide.image}
                 alt=""
               />

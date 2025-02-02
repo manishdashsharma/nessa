@@ -82,7 +82,7 @@ export const ourRulerUpliftmentsSolution = [
     },
     {
         poster: solarBasedElectricity,
-        title: 'Solar based Electricity',
+        title: 'Solar Based Electricity',
     },
 ]
 export const ourRulerUpliftmentsSolutionRightSection = [

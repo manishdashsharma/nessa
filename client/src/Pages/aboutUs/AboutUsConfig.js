@@ -72,7 +72,7 @@ export const certificates= [
 
 import dhaval from '../../assets/images/aboutUs/team/dhaval.png'
 import sanjay from '../../assets/images/aboutUs/team/sanjay.png'
-import shoeb from '../../assets/images/aboutUs/team/shoeb.png'
+import shoeb from '../../assets/images/aboutUs/team/shoeb.jpeg'
 import krunal from '../../assets/images/aboutUs/team/krunal.jpeg'
 import arpit from '../../assets/images/aboutUs/team/arpit.jpeg'
 import devgan from '../../assets/images/aboutUs/team/devgan.jpeg'
@@ -105,7 +105,7 @@ export const team = [
         position: 'Chief Marketing Officer '
     },
     {
-        name: 'shoeb Noorani',
+        name: 'Shoeb Noorani',
         image: shoeb,
         position: 'Operation In Charge'
     }
