@@ -212,20 +212,14 @@ const SolutionsModel = ({ open, onClose, token }) => {
                     {/* Basic fields remain the same */}
                     <div>
                         <label className="block text-sm font-medium text-gray-700">Title</label>
-                        <select
+                        <input
+                            type="text"
                             name="title"
                             value={formData.title}
                             onChange={(e) => handleInputChange(e)}
                             className="mt-2 block w-full rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-700 shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-transparent"
-                            required>
-                            {title.map((titleOption, index) => (
-                                <option
-                                    key={index}
-                                    value={titleOption}>
-                                    {titleOption}
-                                </option>
-                            ))}
-                        </select>
+                            required
+                        />
                     </div>
 
                     <div>
@@ -270,14 +264,20 @@ const SolutionsModel = ({ open, onClose, token }) => {
                     </div> */}
                     <div>
                         <label className="block text-sm font-medium text-gray-700">Sub Categories</label>
-                        <input
-                            type="text"
+                        <select
                             name="subcategories"
                             value={formData.subcategories}
                             onChange={(e) => handleInputChange(e)}
                             className="mt-2 block w-full rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-700 shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-transparent"
-                            required
-                        />
+                            required>
+                            {title.map((titleOption, index) => (
+                                <option
+                                    key={index}
+                                    value={titleOption}>
+                                    {titleOption}
+                                </option>
+                            ))}
+                        </select>
                     </div>
 
                     {/* Related Products Section */}
