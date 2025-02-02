@@ -51,15 +51,15 @@ export const ValueAddedServices = () => {
         },
     ]
 
-    const [hover, sethover] = useState('')
+    const [hv, sethv] = useState('')
 
     const whyChooseNessaBox = (item, index) => {
         return (
 
             <div
                 key={index}
-                onMouseEnter={() => sethover(index)}
-                onMouseLeave={() => sethover('')}
+                onMouseEnter={() => sethv(index)}
+                onMouseLeave={() => sethv('')}
                 className="w-[25vw] pt-[20px] rounded-2xl shadow-md max-lg:w-[40vw] max-md:w-full relative overflow-hidden cursor-pointer"
                 style={{
                     background:
@@ -67,7 +67,7 @@ export const ValueAddedServices = () => {
                 }}
             >
                 <AnimatePresence>
-                    {hover === index && (
+                    {hv === index && (
                         <motion.div
                             key="overlay"
                             initial={{ y: '100%' }}
@@ -83,12 +83,12 @@ export const ValueAddedServices = () => {
                 </AnimatePresence>
                 <div className="border-2  h-full border-blue-500 bg-white w-full rounded-2xl p-6 shadow-md">
                     <div className="flex items-center mb-4 relative z-[2]">
-                        <RiLightbulbFlashLine className={`text-4xl  ${hover === index ? 'text-white ' : 'text-blue-500'}`} />
+                        <RiLightbulbFlashLine className={`text-4xl  ${hv === index ? 'text-white ' : 'text-blue-500'}`} />
                     </div>
-                    <h3 className={`text-xl font-semibold mb-2 relative z-[2]  ${hover === index ? 'text-white ' : 'text-blue-500'} `}>
+                    <h3 className={`text-xl font-semibold mb-2 relative z-[2]  ${hv === index ? 'text-white ' : 'text-blue-500'} `}>
                         {item.title}
                     </h3>
-                    <p className={`relative z-[2]  ${hover === index ? 'text-white ' : 'text-black'}`}>
+                    <p className={`relative z-[2]  ${hv === index ? 'text-white ' : 'text-black'}`}>
                         {item.description}
                     </p>
                 </div>
@@ -103,7 +103,7 @@ export const ValueAddedServices = () => {
 
           <div className="w-full h-[300px] max-sm:h-[200px] relative flex items-center  justify-center ">
               <img
-                  className="w-full h-full object-cover absolute  "
+                  className="w-full h-full object-cover object-left absolute  "
                   src={hero}
                   alt=""
               />
@@ -200,7 +200,7 @@ export const ValueAddedServices = () => {
               </div>
           </div>
 
-          <div className="w-full px-[5vw] grid grid-cols-2 max-md:grid-cols-1 gap-y-8  text-lg">
+          <div className="w-full px-[5vw] grid grid-cols-2 max-md:grid-cols-1 gap-y-8  gap-x-8 text-lg">
               <div className="">
                   <div className=" text-4xl font-semibold leading-snug text-center text-black z-[2] relative">
                       <span className="text-blue-500"> Smart Village </span> Solutions

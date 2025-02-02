@@ -24,73 +24,85 @@ import ProductDropdown from './ProductDropdown'
 import GoogleTranslate from '../../Utils/Google.Translate'
 import SearchBar from './SearchBar'
 
+import airport from '../../assets/images/navbar/airport.svg'
+import mines from '../../assets/images/navbar/mines.svg'
+import stadium from '../../assets/images/navbar/stadium.svg'
+import petrol from '../../assets/images/navbar/petrol.svg'
+import refinery from '../../assets/images/navbar/refinery.svg'
+import highway from '../../assets/images/navbar/highway.svg'
+import tunnel from '../../assets/images/navbar/tunnel.svg'
+import rural from '../../assets/images/navbar/rural.svg'
+import port from '../../assets/images/navbar/port.svg'
+import hazardous from '../../assets/images/navbar/Hazardous.svg'
+import thermal from '../../assets/images/navbar/thermal.svg'
+import solar from '../../assets/images/navbar/solar.svg'
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const [soluitonOpen, setsoluitonOpen] = useState(false)
     const [corporateOpen, setcorporateOpen] = useState(false)
     const [productOpen, setproductOpen] = useState(false)
     const [solutionsDropdown, setSolutionsDropdown] = useState([
-        {
-            logo: <BiSolidPlaneAlt className={`text-[#1E90FF] bg-[#1E90FF] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
-            link: '',
-            subcategories: 'Airports'
-        },
-        {
-            logo: <GiMineWagon className={`text-[#FF8C00] bg-[#FF8C00] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
-            link: '',
-            subcategories: 'Mines'
-        },
-        {
-            logo: <MdStadium className={`text-[#9370DB] bg-[#9370DB] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
-            link: '',
-            subcategories: 'Stadium'
-        },
-        {
-            logo: <FaGasPump className={`text-[#FF6347] bg-[#FF6347] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
-            link: '',
-            subcategories: 'Petrol Pump'
-        },
-        {
-            logo: <GiRefinery className={`text-[#32CD32] bg-[#32CD32] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
-            link: '',
-            subcategories: 'Refinery'
-        },
-        {
-            logo: <FaRoad className={`text-[#4169E1] bg-[#4169E1] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
-            link: '',
-            subcategories: 'Highways'
-        },
-        {
-            logo: <FaCarTunnel className={`text-[#FFB6C1] bg-[#FFB6C1] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
-            link: '',
-            subcategories: 'Tunnels'
-        },
-        {
-            logo: <GiForest className={`text-[#32CD32] bg-[#32CD32] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
-            link: '',
-            subcategories: 'Rural, Hilly & Forest Areas'
-        },
-        {
-            logo: <GiShipBow className={`text-[#98FB98] bg-[#98FB98] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
-            link: '',
-            subcategories: 'Ports & Logistic Parks'
-        },
-        {
-            logo: <GiHazardSign className={`text-[#FF4500] bg-[#FF4500] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
-            link: '',
-            subcategories: 'Hazardous Areas'
-        },
-        {
-            logo: <GiRefinery className={`text-[#FFD700] bg-[#FFD700] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
-            link: '',
-            subcategories: 'Thermal Power Plants'
-        },
-        {
-            logo: <PiSolarPanel className={`text-[#FFA07A] bg-[#FFA07A] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
-            link: '',
-            subcategories: 'Solar Parks'
-        }
-    ])
+    {
+        logo: <img src={airport} alt="Airport" className="w-[40px] h-[40px] " />,
+        link: '',
+        subcategories: 'Airports'
+    },
+    {
+        logo: <img src={mines} alt="Mines" className="w-[40px] h-[40px] " />,
+        link: '',
+        subcategories: 'Mines'
+    },
+    {
+        logo: <img src={stadium} alt="Stadium" className="w-[40px] h-[40px] " />,
+        link: '',
+        subcategories: 'Stadium'
+    },
+    {
+        logo: <img src={petrol} alt="Petrol Pump" className="w-[40px] h-[40px] " />,
+        link: '',
+        subcategories: 'Petrol Pump'
+    },
+    {
+        logo: <img src={refinery} alt="Refinery" className="w-[40px] h-[40px] " />,
+        link: '',
+        subcategories: 'Refinery'
+    },
+    {
+        logo: <img src={highway} alt="Highways" className="w-[40px] h-[40px] " />,
+        link: '',
+        subcategories: 'Highways'
+    },
+    {
+        logo: <img src={tunnel} alt="Tunnels" className="w-[40px] h-[40px] " />,
+        link: '',
+        subcategories: 'Tunnels'
+    },
+    {
+        logo: <img src={rural} alt="Rural" className="w-[40px] h-[40px] " />,
+        link: '',
+        subcategories: 'Rural, Hilly & Forest Areas'
+    },
+    {
+        logo: <img src={port} alt="Ports" className="w-[40px] h-[40px] " />,
+        link: '',
+        subcategories: 'Ports & Logistic Parks'
+    },
+    {
+        logo: <img src={hazardous} alt="Hazardous" className="w-[40px] h-[40px] " />,
+        link: '',
+        subcategories: 'Hazardous Areas'
+    },
+    {
+        logo: <img src={thermal} alt="Thermal" className="w-[40px] h-[40px] " />,
+        link: '',
+        subcategories: 'Thermal Power Plants'
+    },
+    {
+        logo: <img src={solar} alt="Solar" className="w-[40px] h-[40px] " />,
+        link: '',
+        subcategories: 'Solar Parks'
+    }
+]) 
 
     const [loading, setloading] = useState(true)
 

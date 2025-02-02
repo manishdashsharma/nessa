@@ -82,7 +82,7 @@ const AboutUs = () => {
 
             <div className="w-full h-[300px] max-sm:h-[200px] relative flex items-center  justify-start ">
                 <img
-                    className="w-full h-full object-cover absolute "
+                    className="w-full h-full object-cover object-left absolute "
                     src={hero}
                     alt=""
                 />

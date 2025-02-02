@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { BiSearch, BiEnvelope, BiPhone, BiCalculator } from 'react-icons/bi'
 import { RiBookletLine } from 'react-icons/ri'
 import { FaWhatsapp } from 'react-icons/fa'
 import { ImCross } from 'react-icons/im'
+
 
 export const focusSearchInput = () => {
     const event = new CustomEvent('focusSearchInput')
@@ -23,7 +25,15 @@ const handleWhatsAppClick = () => {
     window.open('https://api.whatsapp.com/send?phone=918690779778', '_blank', 'noopener,noreferrer')
 }
 
+
 const SideComponent = () => {
+
+ const navigate = useNavigate()
+ const handleBrochureClick = () => {
+     navigate('/resources')
+ }
+
+
   const [expandedIndex, setExpandedIndex] = useState(false)
   const [showCallModal, setShowCallModal] = useState(false)
   const [copiedNumber, setCopiedNumber] = useState(null)
@@ -56,7 +66,7 @@ const SideComponent = () => {
         { icon: BiEnvelope, label: 'Mail Us', color: 'bg-[#0066CC]', action: handleMailClick },
         { icon: BiPhone, label: 'Call Us', color: 'bg-[#0066CC]', action: handleCallClick },
         { icon: BiCalculator, label: 'Payback Calculator', color: 'bg-[#0066CC]' },
-        { icon: RiBookletLine, label: 'Brochure', color: 'bg-[#0066CC]' },
+        { icon: RiBookletLine, label: 'Brochure', color: 'bg-[#0066CC]', action: handleBrochureClick },
         { icon: FaWhatsapp, label: 'Whatsapp', color: 'bg-[#25D366]', action: handleWhatsAppClick }
     ]
 
