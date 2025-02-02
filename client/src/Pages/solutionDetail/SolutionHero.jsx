@@ -21,7 +21,7 @@ export const SOLUTION_THUMBNAILS = Object.fromEntries(
     'Hazardous areas': HazardousThumbnail,
     'Highways': HighwaysThumbnail,
     'Mines': MinesThumbnail,
-    'Petrol aump': PetrolPumpThumbnail,
+    'Petrol pump': PetrolPumpThumbnail,
     'Ports & logistic parks': PortsThumbnail,
     'Refinery': RefineryThumbnail,
     'Rural, hilly & forest areas': RuralThumbnail,
