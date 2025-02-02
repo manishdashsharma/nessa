@@ -7,8 +7,8 @@ import { signIn } from '../../service/apiService';
 
 
 const LoginPage = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('info@nessa.in');
+  const [password, setPassword] = useState('Nessa@Info8949');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate()
 

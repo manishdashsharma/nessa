@@ -26,6 +26,9 @@ const SolutionsModel = ({ open, onClose, token }) => {
         ]
     })
 
+    console.log(formData);
+    
+
     const [loading, setLoading] = useState(false)
     const title = [
         'Airports',

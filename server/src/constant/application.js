@@ -13,6 +13,7 @@ export const EProductCategories = Object.freeze({
     SOLAR: 'Solar',
     HYBRID_LIGHTS: 'Hybrid Lights',
     INDOOR_LIGHTING: 'Indoor Lighting',
+    SMART_LIGHTING_SOLUTION:'Smart Lighting Solutions',
     SOLUTIONS: 'Solutions',
 });
 
@@ -24,33 +25,47 @@ export const EACLightingSubCategories = Object.freeze({
     FISSION_LED_STREET_LIGHT: 'Fission LED Street Light',
     FISSION_FLOOD_LIGHT: 'Fission Flood Light',
     AC_HIGH_MAST: 'AC High Mast',
+    RGB_LIGHT : 'RGB Light',
+    TRAFFIC_BLINKER_LIGHT: 'TRAFFIC Blinker Light'
 });
 
 export const EElectronicsSubCategories = Object.freeze({
-    DRIVERS: 'Drivers',
-    SOLAR_CHARGE_CONTROLLERS: 'Solar Charge Controllers',
+    DC_DRIVERS: 'DC Drivers',
+    CHARGE_CONTROLLERS: 'Charge Controllers',
+    MOTION_SENSOR: 'Motion Sensor',
+    AC_DRIVER: 'AC Driver',
+    SPD: 'SPD',
+    DC_DRIVER_COMBO: 'DC Driver & Combo',
 });
 
 export const ESolarSubCategories = Object.freeze({
-    SEMI_INTEGRATED_SOLAR: 'Semi Integrated Solar',
-    LED_STREET_LIGHT_TWO_IN_ONE: 'LED Street Light (Two in One)',
-    INTEGRATED_SOLAR: 'Integrated Solar',
-    LED_STREET_LIGHT_ALL_IN_ONE: 'LED Street Light (All in One)',
-    SOLAR_LED_STREET_LIGHT: 'Solar LED Street Light',
+    SEMI_INTEGRATED_SOLAR: 'Semi Integrated Street Light (Two in One)',
+    INDUSTRIAL_SOLAR: 'Integrated Street Light (All In One)',
+    SOLAR_STREET_LIGHT: 'Solar Street Light (Full System)',
     SOLAR_PUMPS: 'Solar Pumps',
     SOLAR_ROOF_TOP: 'Solar Roof Top',
+    SOLAR_HIGH_MAST: 'Solar High Mast'
 });
+
 
 export const EHybridLightsSubCategories = Object.freeze({
-    HYBRID_SOLAR_STREET_LIGHT: 'Hybrid Solar Street Light',
+    HYBRID_SEMI_INTEGRATED: 'Hybrid Semi Integrated Solar Street Light Light',
+    HYBRID_INTEGRATED: 'Hybrid Integrated Solar Street Light'
 });
 
+
 export const EIndoorLightingSubCategories = Object.freeze({
-    SURFACE: 'Surface',
-    PANEL: 'Panel',
-    DOWNLIGHT: 'Downlight',
+    SURFACE_LIGHT: 'Surface Light',
+    SPIKE_LIGHT: 'Spike Light',
     TUBE_LIGHT: 'Tube Light',
+    DOWNLIGHT: 'Downlight',
+    PANEL_LIGHT: 'Panel Light'
 });
+
+export const ESmartLightingSolutions = Object.freeze({
+    AC_SMART_STREET_LIGHT: 'AC Smart Street Light',
+    SOLAR_SMART_STREET_LIGHT: 'Smart Solar Street Light'
+})
 
 export const ESolutionsSubCategories = Object.freeze({
     AIRPORTS: 'Airports',
