@@ -30,8 +30,9 @@ const ProjectsPage = () => {
 
 
     const handleOpenModal = () => setOpenModal(true)
-    const handleCloseModal = () => setOpenModal(false)
-
+    const handleCloseModal = () => {
+        setOpenModal(false)
+    }
     const handleOpenDetailsModal = (project, category) => {
         setSelectedProject(project)
         setSelectedCategory(category)

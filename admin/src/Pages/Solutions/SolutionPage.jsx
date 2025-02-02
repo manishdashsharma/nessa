@@ -43,6 +43,7 @@ const SolutionPage = () => {
     const handleCloseEditModal = () => {
         setOpenEditModal(false); 
         setEditSolutionId(null); 
+        fetchSolutions();
     };
 
     useEffect(() => {
@@ -68,8 +69,6 @@ const SolutionPage = () => {
         }
     };
     useEffect(() => {
-      
-
         fetchSolutions();
     }, []);
 
