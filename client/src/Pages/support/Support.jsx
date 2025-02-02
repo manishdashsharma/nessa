@@ -188,7 +188,7 @@ const Support = () => {
 
                 <div className="w-full h-[300px] max-sm:h-[200px] relative flex items-center justify-center">
                     <img
-                        className="w-full h-full object-cover object-left absolute"
+                        className="w-full min-h-[150px] object-cover  absolute"
                         src={supporthero}
                         alt=""
                     />

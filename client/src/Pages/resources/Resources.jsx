@@ -64,7 +64,7 @@ export const Resources = () => {
 
             <div className="w-full h-[300px] max-sm:h-[200px] relative flex items-center  justify-start ">
                 <img
-                    className="w-full h-full object-cover object-left absolute "
+                    className="w-full min-h-[150px] object-cover object-left absolute "
                     src={resourceshero}
                     alt=""
                 />
@@ -93,9 +93,9 @@ export const Resources = () => {
                 {nessaCatalogs.map((item, index) => (
                     <div
                         key={index}
-                        className=" w-[20vw] max-md:w-[40vw] max-sm:w-[90%] max-sm:mb-10 h-[30vw] max-md:h-fit  flex flex-col items-center ">
+                        className=" w-[20vw] max-md:w-[40vw] max-sm:w-[90%] max-md:mb-10 h-[30vw] max-md:h-fit  flex flex-col items-center ">
                         <img
-                            className="bg-gray-400 h-[80%] "
+                            className="bg-gray-400  h-[300px]   "
                             src={item.poster}
                             alt={item.name}
                         />

@@ -36,7 +36,7 @@ export default function ProductAndTestingSwiper( {data}) {
       <>
           <Swiper
               slidesPerView={1}
-              spaceBetween={0}
+              spaceBetween={20}
               pagination={{
                   clickable: true,
                   dynamicBullets: true,

@@ -1,3 +1,6 @@
+import React from 'react';
+
+// Import statements remain the same
 import AirportThumbnail from '../../assets/images/solutionsImages/hero/Aeroplane.jpg'
 import HazardousThumbnail from '../../assets/images/solutionsImages/hero/Hazardous Areas.jpg'
 import HighwaysThumbnail from '../../assets/images/solutionsImages/hero/Highway Light.jpg'
@@ -11,34 +14,41 @@ import StadiumThumbnail from '../../assets/images/solutionsImages/hero/Stadium L
 import ThermalThumbnail from '../../assets/images/solutionsImages/hero/Thermal.jpg'
 import TunnelsThumbnail from '../../assets/images/solutionsImages/hero/Tunnel Light.jpg'
 
-export const SOLUTION_THUMBNAILS = {
-    Airports: AirportThumbnail,
-    'Hazardous Areas': HazardousThumbnail,
-    Highways: HighwaysThumbnail,
-    Mines: MinesThumbnail,
-    'Petrol Pump': PetrolPumpThumbnail,
-    'Ports & Logistic Parks': PortsThumbnail,
-    Refinery: RefineryThumbnail,
-    'Rural, Hilly & Forest Areas': RuralThumbnail,
-    'Solar Parks': SolarThumbnail,
-    Stadium: StadiumThumbnail,
-    'Thermal Power Plants': ThermalThumbnail,
-    Tunnels: TunnelsThumbnail
-}
+// Create a case-insensitive mapping of thumbnails
+export const SOLUTION_THUMBNAILS = Object.fromEntries(
+  Object.entries({
+    'Airports': AirportThumbnail,
+    'Hazardous areas': HazardousThumbnail,
+    'Highways': HighwaysThumbnail,
+    'Mines': MinesThumbnail,
+    'Petrol aump': PetrolPumpThumbnail,
+    'Ports & logistic parks': PortsThumbnail,
+    'Refinery': RefineryThumbnail,
+    'Rural, hilly & forest areas': RuralThumbnail,
+    'Solar parks': SolarThumbnail,
+    'Stadium': StadiumThumbnail,
+    'Thermal power plants': ThermalThumbnail,
+    'Tunnels': TunnelsThumbnail
+  }).map(([key, value]) => [key.toLowerCase(), value])
+);
 
 export const SolutionHero = ({ solution }) => {
-    const thumbnailSrc = SOLUTION_THUMBNAILS[solution.subcategories] || AirportThumbnail 
+  // Convert the subcategory to lowercase for case-insensitive matching
+  const thumbnailSrc = 
+    SOLUTION_THUMBNAILS[solution.subcategories?.toLowerCase()] || AirportThumbnail;
 
-    return (
-        <div className="w-full h-[300px] max-sm:h-[200px] relative flex items-center justify-start">
-            <img
-                className="w-full h-full object-cover absolute"
-                src={thumbnailSrc}
-                alt={`${solution.title} hero`}
-            />
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white ml-[5vw] relative z-[2] drop-shadow-[0_0_10px_rgba(0,0,0,0.8)]">
-                {solution.title}
-            </h1>
-        </div>
-    )
-}
+  return (
+    <div className="w-full h-[300px] max-sm:h-[200px] relative flex items-center justify-start">
+      <img
+        className="w-full h-full object-cover absolute"
+        src={thumbnailSrc}
+        alt={`${solution.title} hero`}
+      />
+      <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white ml-[5vw] relative z-[2] drop-shadow-[0_0_10px_rgba(0,0,0,0.8)]">
+        {solution.title}
+      </h1>
+    </div>
+  );
+};
+
+export default SolutionHero;

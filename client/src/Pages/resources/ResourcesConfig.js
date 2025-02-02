@@ -3,8 +3,6 @@ import blogWebResources from '../../assets/images/resourcesImages/blog-webResour
 import blogPrinciple from '../../assets/images/resourcesImages/blog-principle.png';
 import blogExample from '../../assets/images/resourcesImages/blog-greatExample.png';
 import mediaPost1 from '../../assets/images/resourcesImages/mediaPost1.png';
-
-
 import axios from 'axios'
 import { fetchBlogs } from '../../services/api.services';
 
@@ -43,83 +41,83 @@ export const insitesAndResources = [
   {
     title: 'Case Studies',
     items: [
-      {
-        title: '5 Great Web Design Resources',
-        image: blogExample,
-        category: 'Analytics',
-        sorttitle: 'Est placeat perspicia',
-        profile: {
-          author: 'Orlando Diggs',
-          date: 'March 28, 2023',
-          readTime: '5 min read',
-          profilePicture: '',
-        },
-      },
-      {
-        title: '10 Great Examples of Websites',
-        image: '',
-        category: 'Marketing',
-        sorttitle: 'Et odit soluta sint temporibus quia dolorem',
-        profile: {
-          author: 'Mike Dean',
-          date: 'March 28, 2023',
-          readTime: '3 min read',
-          profilePicture: '',
-        },
-      },
-      {
-        title: '5 Principles Of Effective Web Design',
-        image: '',
-        category: 'Business',
-        sorttitle: 'Sapiente amet molestias cum fugiat qui',
-        profile: {
-          author: 'Anna Provi',
-          date: 'March 28, 2023',
-          readTime: '8 min read',
-          profilePicture: '',
-        },
-      },
+      // {
+      //   title: '5 Great Web Design Resources',
+      //   image: blogExample,
+      //   category: 'Analytics',
+      //   sorttitle: 'Est placeat perspicia',
+      //   profile: {
+      //     author: 'Orlando Diggs',
+      //     date: 'March 28, 2023',
+      //     readTime: '5 min read',
+      //     profilePicture: '',
+      //   },
+      // },
+      // {
+      //   title: '10 Great Examples of Websites',
+      //   image: '',
+      //   category: 'Marketing',
+      //   sorttitle: 'Et odit soluta sint temporibus quia dolorem',
+      //   profile: {
+      //     author: 'Mike Dean',
+      //     date: 'March 28, 2023',
+      //     readTime: '3 min read',
+      //     profilePicture: '',
+      //   },
+      // },
+      // {
+      //   title: '5 Principles Of Effective Web Design',
+      //   image: '',
+      //   category: 'Business',
+      //   sorttitle: 'Sapiente amet molestias cum fugiat qui',
+      //   profile: {
+      //     author: 'Anna Provi',
+      //     date: 'March 28, 2023',
+      //     readTime: '8 min read',
+      //     profilePicture: '',
+      //   },
+      // },
     ],
   },
   {
     title: 'white Papers',
     items: [
-      {
-        title: '5 Great Web Design Resources',
-        image: '',
-        category: 'Analytics',
-        sorttitle: 'Est placeat perspicia',
-        profile: {
-          author: 'Orlando Diggs',
-          date: 'March 28, 2023',
-          readTime: '5 min read',
-          profilePicture: '',
-        },
-      },
-      {
-        title: '10 Great Examples of Websites',
-        image: '',
-        category: 'Marketing',
-        sorttitle: 'Et odit soluta sint temporibus quia dolorem',
-        profile: {
-          author: 'Mike Dean',
-          date: 'March 28, 2023',
-          readTime: '3 min read',
-          profilePicture: '',
-        },
-      },
-      {
-        title: '5 Principles Of Effective Web Design',
-        image: '',
-        category: 'Business',
-        sorttitle: 'Sapiente amet molestias cum fugiat qui',
-        profile: {
-          author: 'Anna Provi',
-          date: 'March 28, 2023',
-          readTime: '8 min read',
-          profilePicture: '',
-        },
-      },
+      // {
+      //   title: '5 Great Web Design Resources',
+      //   image: '',
+      //   category: 'Analytics',
+      //   sorttitle: 'Est placeat perspicia',
+      //   profile: {
+      //     author: 'Orlando Diggs',
+      //     date: 'March 28, 2023',
+      //     readTime: '5 min read',
+      //     profilePicture: '',
+      //   },
+      // },
+      // {
+      //   title: '10 Great Examples of Websites',
+      //   image: '',
+      //   category: 'Marketing',
+      //   sorttitle: 'Et odit soluta sint temporibus quia dolorem',
+      //   profile: {
+      //     author: 'Mike Dean',
+      //     date: 'March 28, 2023',
+      //     readTime: '3 min read',
+      //     profilePicture: '',
+      //   },
+      // },
+      // {
+      //   title: '5 Principles Of Effective Web Design',
+      //   image: '',
+      //   category: 'Business',
+      //   sorttitle: 'Sapiente amet molestias cum fugiat qui',
+      //   profile: {
+      //     author: 'Anna Provi',
+      //     date: 'March 28, 2023',
+      //     readTime: '8 min read',
+      //     profilePicture: '',
+      //   },
+      // },
     ],
   },
   {
@@ -138,47 +136,47 @@ export const media = [
     title: 'Press release',
 
     items: [
-      {
-        title: 'SEWA, bizmen use LEDs to lead veg vendors out of darkness!',
-        image: mediaPost1,
+      // {
+      //   title: 'SEWA, bizmen use LEDs to lead veg vendors out of darkness!',
+      //   image: mediaPost1,
         
-      },
-      {
-        title: 'SEWA, bizmen use LEDs to lead veg vendors out of darkness!',
-        image: mediaPost1,
+      // },
+      // {
+      //   title: 'SEWA, bizmen use LEDs to lead veg vendors out of darkness!',
+      //   image: mediaPost1,
         
-      },
-      {
-        title: 'SEWA, bizmen use LEDs to lead veg vendors out of darkness!',
-        image: mediaPost1,
+      // },
+      // {
+      //   title: 'SEWA, bizmen use LEDs to lead veg vendors out of darkness!',
+      //   image: mediaPost1,
         
-      },
-      {
-        title: 'SEWA, bizmen use LEDs to lead veg vendors out of darkness!',
-        image: mediaPost1,
+      // },
+      // {
+      //   title: 'SEWA, bizmen use LEDs to lead veg vendors out of darkness!',
+      //   image: mediaPost1,
         
-      },
-      {
-        title: 'SEWA, bizmen use LEDs to lead veg vendors out of darkness!',
-        image: mediaPost1,
+      // },
+      // {
+      //   title: 'SEWA, bizmen use LEDs to lead veg vendors out of darkness!',
+      //   image: mediaPost1,
         
-      },
-      {
-        title: 'SEWA, bizmen use LEDs to lead veg vendors out of darkness!',
-        image: mediaPost1,
+      // },
+      // {
+      //   title: 'SEWA, bizmen use LEDs to lead veg vendors out of darkness!',
+      //   image: mediaPost1,
         
-      },
+      // },
     
     ],
   },
   {
     title: 'Media coverage',
     items: [
-      {
-        title: 'SEWA, bizmen use LEDs to lead veg vendors out of darkness!',
-        image:  mediaPost1,
+      // {
+      //   title: 'SEWA, bizmen use LEDs to lead veg vendors out of darkness!',
+      //   image:  mediaPost1,
        
-      },
+      // },
      
     ],
   },

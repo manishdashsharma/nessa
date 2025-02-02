@@ -82,7 +82,7 @@ const AboutUs = () => {
 
             <div className="w-full h-[300px] max-sm:h-[200px] relative flex items-center  justify-start ">
                 <img
-                    className="w-full h-full object-cover object-left absolute "
+                    className="w-full min-h-[150px] object-cover object-left absolute "
                     src={hero}
                     alt=""
                 />
@@ -249,7 +249,7 @@ const AboutUs = () => {
             <div className="w-full py-[50px]">
                 <div className=" text-4xl font-semibold leading-snug text-center text-black z-[2] relative">
                     Our Team
-                    <span className="text-blue-500"> &</span> Investor
+                    <span className="text-blue-500"> &</span> Advisor
                 </div>
                 <div className="w-full flex justify-center mb-5">
                     <div className="flex relative shrink-0 mt-9 h-2.5 bg-[#b3d6f6] rounded-[50px] w-[51px]" />

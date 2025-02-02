@@ -60,7 +60,7 @@ const Navbar = () => {
     {
         logo: <img src={petrol} alt="Petrol Pump" className="w-[40px] h-[40px] " />,
         link: '',
-        subcategories: 'Petrol Pump'
+        subcategories: 'Petrol pump'
     },
     {
         logo: <img src={refinery} alt="Refinery" className="w-[40px] h-[40px] " />,
@@ -80,27 +80,27 @@ const Navbar = () => {
     {
         logo: <img src={rural} alt="Rural" className="w-[40px] h-[40px] " />,
         link: '',
-        subcategories: 'Rural, Hilly & Forest Areas'
+        subcategories: 'Rural, hilly & forest areas'
     },
     {
         logo: <img src={port} alt="Ports" className="w-[40px] h-[40px] " />,
         link: '',
-        subcategories: 'Ports & Logistic Parks'
+        subcategories: 'Ports & logistic parks'
     },
     {
         logo: <img src={hazardous} alt="Hazardous" className="w-[40px] h-[40px] " />,
         link: '',
-        subcategories: 'Hazardous Areas'
+        subcategories: 'Hazardous areas'
     },
     {
         logo: <img src={thermal} alt="Thermal" className="w-[40px] h-[40px] " />,
         link: '',
-        subcategories: 'Thermal Power Plants'
+        subcategories: 'Thermal power plants'
     },
     {
         logo: <img src={solar} alt="Solar" className="w-[40px] h-[40px] " />,
         link: '',
-        subcategories: 'Solar Parks'
+        subcategories: 'Solar parks'
     }
 ]) 
 

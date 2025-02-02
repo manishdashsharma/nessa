@@ -26,7 +26,7 @@ export default function InvestorSwiper() {
                 navigation={{
                     clickable: true
                 }}
-                modules={[Pagination, Navigation ,Autoplay]}
+                modules={[Pagination, Navigation, Autoplay]}
                 className="mySwiper  mt-[50px]">
                 {investor.length > 0 ? (
                     investor.map((investor, i) => (
@@ -42,7 +42,7 @@ export default function InvestorSwiper() {
                                     />
                                 </div>
                                 <div className="w-[70%] max-md:w-full p-[30px] flex flex-col justify-center gap-5">
-                                    <h1 className="font-semibold text-orange-400 text-4xl ">Investor</h1>
+                                    <h1 className="font-semibold text-orange-400 text-4xl ">Advisor</h1>
                                     <h1 className="font-semibold  text-xl ">{investor.name}</h1>
                                     <h1 className="text-lg">{investor.description}</h1>
                                 </div>

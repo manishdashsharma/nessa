@@ -15,6 +15,7 @@ const SolutionDetail = () => {
     const { id  } = useParams() 
     const [loading, setloading] = useState(true)
     const [solution, setsolution] = useState([])
+    const [caseStudiesData, setcaseStudiesData] = useState(caseStudiesHardCodedData.utilsData.caseStudiesUtils)
 
     useEffect(() => {
         const fetchSolution = async () => {
@@ -36,28 +37,7 @@ const SolutionDetail = () => {
         fetchSolution()
     }, [id])
 
-    const [caseStudiesData, setcaseStudiesData] = useState([])
-    useEffect(() => {
-        const fetchCaseStudiesUtils = async () => {
-            try {
-                // setloading(true)
-
-                const response = await fetchUtilsData(solutionDetailPage.caseStudiesUtilsId)
-                if (response?.data) {
-                    setcaseStudiesData(response.data.utilsData.caseStudiesUtils)
-                }
-            } catch (error) {
-                console.error('Error fetching product data:', error)
-                toast.error('Failed to load case sutdeis ')
-                setcaseStudiesData(caseStudiesHardCodedData.utilsData.caseStudiesUtils)
-            } finally {
-                // setloading(false)
-                
-            }
-        };
-
-        fetchCaseStudiesUtils()
-    },[])
+   
 
 
     if (loading) {
