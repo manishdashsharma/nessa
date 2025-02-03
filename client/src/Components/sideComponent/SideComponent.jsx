@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { BiSearch, BiEnvelope, BiPhone, BiCalculator } from 'react-icons/bi'
 import { RiBookletLine } from 'react-icons/ri'
 import { FaWhatsapp } from 'react-icons/fa'
 import { ImCross } from 'react-icons/im'
-
 
 export const focusSearchInput = () => {
     const event = new CustomEvent('focusSearchInput')
@@ -18,48 +17,46 @@ const handleMailClick = () => {
     mailtoLink.target = '_blank'
     mailtoLink.rel = 'noopener noreferrer'
     mailtoLink.click()
-
 }
 
 const handleWhatsAppClick = () => {
     window.open('https://api.whatsapp.com/send?phone=918690779778', '_blank', 'noopener,noreferrer')
 }
 
-
 const SideComponent = () => {
+    const navigate = useNavigate()
+    const sidebarRef = useRef(null)
 
- const navigate = useNavigate()
- const handleBrochureClick = () => {
-     navigate('/resources')
- }
+    const handleBrochureClick = () => {
+        navigate('/resources')
+    }
 
+    const [expandedIndex, setExpandedIndex] = useState(false)
+    const [showCallModal, setShowCallModal] = useState(false)
+    const [copiedNumber, setCopiedNumber] = useState(null)
 
-  const [expandedIndex, setExpandedIndex] = useState(false)
-  const [showCallModal, setShowCallModal] = useState(false)
-  const [copiedNumber, setCopiedNumber] = useState(null)
+    const phoneNumbers = [
+        { number: '+91 8690779778', label: 'Sales Support' },
+        { number: '+91 8690779778', label: 'Technical Support' }
+    ]
 
-  const phoneNumbers = [
-      { number: '+91 8690779778', label: 'Sales Support' },
-      { number: '+91 8690779778', label: 'Technical Support' }
-  ]
+    const handleCallClick = () => {
+        setShowCallModal(true)
+    }
 
-  const handleCallClick = () => {
-      setShowCallModal(true)
-  }
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
 
-  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
-
-  const handleCallNumber = (phone) => {
-      if (isMobile) {
-          window.location.href = `tel:${phone.number.replace(/\s+/g, '')}`
-          setShowCallModal(false)
-      } else {
-          navigator.clipboard.writeText(phone.number).then(() => {
-              setCopiedNumber(phone.number)
-              setTimeout(() => setCopiedNumber(null), 2000) 
-          })
-      }
-  }
+    const handleCallNumber = (phone) => {
+        if (isMobile) {
+            window.location.href = `tel:${phone.number.replace(/\s+/g, '')}`
+            setShowCallModal(false)
+        } else {
+            navigator.clipboard.writeText(phone.number).then(() => {
+                setCopiedNumber(phone.number)
+                setTimeout(() => setCopiedNumber(null), 2000)
+            })
+        }
+    }
 
     const menuItems = [
         { icon: BiSearch, label: 'Search Product', color: 'bg-[#0066CC]', action: focusSearchInput },
@@ -75,16 +72,37 @@ const SideComponent = () => {
             action()
         }
         setExpandedIndex(true)
-
     }
-    
+
     const handleItemClose = () => {
         setExpandedIndex(false)
     }
 
+    useEffect(() => {
+        const handleOpenSidebar = () => {
+            setExpandedIndex(true)
+        }
+
+        const handleClickOutside = (event) => {
+            if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+                setExpandedIndex(false)
+            }
+        }
+
+        window.addEventListener('openSidebar', handleOpenSidebar)
+        document.addEventListener('mousedown', handleClickOutside)
+
+        return () => {
+            window.removeEventListener('openSidebar', handleOpenSidebar)
+            document.removeEventListener('mousedown', handleClickOutside)
+        }
+    }, [])
+
     return (
         <>
-            <div className="fixed right-0 top-[55%] z-50">
+            <div
+                className="fixed right-0 top-[55%] z-50"
+                ref={sidebarRef}>
                 <AnimatePresence mode="wait">
                     {expandedIndex && (
                         <motion.div
@@ -133,7 +151,7 @@ const SideComponent = () => {
                                                     width: 0,
                                                     transition: {
                                                         duration: 0.3,
-                                                        ease: 'easein',
+                                                        ease: 'easein'
                                                     }
                                                 }}
                                                 onClick={() => handleItemClick(item.action)}
@@ -169,7 +187,7 @@ const SideComponent = () => {
                                 {phoneNumbers.map((phone, index) => (
                                     <div
                                         key={index}
-                                        onClick={() => handleCallNumber(phone.number)}
+                                        onClick={() => handleCallNumber(phone)}
                                         className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer transition-colors">
                                         <div>
                                             <p className="font-medium text-gray-800">{phone.label}</p>

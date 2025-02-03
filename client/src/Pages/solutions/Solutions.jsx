@@ -10,7 +10,6 @@ import { allSolutions, fetchUtilsData } from '../../services/api.services'
 import TrendingProductsSwipe from '../../Components/trendingProducts/TrendingProductsSwiper'
 import toast from 'react-hot-toast'
 import Footer from '../../Components/Footer'
-import { solutionDetailPage } from '../../Utils/Utils'
 
 const Solutions = () => {
     const [loading, setloading] = useState(true)

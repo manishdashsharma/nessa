@@ -83,7 +83,7 @@ export default function ShowProducts() {
                 const params = {
                     limit: ITEMS_PER_PAGE,
                     offset: (currentPage - 1) * ITEMS_PER_PAGE,
-                    query: 'required',
+                    query: selectedFilters.length > 0 ? 'required' : 'all',
                     subcategories: selectedFilters.length > 0 ? selectedFilters : undefined
                 }
 

@@ -11,7 +11,6 @@ import SideComponent from '../../Components/sideComponent/SideComponent'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import PartnersReviewsSwiper from '../../Components/partnerreviews/PartnersReviewsSwiper'
-import demoVideo from '../../assets/images/demoVideo.mp4'
 import Footer from '../../Components/Footer'
 import TeamSwiper from './TeamSwiper'
 import InvestorSwiper from './InvestorSwiper'
@@ -107,15 +106,18 @@ const AboutUs = () => {
             </div>
 
             <div className="w-full h-fit px-[5vw] pb-[50px]">
-                <video
-                    className="w-full h-fit object-cover bg-gray-300 rounded-xl"
-                    src={demoVideo}
-                    autoPlay
-                    muted
-                    loop
-                    alt="">
-                    {' '}
-                </video>
+                <div
+                    className="relative w-full"
+                    style={{ paddingTop: '56.25%' }}>
+                    <iframe
+                        className="absolute top-0 left-0 w-full h-full rounded-xl"
+                        src="https://www.youtube.com/embed/U6f9QtHyel8?autoplay=1&mute=1&controls=1&cc_load_policy=0&loop=1&playlist=U6f9QtHyel8&rel=0"
+                        title="YouTube video player"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerPolicy="strict-origin-when-cross-origin"
+                        allowFullScreen></iframe>
+                </div>
             </div>
 
             <div

@@ -5,7 +5,6 @@ import Navbar from '../../Components/Header/Navbar'
 import SideComponent from '../../Components/sideComponent/SideComponent'
 import Footer from '../../Components/Footer'
 import { fetchUtilsData } from '../../services/api.services'
-import { resourcesPageUtilsApi } from '../../Utils/Utils'
 import { useEffect, useState } from 'react'
 import { resourcesUtilsConfigHardCodedData } from './ResourcesConfig'
 import toast from 'react-hot-toast'
@@ -17,45 +16,6 @@ export const Resources = () => {
       const [nessaCatalogs, setnessaCatalogs] = useState(resourcesUtilsConfigHardCodedData.utilsData.nessaCatalogUtilsData)
       const [productManual, setproductManual] = useState(resourcesUtilsConfigHardCodedData.utilsData.productManualUtilsData)
       const [nessaManual, setnessaManual] = useState(resourcesUtilsConfigHardCodedData.utilsData.nessaManualUtilsData)
-    // useEffect(() => {
-    //     const fetchNessaCatalogData = async () => {
-    //         try {
-    //             setloading(true)
-
-    //             const response = await fetchUtilsData(resourcesPageUtilsApi)
-    //             if (response?.data) {
-    //                 setnessaCatalogs(response.data.utilsData.nessaCatalogUtilsData || resourcesUtilsConfigHardCodedData.utilsData.nessaCatalogUtilsData)
-    //                 setproductManual(response.data.utilsData.productManualUtilsData || resourcesUtilsConfigHardCodedData.utilsData.productManualUtilsData)
-    //                 setnessaManual(response.data.utilsData.nessaManualUtilsData || resourcesUtilsConfigHardCodedData.utilsData.nessaManualUtilsData)
-
-    //             }  else {
-    //                 // Fallback to hardcoded data
-    //                 setnessaCatalogs(resourcesUtilsConfigHardCodedData.utilsData.nessaCatalogUtilsData)
-    //                 setproductManual(resourcesUtilsConfigHardCodedData.utilsData.productManualUtilsData)
-    //                 setnessaManual(resourcesUtilsConfigHardCodedData.utilsData.nessaManualUtilsData)
-    //             }
-    //         } catch (error) {
-    //             console.error('Error fetching  data:', error)
-    //             toast.error('error fetching data')
-    //             // Fallback to hardcoded data
-    //             setnessaCatalogs(resourcesUtilsConfigHardCodedData.utilsData.nessaCatalogUtilsData)
-    //             setproductManual(resourcesUtilsConfigHardCodedData.utilsData.productManualUtilsData)
-    //             setnessaManual(resourcesUtilsConfigHardCodedData.utilsData.nessaManualUtilsData)
-    //         } finally {
-    //             setloading(false)
-    //         }
-    //     }
-
-    //     fetchNessaCatalogData()
-    // }, [])
-
-    // if (loading) {
-    //     return (
-    //         <div className="flex justify-center items-center h-64">
-    //             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500" />
-    //         </div>
-    //     )
-    // }
 
     return (
         <div className="w-full overflow-hidden">

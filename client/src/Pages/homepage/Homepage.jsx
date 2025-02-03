@@ -9,7 +9,6 @@ import thunder from '../../assets/images/homepageimages/thunder.svg';
 import lamp from '../../assets/images/homepageimages/lamp.png';
 import indiaMap from '../../assets/images/homepageimages/indiaMap.png';
 import indiaFlag from '../../assets/images/homepageimages/india.png';
-import demoVideo from '../../assets/images/demoVideo.mp4';
 import Navbar from '../../Components/Header/Navbar';
 import SideComponent from '../../Components/sideComponent/SideComponent';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -24,6 +23,14 @@ import PartnersReviewsSwiper from '../../Components/partnerreviews/PartnersRevie
 const Homepage = () => {
     const [loading, setloading] = useState(true)
     const [solutions, setsolutions] = useState([])
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            window.dispatchEvent(new CustomEvent('openSidebar'))
+        }, 2000)
+
+        return () => clearTimeout(timer) 
+    }, []) 
 
     useEffect(() => {
         const fetchSolutions = async () => {
@@ -45,39 +52,33 @@ const Homepage = () => {
         fetchSolutions()
     }, [])
 
-
-
     const whyChooseNessaBoxData = [
         {
             title: '16+ Years of Expertise',
-            description: 'Lighting the way for over 16 years, trusted by industries worldwide.',
+            description: 'Lighting the way for over 16 years, trusted by industries worldwide.'
         },
         {
             title: 'Global Reach',
-            description: 'Serving clients in 20+ countries across all major continents.',
+            description: 'Serving clients in 20+ countries across all major continents.'
         },
         {
             title: 'Inhouse Manufacturing',
-            description: 'Complete control from design to delivery for unmatched quality.',
-        },
-
+            description: 'Complete control from design to delivery for unmatched quality.'
+        }
     ]
 
     const [hover, sethover] = useState('')
 
     const whyChooseNessaBox = (item, index) => {
         return (
-
             <div
                 key={index}
                 onMouseEnter={() => sethover(index)}
                 onMouseLeave={() => sethover('')}
                 className="w-[22vw] pt-[20px] rounded-2xl shadow-md max-md:w-full relative overflow-hidden cursor-pointer"
                 style={{
-                    background:
-                        'linear-gradient(to right, #841D84, #3DC3BB, #FF8983)',
-                }}
-            >
+                    background: 'linear-gradient(to right, #841D84, #3DC3BB, #FF8983)'
+                }}>
                 <AnimatePresence>
                     {hover === index && (
                         <motion.div
@@ -100,14 +101,11 @@ const Homepage = () => {
                     <h3 className={`text-xl font-semibold mb-2 relative z-[2]  ${hover === index ? 'text-white ' : 'text-blue-500'} `}>
                         {item.title}
                     </h3>
-                    <p className={`relative z-[2]  ${hover === index ? 'text-white ' : 'text-black'}`}>
-                        {item.description}
-                    </p>
+                    <p className={`relative z-[2]  ${hover === index ? 'text-white ' : 'text-black'}`}>{item.description}</p>
                 </div>
             </div>
         )
     }
-
 
     if (loading) {
         return (
@@ -177,7 +175,7 @@ const Homepage = () => {
                     <div className="flex relative shrink-0 mt-9 h-2.5 bg-[#b3d6f6] rounded-[50px] w-[51px]" />
                 </div>
 
-                <p className="text-xl max-w-3xl mx-auto mb-8">
+                <p className="text-xl px-[5vw] mb-8">
                     At Nessa, we don’t just offer off-the-shelf products; we design and manufacture lighting solutions that adapt precisely to your
                     unique requirements. From extreme environments in mining and refineries to specific needs in airports and rural settings, our
                     expert team customizes each solution to solve the exact challenges you face.
@@ -262,12 +260,14 @@ const Homepage = () => {
                 </div>
                 <div className="w-[40%] max-md:w-full h-[500px] max-md:h-fit relative">
                     <div
-                        className="h-full absolute left-0 w-[2px] max-md:hidden"
-                        style={{
-                            background: 'linear-gradient(to bottom, transparent, #0074E0, transparent)'
-                        }}></div>
+                        className="h-[80%] mt-[10%] max-md:mt-0 absolute left-0 w-[2px] max-md:w-full max-md:h-[2px] bg-blue-500"
+                        style={
+                            {
+                                // background: 'linear-gradient(to bottom, transparent, #0074E0, transparent)'
+                            }
+                        }></div>
 
-                    <h1 className="text-center mb-8 ">International presence</h1>
+                    <h1 className="text-center mb-8 pt-[20px]">International presence</h1>
                     <div className="grid grid-cols-4 gap-y-4 gap-x-0 ml-5 max-sm:ml-0">
                         {countries.map((country, index) => (
                             <div
@@ -316,7 +316,7 @@ const Homepage = () => {
                     With complete in-house manufacturing, R&D, and stringent testing, Nessa guarantees top-tier quality and innovation in every
                     lighting solution. From design to delivery, we control every step for unmatched reliability.
                 </div>
-                <div className="absolute w-[15vw] min-w-[80px]  object-cover top-0 left-10 max-sm:left-0">
+                <div className="absolute z-[1] w-[15vw] min-w-[80px]  object-cover top-0 left-10 max-sm:left-0">
                     {' '}
                     <img
                         src={lamp}
@@ -325,29 +325,31 @@ const Homepage = () => {
                 </div>
             </div>
             <div className="w-full h-fit px-[5vw] pb-[50px]">
-                <video
-                    className="w-full h-fit object-cover bg-gray-300 rounded-xl"
-                    src={demoVideo}
-                    autoPlay
-                    muted
-                    loop
-                    alt="">
-                    {' '}
-                </video>
+                <div
+                    className="relative w-full"
+                    style={{ paddingTop: '56.25%' }}>
+                    <iframe
+                        className="absolute top-0 left-0 w-full h-full rounded-xl"
+                        src="https://www.youtube.com/embed/U6f9QtHyel8?autoplay=1&mute=1&controls=1&cc_load_policy=0&loop=1&playlist=U6f9QtHyel8&rel=0"
+                        title="YouTube video player"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerPolicy="strict-origin-when-cross-origin"
+                        allowFullScreen></iframe>
+                </div>
             </div>
             <div
                 className=""
                 style={{ background: 'linear-gradient(to bottom, #f7faff, #deeefc)' }}>
-            <PartnersReviewsSwiper/>
+                <PartnersReviewsSwiper />
             </div>
-
 
             <RecognizeEx />
 
             <div
-                className="py-[50px]  mt-[50px]"
+                className="py-[50px]  mt-[50px] max-md:mt-0"
                 style={{ background: 'linear-gradient(to bottom, #f7faff, #deeefc)' }}>
-                <div className=" text-4xl py-[50px] font-semibold leading-snug text-center text-black z-[2] relative">
+                <div className=" text-4xl pb-[50px] font-semibold leading-snug text-center text-black z-[2] relative">
                     Insights &<span className="text-blue-500"> Resources</span>
                 </div>
                 <InsitesSwiper />

@@ -1,6 +1,5 @@
 import { CiMail } from 'react-icons/ci'
 import { IoCallOutline } from 'react-icons/io5'
-import { CiSearch } from 'react-icons/ci'
 import { IoEarthOutline } from 'react-icons/io5'
 import { FaCaretDown } from 'react-icons/fa'
 import { IoIosArrowDown } from 'react-icons/io'
@@ -8,20 +7,16 @@ import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { IoMenu, IoClose } from 'react-icons/io5'
 import logo from '../../assets/images/nessalogo.png'
-import { BiSolidPlaneAlt } from 'react-icons/bi'
 import { MdPermContactCalendar, MdStadium, MdSupportAgent } from 'react-icons/md'
-import { FaCarTunnel, FaGasPump, FaGears, FaRoad } from 'react-icons/fa6'
-import { GiHazardSign, GiMineWagon, GiShipBow } from 'react-icons/gi'
-import { GiRefinery } from 'react-icons/gi'
-import { GiForest } from 'react-icons/gi'
-import { PiSolarPanel } from 'react-icons/pi'
+import { GoProjectSymlink } from 'react-icons/go'
+import { GrProjects } from 'react-icons/gr'
+import { FaGears} from 'react-icons/fa6'
 import { AnimatePresence, motion } from 'framer-motion'
 import { GrResources } from 'react-icons/gr'
 import { allSolutions } from '../../services/api.services'
 import toast from 'react-hot-toast'
 import { MdInfoOutline } from 'react-icons/md'
 import ProductDropdown from './ProductDropdown'
-import GoogleTranslate from '../../Utils/Google.Translate'
 import SearchBar from './SearchBar'
 
 import airport from '../../assets/images/navbar/airport.svg'
@@ -229,6 +224,11 @@ const Navbar = () => {
             logo: <MdInfoOutline className={`text-[#212121]  bg-[#212121] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
             link: '/aboutus',
             title: 'About Us'
+        },
+        {
+            logo: <GrProjects className={`text-[#55cb53]  bg-[#55cb53] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2`} />,
+            link: '/projects',
+            title: 'Projects'
         }
     ]
 
@@ -391,11 +391,7 @@ const Navbar = () => {
                                 )}
                             </AnimatePresence>
                         </div>
-                        <Link
-                            to="/projects"
-                            className="text-black">
-                            Projects
-                        </Link>
+                      
                     </div>
 
                     <div className="xl:hidden flex items-center gap-4">
@@ -519,11 +515,7 @@ const Navbar = () => {
                                 )}
                             </AnimatePresence>
                         </div>
-                        <Link
-                            to="/projects"
-                            className="py-2 text-black hover:bg-gray-100 px-4">
-                            Projects
-                        </Link>
+                       
                         <Link
                             to="/contactus"
                             className="sm:hidden py-2 text-black hover:bg-gray-100 px-4">
