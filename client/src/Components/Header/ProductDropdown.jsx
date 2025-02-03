@@ -9,30 +9,50 @@ const ProductDropdown = ({ setIsMenuOpen, productOpen, setproductOpen }) => {
     const [activeCategory, setActiveCategory] = useState(null)
     const [categoryOpen, setcategoryOpen] = useState(false)
 
+    // const categories = {
+    //     'AC Lighting': [
+    //         'Street Light',
+    //         'Flood Light',
+    //         'Highway Light',
+    //         'Well Glass Light',
+    //         'Fission LED Street Light',
+    //         'Fission Flood Light',
+    //         'AC High Mast'
+    //     ],
+    //     Electronics: ['Drivers', 'Solar Charge Controllers'],
+    //     Solar: [
+    //         'Semi Integrated Solar',
+    //         'LED Street Light (Two in One)',
+    //         'Integrated Solar',
+    //         'LED Street Light (All in One)',
+    //         'Solar LED Street Light',
+    //         'Solar Pumps',
+    //         'Solar Roof Top'
+    //     ],
+    //     'Hybrid Lights': ['Hybrid Solar Street Light'],
+    //     'Indoor Lighting': ['Surface', 'Panel', 'Downlight', 'Tube Light']
+    // }
+
     const categories = {
-        'AC Lighting': [
-            'Street Light',
-            'Flood Light',
-            'Highway Light',
-            'Well Glass Light',
-            'Fission LED Street Light',
-            'Fission Flood Light',
-            'AC High Mast'
-        ],
-        Electronics: ['Drivers', 'Solar Charge Controllers'],
+        'AC Lighting': ['Street Light', 'Flood Light', 'Highway Light', 'Well Glass Light', 'AC High Mast', 'RGB Light', 'Traffic Blinker Light'],
+        Electronics: ['DC Drivers', 'Charge Controllers', 'Motion Sensor', 'AC Driver', 'SPD', 'DC Driver & Combo'],
+        'Indoor Lighting': ['Surface Light', 'Spike Light', 'Tube Light', 'Down Light', 'Panel Light'],
         Solar: [
-            'Semi Integrated Solar',
-            'LED Street Light (Two in One)',
-            'Integrated Solar',
-            'LED Street Light (All in One)',
-            'Solar LED Street Light',
+            'Semi Integrated Street Light (Two in One) ',
+            'Integrated Street Light (All In one) ',
+            'Solar Street Light (Full System) ',
             'Solar Pumps',
-            'Solar Roof Top'
+            'Solar Roof Top',
+            'Solar High Mast'
         ],
-        'Hybrid Lights': ['Hybrid Solar Street Light'],
-        'Indoor Lighting': ['Surface', 'Panel', 'Downlight', 'Tube Light']
+        'Hybrid Lights': ['Hybrid Semi Intigrated Solar Street Light Light', 'Hybrid Integrated Solar Street Light'],
+
+        'Smart Lighting Solutions': ['AC Smart Street Light', 'Solar Smart Street Light ']
     }
 
+
+    
+    
     const handleProductClick = (category, subcategory) => {
         navigate('/allproducts', {
             state: {
@@ -103,9 +123,7 @@ const ProductDropdown = ({ setIsMenuOpen, productOpen, setproductOpen }) => {
                                     onMouseEnter={() => {
                                         setActiveCategory(category)
                                     }}>
-                                    <motion.div
-                                    
-                                        className="px-4 py-2 text-lg hover:bg-gray-100 flex justify-between items-center cursor-pointer">
+                                    <motion.div className="px-4 py-2 text-lg hover:bg-gray-100 flex justify-between items-center cursor-pointer">
                                         <span>{category}</span>
                                         <IoIosArrowDown className={`w-4 h-4 ${category === activeCategory ? 'rotate-180 transition-all' : ''} `} />
                                     </motion.div>

@@ -80,7 +80,7 @@ export const insitesAndResources = [
     ],
   },
   {
-    title: 'white Papers',
+    title: 'White Papers',
     items: [
       // {
       //   title: '5 Great Web Design Resources',
