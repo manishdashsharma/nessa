@@ -30,7 +30,7 @@ export default {
         return productModel.create(payload)
     },
     queryProductData: (findQuery, limit, offset) => {
-        return productModel.find(findQuery).limit(Number(limit)).skip(Number(offset)).sort({ isEnquired: -1 })
+        return productModel.find(findQuery).limit(Number(limit)).skip(Number(offset)).sort({ _id: 1 })
     },
     queryProductDataById: (id) => {
         return productModel.findById(id)
