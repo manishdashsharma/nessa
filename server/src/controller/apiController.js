@@ -611,7 +611,9 @@ export default {
                 response.push({
                     _id: element._id,
                     subcategories: element.subcategories,
-                    thumbnail: element.thumbnail
+                    thumbnail: element.thumbnail,
+                    description: element.description
+
                 })
             });
             httpResponse(req, res, 200, responseMessage.SUCCESS, response)
