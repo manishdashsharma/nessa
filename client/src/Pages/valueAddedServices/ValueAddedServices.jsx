@@ -69,7 +69,7 @@ export const ValueAddedServices = () => {
                 <AnimatePresence>
                     {hv === index && (
                         <motion.div
-                            key="overlay"
+                            key={index}
                             initial={{ y: '100%' }}
                             animate={{ y: 0 }}
                             exit={{ y: '100%' }}
