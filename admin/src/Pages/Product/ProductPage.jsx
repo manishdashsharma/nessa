@@ -6,12 +6,11 @@ import AddIcon from '@mui/icons-material/Add'
 import ProductModal from '../../Components/Modal/ProductModal'
 import { useNavigate } from 'react-router-dom'
 import { isTokenExpired } from '../../utils/utils'
-import ProductDetailsModal from '../../Components/Modal/ProductDetailsModal';
+import ProductDetailsModal from '../../Components/Modal/ProductDetailsModal'
 import { DeleteModalButton, DELETEMODELBYTYPE } from '../../Components/DeleteModal'
 
 const ProductPage = () => {
     const [products, setProducts] = useState([])
-    const [filteredProducts, setFilteredProducts] = useState([])
     const [loading, setLoading] = useState(true)
     const [page, setPage] = useState(1)
     const [totalPages, setTotalPages] = useState(1)
@@ -35,7 +34,14 @@ const ProductPage = () => {
     const fetchProduct = async () => {
         setLoading(true)
         try {
-            const response = await getProduct('all', itemsPerPage, (page - 1) * itemsPerPage)
+            const response = await getProduct(
+                'all', 
+                itemsPerPage, 
+                (page - 1) * itemsPerPage, 
+                searchName, 
+                searchCategory
+            )
+
             setProducts(response.data.products)
             setTotalPages(Math.ceil(response.data.total / itemsPerPage))
         } catch (error) {
@@ -44,24 +50,10 @@ const ProductPage = () => {
             setLoading(false)
         }
     }
+
     useEffect(() => {
         fetchProduct()
-    }, [page])
-
-    useEffect(() => {
-        let filtered = products
-
-        if (searchName) {
-            filtered = filtered.filter((product) => product.name.toLowerCase().includes(searchName.toLowerCase()))
-        }
-
-        if (searchCategory) {
-            filtered = filtered.filter((product) => product.categories.toLowerCase().includes(searchCategory.toLowerCase()))
-        }
-
-        setFilteredProducts(filtered)
-        setTotalPages(Math.ceil(filtered.length / itemsPerPage))
-    }, [searchName, searchCategory, products])
+    }, [page, searchName, searchCategory])
 
     const handlePageChange = (event, value) => {
         setPage(value)
@@ -97,14 +89,20 @@ const ProductPage = () => {
                     type="text"
                     placeholder="Search by Name"
                     value={searchName}
-                    onChange={(e) => setSearchName(e.target.value)}
+                    onChange={(e) => {
+                        setSearchName(e.target.value)
+                        setPage(1) // Reset to first page when searching
+                    }}
                     className="border p-2 rounded w-full"
                 />
                 <input
                     type="text"
                     placeholder="Search by Category"
                     value={searchCategory}
-                    onChange={(e) => setSearchCategory(e.target.value)}
+                    onChange={(e) => {
+                        setSearchCategory(e.target.value)
+                        setPage(1) // Reset to first page when searching
+                    }}
                     className="border p-2 rounded w-full"
                 />
             </div>
@@ -115,7 +113,7 @@ const ProductPage = () => {
                 </div>
             ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {filteredProducts.slice((page - 1) * itemsPerPage, page * itemsPerPage).map((product) => (
+                    {products.map((product) => (
                         <div
                             key={product._id}
                             className="border rounded-lg p-4 shadow hover:shadow-lg transition">
@@ -147,7 +145,10 @@ const ProductPage = () => {
                                     onClick={() => handleOpenModal(product)}>
                                     Edit
                                 </button>
-                                <DeleteModalButton id={product?._id} type={DELETEMODELBYTYPE.PRODUCT} fetchData={fetchProduct}></DeleteModalButton>
+                                <DeleteModalButton
+                                    id={product?._id}
+                                    type={DELETEMODELBYTYPE.PRODUCT}
+                                    fetchData={fetchProduct}></DeleteModalButton>
                             </div>
                         </div>
                     ))}
@@ -186,4 +187,3 @@ const ProductPage = () => {
 }
 
 export default ProductPage
-
