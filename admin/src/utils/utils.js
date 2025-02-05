@@ -25,9 +25,9 @@ export const CategoryToSubcategories = {
     'Electronics': ['DC Drivers', 'Charge Controllers', 'Motion Sensor', 'AC Driver', 'SPD', 'DC Driver & Combo'],
     'Indoor Lighting': ['Surface Light', 'Spike Light', 'Tube Light', 'Down Light', 'Panel Light'],
     'Solar': [
-        'Semi Integrated Street Light (Two in One) ',
-        'Integrated Street Light (All In one) ',
-        'Solar Street Light (Full System) ',
+        'Semi Integrated Street Light (Two in One)',
+        'Integrated Street Light (All In one)',
+        'Solar Street Light (Full System)',
         'Solar Pumps',
         'Solar Roof Top',
         'Solar High Mast'
