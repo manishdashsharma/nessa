@@ -32,7 +32,7 @@ export const CategoryToSubcategories = {
         'Solar Roof Top',
         'Solar High Mast'
     ],
-    'Hybrid Lights': ['Hybrid Semi Intigrated Solar Street Light Light', 'Hybrid Integrated Solar Street Light'],
+    'Hybrid Lights': ['Hybrid Semi Integrated Solar Street Light Light', 'Hybrid Integrated Solar Street Light'],
 
     'Smart Lighting Solutions': ['AC Smart Street Light', 'Solar Smart Street Light ']
 
