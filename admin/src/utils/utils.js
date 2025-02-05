@@ -26,7 +26,7 @@ export const CategoryToSubcategories = {
     'Indoor Lighting': ['Surface Light', 'Spike Light', 'Tube Light', 'Down Light', 'Panel Light'],
     'Solar': [
         'Semi Integrated Street Light (Two in One)',
-        'Integrated Street Light (All In one)',
+        'Integrated Street Light (All In One)',
         'Solar Street Light (Full System)',
         'Solar Pumps',
         'Solar Roof Top',
