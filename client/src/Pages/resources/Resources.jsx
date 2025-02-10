@@ -124,7 +124,7 @@ export const Resources = () => {
                         key={index}
                         className=" w-[20vw] max-md:w-[40vw] max-sm:w-[90%] mb-10 max-sm:mb-10 max-md:h-fit  flex flex-col items-center justify-between text-center ">
                         <h1 className="text-xl font-semibold mt-4">{item.name}</h1>
-                        <h1 className="text-base font-semibold mt-4">{item.description}</h1>
+                        {/* <h1 className="text-base font-semibold mt-4">{item.description}</h1> */}
 
                         <Link
                             to={item.downloadLink ? item.downloadLink : null}

@@ -53,7 +53,7 @@ export default function TeamSwiper() {
                             className="mb-[50px] select-none">
                             <div className="flex flex-col  items-center text-center">
                                 <img
-                                    className="rounded-xl h-[300px]  w-[300px] object-contain border  bg-[#e7f2fd] border-orange-400 overflow-hidden "
+                                    className="rounded-xl h-[350px]  w-[300px] object-contain border  bg-[#e7f2fd] border-orange-400 overflow-hidden "
                                     src={item.image}
                                     alt=""
                                 />

@@ -143,7 +143,7 @@ const ResourcesInsights = () => {
         )
     }
     return (
-        <div className="w-screen   p-6 bg-blue-50">
+        <div className="w-screen   px-6 pb-6 bg-blue-50">
             <div className="w-full  relative py-[50px] px-[5vw]">
                 <div className=" text-4xl font-semibold leading-snug text-center text-black z-[2] relative">
                     Insights & <span className="text-blue-500"> Resources </span>

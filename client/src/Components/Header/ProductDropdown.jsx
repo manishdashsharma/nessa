@@ -39,13 +39,13 @@ const ProductDropdown = ({ setIsMenuOpen, productOpen, setproductOpen }) => {
         'Indoor Lighting': ['Surface Light', 'Spike Light', 'Tube Light', 'Down Light', 'Panel Light'],
         Solar: [
             'Semi Integrated Street Light (Two in One) ',
-            'Integrated Street Light (All In one) ',
+            'Integrated Street Light (All In One) ',
             'Solar Street Light (Full System) ',
             'Solar Pumps',
             'Solar Roof Top',
             'Solar High Mast'
         ],
-        'Hybrid Lights': ['Hybrid Semi Intigrated Solar Street Light Light', 'Hybrid Integrated Solar Street Light'],
+        'Hybrid Lights': ['Hybrid Semi Integrated Solar Street Light Light', 'Hybrid Integrated Solar Street Light'],
 
         'Smart Lighting Solutions': ['AC Smart Street Light', 'Solar Smart Street Light ']
     }

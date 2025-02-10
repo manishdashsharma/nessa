@@ -204,93 +204,113 @@ import ncp1 from '../../assets/images/resources/nessacatalog.png'
 import ncp2 from '../../assets/images/resources/csrprofile.png'
 import ncp3 from '../../assets/images/resources/componyprofile.png'
 
- export const resourcesUtilsConfigHardCodedData ={
-    'title': 'Resources Page Utils Data',
-    'utilsData': {
-        'nessaCatalogUtilsData': [
-            {
-                'poster': ncp1,
-                'downloadLink': ncdl1,
-                'name': 'Nessa  Catalog'
-            },
-            {
-                'poster': ncp2,
-                'downloadLink': ncdl2,
-                'name': 'Nessa CSR Profile'
-            },
-            {
-                'poster': ncp3,
-                'downloadLink': ncdl3,
-                'name': 'Nessa Profiie'
-            }
-        ],
-        'productManualUtilsData': [
-            {
-                'poster': 'https://res.cloudinary.com/dfx1sukqp/image/upload/v1736543218/resources/1736543216421-solarAcProducts_eo8b9i.png',
-                'downloadLink': '',
-                'name': 'Solar & A.C Products',
-                'description': 'Make our earth green and clean by using a wide range of Nessa\'s LED Products.'
-            },
-            {
-                'poster': 'https://res.cloudinary.com/dfx1sukqp/image/upload/v1736543263/resources/1736543261854-electronics_leujs6.png',
-                'downloadLink': 'https://res.cloudinary.com/dfx1sukqp/image/upload/v1736543263/resources/1736543261854-electronics_leujs6.png',
-                'name': 'Electronics',
-                'description': 'Nessa, founded in 2008, by people with vast global experience in the solar and semiconductor industry.'
-            },
-            {
-                'poster': '',
-                'downloadLink': '',
-                'name': 'Solar Pump',
-                'description': 'We are leading manufacturer, supplier and exporter of solar solutions in India.'
-            },
-            {
-                'poster': '',
-                'downloadLink': '',
-                'name': 'UVC Products',
-                'description': 'NESSA UVC Disinfectants-Proven to Kill 99.99% of Viruses'
-            }
-        ],
-        'nessaManualUtilsData': [
-            {
-                'name': 'AC LED FLOOD LIGHTS',
-                'description': 'Assembling & Repairing',
-                'downloadLink': 'https://example.com/flood_lights_manual.pdf'
-            },
-            {
-                'name': 'AC LED STREET LIGHTS',
-                'description': 'Assembling & Repairing',
-                'downloadLink': 'https://example.com/flood_lights_manual.pdf'
-            },
-            {
-                'name': 'LED LIGHTS COMPONENTS',
-                'description': 'Assembling & Repairing',
-                'downloadLink': ''
-            },
-            {
-                'name': 'SOLAR LED STREET LIGHTS',
-                'description': 'Assembling & Repairing',
-                'downloadLink': ''
-            },
-            {
-                'name': 'All In One SOLAR LED STREET LIGHTS Repairing',
-                'description': '',
-                'downloadLink': ''
-            },
-            {
-                'name': 'SEMI INTEGRATED SOLAR LED STREET LIGHTS Repairing',
-                'description': '',
-                'downloadLink': ''
-            },
-            {
-                'name': 'Solar Street Light Pole Installation Manual',
-                'description': '',
-                'downloadLink': ''
-            },
-            {
-                'name': 'UV-C Product User Manual',
-                'description': '',
-                'downloadLink': ''
-            }
-        ]
-    }
-}
+ export const resourcesUtilsConfigHardCodedData = {
+     title: 'Resources Page Utils Data',
+     utilsData: {
+         nessaCatalogUtilsData: [
+             {
+                 poster: ncp1,
+                 downloadLink: ncdl1,
+                 name: 'Nessa  Catalog'
+             },
+             {
+                 poster: ncp2,
+                 downloadLink: ncdl2,
+                 name: 'Nessa CSR Profile'
+             },
+             {
+                 poster: ncp3,
+                 downloadLink: ncdl3,
+                 name: 'Nessa Profiie'
+             }
+         ],
+         productManualUtilsData: [
+             {
+                 poster: 'https://res.cloudinary.com/dfx1sukqp/image/upload/v1736543218/resources/1736543216421-solarAcProducts_eo8b9i.png',
+                 downloadLink: '',
+                 name: 'Solar & A.C Products',
+                 description: 'Make our earth green and clean by using a wide range of Nessa\'s LED Products.'
+             },
+             {
+                 poster: 'https://res.cloudinary.com/dfx1sukqp/image/upload/v1736543263/resources/1736543261854-electronics_leujs6.png',
+                 downloadLink: 'https://res.cloudinary.com/dfx1sukqp/image/upload/v1736543263/resources/1736543261854-electronics_leujs6.png',
+                 name: 'Electronics',
+                 description: 'Nessa, founded in 2008, by people with vast global experience in the solar and semiconductor industry.'
+             },
+             {
+                 poster: '',
+                 downloadLink: '',
+                 name: 'Solar Pump',
+                 description: 'We are leading manufacturer, supplier and exporter of solar solutions in India.'
+             },
+             {
+                 poster: '',
+                 downloadLink: '',
+                 name: 'UVC Products',
+                 description: 'NESSA UVC Disinfectants-Proven to Kill 99.99% of Viruses'
+             }
+         ],
+         nessaManualUtilsData: [
+             {
+                 name: 'Airport Lighting Solutions',
+                 description: '',
+                 downloadLink: 'https://docs.google.com/presentation/d/1KZW-OHIX2RpIKmzdLasKrxO44AKVjIRDnk5SJbwP9Bk/edit?usp=sharing'
+             },
+             {
+                 name: 'Hazardous Area Lighting Solutions',
+                 description: '',
+                 downloadLink: 'https://docs.google.com/presentation/d/1TAPaiz4pLVZkZPyYAW71lkntObg2DuCLUY0Kfvri8zw/edit?usp=sharing'
+             },
+             {
+                 name: 'Highway and Toll Plaza',
+                 description: '',
+                 downloadLink: 'https://docs.google.com/presentation/d/1TAPaiz4pLVZkZPyYAW71lkntObg2DuCLUY0Kfvri8zw/edit?usp=sharing'
+             },
+             {
+                 name: 'Mining Lighting',
+                 description: '',
+                 downloadLink: 'https://docs.google.com/presentation/d/1EsQfl7GDahINnzKJkL98T-eDGHLicdSDGIPB5x5LFyQ/edit?usp=sharing'
+             },
+             {
+                 name: 'Petrol Pump Lighting Solutions',
+                 description: '',
+                 downloadLink: 'https://docs.google.com/presentation/d/1-v5eWvO745qM3kILkUwRaS8MaJiZA5982ffq7W036as/edit?usp=sharing'
+             },
+             {
+                 name: 'Port and Logistics',
+                 description: '',
+                 downloadLink: 'https://docs.google.com/presentation/d/15M-f86hxVgdcxYV0HklhvM1JPFEm0WgtPMBdD92fdKU/edit?usp=sharing'
+             },
+             {
+                 name: 'Refinery Lighting Solutions',
+                 description: '',
+                 downloadLink: 'https://docs.google.com/presentation/d/15M-f86hxVgdcxYV0HklhvM1JPFEm0WgtPMBdD92fdKU/edit?usp=sharing'
+             },
+             {
+                 name: 'Rural Lighting Solutions',
+                 description: '',
+                 downloadLink: 'https://docs.google.com/presentation/d/1bs35f4bBwLhmwAp-CvV_YbllaD4-D_vXUox5RA4hA08/edit?usp=sharing'
+             },
+             {
+                 name: 'Solar Parks Lighting Solutions',
+                 description: '',
+                 downloadLink: 'https://docs.google.com/presentation/d/1Noaf0XZ5wnKkVX2frrJud-ZH97uwaDGc-6rHkkk3-fU/edit?usp=sharing'
+             },
+             {
+                 name: 'Stadium Lighting Solutions',
+                 description: '',
+                 downloadLink: 'https://docs.google.com/presentation/d/1KR_-xj8BV8mdxT2B6jddxt99v8PLS17wlWDrNqvlPXQ/edit?usp=sharing'
+             },
+             {
+                 name: 'Thermal Power Lighting',
+                 description: '',
+                 downloadLink: 'https://docs.google.com/presentation/d/1KR_-xj8BV8mdxT2B6jddxt99v8PLS17wlWDrNqvlPXQ/edit?usp=sharing'
+             },
+             {
+                 name: 'Tunnel Lighting Solutions',
+                 description: '',
+                 downloadLink: 'https://docs.google.com/presentation/d/1Kzi0uDbzDrwt0f4Rj17GMohOxmtk7l8ZRsA0NxMG6Us/edit?usp=sharing'
+             }
+         ]
+     }
+ }

@@ -27,14 +27,14 @@ export default function InvestorSwiper() {
                     clickable: true
                 }}
                 modules={[Pagination, Navigation, Autoplay]}
-                className="mySwiper  mt-[50px]">
+                className="mySwiper   mt-[50px]">
                 {investor.length > 0 ? (
                     investor.map((investor, i) => (
                         <SwiperSlide
                             key={i}
-                            className=" px-[5vw]">
+                            className=" px-[5vw]  ">
                             <div className="w-[100%]  mb-[50px]  border border-orange-400 flex max-md:flex-col max-md:items-center rounded-xl  overflow-hidden">
-                                <div className="w-[30%] max-md:w-full ">
+                                <div className="w-[30%] flex justify-center items-center max-md:w-full ">
                                     <img
                                         className="h-[300px] max-md:h-[300px] max-md:w-full object-contain"
                                         src={investor.image}

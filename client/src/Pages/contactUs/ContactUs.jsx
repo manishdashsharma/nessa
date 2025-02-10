@@ -190,10 +190,10 @@ const ContactUs = () => {
                     </h1> */}
                 </div>
 
-                <div className="flex max-md:flex-col relative p-[5vw] gap-6 ">
+                <div className="flex max-lg:flex-col relative p-[5vw] gap-6 ">
                     <div className="absolute w-[250px] h-[250px] bg-[var(--light-blue)] opacity-30 right-[-70px] top-[-30px]   rounded-full z-[-1]"></div>
 
-                    <div className="w-1/2 relative overflow-hidden max-md:w-full p-[10px]  text-white  rounded-lg shadow-lg">
+                    <div className="w-1/2 relative overflow-hidden max-lg:w-full p-[10px]  text-white  rounded-lg shadow-lg">
                         <div className="w-full min-h-[150px] bg-blue-500 rounded-lg p-[30px]">
                             <h1 className="text-4xl font-semibold">Headquater Address</h1>
                             <div className="flex items-center justify-center mt-5  gap-10">
@@ -201,85 +201,85 @@ const ContactUs = () => {
                                 <h1>36-A, Devraj Industrial Park, Near Pipalaj, Pirana Rd, Piplaj, Ahmedabad, Gujarat 382405 </h1>
                             </div>
                         </div>
-                        <div className="flex justify-between mt-5 text-black  gap-5">
-                            <div className="w-1/2 min-h-[100px] p-[20px] bg-blue-300 rounded-lg">
+                        <div className="flex justify-between mt-5 text-black  gap-5 max-[400px]:flex-col ">
+                            <div className="w-1/2 max-[400px]:w-full max-[400px]:flex max-[400px]:flex-col max-[400px]:justify-center max-[400px]:items-center  min-h-[100px] p-[20px] max-sm:px-[10px] max-sm:text-sm bg-blue-300 rounded-lg">
                                 <h1 className="font-semibold text-lg mb-2">Domestic Inquiry</h1>
-                                <div className="flex items-center gap-2">
+                                <div className="flex  flex-wrap  items-center gap-2">
                                     <MdCall />
                                     <h1>+91 93752 79778</h1>
                                 </div>
-                                <div className="flex items-center gap-2">
+                                <div className="flex   flex-wrap items-center gap-2">
                                     <MdEmail />
                                     <h1>sales@nessa.in</h1>
                                 </div>
                             </div>
-                            <div className="w-1/2 min-h-[100px] p-[20px] bg-blue-300 rounded-lg">
+                            <div className="w-1/2 max-[400px]:w-full max-[400px]:flex max-[400px]:flex-col max-[400px]:justify-center max-[400px]:items-center  min-h-[100px] p-[20px] max-sm:px-[10px] max-sm:text-sm bg-blue-300 rounded-lg">
                                 <h1 className="font-semibold text-lg mb-2">International Inquiry</h1>
-                                <div className="flex items-center gap-2">
+                                <div className="flex  flex-wrap  items-center gap-2">
                                     <MdCall />
                                     <h1>+91 96363 79923</h1>
                                 </div>
-                                <div className="flex items-center gap-2">
+                                <div className="flex   flex-wrap items-center gap-2">
                                     <MdEmail />
                                     <h1>exports@nessa.in</h1>
                                 </div>
                             </div>
                         </div>
-                        <div className="flex justify-between mt-5 text-black  gap-5">
-                            <div className="w-1/2 min-h-[100px] p-[20px] bg-blue-300 rounded-lg">
+                        <div className="flex justify-between mt-5 text-black  gap-5 max-[400px]:flex-col ">
+                            <div className="w-1/2 max-[400px]:w-full max-[400px]:flex max-[400px]:flex-col max-[400px]:justify-center max-[400px]:items-center  min-h-[100px] p-[20px] max-sm:px-[10px] max-sm:text-sm bg-blue-300 rounded-lg">
                                 <h1 className="font-semibold text-lg mb-2">Service Inquiry</h1>
-                                <div className="flex items-center gap-2">
+                                <div className="flex  flex-wrap  items-center gap-2">
                                     <MdCall />
                                     <h1>+91 909041228 </h1>
                                 </div>
-                                <div className="flex items-center gap-2">
+                                <div className="flex   flex-wrap items-center gap-2">
                                     <MdEmail />
                                     <h1> exports@nessa.in</h1>
                                 </div>
                             </div>
-                            <div className="w-1/2 min-h-[100px] p-[20px] bg-blue-300 rounded-lg">
+                            <div className="w-1/2 max-[400px]:w-full max-[400px]:flex max-[400px]:flex-col max-[400px]:justify-center max-[400px]:items-center  min-h-[100px] p-[20px] max-sm:px-[10px] max-sm:text-sm bg-blue-300 rounded-lg">
                                 <h1 className="font-semibold text-lg mb-2">Career Inquiry</h1>
-                                <div className="flex items-center gap-2">
+                                <div className="flex  flex-wrap  items-center gap-2">
                                     <MdCall />
                                     <h1>+91 879100877 </h1>
                                 </div>
-                                <div className="flex items-center gap-2">
+                                <div className="flex   flex-wrap items-center gap-2">
                                     <MdEmail />
                                     <h1> Careers@nessa.in</h1>
                                 </div>
                             </div>
                         </div>
-                        <div className="flex justify-between mt-5 text-black  gap-5">
-                            <div className="w-1/2 min-h-[100px] p-[20px] bg-blue-300 rounded-lg">
+                        <div className="flex justify-between mt-5 text-black  gap-5 max-[400px]:flex-col ">
+                            <div className="w-1/2 max-[400px]:w-full max-[400px]:flex max-[400px]:flex-col max-[400px]:justify-center max-[400px]:items-center  min-h-[100px] p-[20px] max-sm:px-[10px] max-sm:text-sm bg-blue-300 rounded-lg">
                                 <h1 className="font-semibold text-lg mb-2">Marketing Inquiry</h1>
-                                <div className="flex items-center gap-2">
+                                <div className="flex  flex-wrap  items-center gap-2">
                                     <MdCall />
                                     <h1>+91 86907 79778 </h1>
                                 </div>
-                                <div className="flex items-center gap-2">
+                                <div className="flex   flex-wrap items-center gap-2">
                                     <MdEmail />
                                     <h1> Marketing@nessa.in</h1>
                                 </div>
                             </div>
-                            <div className="w-1/2 min-h-[100px] p-[20px] bg-blue-300 rounded-lg">
+                            <div className="w-1/2 max-[400px]:w-full max-[400px]:flex max-[400px]:flex-col max-[400px]:justify-center max-[400px]:items-center  min-h-[100px] p-[20px] max-sm:px-[10px] max-sm:text-sm bg-blue-300 rounded-lg">
                                 <h1 className="font-semibold text-lg mb-2">CSR Inquiry</h1>
-                                <div className="flex items-center gap-2">
+                                <div className="flex  flex-wrap  items-center gap-2">
                                     <MdCall />
                                     <h1>9909041719</h1>
                                 </div>
-                                <div className="flex items-center gap-2">
+                                <div className="flex   flex-wrap items-center gap-2">
                                     <MdEmail />
                                     <h1> csr@nessa.in</h1>
                                 </div>
                             </div>
                         </div>
-                        <div className="w-full mt-5 flex flex-col text-black items-center justify-center  min-h-[100px] p-[20px] bg-blue-300 rounded-lg">
+                        <div className="w-full mt-5 flex flex-col text-black items-center justify-center  min-h-[100px] p-[20px] max-sm:px-[10px] max-sm:text-sm bg-blue-300 rounded-lg">
                             <h1 className="font-semibold text-lg mb-2">Other Inquiry</h1>
-                            <div className="flex items-center gap-2">
+                            <div className="flex  flex-wrap  items-center gap-2">
                                 <MdCall />
                                 <h1>+91 80004 79780</h1>
                             </div>
-                            <div className="flex items-center gap-2">
+                            <div className="flex   flex-wrap items-center gap-2">
                                 <MdEmail />
                                 <h1> info@nessa.in</h1>
                             </div>
@@ -328,7 +328,7 @@ const ContactUs = () => {
                     </div>
 
                     <form
-                        className="w-1/2 max-md:w-full bg-white px-[20px] py-[40px]  rounded-lg shadow-lg"
+                        className="w-1/2 max-lg:w-full bg-white px-[20px] py-[40px]  rounded-lg shadow-lg"
                         onSubmit={handleSubmit}>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                             <div>

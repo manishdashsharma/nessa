@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { IoChevronDown } from "react-icons/io5";
-import { motion, AnimatePresence } from "framer-motion";
-import { media } from "./ResourcesConfig";
+import { useState } from 'react';
+import { IoChevronDown } from 'react-icons/io5';
+import { motion, AnimatePresence } from 'framer-motion';
+import { media } from './ResourcesConfig';
 
 const Media = () => {
-  const [openSections, setOpenSections] = useState(["Press release"]);
+  const [openSections, setOpenSections] = useState(['Press release']);
   const toggleSection = (title) => {
     setOpenSections((prev) =>
       prev.includes(title)
@@ -39,7 +39,7 @@ const Media = () => {
   );
 
   return (
-    <div className="w-screen t  p-6 ">
+    <div className="w-screen t  px-6 pb-6">
       <div className="w-full  relative py-[50px] px-[5vw]">
         <div className=" text-4xl font-semibold leading-snug text-center text-black z-[2] relative">
           Media
@@ -59,7 +59,7 @@ const Media = () => {
             <motion.button
               onClick={() => toggleSection(section.title)}
               className="w-full  rounded-lg flex justify-between items-center p-4 bg-gray-100 border  border-gray-300 "
-              whileHover={{ backgroundColor: "#D9D9D9" }}
+              whileHover={{ backgroundColor: '#D9D9D9' }}
               whileTap={{ scale: 0.99 }}
             >
               <span className="text-xl  font-medium">{section.title}</span>
@@ -67,7 +67,7 @@ const Media = () => {
                 animate={{
                   rotate: openSections.includes(section.title) ? 180 : 0,
                 }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
+                transition={{ duration: 0.3, ease: 'easeInOut' }}
               >
                 <IoChevronDown />
               </motion.div>
@@ -78,12 +78,12 @@ const Media = () => {
                 <motion.div
                   initial={{ height: 0, opacity: 0 }}
                   animate={{
-                    height: "auto",
+                    height: 'auto',
                     opacity: 1,
                     transition: {
                       height: {
                         duration: 0.4,
-                        ease: "easeInOut",
+                        ease: 'easeInOut',
                       },
                       opacity: {
                         duration: 0.3,
@@ -97,7 +97,7 @@ const Media = () => {
                     transition: {
                       height: {
                         duration: 0.4,
-                        ease: "easeInOut",
+                        ease: 'easeInOut',
                       },
                       opacity: {
                         duration: 0.3,
