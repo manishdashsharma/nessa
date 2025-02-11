@@ -19,28 +19,45 @@ export const nessaEdgeItems = [
   { title: 'Sustainability focus', img: item3Image },
   { title: 'Global Presence', img: item4Image },
 ];
+import batteryBIS from '../../assets/images/certificates/Battery BIS 2026.jpg'
+import bisAcDc1 from '../../assets/images/certificates/BIS AC-DC (1).jpg'
+import bisAcDc2 from '../../assets/images/certificates/BIS AC-DC (2).jpg'
+import bisAcDc3 from '../../assets/images/certificates/BIS AC-DC (3).jpg'
+import bisBulkHead from '../../assets/images/certificates/BIS BUlk Head.jpg'
+import bisGardenLight from '../../assets/images/certificates/BIS Garden Light.jpg'
+import bisPostTopLaterns from '../../assets/images/certificates/BIS POst Top Laterns.jpg'
+import bisSurfaceLight from '../../assets/images/certificates/BIS Surface light.jpg'
+import bisTubeLight from '../../assets/images/certificates/BIS Tube light.jpg'
+import ceCertificate from '../../assets/images/certificates/CE Certificta e.jpg'
+import floodLight from '../../assets/images/certificates/Flood Light and High Bay Light.jpg'
+import iso90012024 from '../../assets/images/certificates/ISO 9001-2024.jpg'
+import iso14001New from '../../assets/images/certificates/ISO 14001 New.jpg'
+import iso140012015 from '../../assets/images/certificates/ISO 14001-2015.jpg'
+import recessedLight from '../../assets/images/certificates/Recessed Light BIS Certificate.jpg'
+import rohsNew from '../../assets/images/certificates/ROHS NEW.jpg'
+import streetLight from '../../assets/images/certificates/Street Light BIS Certification.jpg'
+import wellGlassLight from '../../assets/images/certificates/Well Glass Light BIS Certificate.jpg'
 
-import c0  from '../../assets/images/certificates/09_CE Certificate_2023/0.jpg'
-import c1  from '../../assets/images/certificates/09_ISO 9001 New_2024/0.jpg'
-import c2  from '../../assets/images/certificates/09_ISO 14001-New/0.jpg'
-import c3  from '../../assets/images/certificates/09_RoHS_New 2023/0.jpg'
-import c4  from '../../assets/images/certificates/BIS Garden Light/0.jpg'
-import c5  from '../../assets/images/certificates/BIS Letter Bulk Head up to 22-06-2026/0.jpg'
-import c6  from '../../assets/images/certificates/BIS Letter Post Top Lanterns valid upto 26-05-2025/0.jpg'
-import c7  from '../../assets/images/certificates/BIS Letter Surface Light up to 22-06-2026/0.jpg'
-import c8  from '../../assets/images/certificates/Battery BIS UPTO - 29-Jul-2026/0.jpg'
-import c9  from '../../assets/images/certificates/DRIVER BIS CERTIFICATION UPTO -  31-07-2026/0.jpg'
-import c10  from '../../assets/images/certificates/Flood Light and High Bay Light BIS Certificate Upto 02_12_2025/0.jpg'
-import c11  from '../../assets/images/certificates/ISO 14001 _2015 Certificate _19_05_2026/0.jpg'
-import c12  from '../../assets/images/certificates/Recessed Light BIS Certificate Upto 22-06-2026/0.jpg'
-import c13  from '../../assets/images/certificates/STREET LIGHT BIS CERTIFICATION UPTO - 26-05-2025/0.jpg'
-import c14  from '../../assets/images/certificates/Tube Light BIS Certification Upto 22-06-2026/0.jpg'
-import c15  from '../../assets/images/certificates/Well Glass Light BIS Certificate Upto 22-06-2026/0.jpg'
-
-export const certificates= [
-   c0, c1, c2, c3, c4, c5,c6, c7, c8, c9, c10, c11, c12, c13, c14, c15,
+export const certificates = [
+    batteryBIS,
+    bisAcDc1,
+    bisAcDc2,
+    bisAcDc3,
+    bisBulkHead,
+    bisGardenLight,
+    bisPostTopLaterns,
+    bisSurfaceLight,
+    bisTubeLight,
+    ceCertificate,
+    floodLight,
+    iso90012024,
+    iso14001New,
+    iso140012015,
+    recessedLight,
+    rohsNew,
+    streetLight,
+    wellGlassLight
 ]
-
 
 import dhaval from '../../assets/images/aboutUs/team/dhaval.png'
 import sanjay from '../../assets/images/aboutUs/team/sanjay.png'

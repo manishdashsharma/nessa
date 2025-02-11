@@ -131,23 +131,19 @@ const AboutUs = () => {
                     <div className="w-full flex justify-center">
                         <div className="flex relative shrink-0 mt-9 h-2.5 bg-[#b3d6f6] rounded-[50px] w-[51px]" />
                     </div>
-                    <div className="relative mt-7 text-xl px-[5vw] mb-4 leading-8 text-center text-zinc-900 max-md:max-w-full">
+                    <div className="relative mt-7 text-xl px-[5vw] mb-4 leading-8 text-justify text-zinc-900 max-md:max-w-full">
                         Nessa Illumination Technologies Private Limited is a leader in the LED lighting industry, renowned for its expertise in
                         delivering advanced technical lighting solutions. Our <strong>state-of-the-art technology</strong> is developed at the
                         in-house <strong>NESSA Technology & Innovation Centre (R&D Centre)</strong> in Ahmedabad.
-                    </div>
-                    <div className="relative mt-7 text-xl px-[5vw] mb-4 leading-8 text-center text-zinc-900 max-md:max-w-full">
                         Our products have received approvals from multiple <strong>Public Sector Units (PSUs) across India</strong>, underscoring our
                         commitment to <strong>quality and innovation</strong>. Nessa’s luminaires are meticulously designed and manufactured in our{' '}
                         <strong>ultra-modern production facilities</strong>, ensuring the highest standards of excellence.
                     </div>
-                    <div className="relative mt-7 text-xl px-[5vw] mb-4 leading-8 text-center text-zinc-900 max-md:max-w-full">
+                    <div className="relative mt-7 text-xl px-[5vw] mb-4 leading-8 text-justify text-zinc-900 max-md:max-w-full">
                         We are rapidly establishing our presence in the LED industry with our <strong>cutting-edge lighting solutions</strong>. Our
                         professional lighting portfolio spans{' '}
                         <strong>indoor, street, industrial, landscape, and architectural lighting applications</strong>. We also provide{' '}
                         <strong>customized LED lighting solutions</strong> for various fixtures, tailored to meet diverse requirements.
-                    </div>
-                    <div className="relative mt-7 text-xl px-[5vw] mb-4 leading-8 text-center text-zinc-900 max-md:max-w-full">
                         With <strong>strategic collaborations</strong> with intelligent system integrators, Nessa has the expertise to{' '}
                         <strong>
                             design advanced illumination systems, implement intelligent lighting installations, and enable remote monitoring and
@@ -155,15 +151,13 @@ const AboutUs = () => {
                         </strong>
                         .
                     </div>
-                    <div className="relative mt-7 text-xl px-[5vw] mb-4 leading-8 text-center text-zinc-900 max-md:max-w-full">
+                    <div className="relative mt-7 text-xl px-[5vw] mb-4 leading-8 text-justify text-zinc-900 max-md:max-w-full">
                         Our latest range of luminaires aligns with the principles of{' '}
                         <strong>"energy conservation," "environmental sustainability," and "enhanced value for money."</strong> At Nessa Illumination
                         Technologies, we believe that{' '}
                         <strong>superior products with innovative technology can create a brighter, more sustainable world</strong>. Our commitment to{' '}
                         <strong>innovation, quality, and sustainability</strong> drives us to continuously enhance our offerings, ensuring we meet the
                         evolving needs of our customers.
-                    </div>
-                    <div className="relative mt-7 text-xl px-[5vw] mb-4 leading-8 text-center text-zinc-900 max-md:max-w-full">
                         <strong>Explore our range and experience how Nessa’s smart lighting solutions can transform your environment.</strong>
                     </div>
                 </div>

@@ -5,11 +5,6 @@ import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 
 import { Pagination, Navigation } from 'swiper/modules'
-import credentials1 from '../../assets/images/aboutUs/productTesting/credential1.jpg'
-import credentials2 from '../../assets/images/aboutUs/productTesting/credential2.jpg'
-import iec62031 from '../../assets/images/aboutUs/productTesting/IEC-62031-1.jpg'
-import instruction from '../../assets/images/aboutUs/productTesting/INSTRUCTION.jpg'
-import leadership from '../../assets/images/aboutUs/productTesting/leadeship-photo-768x432.jpg'
 import pic3 from '../../assets/images/aboutUs/productTesting/Pic 3.jpg'
 import pic4 from '../../assets/images/aboutUs/productTesting/Pic 4.jpg'
 import pic from '../../assets/images/aboutUs/productTesting/Pic.jpg'
@@ -17,7 +12,6 @@ import qualityInfra1 from '../../assets/images/aboutUs/productTesting/Quality1.j
 import qualityInfra2 from '../../assets/images/aboutUs/productTesting/Quality2.jpg'
 import qualityInfra3 from '../../assets/images/aboutUs/productTesting/Quality3.jpg'
 import qualityInfra4 from '../../assets/images/aboutUs/productTesting/Quality4.jpg'
-import skilling from '../../assets/images/aboutUs/productTesting/SKILLING-CREDENTIALS-01-150x219.jpg'
 import whatsapp1 from '../../assets/images/aboutUs/productTesting/WhatsApp Image 2025-01-31 at 14.43.19 (1).jpeg'
 import whatsapp2 from '../../assets/images/aboutUs/productTesting/WhatsApp Image 2025-01-31 at 14.43.19.jpeg'
 
@@ -40,24 +34,6 @@ export default function ProductAndTestingSwiper({ data }) {
             name: 'Humidity Chambers',
             poster: qualityInfra4
         },
-
-        {
-            name: '',
-            poster: credentials1
-        },
-        {
-            name: ' ',
-            poster: credentials2
-        },
-        {
-            name: '',
-            poster: iec62031
-        },
-        {
-            name: '',
-            poster: skilling
-        },
-
         {
             name: '',
             poster: pic
@@ -70,12 +46,6 @@ export default function ProductAndTestingSwiper({ data }) {
             name: '',
             poster: pic4
         },
-
-        {
-            name: '',
-            poster: leadership
-        },
-
         {
             name: ' ',
             poster: whatsapp1
@@ -84,10 +54,7 @@ export default function ProductAndTestingSwiper({ data }) {
             name: ' ',
             poster: whatsapp2
         },
-        {
-            name: '',
-            poster: instruction
-        }
+  
     ]
 
     return (

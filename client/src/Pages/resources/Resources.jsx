@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, Outlet, useLocation } from 'react-router-dom'
 import Media from './Media'
 import resourceshero from '../../assets/images/resources/resourceshero.jpg'
 import Navbar from '../../Components/Header/Navbar'
@@ -10,12 +10,17 @@ import { resourcesUtilsConfigHardCodedData } from './ResourcesConfig'
 import toast from 'react-hot-toast'
 import ResourcesInsights from './ResourcesInsights'
 
-
 export const Resources = () => {
     const [loading, setloading] = useState(true)
-      const [nessaCatalogs, setnessaCatalogs] = useState(resourcesUtilsConfigHardCodedData.utilsData.nessaCatalogUtilsData)
-      const [productManual, setproductManual] = useState(resourcesUtilsConfigHardCodedData.utilsData.productManualUtilsData)
-      const [nessaManual, setnessaManual] = useState(resourcesUtilsConfigHardCodedData.utilsData.nessaManualUtilsData)
+    const [nessaCatalogs, setnessaCatalogs] = useState(resourcesUtilsConfigHardCodedData.utilsData.nessaCatalogUtilsData)
+    const [productManual, setproductManual] = useState(resourcesUtilsConfigHardCodedData.utilsData.productManualUtilsData)
+    const [nessaManual, setnessaManual] = useState(resourcesUtilsConfigHardCodedData.utilsData.nessaManualUtilsData)
+
+    const isNestedRoute = location.pathname.split('/').length > 2
+
+    if (isNestedRoute) {
+        return <Outlet />
+    }
 
     return (
         <div className="w-full overflow-hidden">
@@ -111,7 +116,7 @@ export const Resources = () => {
 
             <div className="w-full  relative py-[50px] px-[5vw]">
                 <div className=" text-4xl font-semibold leading-snug text-center text-black z-[2] relative">
-                    <span className="text-blue-500"> NESSA </span> MANUAL
+                    <span className="text-blue-500"> NESSA </span> Lighting Solutions
                 </div>
                 <div className="w-full flex justify-center">
                     <div className="flex relative shrink-0 mt-9 h-2.5 bg-[#b3d6f6] rounded-[50px] w-[51px]" />
