@@ -72,7 +72,7 @@ export const team = [
     {
         name: 'Dhaval Shah',
         image: dhaval,
-        position: 'Managing Director'
+        position: 'Chief Executive Officer & Managing Director'
     },
     {
         name: ' Devang Shah ',
@@ -80,9 +80,9 @@ export const team = [
         position: 'Chief Technical Officer '
     },
     {
-        name: 'Sanajy Mehta',
+        name: 'Sanjay Mehta',
         image: sanjay,
-        position: 'Director'
+        position: 'Director & Marketing Director'
     },
     {
         name: 'Krunal Mehta',

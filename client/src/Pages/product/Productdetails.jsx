@@ -58,7 +58,7 @@ const ProductTabs = ({ product }) => {
                                           animate={{ opacity: 1, y: 0 }}
                                           transition={{ delay: index * 0.1 }}
                                           className="flex items-center text-gray-800 border-b border-gray-100 pb-4">
-                                          <span className="w-2 h-2 bg-blue-500 rounded-full mr-3" />
+                                          <span className="w-[8px] h-[8px] bg-blue-500 rounded-full mr-3" />
                                           <p className="text-base">{feature}</p>
                                       </motion.div>
                                   ))

@@ -42,15 +42,14 @@ export const Resources = () => {
                 <div className="absolute w-[250px] h-[250px] bg-[var(--light-blue)] opacity-30 left-[-7vw] top-[-3vw]   rounded-full z-[-1]"></div>
 
                 <div className=" text-4xl font-semibold leading-snug text-center text-black z-[2] relative">
-                    Download
-                    <span className="text-blue-500"> NESSA CATALOGUE</span>
+                    <span className="text-blue-500"> Comprehensive Resource</span> Hub
                 </div>
                 <div className="w-full flex justify-center">
                     <div className="flex relative shrink-0 mt-9 h-2.5 bg-[#b3d6f6] rounded-[50px] w-[51px]" />
                 </div>
                 <div className="relative mt-7 text-xl px-[5vw] mb-4 leading-8 text-center text-zinc-900 max-md:max-w-full">
-                    NESSA offers a complete product catalog in PDF file format. Our catalog includes product specifications, features, and
-                    applications.
+                    Explore our comprehensive resource hub to stay informed. For the latest specifications, please confirm with our sales team.
+                    Specifications are subject to change without prior notice.
                 </div>
             </div>
 
@@ -83,7 +82,7 @@ export const Resources = () => {
                 className="py-[50px] ">
                 <div className=" text-4xl font-semibold leading-snug text-center text-black z-[2] relative">
                     Product
-                    <span className="text-blue-500"> MANUALS</span>
+                    <span className="text-blue-500">  Manuals</span>
                 </div>
                 <div className="w-full flex justify-center">
                     <div className="flex relative shrink-0 mt-9 h-2.5 bg-[#b3d6f6] rounded-[50px] w-[51px]" />
@@ -94,9 +93,9 @@ export const Resources = () => {
                             key={index}
                             className=" w-[20vw] max-md:w-[40vw] max-sm:w-[90%] max-sm:mb-10 min-h-[30vw] max-md:h-fit mb-[50px]  flex flex-col items-center  justify-between">
                             <img
-                                className="bg-gray-400 h-[300px] object-cover  "
+                                className=" h-[300px] object-cover  "
                                 src={item.poster}
-                                alt=""
+                                alt={item.name  + ' poster'}
                             />
 
                             <h1 className="text-xl font-semibold mt-4">{item.name}</h1>
@@ -104,7 +103,6 @@ export const Resources = () => {
 
                             <Link
                                 to={item.downloadLink ? item.downloadLink : null}
-                                download
                                 target="_blank"
                                 className="bg-blue-500 w-[70%] text-center py-[10px] mt-[20px] rounded-md text-white">
                                 Download Now

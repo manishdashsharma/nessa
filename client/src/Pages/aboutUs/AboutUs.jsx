@@ -202,8 +202,8 @@ const AboutUs = () => {
 
             <div className="py-[5vw]  ">
                 <div className=" text-4xl font-semibold leading-snug text-center text-black z-[2] relative">
-                    Why we
-                    <span className="text-blue-500"> are</span>
+                    Why 
+                    <span className="text-blue-500"> NESSA</span>
                 </div>
                 <div className="w-full flex justify-center">
                     <div className="flex relative shrink-0 mt-9 h-2.5 bg-[#b3d6f6] rounded-[50px] w-[51px]" />

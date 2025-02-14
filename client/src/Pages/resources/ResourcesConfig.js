@@ -204,6 +204,8 @@ import ncp1 from '../../assets/images/resources/nessacatalog.png'
 import ncp2 from '../../assets/images/resources/csrprofile.png'
 import ncp3 from '../../assets/images/resources/componyprofile.png'
 
+import pmd from '../../assets/images/resources/Nessa Smart Solar Light.pdf'
+
  export const resourcesUtilsConfigHardCodedData = {
      title: 'Resources Page Utils Data',
      utilsData: {
@@ -227,26 +229,26 @@ import ncp3 from '../../assets/images/resources/componyprofile.png'
          productManualUtilsData: [
              {
                  poster: 'https://res.cloudinary.com/dfx1sukqp/image/upload/v1736543218/resources/1736543216421-solarAcProducts_eo8b9i.png',
-                 downloadLink: '',
-                 name: 'Solar & A.C Products',
+                 downloadLink: pmd,
+                 name: 'AC Products',
                  description: 'Make our earth green and clean by using a wide range of Nessa\'s LED Products.'
              },
              {
                  poster: 'https://res.cloudinary.com/dfx1sukqp/image/upload/v1736543263/resources/1736543261854-electronics_leujs6.png',
-                 downloadLink: 'https://res.cloudinary.com/dfx1sukqp/image/upload/v1736543263/resources/1736543261854-electronics_leujs6.png',
-                 name: 'Electronics',
+                 downloadLink: pmd,
+                 name: 'Solar Products',
                  description: 'Nessa, founded in 2008, by people with vast global experience in the solar and semiconductor industry.'
              },
              {
                  poster: '',
-                 downloadLink: '',
-                 name: 'Solar Pump',
+                 downloadLink: pmd,
+                 name: 'Electronics',
                  description: 'We are leading manufacturer, supplier and exporter of solar solutions in India.'
              },
              {
                  poster: '',
-                 downloadLink: '',
-                 name: 'UVC Products',
+                 downloadLink: pmd,
+                 name: 'Smart Lights Ranges',
                  description: 'NESSA UVC Disinfectants-Proven to Kill 99.99% of Viruses'
              }
          ],
