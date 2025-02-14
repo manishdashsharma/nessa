@@ -97,7 +97,7 @@ export const team = [
     {
         name: 'Shoeb Noorani',
         image: shoeb,
-        position: 'Operation In Charge'
+        position: 'Operations Head'
     }
 ]
 
