@@ -205,6 +205,9 @@ import ncp2 from '../../assets/images/resources/csrprofile.png'
 import ncp3 from '../../assets/images/resources/componyprofile.png'
 
 import pmd from '../../assets/images/resources/Nessa Smart Solar Light.pdf'
+import electronic from '../../assets/images/resources/Nessa-Electronics-Catalog.pdf'
+import solar from '../../assets/images/resourcesImages/NESSA-SMART-SOLAR-LIGHTS.jpg'
+import Electronics from '../../assets/images/resourcesImages/ele.jpg'
 
  export const resourcesUtilsConfigHardCodedData = {
      title: 'Resources Page Utils Data',
@@ -228,28 +231,28 @@ import pmd from '../../assets/images/resources/Nessa Smart Solar Light.pdf'
          ],
          productManualUtilsData: [
              {
-                 poster: 'https://res.cloudinary.com/dfx1sukqp/image/upload/v1736543218/resources/1736543216421-solarAcProducts_eo8b9i.png',
+                 poster: ncp1,
                  downloadLink: pmd,
                  name: 'AC Products',
-                 description: 'Make our earth green and clean by using a wide range of Nessa\'s LED Products.'
+                 description: ''
              },
              {
-                 poster: 'https://res.cloudinary.com/dfx1sukqp/image/upload/v1736543263/resources/1736543261854-electronics_leujs6.png',
+                 poster: ncp1,
                  downloadLink: pmd,
                  name: 'Solar Products',
-                 description: 'Nessa, founded in 2008, by people with vast global experience in the solar and semiconductor industry.'
+                 description: ''
              },
              {
-                 poster: '',
-                 downloadLink: pmd,
+                 poster: Electronics,
+                 downloadLink: electronic,
                  name: 'Electronics',
-                 description: 'We are leading manufacturer, supplier and exporter of solar solutions in India.'
+                 description: ''
              },
              {
-                 poster: '',
+                 poster: solar,
                  downloadLink: pmd,
-                 name: 'Smart Lights Ranges',
-                 description: 'NESSA UVC Disinfectants-Proven to Kill 99.99% of Viruses'
+                 name: 'Smart Solar Lights',
+                 description: ''
              }
          ],
          nessaManualUtilsData: [
@@ -286,7 +289,7 @@ import pmd from '../../assets/images/resources/Nessa Smart Solar Light.pdf'
              {
                  name: 'Refinery Lighting Solutions',
                  description: '',
-                 downloadLink: 'https://docs.google.com/presentation/d/15M-f86hxVgdcxYV0HklhvM1JPFEm0WgtPMBdD92fdKU/edit?usp=sharing'
+                 downloadLink: 'https://docs.google.com/presentation/d/18WgVXyROZmlvoDGmkYFQNCeq373YIgD_SDjF_ilNVQQ/edit?usp=sharing'
              },
              {
                  name: 'Rural Lighting Solutions',
@@ -306,7 +309,7 @@ import pmd from '../../assets/images/resources/Nessa Smart Solar Light.pdf'
              {
                  name: 'Thermal Power Lighting',
                  description: '',
-                 downloadLink: 'https://docs.google.com/presentation/d/1KR_-xj8BV8mdxT2B6jddxt99v8PLS17wlWDrNqvlPXQ/edit?usp=sharing'
+                 downloadLink: 'https://docs.google.com/presentation/d/1YQ-BmNDuTbYbif9Wf9jzSu0VkFPDYfWM-Z2H3N-qPyA/edit?usp=sharing'
              },
              {
                  name: 'Tunnel Lighting Solutions',
