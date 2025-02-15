@@ -234,7 +234,7 @@ const ContactUs = () => {
                                 </div>
                                 <div className="flex   flex-wrap items-center gap-2">
                                     <MdEmail />
-                                    <h1> exports@nessa.in</h1>
+                                    <h1>services@nessa.in</h1>
                                 </div>
                             </div>
                             <div className="w-1/2 max-[400px]:w-full max-[400px]:flex max-[400px]:flex-col max-[400px]:justify-center max-[400px]:items-center  min-h-[100px] p-[20px] max-sm:px-[10px] max-sm:text-sm bg-blue-300 rounded-lg">
