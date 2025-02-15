@@ -255,7 +255,7 @@ const Navbar = () => {
                         </div>
                         <div className="flex items-center ml-4">
                             <IoCallOutline className="w-5 h-5 text-white" />
-                            <span className="text-white ml-2">+91-79-2970-1779</span>
+                            <span className="text-white ml-2">+918690779778</span>
                         </div>
                     </div>
                     <div className="flex items-center gap-4">
@@ -391,7 +391,6 @@ const Navbar = () => {
                                 )}
                             </AnimatePresence>
                         </div>
-                      
                     </div>
 
                     <div className="xl:hidden flex items-center gap-4">
@@ -515,7 +514,7 @@ const Navbar = () => {
                                 )}
                             </AnimatePresence>
                         </div>
-                       
+
                         <Link
                             to="/contactus"
                             className="sm:hidden py-2 text-black hover:bg-gray-100 px-4">

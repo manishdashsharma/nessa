@@ -21,9 +21,9 @@ function Footer() {
                       <p className="text-gray-400 text-sm">
                           In a world driven by innovation, Nessa leads the way in redefining lighting solutions with sustainability at its core. We
                           illuminate the future with cutting-edge LED and solar technologies, seamlessly blending efficiency, performance, and
-                          environmental responsibility. <br /> <br /> Our vision extends beyond lighting—it’s about creating a brighter, greener world where every
-                          product reflects our commitment to energy efficiency and sustainable progress. At Nessa, innovation isn’t just about
-                          advancement; it’s about shaping a future that balances technological excellence with a deep respect for our planet.
+                          environmental responsibility. <br /> <br /> Our vision extends beyond lighting—it’s about creating a brighter, greener world
+                          where every product reflects our commitment to energy efficiency and sustainable progress. At Nessa, innovation isn’t just
+                          about advancement; it’s about shaping a future that balances technological excellence with a deep respect for our planet.
                       </p>
                       <div className="flex gap-4">
                           <Link
@@ -129,7 +129,7 @@ function Footer() {
                                   Resources
                               </Link>
                           </li>
-                          
+
                           <li>
                               <Link
                                   to="/projects"
@@ -184,7 +184,7 @@ function Footer() {
                   <div className="w-[20%] max-md:w-full">
                       <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
                       <ul className="space-y-3">
-                          <li className="text-gray-400 mb-4">+91-79-2970-1779</li>
+                          <li className="text-gray-400 mb-4">+918690779778</li>
                           <Link
                               to="mailto:info@nessa.in"
                               className="hover:underline  text-gray-400">
