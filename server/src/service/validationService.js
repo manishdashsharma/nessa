@@ -111,7 +111,7 @@ export const ValidateContactUs = Joi.object({
     phoneNumber: Joi.string().required(),
     message: Joi.string().required(),
     subject: Joi.string().valid(...Object.values(ESubject)).required(),
-    fileLink: Joi.string().uri().required(),
+    fileLink: Joi.string().uri().optional(),
     companyName: Joi.string().required(),
 })
 
@@ -126,7 +126,7 @@ export const ValidateSupportEnquiry = Joi.object({
     email: Joi.string().email().required(),
     phoneNumber: Joi.string().required(),
     message: Joi.string().required(),
-    fileLink: Joi.string().uri().required(),
+    fileLink: Joi.string().uri().optional(),
     companyName: Joi.string().required(),
     productName: Joi.string().required(),
     productSKUId : Joi.string().required(),
