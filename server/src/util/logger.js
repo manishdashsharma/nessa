@@ -90,15 +90,18 @@ const fileTransport = () => {
 };
 
 const mongodbTransport = () => {
-    return [
-        new transports.MongoDB({
-            level: 'info',
-            db: config.DATABASE_URL,
-            metaKey: 'meta',
-            expireAfterSeconds: 3600 * 24 * 30,
-            collection: 'application-logs',
-        }),
-    ];
+    if (config.ENV !== EApplicationEnvironment.PRODUCTION) {
+        return [
+            new transports.MongoDB({
+                level: 'info',
+                db: config.DATABASE_URL,
+                metaKey: 'meta',
+                expireAfterSeconds: 3600 * 24 * 30,
+                collection: 'application-logs',
+            }),
+        ];
+    }
+    return [];
 };
 
 export default createLogger({
