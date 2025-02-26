@@ -406,7 +406,6 @@ export default {
 
             httpResponse(req, res, 200, responseMessage.SUCCESS, response)
         } catch (err) {
-            console.error('Error:', err);
             httpError(next, err, req, 500);
         }
     },
@@ -498,7 +497,6 @@ export default {
 
             httpResponse(req, res, 200, responseMessage.SUCCESS, response)
         } catch (err) {
-            console.error('Error:', err);
             httpError(next, err, req, 500);
         }
     },
@@ -618,7 +616,6 @@ export default {
             });
             httpResponse(req, res, 200, responseMessage.SUCCESS, response)
         } catch (err) {
-            console.error('Error:', err);
             httpError(next, err, req, 500);
         }
     },
@@ -633,7 +630,6 @@ export default {
             }
             httpResponse(req, res, 200, responseMessage.SUCCESS, solutionsList)
         } catch (err) {
-            console.error('Error:', err);
             httpError(next, err, req, 500);
         }
     },
@@ -684,7 +680,6 @@ export default {
         try {
             const testimonialsList = await databaseService.queryAllTestimonials();
 
-            console.log(testimonialsList);
 
 
             if (!testimonialsList) {
@@ -692,7 +687,6 @@ export default {
             }
             httpResponse(req, res, 200, responseMessage.SUCCESS, testimonialsList)
         } catch (err) {
-            console.error('Error:', err);
             httpError(next, err, req, 500);
         }
     },
@@ -737,7 +731,6 @@ export default {
     saveProjects: async (req, res, next) => {
         try {
             const { body } = req
-            console.log(body);
             
             const { error, value } = validateJoiSchema(ValidateProjects, body)
 
@@ -765,7 +758,6 @@ export default {
             }
             httpResponse(req, res, 200, responseMessage.SUCCESS, projectsList)
         } catch (err) {
-            console.error('Error:', err);
             httpError(next, err, req, 500);
         }
     },
@@ -813,7 +805,6 @@ export default {
                 return httpError(next, new Error(responseMessage.FAILED_TO_SAVE), req, 500)
             }
 
-            console.log("Blog Data Is ",blogData);
             
 
             httpResponse(req, res, 201, responseMessage.SUCCESS, blogData)
