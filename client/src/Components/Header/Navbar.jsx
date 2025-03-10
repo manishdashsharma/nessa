@@ -36,6 +36,7 @@ const Navbar = () => {
     const [soluitonOpen, setsoluitonOpen] = useState(false)
     const [corporateOpen, setcorporateOpen] = useState(false)
     const [productOpen, setproductOpen] = useState(false)
+    const [calculatorOpen, setCalculatorOpen] = useState(false)
     const [solutionsDropdown, setSolutionsDropdown] = useState([
     {
         logo: <img src={airport} alt="Airport" className="w-[40px] h-[40px] " />,
@@ -138,6 +139,9 @@ const Navbar = () => {
             if (corporateOpen) {
                 setcorporateOpen(false)
             }
+            if (calculatorOpen) {
+                setCalculatorOpen(false)
+            }
         }
 
         window.addEventListener('scroll', handleScroll)
@@ -145,13 +149,14 @@ const Navbar = () => {
         return () => {
             window.removeEventListener('scroll', handleScroll)
         }
-    }, [isMenuOpen, soluitonOpen, corporateOpen])
+    }, [isMenuOpen, soluitonOpen, corporateOpen, calculatorOpen])
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen)
         setsoluitonOpen(false)
         setcorporateOpen(false)
         setproductOpen(false)
+        setCalculatorOpen(false)
     }
 
     const dropdownVariants = {
@@ -391,6 +396,65 @@ const Navbar = () => {
                                 )}
                             </AnimatePresence>
                         </div>
+
+                        <div
+                            onMouseEnter={() => {
+                                setCalculatorOpen(true)
+                                setcorporateOpen(false)
+                                setsoluitonOpen(false)
+                            }}
+                            onMouseLeave={() => {
+                                setCalculatorOpen(false)
+                            }}
+                            className="text-black flex items-center gap-1 relative cursor-pointer">
+                            Calculators
+                            <motion.div
+                                animate={{ rotate: calculatorOpen ? 180 : 0 }}
+                                transition={{ duration: 0.2 }}>
+                                <IoIosArrowDown className="w-5 h-5 text-black" />
+                            </motion.div>
+                            <AnimatePresence>
+                                {calculatorOpen && (
+                                    <motion.div
+                                        variants={dropdownVariants}
+                                        initial="hidden"
+                                        animate="visible"
+                                        exit="exit"
+                                        className="w-[300px] shadow-2xl text-base rounded-xl bg-white p-[30px] absolute top-[120%] left-[-50%] z-[99]">
+                                        <motion.div
+                                            custom={0}
+                                            variants={itemVariants}
+                                            initial="hidden"
+                                            animate="visible">
+                                            <Link to="/calculator/battery_AH_calculator" className="w-[300px]">
+                                                <div className="flex w-full gap-[10px] mb-2 items-center hover:bg-gray-50 p-2 rounded-lg transition-colors duration-200">
+                                                    {/* <div className="flex items-center justify-center text-3xl">
+                                                        <FaGears className="text-[#FF881B] bg-[#FF881B] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2" />
+                                                    </div> */}
+                                                    <h1>Battery AH Calculator</h1>
+                                                </div>
+                                            </Link>
+                                        </motion.div>
+                                        <motion.div
+                                            custom={1}
+                                            variants={itemVariants}
+                                            initial="hidden"
+                                            animate="visible">
+                                            <Link to="/calculator/solar-payback" className="w-[300px]">
+                                                <div className="flex w-full gap-[10px] mb-2 items-center hover:bg-gray-50 p-2 rounded-lg transition-colors duration-200">
+                                                    {/* <div className="flex items-center justify-center text-3xl">
+                                                        <img src={solar} alt="Solar" className="w-[35px] h-[35px] rounded-full p-1" />
+                                                    </div> */}
+                                                    <h1>Solar vs. AC Lights Payback Calculator</h1>
+                                                </div>
+                                            </Link>
+                                        </motion.div>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </div>
+
+                        
                     </div>
 
                     <div className="xl:hidden flex items-center gap-4">
@@ -510,6 +574,60 @@ const Navbar = () => {
                                                 </Link>
                                             </motion.div>
                                         ))}
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </div>
+
+                        <div className="text-black relative">
+                            <div
+                                onClick={() => {
+                                    setCalculatorOpen(!calculatorOpen)
+                                }}
+                                className="w-full justify-between px-4 py-2 flex items-center gap-1 cursor-pointer">
+                                <div className="">Calculators</div>
+                                <motion.div
+                                    animate={{ rotate: calculatorOpen ? 180 : 0 }}
+                                    transition={{ duration: 0.2 }}>
+                                    <IoIosArrowDown className="w-5 h-5 text-black cursor-pointer" />
+                                </motion.div>
+                            </div>
+                            <AnimatePresence>
+                                {calculatorOpen && (
+                                    <motion.div
+                                        variants={dropdownVariants}
+                                        initial="hidden"
+                                        animate="visible"
+                                        exit="exit"
+                                        className="w-full text-base rounded-xl bg-white px-[30px] max-sm:px-0">
+                                        <motion.div
+                                            custom={0}
+                                            variants={itemVariants}
+                                            initial="hidden"
+                                            animate="visible">
+                                            <Link to="/calculator/battery_AH_calculator" className="w-[300px]">
+                                                <div className="flex w-full gap-[10px] mb-2 items-center hover:bg-gray-50 p-2 rounded-lg transition-colors duration-200">
+                                                    {/* <div className="flex items-center justify-center text-3xl">
+                                                        <FaGears className="text-[#FF881B] bg-[#FF881B] bg-opacity-30 w-[35px] h-[35px] rounded-full p-2" />
+                                                    </div> */}
+                                                    <h1>Battery AH Calculator</h1>
+                                                </div>
+                                            </Link>
+                                        </motion.div>
+                                        <motion.div
+                                            custom={1}
+                                            variants={itemVariants}
+                                            initial="hidden"
+                                            animate="visible">
+                                            <Link to="/calculator/solar-payback" className="w-[300px]">
+                                                <div className="flex w-full gap-[10px] mb-2 items-center hover:bg-gray-50 p-2 rounded-lg transition-colors duration-200">
+                                                    {/* <div className="flex items-center justify-center text-3xl">
+                                                        <img src={solar} alt="Solar" className="w-[35px] h-[35px] rounded-full p-1" />
+                                                    </div> */}
+                                                    <h1>Solar vs. AC Lights Payback Calculator</h1>
+                                                </div>
+                                            </Link>
+                                        </motion.div>
                                     </motion.div>
                                 )}
                             </AnimatePresence>

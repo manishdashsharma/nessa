@@ -22,6 +22,7 @@ import { ValueAddedServices } from './Pages/valueAddedServices/ValueAddedService
 import CookiesPolicy from './Pages/CookiesPolicy/CookiesPolicy';
 import BlogDetailPage from './Pages/blogDetail/BlogDetailPage';
 import CookieConsent from './hooks/CookieConsent';
+import BatteryAHcalculator from './Pages/calculators/BatteryAHcalculator';
 
 const App = () => {
     
@@ -56,6 +57,7 @@ const App = () => {
                     <Route path="case-studies/:id" element={<BlogDetailPage />} />
                     <Route path="others/:id" element={<BlogDetailPage />} /> */}
                 </Route>
+                <Route path="/calculator/battery_AH_calculator" element={<BatteryAHcalculator />} />
                 
                 
             </Routes>
