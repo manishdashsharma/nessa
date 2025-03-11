@@ -227,6 +227,41 @@ export const updateProject = async (id,data) => {
 }
 
 
+
+export const createMedia = async (token, data) => {
+    const headers = {
+        Authorization: `Bearer ${token}`
+    };
+    const response = await servicesAxiosInstance.post(`v1/create-media`, data, {
+        headers
+    });
+    return response.data;
+};
+
+export const updateMedia = async (token, id, data) => {
+    const headers = {
+        Authorization: `Bearer ${token}`
+    };
+    const response = await servicesAxiosInstance.put(`v1/update-media/${id}`, data, {
+        headers
+    });
+    return response.data;
+};
+
+export const getMedia = async (query, limit, offset) => {
+    const response = await servicesAxiosInstance.get(
+        `v1/query-media-data/?query=${query}&limit=${limit}&offset=${offset}`
+    );
+    return response.data;
+};
+
+export const getSingleMedia = async (id) => {
+    const response = await servicesAxiosInstance.get(`v1/query-media/${id}`);
+    return response.data;
+};
+
+
+
 export const deleteByType = async (data)=>{
     const response = await servicesAxiosInstance.delete('/v1/delete-by-type', {
         data:data

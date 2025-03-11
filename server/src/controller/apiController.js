@@ -4,7 +4,7 @@ import httpError from '../util/httpError.js'
 import quicker from '../util/quicker.js'
 import databaseService from '../service/databaseService.js'
 import { uploadOnCloudinary } from '../service/cloudinaryService.js'
-import { ValidateAddProduct, ValidateAddUtilsData, ValidateBlog, ValidateContactUs, validateJoiSchema, ValidateLogin, ValidateProjects, ValidateSoulution, ValidateSupportEnquiry, ValidateTestimonial, ValidateUpdateContactUs, ValidateUpdateProduct, ValidateUpdateProjects, ValidateUpdateSolution, ValidateUpdateSupportEnquiry, ValidateUpdateUtilsData, VlidateDelete } from '../service/validationService.js'
+import { ValidateAddProduct, ValidateAddUtilsData, ValidateBlog, ValidateContactUs, validateJoiSchema, ValidateLogin, ValidateMedia, ValidateProjects, ValidateSoulution, ValidateSupportEnquiry, ValidateTestimonial, ValidateUpdateContactUs, ValidateUpdateProduct, ValidateUpdateProjects, ValidateUpdateSolution, ValidateUpdateSupportEnquiry, ValidateUpdateUtilsData, VlidateDelete } from '../service/validationService.js'
 import { allowedUsers, EApplicationEnvironment } from '../constant/application.js'
 import config from '../config/config.js'
 import { uploadOnImageKit } from '../service/imageKitService.js'
@@ -111,7 +111,7 @@ export default {
                 return httpError(next, error, req, 422)
             }
 
-            const { name, description,slug, bestSuitedFor, categories, subcategories, specification, feature, productImageUrl, applicationImageUrls, brochureUrl, SKUId } = value
+            const { name, description, slug, bestSuitedFor, categories, subcategories, specification, feature, productImageUrl, applicationImageUrls, brochureUrl, SKUId } = value
 
             const productData = {
                 name,
@@ -708,30 +708,30 @@ export default {
     updateTestiminialData: async (req, res, next) => {
         try {
             const { id } = req.params;
-    
+
             const { body } = req;
-    
+
             const { error, value } = validateJoiSchema(ValidateTestimonial, body);
-    
+
             if (error) {
-                return httpError(next, error, req, 422); 
+                return httpError(next, error, req, 422);
             }
-                
+
             const updatedTestimonial = await databaseService.updateSingleTestimonialData(id, value);
             if (!updatedTestimonial) {
-                return httpError(next, new Error(responseMessage.NOT_FOUND("Data")), req, 500); 
+                return httpError(next, new Error(responseMessage.NOT_FOUND("Data")), req, 500);
             }
-    
+
             // Send a success response
             httpResponse(req, res, 200, responseMessage.SUCCESS);
         } catch (err) {
-            httpError(next, err, req, 500); 
+            httpError(next, err, req, 500);
         }
     },
     saveProjects: async (req, res, next) => {
         try {
             const { body } = req
-            
+
             const { error, value } = validateJoiSchema(ValidateProjects, body)
 
             if (error) {
@@ -763,21 +763,21 @@ export default {
     },
     updateProject: async (req, res, next) => {
         try {
-            const { id } = req.params; 
+            const { id } = req.params;
             const { body } = req;
-    
+
             const { error, value } = validateJoiSchema(ValidateUpdateProjects, body);
-    
+
             if (error) {
                 return httpError(next, error, req, 422);
             }
-    
+
             const updatedProject = await databaseService.updateProjectData(id, value);
-    
+
             if (!updatedProject) {
                 return httpError(next, new Error(responseMessage.SOMETHING_WENT_WRONG), req, 500);
             }
-    
+
             httpResponse(req, res, 200, responseMessage.SUCCESS, updatedProject);
         } catch (err) {
             httpError(next, err, req, 500);
@@ -793,10 +793,12 @@ export default {
                 return httpError(next, error, req, 422)
             }
 
-            const { title, description, tag, thumbnailImage, userImage, userName, content } = value
+            const { title, description, tag, thumbnailImage, userImage, userName, content, resource_type
+                , slug } = value
 
             const blogData = {
-                title, description, tag, thumbnailImage, userImage, userName, content
+                title, description, tag, thumbnailImage, userImage, userName, content, resource_type
+                , slug
             }
 
             const saveBlogData = await databaseService.saveBlog(blogData)
@@ -805,7 +807,7 @@ export default {
                 return httpError(next, new Error(responseMessage.FAILED_TO_SAVE), req, 500)
             }
 
-            
+
 
             httpResponse(req, res, 201, responseMessage.SUCCESS, blogData)
         } catch (err) {
@@ -836,7 +838,7 @@ export default {
             httpError(next, err, req, 500);
         }
     },
-    fetchBlogs:  async (req, res, next) => {
+    fetchBlogs: async (req, res, next) => {
         try {
             const { query = 'all', limit = 100, offset = 0 } = req.query
 
@@ -844,11 +846,12 @@ export default {
 
             switch (query.toLowerCase()) {
                 case 'all':
-                    break          
+                    break
                 default:
                     break
             }
             const blogs = await databaseService.fetchAllBlogData()
+            console.log(blogs);
 
 
             const total = await databaseService.countBlogDocuments(findQuery)
@@ -865,14 +868,14 @@ export default {
             httpError(next, err, req, 500)
         }
     },
-    fetchSigleBlog:  async (req, res, next) => {
+    fetchSigleBlog: async (req, res, next) => {
         try {
             const { id } = req.params
-            
+
 
             const blogs = await databaseService.fetchBlog(id)
 
-            if (!blogs){
+            if (!blogs) {
                 return httpError(next, new Error(responseMessage.NOT_FOUND('Blog')), req, 404)
             }
 
@@ -881,30 +884,133 @@ export default {
             httpError(next, err, req, 500)
         }
     },
-     deleteDataByType : async (req, res, next) => {
+
+    createMedia: async (req, res, next) => {
         try {
             const { body } = req;
-    
-    
-            const { value, error } = validateJoiSchema(VlidateDelete, body);
-    
+
+            const { value, error } = validateJoiSchema(ValidateMedia, body);
+
             if (error) {
-                return httpError(next, error, req, 422); 
+                return httpError(next, error, req, 422);
             }
-    
+
+            const { title, resource_type, slug, description, thumbnailImage, link } = value;
+
+            const mediaData = {
+                title,
+                resource_type,
+                slug,
+                description,
+                thumbnailImage,
+                link
+            };
+
+            const saveMediaData = await databaseService.saveMedia(mediaData);
+
+            if (!saveMediaData) {
+                return httpError(next, new Error(responseMessage.FAILED_TO_SAVE), req, 500);
+            }
+
+            httpResponse(req, res, 201, responseMessage.SUCCESS, mediaData);
+        } catch (err) {
+            httpError(next, err, req, 500);
+        }
+    },
+
+    updateMedia: async (req, res, next) => {
+        try {
+            const { body } = req;
+            const { id } = req.params;
+
+            const { value, error } = validateJoiSchema(ValidateMedia, body);
+
+            if (error) {
+                return httpError(next, error, req, 422);
+            }
+
+            const updatedMediaData = { ...value };
+
+            const updatedMedia = await databaseService.updateMediaById(id, updatedMediaData);
+
+            if (!updatedMedia) {
+                return httpError(next, new Error(responseMessage.NOT_FOUND('Media')), req, 404);
+            }
+
+            httpResponse(req, res, 200, responseMessage.SUCCESS, updatedMedia);
+        } catch (err) {
+            httpError(next, err, req, 500);
+        }
+    },
+
+    fetchMediaItems: async (req, res, next) => {
+        try {
+            const { query = 'all', limit = 100, offset = 0 } = req.query;
+
+            let findQuery = {};
+
+            switch (query.toLowerCase()) {
+                case 'all':
+                    break;
+                default:
+                    break;
+            }
+
+            const mediaItems = await databaseService.queryMediaData(findQuery, limit, offset);
+            const total = await databaseService.countMediaDocuments(findQuery);
+
+            const response = {
+                total,
+                limit: Number(limit),
+                offset: Number(offset),
+                media: mediaItems
+            };
+
+            httpResponse(req, res, 200, responseMessage.SUCCESS, response);
+        } catch (err) {
+            httpError(next, err, req, 500);
+        }
+    },
+
+    fetchSingleMedia: async (req, res, next) => {
+        try {
+            const { id } = req.params;
+
+            const media = await databaseService.fetchMedia(id);
+
+            if (!media) {
+                return httpError(next, new Error(responseMessage.NOT_FOUND('Media')), req, 404);
+            }
+
+            httpResponse(req, res, 200, responseMessage.SUCCESS, media);
+        } catch (err) {
+            httpError(next, err, req, 500);
+        }
+    },
+    deleteDataByType: async (req, res, next) => {
+        try {
+            const { body } = req;
+
+
+            const { value, error } = validateJoiSchema(VlidateDelete, body);
+
+            if (error) {
+                return httpError(next, error, req, 422);
+            }
+
             const { _id, type } = value;
-            
+
             const deletedData = await databaseService.deleteByType(_id, type);
-    
+
             if (!deletedData) {
                 return httpError(next, new Error(responseMessage.NOT_FOUND(type)), req, 404)
             }
-    
-            
-            httpResponse(req, res, 200,  responseMessage.SUCCESS, deletedData);
-    
+
+
+            httpResponse(req, res, 200, responseMessage.SUCCESS, deletedData);
+
         } catch (err) {
-            httpError(next, err, req, 500); 
+            httpError(next, err, req, 500);
         }
     }
 }

@@ -5,11 +5,10 @@ import AddIcon from '@mui/icons-material/Add'
 import BlogModal from '../../Components/Modal/BlogModal'
 import BlogDetailsModal from '../../Components/Modal/BlogDetailsModal'
 import { useNavigate } from 'react-router-dom'
-import { isTokenExpired } from '../../utils/utils'
+import { BLOG_TYPES, isTokenExpired } from '../../utils/utils'
 import { MOCK_BLOGS } from './config'
 import { getBlog } from '../../service/apiService'
 import { DeleteModalButton, DELETEMODELBYTYPE } from '../../Components/DeleteModal'
-
 const BlogPage = () => {
     const [blogs, setBlogs] = useState([])
     const [filteredBlogs, setFilteredBlogs] = useState([])
@@ -19,6 +18,7 @@ const BlogPage = () => {
     const [openModal, setOpenModal] = useState(false)
     const [searchTitle, setSearchTitle] = useState('')
     const [searchTag, setSearchTag] = useState('')
+    const [searchType, setSearchType] = useState('')
     const [blogToEdit, setBlogToEdit] = useState(null)
     const [openDetailsModal, setOpenDetailsModal] = useState(false)
     const [selectedBlog, setSelectedBlog] = useState(null)
@@ -37,7 +37,7 @@ const BlogPage = () => {
         setLoading(true)
         try {
             const response = await getBlog('all', itemsPerPage, (page - 1) * itemsPerPage)
-            
+
             setBlogs(response.data.blogs)
             setTotalPages(Math.ceil(response.data.total / itemsPerPage))
         } catch (error) {
@@ -48,7 +48,7 @@ const BlogPage = () => {
     }
 
     useEffect(() => {
-   
+
         fetchBlogs()
     }, [page])
 
@@ -75,13 +75,18 @@ const BlogPage = () => {
         if (searchTag) {
             filtered = filtered.filter((blog) => blog.tag.toLowerCase().includes(searchTag.toLowerCase()))
         }
+        if (searchType) {
+            filtered = filtered.filter((blog) =>
+                blog.type === searchType
+            );
+        }
 
-        setFilteredBlogs(blogs)
+        setFilteredBlogs(filtered)
         setTotalPages(Math.ceil(filtered.length / itemsPerPage))
-    }, [searchTitle, searchTag, blogs])
+    }, [searchTitle, searchTag, searchType, blogs])
 
-    const handlePageChange =  (event, value) => {
-        setPage(value); 
+    const handlePageChange = (event, value) => {
+        setPage(value);
     }
 
     const handleOpenModal = (blog = null) => {
@@ -108,7 +113,7 @@ const BlogPage = () => {
         if (text.length <= maxLength) return text
         return text.slice(0, maxLength) + '...'
     }
-    
+
 
     return (
         <div className="max-w-6xl mx-auto p-4">
@@ -129,6 +134,18 @@ const BlogPage = () => {
                     onChange={(e) => setSearchTag(e.target.value)}
                     className="border p-2 rounded w-full"
                 />
+                <select
+                    value={searchType}
+                    onChange={(e) => setSearchType(e.target.value)}
+                    className="border p-2 rounded w-full focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                >
+                    <option value="">All Blog Types</option>
+                    {Object.entries(BLOG_TYPES).map(([label, value]) => (
+                        <option key={value} value={value}>
+                            {label?.replaceAll('_', ' ').toLowerCase().replace(/\b\w/g, c => c.toUpperCase())}
+                        </option>
+                    ))}
+                </select>
             </div>
 
             {loading ? (
@@ -162,6 +179,10 @@ const BlogPage = () => {
                                 <span className="inline-block bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-sm">
                                     {blog.tag}
                                 </span>
+                            </div>
+                            <div className='flex items-center gap-2 justify-start mb-2'>
+                                <h3 className=" ">Resource Type</h3> :
+                                <p className="text-blue-700 ">{blog?.resource_type?.replaceAll('_', ' ').toLowerCase().replace(/\b\w/g, c => c.toUpperCase())}</p>
                             </div>
                             <div className="flex gap-2">
                                 <button

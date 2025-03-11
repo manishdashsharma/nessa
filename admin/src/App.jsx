@@ -10,6 +10,7 @@ import SolutionPage from './Pages/Solutions/SolutionPage'
 import TestimonialPage from './Pages/Testomonials/TestinomialPage'
 import ProjectsPage from './Pages/Projects/ProjectsPage'
 import BlogPage from './Pages/Blogs/BlogsPages'
+import MediaPage from './Pages/Media/MediaPage'
 
 const App = () => {
     return (
@@ -26,6 +27,7 @@ const App = () => {
                     <Route path="testimonial" element={<TestimonialPage />} />
                     <Route path="projects" element={<ProjectsPage />} />
                     <Route path="blogs" element={<BlogPage />} />
+                    <Route path="media" element={<MediaPage />} />
                 </Route>
             </Routes>
         </>

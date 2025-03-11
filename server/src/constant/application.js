@@ -107,5 +107,21 @@ export const DELETE_BY_TYPE = Object.freeze({
     "SOLUTION":"SOLUTION",
     "TESTIMONIAL":"TESTIMONIAL",
     "PROJECT":"PROJECT",
-    "BLOG":"BLOG"
+    "BLOG":"BLOG",
+    "MEDIA":"MEDIA"
+})
+
+export const BLOG_TYPES = Object.freeze({
+    "BLOGS":"BLOGS",
+    "CASE_STUDIES":"CASE_STUDIES",
+    "WHITE_PAPERS":"WHITE_PAPERS",
+    "ARTICLES": "ARTICLES",
+    "OTHERS":"OTHRES"
+})
+export const MEDIA_TYPES = Object.freeze({
+    "PRESS_RELEASE":"PRESS_RELEASE",
+    "MEDIA_COVERAGE":"MEDIA_COVERAGE",
+    "EVENTS_AND_EXHIBITION":"EVENTS_AND_EXHIBITION",
+    "MEDIA_KIT": "MEDIA_KIT",
+    "VIDEOS":"VIDEOS"
 })
