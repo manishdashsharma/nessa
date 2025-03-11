@@ -108,17 +108,17 @@ const BatteryAHcalculator = () => {
 
         <div className="w-full h-[300px] max-sm:h-[200px] relative flex items-center  justify-start ">
                 <img
-                    className="w-full min-h-[150px] object-cover object-left absolute "
+                    className="w-full h-full object-cover object-left absolute "
                     src={hero}
                     alt=""
                 />
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold w-full text-center text-white ml-[5vw] relative z-[2] drop-shadow-[0_0_10px_rgba(0,0,0,0.8)]">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white ml-[5vw] relative z-[2] drop-shadow-[0_0_10px_rgba(0,0,0,0.8)]">
                     Battery AH Calculator
                 </h1>
-        </div>
+            </div>
 
         {/* Main content sections */}
-        <div className=" py-12 mt-[50px]">
+        <div className="my-[50px]">
             {/* Introduction Section */}
             <div className="text-center max-w-4xl mx-auto mb-16">
                 <h2 className="text-3xl font-bold mb-6">Accurately Estimate Your Battery Requirements</h2>

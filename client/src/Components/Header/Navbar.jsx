@@ -435,20 +435,18 @@ const Navbar = () => {
                                                 </div>
                                             </Link>
                                         </motion.div>
-                                        <motion.div
+                                        {/* <motion.div
                                             custom={1}
                                             variants={itemVariants}
                                             initial="hidden"
                                             animate="visible">
                                             <Link to="/calculator/solar-payback" className="w-[300px]">
                                                 <div className="flex w-full gap-[10px] mb-2 items-center hover:bg-gray-50 p-2 rounded-lg transition-colors duration-200">
-                                                    {/* <div className="flex items-center justify-center text-3xl">
-                                                        <img src={solar} alt="Solar" className="w-[35px] h-[35px] rounded-full p-1" />
-                                                    </div> */}
+                                                   
                                                     <h1>Solar vs. AC Lights Payback Calculator</h1>
                                                 </div>
                                             </Link>
-                                        </motion.div>
+                                        </motion.div> */}
                                     </motion.div>
                                 )}
                             </AnimatePresence>
