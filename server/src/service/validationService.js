@@ -1,6 +1,6 @@
 import Joi from 'joi';
 import quicker from '../util/quicker.js';
-import { DELETE_BY_TYPE, EBestSuitedFor, EProductCategories, ESubject } from '../constant/application.js';
+import { BLOG_TYPES, DELETE_BY_TYPE, EBestSuitedFor, EProductCategories, ESubject, MEDIA_TYPES } from '../constant/application.js';
 
 export const ValidateAddProduct = Joi.object({
     name: Joi.string().required(),
@@ -238,6 +238,16 @@ export const ValidateBlog  = Joi.object({
     userImage: Joi.string().required(),
     userName: Joi.string().required(),
     content: Joi.string().required(),
+    resource_type: Joi.string()
+    .valid(
+        BLOG_TYPES.ARTICLES,
+        BLOG_TYPES.CASE_STUDIES,
+        BLOG_TYPES.WHITE_PAPERS,
+        BLOG_TYPES.BLOGS,
+        BLOG_TYPES.OTHERS
+    )
+    .required(),
+    slug:Joi.string().required()
 })
 
 export const ValidateUpdateProjects = Joi.object({
@@ -262,10 +272,28 @@ export const VlidateDelete = Joi.object({
         DELETE_BY_TYPE.SOLUTION,
         DELETE_BY_TYPE.TESTIMONIAL,
         DELETE_BY_TYPE.PROJECT,
-        DELETE_BY_TYPE.BLOG
+        DELETE_BY_TYPE.BLOG,
+        DELETE_BY_TYPE.MEDIA
     ).required()
 });
 
+
+export const ValidateMedia = Joi.object({
+    title: Joi.string().required(),
+    resource_type: Joi.string()
+        .valid(
+            MEDIA_TYPES.PRESS_RELEASE,
+            MEDIA_TYPES.MEDIA_COVERAGE,
+            MEDIA_TYPES.EVENTS_AND_EXHIBITION,
+            MEDIA_TYPES.MEDIA_KIT,
+            MEDIA_TYPES.VIDEOS
+        )
+        .required(),
+    slug: Joi.string().required(),
+    description: Joi.string().required(),
+    thumbnailImage: Joi.string().required(),
+    link: Joi.string().uri().required(),
+});
 
 export const validateJoiSchema = (schema, value) => {
     const result = schema.validate(value);

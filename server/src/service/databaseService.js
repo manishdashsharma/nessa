@@ -10,6 +10,7 @@ import testimonialModel from '../model/testimonialModel.js'
 import projectModel from '../model/projectModel.js'
 import blogModel from '../model/blogModel.js'
 import { DELETE_BY_TYPE } from '../constant/application.js'
+import mediaModel from '../model/mediaModel.js'
 
 export default {
     connect: async () => {
@@ -193,6 +194,28 @@ export default {
         // Save and return the updated project
         return await existingProject.save();
     },
+
+    saveMedia: (payload) => {
+        return mediaModel.create(payload);
+    },
+    updateMediaById: (id, data) => {
+        return mediaModel.findByIdAndUpdate(id, data, { new: true });
+    },
+    fetchAllMediaData: () => {
+        return mediaModel.find().sort({ createdAt: -1 });
+    },
+    queryMediaData: (findQuery, limit, offset) => {
+        return mediaModel.find(findQuery)
+            .limit(Number(limit))
+            .skip(Number(offset))
+            .sort({ createdAt: -1 });
+    },
+    countMediaDocuments: (findQuery) => {
+        return mediaModel.countDocuments(findQuery);
+    },
+    fetchMedia: (id) => {
+        return mediaModel.findById(id);
+    },
     deleteByType: (id, type) => {
         switch (type) {
             case DELETE_BY_TYPE.PRODUCT:
@@ -203,10 +226,11 @@ export default {
                 return testimonialModel.findByIdAndDelete(id)
             case DELETE_BY_TYPE.PROJECT:
                 console.log("PROJECT");
-
                 return projectModel.findByIdAndDelete(id)
             case DELETE_BY_TYPE.BLOG:
                 return blogModel.findByIdAndDelete(id)
+            case DELETE_BY_TYPE.MEDIA:
+                return mediaModel.findByIdAndDelete(id)
             default:
                 return null
         }

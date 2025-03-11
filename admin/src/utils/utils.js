@@ -37,3 +37,19 @@ export const CategoryToSubcategories = {
     'Smart Lighting Solutions': ['AC Smart Street Light', 'Solar Smart Street Light ']
 
 }
+
+export const BLOG_TYPES = Object.freeze({
+  BLOGS: "BLOGS",
+  CASE_STUDIES: "CASE_STUDIES",
+  WHITE_PAPERS: "WHITE_PAPERS",
+  ARTICLES: "ARTICLES",
+  OTHERS: "OTHERS",
+});
+
+export const MEDIA_TYPES = Object.freeze({
+    "PRESS_RELEASE":"PRESS_RELEASE",
+    "MEDIA_COVERAGE":"MEDIA_COVERAGE",
+    "EVENTS_AND_EXHIBITION":"EVENTS_AND_EXHIBITION",
+    "MEDIA_KIT": "MEDIA_KIT",
+    "VIDEOS":"VIDEOS"
+})

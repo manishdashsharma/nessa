@@ -5,6 +5,9 @@ import PropTypes from 'prop-types'
 const BlogDetailsModal = ({ open, onClose, blog }) => {
     if (!blog) return null
 
+   
+    
+
     return (
         <Modal
             open={open}
@@ -51,8 +54,13 @@ const BlogDetailsModal = ({ open, onClose, blog }) => {
                         <span className="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full">
                             {blog.tag}
                         </span>
+                        
                     </div>
 
+                    <div>
+                        <h3 className="font-semibold mb-2">Resource Type</h3>
+                        <p className="text-blue-700 font-bold">{blog?.resource_type?.replaceAll('_', ' ').toLowerCase().replace(/\b\w/g, c => c.toUpperCase())}</p>
+                    </div>
                     <div>
                         <h3 className="font-semibold mb-2">Description</h3>
                         <p className="text-gray-700">{blog.description}</p>

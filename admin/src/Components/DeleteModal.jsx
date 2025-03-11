@@ -9,7 +9,8 @@ export const DELETEMODELBYTYPE = {
   "SOLUTION": "SOLUTION",
   "TESTIMONIAL": "TESTIMONIAL",
   "PROJECT": "PROJECT",
-  "BLOG": "BLOG"
+  "BLOG": "BLOG",
+  "MEDIA":"MEDIA"
 };
 
 export default function DeleteModal({ open, onClose, id, type }) {

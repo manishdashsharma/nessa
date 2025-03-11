@@ -24,7 +24,8 @@ export const dashboardConfig = {
     { label: "Solution", icon: FaPuzzlePiece, path: "/dashboard/solutions", sublabels: [] },
     { label: "Testimonial", icon: FaQuoteRight, path: "/dashboard/testimonial", sublabels: [] },
     { label: "Projects", icon: FaProjectDiagram, path: "/dashboard/projects",sublabels: []},
-    { label: "Blog", icon: FaBlog, path: "/dashboard/blogs", sublabels: []}
+    { label: "Blog", icon: FaBlog, path: "/dashboard/blogs", sublabels: []},
+    { label: "Media", icon: FaBlog, path: "/dashboard/media", sublabels: []}
 
   ],
   settingItems: [
