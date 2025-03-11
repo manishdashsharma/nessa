@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { Settings, Mail, Phone, Sparkles, ArrowRight, Clock, Shield } from 'lucide-react';
-import logo from '../../assets/images/nessalogo.png'
+import logo from '../../assets/logo.svg'
 
 const MaintenancePage = () => {
   const [progress, setProgress] = useState(0);
