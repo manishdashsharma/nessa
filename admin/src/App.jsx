@@ -14,7 +14,7 @@ import MediaPage from './Pages/Media/MediaPage'
 import MaintenancePage from './Pages/Maintenance/MaintenancePage'
 
 
-const MAINTENANCE_MODE = true;
+const MAINTENANCE_MODE = false;
 const App = () => {
 
     // If site is in maintenance mode, only show the maintenance page
