@@ -211,7 +211,7 @@ const SupportPage = () => {
                       </td>
                       <td className="px-6 py-4">
                         <div className="flex flex-col space-y-1">
-                          <p className="text-sm text-gray-900 whitespace-pre-wrap">
+                          <p className="text-sm text-gray-900 whitespace-pre-wrap max-h-36 overflow-y-auto">
                             {ticket.message}
                           </p>
                           <span className="text-xs text-gray-500">
