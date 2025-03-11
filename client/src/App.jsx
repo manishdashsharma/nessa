@@ -23,10 +23,23 @@ import CookiesPolicy from './Pages/CookiesPolicy/CookiesPolicy';
 import BlogDetailPage from './Pages/blogDetail/BlogDetailPage';
 import CookieConsent from './hooks/CookieConsent';
 import BatteryAHcalculator from './Pages/calculators/BatteryAHcalculator';
+import MaintenancePage from './Pages/Maintenance/MaintenancePage';
+
+
+const MAINTENANCE_MODE = true;
 
 const App = () => {
     
     useTrackPageVisit();
+    
+    // If site is in maintenance mode, only show the maintenance page
+    if (MAINTENANCE_MODE) {
+        return (
+            <Routes>
+                <Route path="*" element={<MaintenancePage />} />
+            </Routes>
+        );
+    }
 
     return (
         <>

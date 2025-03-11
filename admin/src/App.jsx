@@ -11,8 +11,20 @@ import TestimonialPage from './Pages/Testomonials/TestinomialPage'
 import ProjectsPage from './Pages/Projects/ProjectsPage'
 import BlogPage from './Pages/Blogs/BlogsPages'
 import MediaPage from './Pages/Media/MediaPage'
+import MaintenancePage from './Pages/Maintenance/MaintenancePage'
 
+
+const MAINTENANCE_MODE = true;
 const App = () => {
+
+    // If site is in maintenance mode, only show the maintenance page
+    if (MAINTENANCE_MODE) {
+        return (
+            <Routes>
+                <Route path="*" element={<MaintenancePage />} />
+            </Routes>
+        );
+    }
     return (
         <>
             <Toaster reverseOrder={false} />
