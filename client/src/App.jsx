@@ -26,7 +26,7 @@ import BatteryAHcalculator from './Pages/calculators/BatteryAHcalculator';
 import MaintenancePage from './Pages/Maintenance/MaintenancePage';
 
 
-const MAINTENANCE_MODE = false;
+const MAINTENANCE_MODE = true;
 
 const App = () => {
     
