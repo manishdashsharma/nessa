@@ -15,7 +15,8 @@ export default {
                 "build",
                 "ci",
                 "chore",
-                "revert"
+                "revert",
+                "serverdown"
             ]
         ],
         "subject-case": [2, "always", "sentence-case"]
