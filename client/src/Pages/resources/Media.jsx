@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { IoChevronDown } from 'react-icons/io5'
 import { motion, AnimatePresence } from 'framer-motion'
 import { media } from './ResourcesConfig'
@@ -7,9 +7,27 @@ import { Pagination, Navigation } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
+import { fetchMediaData } from './ResourcesConfig'
 
 const Media = () => {
     const [openSections, setOpenSections] = useState(['Press release'])
+    const [mediaData, setMediaData] = useState([])
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+        const loadMediaData = async () => {
+            try {
+                const { updatedMedia } = await fetchMediaData()
+                setMediaData(updatedMedia)
+            } catch (error) {
+                console.error('Error loading media data:', error)
+            } finally {
+                setLoading(false)
+            }
+        }
+
+        loadMediaData()
+    }, [])
 
     const toggleSection = (title) => {
         setOpenSections((prev) => (prev.includes(title) ? prev.filter((section) => section !== title) : [...prev, title]))
@@ -21,11 +39,12 @@ const Media = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3, delay: index * 0.1 }}
+            onClick={() => window.open(item.link, '_blank')}
             className="flex flex-col gap-4 p-4 rounded-lg border bg-white border-gray-200 hover:shadow-lg transition-all duration-300 ease-in-out cursor-pointer">
             <div className="w-full h-50 bg-gray-100 rounded-lg overflow-hidden">
-                {item.image ? (
+                {item.thumbnailImage ? (
                     <img
-                        src={item.image}
+                        src={item.thumbnailImage}
                         alt={item.title}
                         className="w-full h-full object-cover"
                     />
@@ -33,10 +52,14 @@ const Media = () => {
                     <div className="w-full h-full flex items-center justify-center text-gray-400">No image available</div>
                 )}
             </div>
-
             <h1>{item.title}</h1>
+            {item.description && <p className="text-gray-600">{item.description}</p>}
         </motion.div>
     )
+
+    if (loading) {
+        return <div className="w-screen h-screen flex items-center justify-center">Loading...</div>
+    }
 
     return (
         <div className="w-screen px-6 pb-6">
@@ -46,9 +69,10 @@ const Media = () => {
                     <div className="flex relative shrink-0 mt-9 h-2.5 bg-[#b3d6f6] rounded-[50px] w-[51px]" />
                 </div>
             </div>
+            
 
             <div className="w-full max-w-6xl mx-auto mb-[50px] space-y-4">
-                {media.map((section) => (
+                {mediaData.map((section) => (
                     <motion.div
                         key={section.title}
                         initial={false}

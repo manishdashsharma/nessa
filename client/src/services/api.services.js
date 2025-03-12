@@ -83,7 +83,18 @@ export const fetchBlogs = async () => {
     const response = await servicesAxiosInstance.get(`/v1/query-blog-data?query=all&limit=100&offset=0`)
     return response.data
 }
+
 export const fetchOneBlog = async (id) => {
     const response = await servicesAxiosInstance.get(`/v1/query-blog/${id}`)
+    return response.data
+}
+
+export const fetchMediaItems = async () => {
+    const response = await servicesAxiosInstance.get('/v1/query-media-data')
+    return response.data
+}
+
+export const fetchSingleMedia = async (id) => {
+    const response = await servicesAxiosInstance.get(`/v1/query-media/${id}`)
     return response.data
 }

@@ -1,25 +1,29 @@
-
 import blogWebResources from '../../assets/images/resourcesImages/blog-webResources.png';
 import blogPrinciple from '../../assets/images/resourcesImages/blog-principle.png';
 import blogExample from '../../assets/images/resourcesImages/blog-greatExample.png';
 import mediaPost1 from '../../assets/images/resourcesImages/mediaPost1.png';
 import axios from 'axios'
-import { fetchBlogs } from '../../services/api.services';
+import { fetchBlogs, fetchMediaItems } from '../../services/api.services';
 
 export const fetch = async () => {
     try {
         const response = await fetchBlogs()
+        const allItems = response.data.blogs
 
-        // Modify the blogs section in insitesAndResources
-        const updatedResources = insitesAndResources.map((section) =>
-            section.title === 'Blogs' ? { ...section, items: response.data.blogs } : section
-        )
+        const updatedResources = insitesAndResources.map((section) => {
+            const filteredItems = allItems.filter(item => 
+                item.resource_type === section.resourceType
+            )
+
+            return {
+                ...section,
+                items: filteredItems
+            }
+        })
         
-        console.log(response.data)
         return {
             updatedResources,
             blogs: response.data.blogs
-            
         }
     } catch (error) {
         console.error('Blog fetch error:', error)
@@ -33,167 +37,91 @@ export const fetch = async () => {
 export const insitesAndResources = [
   {
     title: 'Blogs',
-
-    items: [
-    
-    ],
+    resourceType: 'BLOGS',
+    items: [],
   },
   {
     title: 'Case Studies',
-    items: [
-      // {
-      //   title: '5 Great Web Design Resources',
-      //   image: blogExample,
-      //   category: 'Analytics',
-      //   sorttitle: 'Est placeat perspicia',
-      //   profile: {
-      //     author: 'Orlando Diggs',
-      //     date: 'March 28, 2023',
-      //     readTime: '5 min read',
-      //     profilePicture: '',
-      //   },
-      // },
-      // {
-      //   title: '10 Great Examples of Websites',
-      //   image: '',
-      //   category: 'Marketing',
-      //   sorttitle: 'Et odit soluta sint temporibus quia dolorem',
-      //   profile: {
-      //     author: 'Mike Dean',
-      //     date: 'March 28, 2023',
-      //     readTime: '3 min read',
-      //     profilePicture: '',
-      //   },
-      // },
-      // {
-      //   title: '5 Principles Of Effective Web Design',
-      //   image: '',
-      //   category: 'Business',
-      //   sorttitle: 'Sapiente amet molestias cum fugiat qui',
-      //   profile: {
-      //     author: 'Anna Provi',
-      //     date: 'March 28, 2023',
-      //     readTime: '8 min read',
-      //     profilePicture: '',
-      //   },
-      // },
-    ],
+    resourceType: 'CASE_STUDIES',
+    items: [],
   },
   {
     title: 'White Papers',
-    items: [
-      // {
-      //   title: '5 Great Web Design Resources',
-      //   image: '',
-      //   category: 'Analytics',
-      //   sorttitle: 'Est placeat perspicia',
-      //   profile: {
-      //     author: 'Orlando Diggs',
-      //     date: 'March 28, 2023',
-      //     readTime: '5 min read',
-      //     profilePicture: '',
-      //   },
-      // },
-      // {
-      //   title: '10 Great Examples of Websites',
-      //   image: '',
-      //   category: 'Marketing',
-      //   sorttitle: 'Et odit soluta sint temporibus quia dolorem',
-      //   profile: {
-      //     author: 'Mike Dean',
-      //     date: 'March 28, 2023',
-      //     readTime: '3 min read',
-      //     profilePicture: '',
-      //   },
-      // },
-      // {
-      //   title: '5 Principles Of Effective Web Design',
-      //   image: '',
-      //   category: 'Business',
-      //   sorttitle: 'Sapiente amet molestias cum fugiat qui',
-      //   profile: {
-      //     author: 'Anna Provi',
-      //     date: 'March 28, 2023',
-      //     readTime: '8 min read',
-      //     profilePicture: '',
-      //   },
-      // },
-    ],
+    resourceType: 'WHITE_PAPERS',
+    items: [],
   },
   {
     title: 'Articles',
+    resourceType: 'ARTICLES',
     items: [],
   },
- 
   {
     title: 'Others',
+    resourceType: 'OTHERS',
     items: [],
   },
 ];
+
+
+export const fetchMediaData = async () => {
+  try {
+      const response = await fetchMediaItems()
+      const allItems = response.data.media
+
+      
+
+      const updatedMedia = media.map((section) => {
+          const filteredItems = allItems.filter(item => 
+              item.resource_type === section.resourceType
+          )
+
+          return {
+              ...section,
+              items: filteredItems
+          }
+      })
+      
+      return {
+          updatedMedia,
+          mediaItems: response.data.media
+      }
+  } catch (error) {
+      console.error('Media fetch error:', error)
+      return {
+          updatedMedia: media,
+          mediaItems: []
+      }
+  }
+}
 
 export const media = [
-  {
-    title: 'Press release',
-
-    items: [
-      // {
-      //   title: 'SEWA, bizmen use LEDs to lead veg vendors out of darkness!',
-      //   image: mediaPost1,
-        
-      // },
-      // {
-      //   title: 'SEWA, bizmen use LEDs to lead veg vendors out of darkness!',
-      //   image: mediaPost1,
-        
-      // },
-      // {
-      //   title: 'SEWA, bizmen use LEDs to lead veg vendors out of darkness!',
-      //   image: mediaPost1,
-        
-      // },
-      // {
-      //   title: 'SEWA, bizmen use LEDs to lead veg vendors out of darkness!',
-      //   image: mediaPost1,
-        
-      // },
-      // {
-      //   title: 'SEWA, bizmen use LEDs to lead veg vendors out of darkness!',
-      //   image: mediaPost1,
-        
-      // },
-      // {
-      //   title: 'SEWA, bizmen use LEDs to lead veg vendors out of darkness!',
-      //   image: mediaPost1,
-        
-      // },
-    
-    ],
-  },
-  {
-    title: 'Media coverage',
-    items: [
-      // {
-      //   title: 'SEWA, bizmen use LEDs to lead veg vendors out of darkness!',
-      //   image:  mediaPost1,
-       
-      // },
-     
-    ],
-  },
- 
-  {
-    title: 'Events and exhibition',
-    items: [],
-  },
-  {
-    title: 'Media kit ',
-    items: [],
-  },
-  {
-    title: 'Videos',
-    items: [],
-  },
+    {
+        title: 'Press release',
+        resourceType: 'PRESS_RELEASE',
+        items: []
+    },
+    {
+        title: 'Media coverage',
+        resourceType: 'MEDIA_COVERAGE',
+        items: []
+    },
+    {
+        title: 'Events and exhibition',
+        resourceType: 'EVENTS_EXHIBITION',
+        items: []
+    },
+    {
+        title: 'Media kit',
+        resourceType: 'MEDIA_KIT',
+        items: []
+    },
+    {
+        title: 'Videos',
+        resourceType: 'VIDEOS',
+        items: []
+    }
 ];
+
 
 
 import ncdl1 from '../../assets/images/resources/nessaCatalog.pdf'

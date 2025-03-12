@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { fetchOneBlog } from '../../services/api.services'
 import Navbar from '../../Components/Header/Navbar'
@@ -8,7 +8,9 @@ import toast from 'react-hot-toast'
 import Footer from '../../Components/Footer'
 
 const BlogDetailPage = () => {
-    const { id } = useParams()
+    const { slug } = useParams()
+    const { state } = useLocation()
+    const id = state?.id
     const [blog, setBlog] = useState(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)

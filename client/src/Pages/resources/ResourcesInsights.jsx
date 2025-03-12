@@ -21,9 +21,15 @@ const ResourcesInsights = () => {
             try {
                 setLoading(true)
                 const response = await fetchBlogs()
-                const updatedResources = resources.map((section) =>
-                    section.title === 'Blogs' ? { ...section, items: response.data.blogs } : section
-                )
+                
+                // Update each section with filtered items based on resourceType
+                const updatedResources = resources.map((section) => ({
+                    ...section,
+                    items: response.data.blogs.filter(
+                        item => item.resource_type === section.resourceType
+                    )
+                }))
+                
                 setResources(updatedResources)
             } catch (error) {
                 console.error('Blog fetch failed')
@@ -39,7 +45,7 @@ const ResourcesInsights = () => {
     }
 
     const handleBlogClick = (item) => {
-        navigate(`/resources/blog/${item._id}`)
+        navigate(`/resources/${item.resource_type.toLowerCase()}/${item.slug}`, { state: { id: item._id } })
     }
 
     const renderCard = (item, index) => (
@@ -155,7 +161,7 @@ const ResourcesInsights = () => {
                     <div className="flex relative shrink-0 mt-9 h-2.5 bg-[#b3d6f6] rounded-[50px] w-[51px]" />
                 </div>
             </div>
-
+           
             <div className="w-full max-w-6xl mx-auto mb-[50px] space-y-4">
                 {resources.map((section) => (
                     <motion.div
@@ -237,13 +243,11 @@ const ResourcesInsights = () => {
                                                 modules={[Pagination, Navigation]}
                                                 className="mySwiper">
                                                 <AnimatePresence>
-                                                    {section.title === 'Blogs'
-                                                        ? section.items.map((item, index) => (
-                                                              <SwiperSlide key={index}  className="mb-[50px] select-none ">{renderBlogCard(item, index)}</SwiperSlide>
-                                                          ))
-                                                        : section.items.map((item, index) => (
-                                                              <SwiperSlide key={index}  className="mb-[50px] select-none ">{renderCard(item, index)}</SwiperSlide>
-                                                          ))}
+                                                    {section.items.map((item, index) => (
+                                                        <SwiperSlide key={index} className="mb-[50px] select-none">
+                                                            {renderBlogCard(item, index)}
+                                                        </SwiperSlide>
+                                                    ))}
                                                 </AnimatePresence>
                                             </Swiper>
                                         ) : (
