@@ -45,7 +45,7 @@ const ResourcesInsights = () => {
     }
 
     const handleBlogClick = (item) => {
-        navigate(`/resources/${item.resource_type.toLowerCase()}/${item.slug}`, { state: { id: item._id } })
+        navigate(`/resources/${item.resource_type.toLowerCase()}/${item.slug}/${item._id}`)
     }
 
     const renderCard = (item, index) => (

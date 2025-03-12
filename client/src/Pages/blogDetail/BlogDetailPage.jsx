@@ -8,9 +8,7 @@ import toast from 'react-hot-toast'
 import Footer from '../../Components/Footer'
 
 const BlogDetailPage = () => {
-    const { slug } = useParams()
-    const { state } = useLocation()
-    const id = state?.id
+    const { id } = useParams()
     const [blog, setBlog] = useState(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
