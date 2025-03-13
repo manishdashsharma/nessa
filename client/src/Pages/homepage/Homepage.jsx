@@ -125,6 +125,7 @@ const Homepage = () => {
                         className="w-full h-full object-cover"
                         src={herobg}
                         alt="hero background"
+                        loading='lazy'
                     />
                 </div>
 
@@ -136,6 +137,7 @@ const Homepage = () => {
                                     className=""
                                     src={thunder}
                                     alt=""
+                                    loading='lazy'
                                 />
                                 <span className="text-lg font-medium">Crafted with precision, powered by sustainability</span>
                             </div>
@@ -232,6 +234,7 @@ const Homepage = () => {
                     <img
                         src={lamp}
                         alt=""
+                        loading='lazy'
                     />
                 </div>
             </div>
@@ -243,12 +246,14 @@ const Homepage = () => {
                             className=" h-[350px] w-[60%] max-md:w-full object-contain"
                             src={indiaMap}
                             alt=""
+                            loading='lazy'
                         />
                         <div className="w-[40%]  flex  max-md:w-full max-md:mt-10 flex-col items-center justify-center ">
                             <img
                                 className="w-[80px] h-[80px]"
                                 src={indiaFlag}
                                 alt=""
+                                loading='lazy'
                             />
                             <div className="relative text-lg font-semibold  text-center text-black">
                                 Nessa in <br />
@@ -276,6 +281,7 @@ const Homepage = () => {
                                     className="h-[50px] w-[50px]  "
                                     src={country.flag}
                                     alt=""
+                                    loading='lazy'
                                 />
                                 <h1 className="text-center">{country.country}</h1>
                             </div>
@@ -320,6 +326,7 @@ const Homepage = () => {
                     <img
                         src={lamp}
                         alt=""
+                        loading='lazy'
                     />
                 </div>
             </div>

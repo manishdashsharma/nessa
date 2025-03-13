@@ -80,7 +80,7 @@ const SideComponent = () => {
 
     useEffect(() => {
         const handleOpenSidebar = () => {
-            setExpandedIndex(true)
+            setExpandedIndex(false)
         }
 
         const handleClickOutside = (event) => {
@@ -89,7 +89,7 @@ const SideComponent = () => {
             }
         }
 
-        window.addEventListener('openSidebar', handleOpenSidebar)
+        // window.addEventListener('openSidebar', handleOpenSidebar)
         document.addEventListener('mousedown', handleClickOutside)
 
         return () => {
