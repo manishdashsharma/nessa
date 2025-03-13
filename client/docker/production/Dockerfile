@@ -1,8 +1,8 @@
-# Specify the base image
-FROM node:latest
+# Build Stage
+FROM node:18-alpine AS build
 
-# Set the working directory in the container
-WORKDIR /usr/src/app
+# Set the working directory for the build stage
+WORKDIR /app
 
 # Copy package.json and package-lock.json
 COPY package*.json ./
@@ -10,14 +10,21 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install
 
-# Install Vite globally
-RUN npm install -g vite
 
-# Copy the rest of the code
+# Copy all the source code
 COPY . .
 
-# Expose the port the app runs on
-EXPOSE 5173
+# Build the app for production
+RUN npm run build
 
-# Start the development server
-CMD ["npm", "run", "dev"]
+# Production Stage
+FROM nginx:stable-alpine AS production
+
+# Copy the build output from the build stage
+COPY --from=build /app/dist /usr/share/nginx/html
+
+# Expose the port the app will run on
+EXPOSE 80
+
+# Start Nginx to serve the production build
+CMD ["nginx", "-g", "daemon off;"]
