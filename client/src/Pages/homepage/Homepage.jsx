@@ -338,6 +338,7 @@ const Homepage = () => {
                         className="absolute top-0 left-0 w-full h-full rounded-xl"
                         src="https://www.youtube.com/embed/U6f9QtHyel8?autoplay=1&mute=1&controls=1&cc_load_policy=0&loop=1&playlist=U6f9QtHyel8&rel=0"
                         title="YouTube video player"
+                        loading="lazy"
                         frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         referrerPolicy="strict-origin-when-cross-origin"

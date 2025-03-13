@@ -408,6 +408,7 @@ const Support = () => {
                         width="100%"
                         height="100%"
                         allowFullScreen=""
+                        loading="lazy"
                         referrerPolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
