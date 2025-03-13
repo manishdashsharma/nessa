@@ -22,7 +22,7 @@ FROM nginx:stable-alpine AS production
 
 # Copy the build output from the build stage
 COPY --from=build /app/dist /usr/share/nginx/html
-
+COPY nginx-spa.conf /etc/nginx/conf.d/default.conf
 # Expose the port the app will run on
 EXPOSE 80
 
