@@ -21,7 +21,7 @@ import { Projects } from './Pages/projects/Projects';
 import { ValueAddedServices } from './Pages/valueAddedServices/ValueAddedServices';
 import CookiesPolicy from './Pages/CookiesPolicy/CookiesPolicy';
 import BlogDetailPage from './Pages/blogDetail/BlogDetailPage';
-// import CookieConsent from './hooks/CookieConsent';
+import CookieConsent from './hooks/CookieConsent';
 import BatteryAHcalculator from './Pages/calculators/BatteryAHcalculator';
 import MaintenancePage from './Pages/Maintenance/MaintenancePage';
 
@@ -47,7 +47,7 @@ const App = () => {
             <Toaster reverseOrder={false} />
 
             <ScrollToTop />
-            {/* <CookieConsent /> */}
+            <CookieConsent />
             <Routes>
                 <Route path="/welcome" element={<WelcomePage />} />
                 <Route path="/" element={<Homepage />} />

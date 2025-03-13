@@ -125,7 +125,9 @@ const Homepage = () => {
                         className="w-full h-full object-cover"
                         src={herobg}
                         alt="hero background"
-                        loading='lazy'
+                        loading="eager"
+                        width="1920"
+                        height="1080"
                     />
                 </div>
 
