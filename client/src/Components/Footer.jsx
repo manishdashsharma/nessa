@@ -1,4 +1,4 @@
-import logo from '../assets/images/nessalogo.png'
+import logo from '../assets/images/nessalogo.webp'
 import { RiFacebookBoxLine } from 'react-icons/ri'
 import { FaInstagram } from 'react-icons/fa'
 import { IoLogoWhatsapp } from 'react-icons/io5'
