@@ -55,6 +55,7 @@ export default function TeamSwiper() {
                                 <img
                                     className="rounded-xl h-[350px]  w-[300px] object-contain border  bg-[#e7f2fd] border-orange-400 overflow-hidden "
                                     src={item.image}
+                                    loading="lazy"
                                     alt=""
                                 />
                                 <h1 className="font-semibold text-xl mt-5">{item.name}</h1>

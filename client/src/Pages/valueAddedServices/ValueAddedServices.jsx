@@ -116,6 +116,7 @@ export const ValueAddedServices = () => {
 
             <div className="w-full h-[300px] max-sm:h-[200px] relative flex items-center  justify-center ">
                 <img
+                    loading='lazy'
                     className="w-full min-h-[150px]  object-cover object-left  absolute  "
                     src={hero}
                     alt=""
@@ -165,6 +166,7 @@ export const ValueAddedServices = () => {
                                 className="flex w-full justify-center items-center">
                                 <div className="relative h-[400px] flex justify-center items-center">
                                     <img
+                                        loading='lazy'
                                         className=" w-full h-full  object-cover"
                                         src={item.poster}
                                         alt=""
@@ -220,6 +222,7 @@ export const ValueAddedServices = () => {
                     </div>
                     <div className="flex items-center justify-center mt-[50px]">
                         <img
+                            loading='lazy'
                             src={smartVillageSolutions}
                             alt=""
                             className="w-[80%] object-cover"
@@ -229,6 +232,7 @@ export const ValueAddedServices = () => {
                 <div className="grid grid-cols-2 maxsmi:grid-cols-1 text-center ">
                     <div className=" h-[200px] flex flex-col mb-[20px] items-center">
                         <img
+                            loading='lazy'
                             className="w-[80%] h-[80%]  object-contain"
                             src={smartVillageHome}
                             alt=""
@@ -237,6 +241,7 @@ export const ValueAddedServices = () => {
                     </div>
                     <div className=" h-[200px] flex flex-col mb-[20px] items-center">
                         <img
+                            loading='lazy'
                             className="w-[80%] h-[80%]  object-contain"
                             src={solarBasedIrrigation}
                             alt=""
@@ -245,6 +250,7 @@ export const ValueAddedServices = () => {
                     </div>
                     <div className=" h-[200px] flex flex-col mb-[20px] items-center">
                         <img
+                            loading='lazy'
                             className="w-[80%] h-[80%]  object-contain"
                             src={smartCommunityCenter}
                             alt=""
@@ -253,6 +259,7 @@ export const ValueAddedServices = () => {
                     </div>
                     <div className=" h-[200px] flex flex-col mb-[20px] items-center">
                         <img
+                            loading='lazy'
                             className="w-[80%] h-[80%]  object-contain"
                             src={waterTreatmentPlants}
                             alt=""
@@ -261,6 +268,7 @@ export const ValueAddedServices = () => {
                     </div>
                     <div className=" h-[200px] flex flex-col mb-[20px] items-center">
                         <img
+                            loading='lazy'
                             className="w-[80%] h-[80%]  object-contain"
                             src={solarBasedLight}
                             alt=""
@@ -269,6 +277,7 @@ export const ValueAddedServices = () => {
                     </div>
                     <div className=" h-[200px] flex flex-col mb-[20px] items-center">
                         <img
+                            loading='lazy'
                             className="w-[80%] h-[80%]  object-contain"
                             src={villageStadiumLight}
                             alt=""
@@ -289,6 +298,7 @@ export const ValueAddedServices = () => {
                 <div className="justify-items-center grid grid-cols-5  max-[800px]:grid-cols-4 max-sm:grid-cols-3 max-[400px]:grid-cols-2 gap-[20px] ">
                     {corporateCusomters.map((item, index) => (
                         <img
+                            loading='lazy'
                             key={index}
                             className="h-[100px] w-[200px] p-[20px] rounded-xl border border-black object-contain"
                             src={item}
@@ -300,6 +310,7 @@ export const ValueAddedServices = () => {
                 <div className="justify-items-center grid grid-cols-5  max-[800px]:grid-cols-4 max-sm:grid-cols-3 max-[400px]:grid-cols-2 gap-[20px] ">
                     {ngologos.map((item, index) => (
                         <img
+                            loading='lazy'
                             key={index}
                             className="h-[100px] w-[200px]  p-[20px] rounded-xl border border-black object-contain"
                             src={item}
@@ -360,6 +371,7 @@ export const ValueAddedServices = () => {
                                             className="bg-[#EEF7FF] my-[30px] mb-[50px]">
                                             <div className="flex flex-col items-center justify-center gap-4">
                                                 <img
+                                                    loading='lazy'
                                                     className="h-[300px] object-cover"
                                                     src={slide.image}
                                                     alt=""
@@ -399,6 +411,7 @@ export const ValueAddedServices = () => {
                                         <SwiperSlide key={index}>
                                             <div className="flex mb-[50px] flex-col items-center justify-center gap-4">
                                                 <img
+                                                    loading='lazy'
                                                     className="h-[300px] object-cover"
                                                     src={slide.image}
                                                     alt=""

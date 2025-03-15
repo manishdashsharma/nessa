@@ -74,7 +74,7 @@ const MaintenancePage = () => {
               <div className="flex items-center gap-3">
                 <Settings className="w-8 h-8 text-blue-600 animate-spin-slow" />
                 <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400">
-                <img className="w-24" src={logo} alt="Nessa Logo" />
+                <img loading='lazy' className="w-24" src={logo} alt="Nessa Logo" />
                 </span>
               </div>
               <div className="flex items-center gap-4 bg-blue-50 px-4 py-2 rounded-full">
@@ -97,7 +97,7 @@ const MaintenancePage = () => {
               <div className="relative bg-gradient-to-r from-blue-500 to-blue-700 p-8 rounded-full">
                 <Settings className="w-16 h-16 text-white" />
               </div> */}
-              <img className="w-40" src={logo} alt="Nessa Logo" />
+              <img loading='lazy' className="w-40" src={logo} alt="Nessa Logo" />
             </div>
             <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
               Crafting Something Amazing

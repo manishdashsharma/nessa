@@ -6,7 +6,7 @@ import { IoIosArrowDown } from 'react-icons/io'
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { IoMenu, IoClose } from 'react-icons/io5'
-import logo from '../../assets/images/nessalogo.png'
+import logo from '../../assets/images/nessalogo.webp'
 import { MdPermContactCalendar, MdStadium, MdSupportAgent } from 'react-icons/md'
 import { GoProjectSymlink } from 'react-icons/go'
 import { GrProjects } from 'react-icons/gr'
@@ -39,62 +39,62 @@ const Navbar = () => {
     const [calculatorOpen, setCalculatorOpen] = useState(false)
     const [solutionsDropdown, setSolutionsDropdown] = useState([
     {
-        logo: <img src={airport} alt="Airport" className="w-[40px] h-[40px] " />,
+        logo: <img loading="lazy" src={airport} alt="Airport" className="w-[40px] h-[40px] " />,
         link: '',
         subcategories: 'Airports'
     },
     {
-        logo: <img src={mines} alt="Mines" className="w-[40px] h-[40px] " />,
+        logo: <img loading="lazy" src={mines} alt="Mines" className="w-[40px] h-[40px] " />,
         link: '',
         subcategories: 'Mines'
     },
     {
-        logo: <img src={stadium} alt="Stadium" className="w-[40px] h-[40px] " />,
+        logo: <img loading="lazy" src={stadium} alt="Stadium" className="w-[40px] h-[40px] " />,
         link: '',
         subcategories: 'Stadium'
     },
     {
-        logo: <img src={petrol} alt="Petrol Pump" className="w-[40px] h-[40px] " />,
+        logo: <img loading="lazy" src={petrol} alt="Petrol Pump" className="w-[40px] h-[40px] " />,
         link: '',
         subcategories: 'Petrol pump'
     },
     {
-        logo: <img src={refinery} alt="Refinery" className="w-[40px] h-[40px] " />,
+        logo: <img loading="lazy" src={refinery} alt="Refinery" className="w-[40px] h-[40px] " />,
         link: '',
         subcategories: 'Refinery'
     },
     {
-        logo: <img src={highway} alt="Highways" className="w-[40px] h-[40px] " />,
+        logo: <img loading="lazy" src={highway} alt="Highways" className="w-[40px] h-[40px] " />,
         link: '',
         subcategories: 'Highways'
     },
     {
-        logo: <img src={tunnel} alt="Tunnels" className="w-[40px] h-[40px] " />,
+        logo: <img loading="lazy" src={tunnel} alt="Tunnels" className="w-[40px] h-[40px] " />,
         link: '',
         subcategories: 'Tunnels'
     },
     {
-        logo: <img src={rural} alt="Rural" className="w-[40px] h-[40px] " />,
+        logo: <img loading="lazy" src={rural} alt="Rural" className="w-[40px] h-[40px] " />,
         link: '',
         subcategories: 'Rural, hilly & forest areas'
     },
     {
-        logo: <img src={port} alt="Ports" className="w-[40px] h-[40px] " />,
+        logo: <img loading="lazy" src={port} alt="Ports" className="w-[40px] h-[40px] " />,
         link: '',
         subcategories: 'Ports & logistic parks'
     },
     {
-        logo: <img src={hazardous} alt="Hazardous" className="w-[40px] h-[40px] " />,
+        logo: <img loading="lazy" src={hazardous} alt="Hazardous" className="w-[40px] h-[40px] " />,
         link: '',
         subcategories: 'Hazardous areas'
     },
     {
-        logo: <img src={thermal} alt="Thermal" className="w-[40px] h-[40px] " />,
+        logo: <img loading="lazy" src={thermal} alt="Thermal" className="w-[40px] h-[40px] " />,
         link: '',
         subcategories: 'Thermal power plants'
     },
     {
-        logo: <img src={solar} alt="Solar" className="w-[40px] h-[40px] " />,
+        logo: <img loading="lazy" src={solar} alt="Solar" className="w-[40px] h-[40px] " />,
         link: '',
         subcategories: 'Solar parks'
     }
@@ -620,7 +620,7 @@ const Navbar = () => {
                                             <Link to="/calculator/solar-payback" className="w-[300px]">
                                                 <div className="flex w-full gap-[10px] mb-2 items-center hover:bg-gray-50 p-2 rounded-lg transition-colors duration-200">
                                                     {/* <div className="flex items-center justify-center text-3xl">
-                                                        <img src={solar} alt="Solar" className="w-[35px] h-[35px] rounded-full p-1" />
+                                                        <img loading="lazy" src={solar} alt="Solar" className="w-[35px] h-[35px] rounded-full p-1" />
                                                     </div> */}
                                                     <h1>Solar vs. AC Lights Payback Calculator</h1>
                                                 </div>

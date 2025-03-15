@@ -78,6 +78,7 @@ const Product = () => {
                             }`}>
                             <img
                                 src={imgUrl}
+                                loading="lazy"
                                 alt={`${product.name} - View ${index + 1}`}
                                 className="w-full h-full object-contain"
                             />
@@ -159,6 +160,7 @@ const Product = () => {
                                     <div className="flex flex-col md:flex-row items-center justify-center gap-8">
                                         {useCase.imageUrl && (
                                             <img
+                                                loading='lazy'
                                                 className="w-full md:w-1/2 h-auto object-contain hidden max-md:block shadow-lg"
                                                 src={useCase.imageUrl}
                                                 alt=""
@@ -170,6 +172,7 @@ const Product = () => {
                                         </div>
                                         {useCase.imageUrl && (
                                             <img
+                                                loading='lazy'
                                                 className="w-full md:w-1/2 h-[350px] object-contain max-md:hidden shadow-lg"
                                                 src={useCase.imageUrl}
                                                 alt={useCase.title + ' Image'}
@@ -184,6 +187,7 @@ const Product = () => {
                                     <div className="flex flex-col md:flex-row items-center justify-center gap-8 z-[2] relative">
                                         {useCase.imageUrl && (
                                             <img
+                                                loading='lazy'
                                                 className="w-full md:w-1/2 h-[350px] object-contain shadow-lg z-[2]"
                                                 src={useCase.imageUrl}
                                                 alt={useCase.title + ' Image'}

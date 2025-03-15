@@ -45,6 +45,7 @@ const Media = () => {
                 {item.thumbnailImage ? (
                     <img
                         src={item.thumbnailImage}
+                        loading='lazy'
                         alt={item.title}
                         className="w-full h-full object-cover"
                     />

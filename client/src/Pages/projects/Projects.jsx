@@ -49,7 +49,8 @@ export const Projects = () => {
             className="flex flex-col h-full gap-4 p-4 rounded-lg border bg-gray-100 border-gray-200 hover:shadow-lg transition-all duration-300 ease-in-out cursor-pointer">
             <div className="w-full h-50 bg-gray-100 rounded-lg overflow-hidden">
                 {item.imageUrl ? (
-                    <img
+                    <img 
+                        loading='lazy'
                         src={item.imageUrl}
                         alt={item.title}
                         className="w-full h-full object-cover"
@@ -78,7 +79,8 @@ export const Projects = () => {
             <SideComponent />
 
             <div className="w-full h-[300px] max-sm:h-[200px] relative flex items-center  justify-start ">
-                <img
+                <img 
+                    loading='lazy'
                     className="w-full h-full object-cover object-left absolute "
                     src={hero}
                     alt=""

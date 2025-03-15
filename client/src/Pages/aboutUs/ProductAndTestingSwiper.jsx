@@ -95,6 +95,7 @@ export default function ProductAndTestingSwiper({ data }) {
                                 <div className="relative h-[30vw] min-h-[400px] border flex justify-center items-center">
                                     <img
                                         className="w-full h-full object-contain"
+                                        loading="lazy"
                                         src={product.poster}
                                         alt={product.name}
                                     />

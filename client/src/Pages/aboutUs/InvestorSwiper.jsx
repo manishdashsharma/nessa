@@ -38,6 +38,7 @@ export default function InvestorSwiper() {
                                     <img
                                         className="h-[300px] max-md:h-[300px] max-md:w-full object-contain"
                                         src={investor.image}
+                                        loading="lazy"
                                         alt=""
                                     />
                                 </div>

@@ -89,6 +89,7 @@ export default function InsitesSwiper() {
                     <div className="slide-content flex flex-col gap-4">
                         <img
                             className="rounded-xl"
+                            loading="lazy"
                             src={slide.image}
                             alt={slide.title}
                         />

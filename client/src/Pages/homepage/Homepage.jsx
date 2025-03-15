@@ -4,7 +4,7 @@ import { ProductRange } from './homepageinnersections/ProductRange';
 import { RiLightbulbFlashLine } from 'react-icons/ri';
 import RecognizeEx from './homepageinnersections/RecognizeEx';
 import InsitesSwiper from './homepageinnersections/InsitesSwiper'
-import herobg from '../../assets/images/homepageimages/herobg.png';
+import herobg from '../../assets/images/homepageimages/herobg.webp';
 import thunder from '../../assets/images/homepageimages/thunder.svg';
 import lamp from '../../assets/images/homepageimages/lamp.png';
 import indiaMap from '../../assets/images/homepageimages/indiaMap.png';
@@ -125,7 +125,7 @@ const Homepage = () => {
                         className="w-full h-full object-cover"
                         src={herobg}
                         alt="hero background"
-                        loading="eager"
+                        loading="lazy"
                         width="1920"
                         height="1080"
                     />
@@ -193,6 +193,7 @@ const Homepage = () => {
                         className={`flex flex-col  md:flex-row ${index % 2 === 0 ? '' : 'md:flex-row-reverse'} items-center justify-center gap-8 z-[2] relative`}>
                         <img
                             className="w-full md:w-1/2 h-[350px] object-cover rounded-lg shadow-lg z-[2]"
+                            loading='lazy'
                             src={solution.thumbnail}
                             alt={solution.subcategories}
                         />

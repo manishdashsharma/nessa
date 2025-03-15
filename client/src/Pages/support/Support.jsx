@@ -188,6 +188,7 @@ const Support = () => {
 
                 <div className="w-full h-[300px] max-sm:h-[200px] relative flex items-center justify-center">
                     <img
+                        loading='lazy'
                         className="w-full min-h-[150px] object-cover  absolute"
                         src={supporthero}
                         alt=""
@@ -351,6 +352,7 @@ const Support = () => {
                         </div>
                         <div className="w-full absolute z-[0] left-0 bottom-0 flex items-end justify-end">
                             <img
+                                loading='lazy'
                                 className="h-[50%] w-[50%]"
                                 src={light}
                                 alt=""
@@ -372,6 +374,7 @@ const Support = () => {
                     </div>
                     <div className="w-[30%] max-md:w-full max-md:mt-[50px] h-[200px] flex items-center justify-center">
                         <img
+                            loading='lazy'
                             className="w-full h-full object-contain"
                             src={manual}
                             alt=""
@@ -392,6 +395,7 @@ const Support = () => {
                                 key={index}
                                 className="flex flex-col items-center gap-5">
                                 <img
+                                    loading='lazy'
                                     className="w-[80px] h-[80px]"
                                     src={item.img}
                                     alt=""

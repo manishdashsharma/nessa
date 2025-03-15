@@ -1,4 +1,4 @@
-import image1 from '../../../assets/images/homepageimages/image1.png';
+import image1 from '../../../assets/images/homepageimages/image1.webp';
 import React, { useState, useRef, useEffect } from 'react';
 
 function LightIntensity({ setBrightness }) {

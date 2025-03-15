@@ -2,9 +2,9 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/pagination'
 import { Pagination, Autoplay } from 'swiper/modules'
-import awards02 from '../../../assets/images/homepageimages/awards/awards-02.png'
-import awards03 from '../../../assets/images/homepageimages/awards/awards-03.png'
-import awards04 from '../../../assets/images/homepageimages/awards/awards-04.png'
+import awards02 from '../../../assets/images/homepageimages/awards/awards-02.webp'
+import awards03 from '../../../assets/images/homepageimages/awards/awards-03.webp'
+import awards04 from '../../../assets/images/homepageimages/awards/awards-04.webp'
 import { Link } from 'react-router-dom'
 
 export default function RecoExSec2() {
@@ -57,6 +57,7 @@ export default function RecoExSec2() {
                 className="h-[300px]  object-cover"
                 src={slide.image}
                 alt=""
+                loading="lazy"
               />
             </div>
           </SwiperSlide>

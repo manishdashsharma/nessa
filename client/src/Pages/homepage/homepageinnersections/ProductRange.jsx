@@ -1,8 +1,8 @@
 import { Link, useNavigate } from 'react-router-dom'
 import TrendingProductsSwipe from '../../../Components/trendingProducts/TrendingProductsSwiper'
-import ACLight from '../../../assets/images/productRange/u1.jpg'
-import SolarLight from '../../../assets/images/productRange/u2.jpg'
-import Electronics from '../../../assets/images/productRange/u3.jpg'
+import ACLight from '../../../assets/images/productRange/u1.webp'
+import SolarLight from '../../../assets/images/productRange/u2.webp'
+import Electronics from '../../../assets/images/productRange/u3.webp'
 
 const categoryMapping = {
     'AC LIGHTS': {
@@ -58,6 +58,7 @@ export function ProductRange() {
                 <img
                     src={image}
                     alt={name}
+                    loading="lazy"
                     className="object-cover absolute inset-0 size-full"
                 />
                 <div className="relative w-fit px-10 py-5 bg-white rounded-lg hover:bg-gray-100 transition-colors">{name}</div>

@@ -80,6 +80,7 @@ const AboutUs = () => {
 
             <div className="w-full h-[300px] max-sm:h-[200px] relative flex items-center  justify-start ">
                 <img
+                    loading="lazy"
                     className="w-full min-h-[150px] object-cover object-left absolute "
                     src={hero}
                     alt=""
@@ -166,6 +167,7 @@ const AboutUs = () => {
             <div className="w-full text-xl flex max-md:flex-col min-h-[200px] relative p-[5vw]">
                 <div className="w-1/2  max-md:w-full max-md:h-fit flex flex-col items-center gap-5 p-[30px] text-center ">
                     <img
+                        loading="lazy"
                         className="h-[200px]"
                         src={ourVision}
                         alt=""
@@ -188,6 +190,7 @@ const AboutUs = () => {
 
                 <div className="w-1/2  max-md:w-full max-md:h-fit flex flex-col items-center gap-5 p-[30px] text-center ">
                     <img
+                        loading="lazy"
                         className="h-[200px]"
                         src={ourMission}
                         alt=""
@@ -232,6 +235,7 @@ const AboutUs = () => {
                             key={index}
                             className=" flex flex-col items-center gap-5 ">
                             <img
+                                loading="lazy"
                                 className="w-[80px] h-[80px]"
                                 src={item.img}
                                 alt=""
@@ -269,6 +273,7 @@ const AboutUs = () => {
 
                 <div className="px-[5vw] w-full flex justify-center">
                     <img
+                        loading="lazy"
                         className="mt-[50px] "
                         src={customersegment}
                         alt=""

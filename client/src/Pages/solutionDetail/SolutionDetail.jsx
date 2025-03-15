@@ -74,7 +74,8 @@ const SolutionDetail = () => {
                 </div>
 
                 <div className="w-1/2 max-md:w-full max-md:h-[300px] ">
-                    <img
+                    <img 
+                        loading='lazy'
                         className="w-full h-[400px] max-md:h-[300px] object-contain "
                         src={solution.solutionImageUrl}
                         alt=""
@@ -131,7 +132,8 @@ const SolutionDetail = () => {
                         <div
                             key={index}
                             className="w-[20vw] max-md:w-[40vw] max-sm:w-[90%] max-sm:mb-10 h-[30vw] max-md:h-fit flex flex-col items-center">
-                            <img
+                            <img 
+                                loading='lazy'
                                 className="bg-gray-400 h-[80%]"
                                 src={item.poster}
                                 alt={index}

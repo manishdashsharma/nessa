@@ -14,6 +14,7 @@ const Allproducts = () => {
           <div className="w-full h-[300px] max-sm:h-[200px] relative flex items-center  justify-center ">
               <img
                   className="w-full h-full object-cover object-left absolute "
+                  loading="lazy"
                   src={hero}
                   alt=""
               />

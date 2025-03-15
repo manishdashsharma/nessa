@@ -209,6 +209,7 @@ export default function ShowProducts() {
                                         onClick={() => navigate(`/product/${product.slug}/${product._id}`)}
                                         className="bg-gray-100 rounded-lg p-4 flex flex-col justify-between">
                                         <img
+                                            loading="lazy"
                                             src={product.productImageUrl[0]}
                                             alt={product.name}
                                             className="w-full h-48 object-contain rounded-lg mb-4"

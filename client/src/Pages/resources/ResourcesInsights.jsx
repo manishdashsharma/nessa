@@ -57,7 +57,8 @@ const ResourcesInsights = () => {
             className="flex flex-col gap-4 p-4 rounded-lg border bg-white hover:shadow-lg transition-all duration-300 ease-in-out cursor-pointer">
             <div className="w-full h-50 rounded-lg overflow-hidden">
                 {item.image ? (
-                    <img
+                    <img 
+                        loading='lazy'
                         src={item.image}
                         alt={item.title}
                         className="w-full h-[200px] object-cover"
@@ -75,7 +76,8 @@ const ResourcesInsights = () => {
                 <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-full bg-gray-200">
                         {item.profile.profilePicture && (
-                            <img
+                            <img 
+                                loading='lazy'
                                 src={item.profile.profilePicture}
                                 alt={item.profile.author}
                                 className="w-full h-full rounded-full object-cover"
@@ -103,7 +105,8 @@ const ResourcesInsights = () => {
             className="flex flex-col gap-4 p-4 rounded-lg border bg-white hover:shadow-lg transition-all duration-300 ease-in-out cursor-pointer">
             <div className="w-full h-50 rounded-lg overflow-hidden">
                 {item.thumbnailImage ? (
-                    <img
+                    <img 
+                        loading='lazy'
                         src={item.thumbnailImage}
                         alt={item.title}
                         className="w-full h-[200px] object-cover"
@@ -121,7 +124,8 @@ const ResourcesInsights = () => {
                 <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-full bg-gray-200">
                         {item.userImage && (
-                            <img
+                            <img 
+                                loading='lazy'
                                 src={item.userImage}
                                 alt={item.userName}
                                 className="w-full h-full rounded-full object-cover"

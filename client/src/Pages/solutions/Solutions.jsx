@@ -50,6 +50,7 @@ const Solutions = () => {
             <SideComponent />
             <div className="w-full h-[300px] max-sm:h-[200px] relative flex items-center  justify-start ">
                 <img
+                    loading='lazy'
                     className="w-full h-full object-cover  absolute "
                     src={hero}
                     alt=""
@@ -83,6 +84,7 @@ const Solutions = () => {
                         key={index}
                         className="relative h-[400px]  rounded-md lg:w-[28vw] md:w-[40vw] w-full flex justify-center items-end">
                         <img
+                            loading='lazy'
                             className="w-full h-full object-cover  absolute rounded-md"
                             src={solution.thumbnail}
                             alt=""
@@ -98,6 +100,7 @@ const Solutions = () => {
                 <div className="absolute left-0 bottom-0 max-md:top-0 w-[40%] h-[150px] bg-blue-500"></div>
                 <div className="w-1/2 max-md:w-full h-full relative">
                     <img
+                        loading='lazy'
                         className="w-full h-[400px] object-cover"
                         src={experties1}
                         alt=""
@@ -135,6 +138,7 @@ const Solutions = () => {
                 <div className="absolute right-0 bottom-0 w-[40%] h-[150px] bg-blue-500"></div>
                 <div className="w-1/2 max-md:w-full h-full relative">
                     <img
+                        loading='lazy'
                         className="w-full h-[400px] object-cover"
                         src={experties2}
                         alt=""

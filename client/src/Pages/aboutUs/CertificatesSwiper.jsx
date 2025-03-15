@@ -50,6 +50,7 @@ export default function CertificatesSwiper( ) {
                       className="mb-[50px] select-none ">
                       {
                           <img
+                              
                               className="h-[400px] object-contain border-4 w-full  "
                               loading="lazy"
                               src={img}

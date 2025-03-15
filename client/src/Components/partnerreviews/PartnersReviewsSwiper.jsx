@@ -132,6 +132,7 @@ export default function PartnersReviewsSwiper() {
                                 <div className="bg-white rounded-3xl shadow-lg p-8 max-w-md">
                                     <div className="flex flex-col items-center text-center space-y-4">
                                         <img
+                                            loading='lazy'
                                             src={testimonial.image}
                                             alt={`${testimonial.name}'s profile`}
                                             className="w-[100px] h-[100px] rounded-full object-cover shadow-md"

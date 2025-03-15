@@ -96,6 +96,7 @@ export default function TrendingProductsSwipe() {
                               <img
                                   className=" mb-[10px] w-full h-[70%] object-contain"
                                   src={product.productImageUrl[0]}
+                                  loading='lazy'
                                   alt={product.name + ' Image'}
                               />
                               <h1 className="text-sm">

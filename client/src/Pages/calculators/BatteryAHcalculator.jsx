@@ -206,19 +206,19 @@ const BatteryAHcalculator = () => {
                 <div className="space-y-6  px-4">
                     <div className="flex items-center">
                         <div className=" flex-shrink-0 mr-2">
-                            <img src={sun1} alt="" />
+                            <img loading="lazy" src={sun1} alt="" />
                         </div>
                         <span className="text-lg"><strong>2.5 hours</strong> - 100% brightness</span>
                     </div>
                     <div className="flex items-center">
                         <div className=" flex-shrink-0 mr-2">
-                            <img src={sun2} alt="" />
+                            <img loading="lazy" src={sun2} alt="" />
                         </div>
                         <span className="text-lg"><strong>3 hours</strong> - 50% brightness</span>
                     </div>
                     <div className="flex items-center">
                         <div className=" flex-shrink-0 mr-2">
-                            <img src={sun3} alt="" />
+                            <img loading="lazy" src={sun3} alt="" />
                         </div>
                         <span className="text-lg"><strong>6.5 hours</strong> - 25% brightness</span>
                     </div>
@@ -238,19 +238,19 @@ const BatteryAHcalculator = () => {
 
                 <div className="space-y-4">
                     <div className="flex items-start ">
-                        <img className='mr-2' src={battery} alt="" />
+                        <img loading="lazy" className='mr-2' src={battery} alt="" />
                         <div>
                             <span className="font-semibold">SMP/GEL vs. LiFePo4 Batteries</span> - Compare different battery technologies
                         </div>
                     </div>
                     <div className="flex items-start ">
-                        <img className='mr-2' src={battery} alt="" />
+                        <img loading="lazy" className='mr-2' src={battery} alt="" />
                         <div>
                             <span className="font-semibold">Dimming vs. Non-Dimming</span> - Optimize battery performance based on usage
                         </div>
                     </div>
                     <div className="flex items-start ">
-                        <img className='mr-2' src={battery} alt="" />
+                        <img loading="lazy" className='mr-2' src={battery} alt="" />
                         <div>
                             <span className="font-semibold">Voltage-Based Adjustments</span> - Ensure the right system voltage for your setup
                         </div>

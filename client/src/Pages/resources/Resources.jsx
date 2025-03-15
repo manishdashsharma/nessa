@@ -59,6 +59,7 @@ export const Resources = () => {
                         key={index}
                         className=" w-[20vw] max-md:w-[40vw] max-sm:w-[90%] max-md:mb-10 h-[30vw] max-md:h-fit  flex flex-col items-center ">
                         <img
+                            loading='lazy'
                             className="bg-gray-400  h-[300px]   "
                             src={item.poster}
                             alt={item.name}
@@ -96,6 +97,7 @@ export const Resources = () => {
                                 className=" h-[300px] object-cover  "
                                 src={item.poster}
                                 alt={item.name  + ' poster'}
+                                loading='lazy'
                             />
 
                             <h1 className="text-xl font-semibold mt-4">{item.name}</h1>

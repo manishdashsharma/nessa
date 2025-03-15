@@ -80,6 +80,7 @@ const BlogDetailPage = () => {
 
             <div className="w-full h-[300px] relative overflow-hidden">
                 <img
+                    loading="lazy"
                     src={blog.thumbnailImage || '/default-banner.jpg'}
                     alt="Blog Banner"
                     className="w-full h-full object-cover absolute inset-0"
@@ -136,6 +137,7 @@ const BlogDetailPage = () => {
                         <div className="flex items-center space-x-4">
                             {blog.userImage && (
                                 <img
+                                    loading="lazy"
                                     src={blog.userImage}
                                     alt={blog.userName}
                                     className="w-12 h-12 rounded-full object-cover"

@@ -2,9 +2,9 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination, Autoplay } from 'swiper/modules';
-import news1 from '../../../assets/images/homepageimages/news/news1.jpeg';
-import news2 from '../../../assets/images/homepageimages/news/news2.jpeg';
-import news3 from '../../../assets/images/homepageimages/news/news3.jpg';
+import news1 from '../../../assets/images/homepageimages/news/news1.webp';
+import news2 from '../../../assets/images/homepageimages/news/news2.webp';
+import news3 from '../../../assets/images/homepageimages/news/news3.webp';
 import { Link } from 'react-router-dom'
 
 
@@ -68,6 +68,7 @@ export default function RecoExSec1() {
                           <img
                               className=" h-[300px] object-cover"
                               src={slide.image}
+                              loading="lazy"
                               alt=""
                           />
                           <h1 className="w-[70%]">{slide.heading}</h1>
