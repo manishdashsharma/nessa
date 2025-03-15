@@ -31,6 +31,11 @@ const SideComponent = () => {
         navigate('/resources')
     }
 
+    const handlePaybackClick = () => {
+        navigate('/calculator/battery_AH_calculator')
+    }
+
+
     const [expandedIndex, setExpandedIndex] = useState(false)
     const [showCallModal, setShowCallModal] = useState(false)
     const [copiedNumber, setCopiedNumber] = useState(null)
@@ -62,7 +67,7 @@ const SideComponent = () => {
         { icon: BiSearch, label: 'Search Product', color: 'bg-[#0066CC]', action: focusSearchInput },
         { icon: BiEnvelope, label: 'Mail Us', color: 'bg-[#0066CC]', action: handleMailClick },
         { icon: BiPhone, label: 'Call Us', color: 'bg-[#0066CC]', action: handleCallClick },
-        { icon: BiCalculator, label: 'Payback Calculator', color: 'bg-[#0066CC]' },
+        { icon: BiCalculator, label: 'Payback Calculator', color: 'bg-[#0066CC]' , action: handlePaybackClick},
         { icon: RiBookletLine, label: 'Brochure', color: 'bg-[#0066CC]', action: handleBrochureClick },
         { icon: FaWhatsapp, label: 'Whatsapp', color: 'bg-[#25D366]', action: handleWhatsAppClick }
     ]

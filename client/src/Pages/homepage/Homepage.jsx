@@ -119,17 +119,7 @@ const Homepage = () => {
             <Navbar />
             <SideComponent />
 
-            <div className="w-full h-[70vh] relative">
-                <div className="absolute top-0 left-0 w-full h-full">
-                    <img
-                        className="w-full h-full object-cover"
-                        src={herobg}
-                        alt="hero background"
-                        loading="lazy"
-                       
-                    />
-                </div>
-
+            <div className="w-full h-[70vh] relative bg-cover bg-center" style={{ backgroundImage: `url(${herobg})` }}>
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-black px-4">
                     <div className="max-w-4xl mx-auto text-center ">
                         <div className="w-full flex items-center justify-center">
@@ -178,7 +168,7 @@ const Homepage = () => {
                 </div>
 
                 <p className="text-xl px-[5vw] mb-8">
-                    At Nessa, we don’t just offer off-the-shelf products; we design and manufacture lighting solutions that adapt precisely to your
+                    At Nessa, we don't just offer off-the-shelf products; we design and manufacture lighting solutions that adapt precisely to your
                     unique requirements. From extreme environments in mining and refineries to specific needs in airports and rural settings, our
                     expert team customizes each solution to solve the exact challenges you face.
                 </p>
