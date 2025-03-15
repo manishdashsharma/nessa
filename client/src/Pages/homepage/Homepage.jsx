@@ -4,7 +4,7 @@ import { ProductRange } from './homepageinnersections/ProductRange';
 import { RiLightbulbFlashLine } from 'react-icons/ri';
 import RecognizeEx from './homepageinnersections/RecognizeEx';
 import InsitesSwiper from './homepageinnersections/InsitesSwiper'
-import herobg from '../../assets/images/homepageimages/herobg.webp';
+import herobg from '../../assets/images/homepageimages/hero1.webp';
 import thunder from '../../assets/images/homepageimages/thunder.svg';
 import lamp from '../../assets/images/homepageimages/lamp.png';
 import indiaMap from '../../assets/images/homepageimages/indiaMap.png';
