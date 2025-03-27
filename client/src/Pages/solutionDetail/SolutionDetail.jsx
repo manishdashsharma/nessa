@@ -82,7 +82,11 @@ const SolutionDetail = () => {
                     />
                 </div>
             </div>
-            <div className="">
+
+
+          {/* temporary commented  */}
+
+            {/* <div className="">
                 <div className=" text-4xl font-semibold leading-snug text-center text-black z-[2] relative">
                     Sub-Applications and <br />
                     <span className="text-blue-500"> Related Products</span>
@@ -150,7 +154,7 @@ const SolutionDetail = () => {
                 </div>
             ) : (
                 <div className="text-center mt-[50px] text-gray-500">No case studies available for this category</div>
-            )}
+            )} */}
 
             <PartnersReviewsSwiper />
             <Footer />

@@ -113,7 +113,7 @@ const Navbar = () => {
                             const matchingSolution = response.data.find((solution) => solution.subcategories === item.subcategories)
                             return {
                                 ...item,
-                                link: matchingSolution ? `/solutions/${matchingSolution._id}` : ''
+                                link: matchingSolution ? `/solutions/${matchingSolution.title}/${matchingSolution._id}` : ''
                             }
                         })
                     })
