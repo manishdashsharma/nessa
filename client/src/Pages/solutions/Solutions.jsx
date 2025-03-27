@@ -80,7 +80,7 @@ const Solutions = () => {
             <div className="grid lg:grid-cols-3 md:grid-cols-2 max-sm:grid-cols-1  gap-20 justify-items-center p-[5vw]">
                 {solutions.map((solution, index) => (
                     <Link
-                        to={`/solutions/${solution.subcategories}/${solution._id}`}
+                        to={`/solutions/${solution.subcategories.replace(/\s+/g, '-')}/${solution._id}`}
                         key={index}
                         className="relative h-[400px]  rounded-md lg:w-[28vw] md:w-[40vw] w-full flex justify-center items-end">
                         <img
