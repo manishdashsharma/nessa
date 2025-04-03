@@ -31,8 +31,7 @@ const supportSchema = new mongoose.Schema({
         required: true
     },
     fileLink: { 
-        type: String, 
-        required: true 
+        type: String 
     },
     message: { 
         type: String, 
