@@ -30,8 +30,7 @@ const contactUsSchema = new mongoose.Schema({
         default: ESubject.GENERAL_INQUIRY
     },
     fileLink: { 
-        type: String, 
-        required: true 
+        type: String
     },
     message: { 
         type: String, 

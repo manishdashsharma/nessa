@@ -135,9 +135,8 @@ const Homepage = () => {
                         </div>
 
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold mb-8 mt-8">
-                            Innovative <span className="text-blue-500">Lighting Solution</span>
-                            <br />
-                            for every Industry
+                            Innovative <span className="text-blue-500">Lighting Solutions</span>
+                           
                         </h1>
 
                         <p className="text-lg md:text-xl  mb-8 max-w-2xl mx-auto">
