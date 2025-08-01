@@ -65,11 +65,12 @@ const App = () => {
                 <Route path="/projects" element={<Projects />} />
                 <Route path="/valueAddedServices" element={<ValueAddedServices />} />
                 <Route path="/resources" element={<Resources />}>
-                    <Route path=":resource_type/:slug/:id" element={<BlogDetailPage />} />
+                   
                     {/* <Route path="articles/:id" element={<BlogDetailPage />} />
                     <Route path="case-studies/:id" element={<BlogDetailPage />} />
                     <Route path="others/:id" element={<BlogDetailPage />} /> */}
                 </Route>
+                <Route path="/resources/:resource_type/:slug/:id" element={<BlogDetailPage />} />
                 <Route path="/calculator/battery_AH_calculator" element={<BatteryAHcalculator />} />
                 
                 
