@@ -39,7 +39,7 @@ services:
       context: ./server
       dockerfile: docker/development/Dockerfile
     ports:
-      - '5000:5000'
+      - '5001:5000'
     depends_on:
       - mongo
     env_file: 
@@ -49,6 +49,7 @@ services:
       - ./server/package.json:/usr/src/app/package.json
       - ./server/nodemon.json:/usr/src/app/nodemon.json
       - ./server/public:/usr/src/app/public
+      - ./.env.development:/usr/src/app/.env.development
     networks:
       - queue-net
 
